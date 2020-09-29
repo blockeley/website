@@ -1,0 +1,66 @@
+.feature {
+    position: relative;
+
+    // 16x9 aspect ratio
+    width: 100%;
+    padding-top: calc(100% / 16 * 9);
+
+    border: 2px solid black;
+
+    margin-bottom: 24px;
+
+    &.feature-placeholder {
+        background-color: black;
+        background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FFFFFF' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+
+        p.feature-caption {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1;
+            color: rgba(white, 0.1);
+
+            white-space: nowrap;
+        }
+    }
+
+    .feature-image {
+        position: absolute;
+
+        height: 100%;
+        width: 100%;
+
+        left: 0;
+        top: 0;
+
+        img {
+            height: 100%;
+            width: 100%;
+
+            object-fit: cover;
+        }
+    }
+
+    &::before {
+        // Required for pseudo-element
+        content: "";
+
+        position: absolute;
+
+        height: calc(100% + 4px);
+        width: calc(100% + 4px);
+
+        right: 2px;
+        bottom: 2px;
+
+        z-index: -1;
+
+        background-color: #FFC02E;
+    }
+}

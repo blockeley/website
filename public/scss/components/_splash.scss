@@ -1,0 +1,89 @@
+.splash {
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    height: calc(100vh - 58px);
+
+    h2.splash-title {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.2;
+        color: rgba(black, 0.25);
+
+        margin-bottom: 4px;
+    }
+
+    h1.splash-heading {
+        font-size: 48px;
+        font-weight: 900;
+        line-height: 1;
+        color: black;
+
+        text-shadow: 4px 4px 0 #FFC02E;
+
+        margin-bottom: 24px;
+    }
+
+    p.splash-description {
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.2;
+        color: rgba(black, 0.5);
+
+        margin-bottom: 36px;
+
+        .important {
+            color: black;
+            font-weight: 500;
+        }
+    }
+
+    .splash-icon {
+        position: absolute;
+
+        height: 40px;
+        width: 40px;
+
+        left: 50%;
+        bottom: 24px;
+
+        transform: translateX(-50%);
+
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: black;
+
+        color: white;
+    }
+
+    .splash-buttons {
+        margin: -12px;
+
+        .button {
+            margin: 12px;
+        }
+    }
+
+    &.splash-center {
+        h2.splash-title, h1.splash-heading, p.splash-description {
+            text-align: center;
+        }
+
+        .splash-buttons {
+            @media (min-width: 992px) {
+                display: flex;
+                justify-content: center;
+            }
+
+            @media (max-width: 992px) {
+                text-align: center;
+            }
+        }
+    }
+}

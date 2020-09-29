@@ -1,0 +1,25 @@
+a.icon-button {
+    border-radius: 50%;
+
+    height: 40px;
+    width: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: black;
+
+    transition: color 100ms ease-in-out,
+                background-color 100ms ease-in-out;
+
+    &.active, &:hover {
+        background-color: rgba(#FFC02E, 0.1);
+
+        color: #FFC02E;
+    }
+
+    &:not(.active):hover {
+        cursor: pointer;
+    }
+}

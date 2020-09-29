@@ -1,0 +1,78 @@
+.navigation-bar {
+	background-color: white;
+	border-bottom: 2px solid black;
+
+	// Grid
+	> .container, > .container-fluid {
+		display: flex;
+		align-items: center;
+
+		height: 56px;
+	}
+
+	img.navigation-bar-brand {
+		height: 40px;
+	}
+
+	ul.navigation-bar-menu {
+		display: flex;
+
+		list-style-type: none;
+
+		li.menu-item a.item-link {
+			display: flex;
+			align-items: center;
+
+			position: relative;
+
+			font-size: 14px;
+			font-weight: 500;
+			color: black;
+			line-height: 1;
+
+			height: 56px;
+			padding-right: 12px;
+			padding-left: 12px;
+
+			transition: background-color 100ms ease-in-out,
+						color 100ms ease-in-out;
+
+			&::after {
+				// Required for pseudo
+				content: "";
+
+				height: 2px;
+				width: 100%;
+
+				position: absolute;
+
+				background-color: transparent;
+
+				left: 0;
+				bottom: 0px;
+
+				transition: background-color 100ms ease-in-out;
+			}
+
+			&:hover {
+				color: #FFC02E;
+
+				cursor: pointer;
+			}
+
+			&.disabled {
+				color: rgba(0, 0, 0, 0.25);
+			}
+
+			&.active {
+				background-color: rgba(#FFC02E, 0.1);
+
+				color: #FFC02E;
+
+				&::after {
+					background-color: #FFC02E;
+				}
+			}
+		}
+	}
+}

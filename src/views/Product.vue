@@ -1,0 +1,278 @@
+<template>
+    <div v-if="product" id="item">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="preview-wrapper">
+                        <div class="preview">
+
+                            <img :src="product.variants[currentVariant].image.src">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="heading">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#FFC02E" d="M28.3,-25.1C35,-14.1,37.8,-2.4,39.5,16.7C41.3,35.7,42,62.2,32.7,66C23.4,69.7,4,50.8,-18.3,39.5C-40.6,28.2,-65.8,24.5,-68.4,15.1C-70.9,5.7,-50.8,-9.4,-35.6,-22.3C-20.4,-35.3,-10.2,-46.2,0.3,-46.4C10.7,-46.6,21.5,-36.2,28.3,-25.1Z" transform="translate(100 100)" />
+                        </svg>
+
+                        <h1 class="heading-text">{{ product.title }}</h1>
+                    </div>
+
+                    <p class="price">Starting at <span class="important">${{ product.variants[0].price }}</span></p>
+
+                    <p class="description"
+                       v-html="product.descriptionHtml" />
+
+                    <div v-for="option in product.options"
+                         :key="option.id">
+
+                        <h2 class="variant">{{ option.name }}</h2>
+
+                        <div class="option-wrapper">
+
+                            <div class="option"
+                                 v-for="value in option.values"
+                                 :class="{ active: value.value === selectedOptions[option.name] }"
+                                 :key="value.value"
+                                 @click="setSelectedOption(option.name, value.value)">{{ value.value }}</div>
+
+                        </div>
+
+                    </div>
+
+                    <a class="button"
+                       :class="{ 'button-loading': loading }"
+                       @click="addToCart( )">Add to cart for ${{ this.product.variants[currentVariant].price }}</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style lang="scss">
+#item {
+    @media (min-width: 992px) {
+        height: calc(100vh - 58px);
+
+        display: flex;
+        align-items: center;
+    }
+
+    @media (max-width: 992px) {
+        padding-top: 64px;
+    }
+
+    .option-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+
+        margin: -4px;
+
+        padding-bottom: 24px;
+
+        .option {
+            display: inline-block;
+
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1;
+            color: rgba(black, 0.5);
+
+            border: 2px dashed rgba(black, 0.5);
+
+            padding: 13px 24px;
+
+            margin: 4px;
+
+            transition: color 100ms ease-in-out,
+                        border-color 100ms ease-in-out,
+                        background-color 100ms ease-in-out;
+
+            &:hover {
+                color: black;
+
+                border-color: black;
+
+                cursor: pointer;
+            }
+
+            &.active {
+                border-color: #FFC02E;
+
+                color: #FFC02E;
+
+                background-color: rgba(#FFC02E, 0.1);
+            }
+        }
+    }
+
+    .preview-wrapper {
+        max-width: 75%;
+
+        @media (max-width: 992px) {
+            margin-left: 12.5%;
+            margin-bottom: 64px;
+        }
+
+        .preview {
+            position: relative;
+
+            // 6x8 aspect ratio
+            width: 100%;
+            padding-top: calc(100% / 6 * 8);
+
+            border: 2px solid black;
+
+            margin-bottom: 16px;
+
+            img {
+                position: absolute;
+
+                height: 100%;
+                width: 100%;
+
+                left: 50%;
+                top: 50%;
+
+                transform: translate(-50%, -50%);
+
+                object-fit: cover;
+            }
+
+            &::before {
+                // Required for pseudo-element
+                content: "";
+
+                position: absolute;
+
+                height: calc(100% + 4px);
+                width: calc(100% + 4px);
+
+                right: 2px;
+                bottom: 2px;
+
+                z-index: -1;
+
+                background-color: #FFC02E;
+            }
+        }
+    }
+
+    h2.variant {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        color: black;
+
+        margin-bottom: 8px;
+    }
+
+    p.price, p.description {
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.2;
+        color: rgba(black, 0.5);
+
+        margin-bottom: 24px;
+    }
+
+    p.price .important {
+        font-weight: 500;
+        color: black;
+    }
+}
+</style>
+
+<script>
+export default {
+    name: "Item",
+
+    props: [ "identifier" ],
+
+    data( ) {
+        return {
+            product: null,
+
+            selectedOptions: null,
+            currentVariant: null,
+
+            loading: false
+        };
+    },
+
+    methods: {
+        setSelectedOption(name, value) {
+            this.selectedOptions[name] = value;
+
+            this.updateCurrentVariant( );
+        },
+
+        async addToCart( ) {
+            this.loading = true;
+
+            let identifier = this.$store.state.identifier;
+
+            if( ! identifier ) {
+                const checkout = await this.$client.checkout.create( );
+
+                identifier = checkout.id;
+                this.$store.commit("setIdentifier", checkout.id);
+            }
+
+            const product = {
+                variantId: this.product.variants[this.currentVariant].id,
+                quantity: 1
+            };
+
+            await this.$client.checkout.addLineItems(identifier, product);
+            this.$store.commit("incrementCart");
+
+            this.loading = false;
+        },
+
+        updateCurrentVariant( ) {
+            let title;
+
+            for(const option of this.product.options) {
+                if(title) title += " / " + this.selectedOptions[option.name];
+                else title = this.selectedOptions[option.name];
+            }
+
+            this.currentVariant = this.product.variants.findIndex(variant => variant.title === title);
+        },
+
+        async render( ) {
+            const product = await this.$client.product.fetchByHandle(this.identifier);
+
+            let selectedOptions = { };
+
+            for(const option of product.options) {
+                selectedOptions[option.name] = option.values[0].value;
+            }
+
+            this.product = product;
+            this.selectedOptions = selectedOptions;
+
+            this.updateCurrentVariant( );
+        }
+    },
+
+    mounted( ) {
+        this.render( );
+    },
+
+    watch: {
+        $route( ) {
+            this.product = null;
+            this.selectedOptions = null;
+            this.selectedVariation = null;
+
+            this.render( );
+        }
+    }
+}
+</script>
