@@ -35,45 +35,99 @@
                 <h2 class="heading-text">Explore in Minecraft</h2>
             </div>
 
-            <div class="step-wrapper">
-                <div class="step">
-                    <div class="step-image">
-                        <img src="/images/step-one.png">
-                    </div>
+            <ul class="options">
 
-                    <div class="step-content">
-                        <p class="step-identifier">Step one</p>
+                <li class="option"
+                    @click="setSelectedEdition('java')"
+                    :class="{ active: selectedEdition === 'java' }">Minecraft Java Edition</li>
 
-                        <p class="step-description"><span class="important">Register</span> for a Minecraft account if you do not already have one. <span class="important">Download</span> Minecraft <span class="important">Java Edition</span>.</p>
+                <li class="option"
+                    @click="setSelectedEdition('bedrock')"
+                    :class="{ active: selectedEdition === 'bedrock' }">Minecraft Bedrock Edition</li>
 
-                        <a class="button" href="https://www.minecraft.net/en-us/download/">Download Minecraft</a>
-                    </div>
-                </div>
+            </ul>
 
-                <div class="step">
-                    <div class="step-image">
-                        <img src="/images/step-two.png">
-                    </div>
+            <ul class="steps">
+                <template v-if="selectedEdition === 'java'">
+                    <li class="step">
+                        <div class="step-image">
+                            <img src="/images/steps/java/one.png">
+                        </div>
 
-                    <div class="step-content">
-                        <p class="step-identifier">Step two</p>
+                        <div class="step-content">
+                            <p class="step-identifier">Step one</p>
 
-                        <p class="step-description"><span class="important">Open</span> the Minecraft launcher and <span class="important">sign in</span> with your Minecraft account. Once signed in, <span class="important">click play</span> to launch Minecraft Java Edition and wait for the game to load.</p>
-                    </div>
-                </div>
+                            <p class="step-description"><span class="important">Register for a Minecraft account</span> if you do not already have one. <span class="important">Download Minecraft Java Edition</span> on Windows, macOS, or Linux.</p>
 
-                <div class="step">
-                    <div class="step-image">
-                        <img src="/images/step-three.png">
-                    </div>
+                            <a class="button" href="https://www.minecraft.net/en-us/download/">Download Minecraft</a>
+                        </div>
+                    </li>
 
-                    <div class="step-content">
-                        <p class="step-identifier">Step three</p>
+                    <li class="step">
+                        <div class="step-image">
+                            <img src="/images/steps/java/two.png">
+                        </div>
 
-                        <p class="step-description">Select the <span class="important">Multiplayer</span> option in the menu and then click <span class="important">Add Server</span>. In the <span class="important">Server Address</span> field, type <span class="important">mc.blockeley.com</span>. Then, click <span class="important">Done</span>, select the Blockeley Minecraft server from the multiplayer menu, and click <span class="important">Join Server</span>.</p>
-                    </div>
-                </div>
-            </div>
+                        <div class="step-content">
+                            <p class="step-identifier">Step two</p>
+
+                            <p class="step-description"><span class="important">Open the Minecraft Java Edition launcher</span> and <span class="important">sign in with your Minecraft account</span>. Once signed in, <span class="important">click play</span> to launch Minecraft Java Edition.</p>
+                        </div>
+                    </li>
+
+                    <li class="step">
+                        <div class="step-image">
+                            <img src="/images/steps/java/three.png">
+                        </div>
+
+                        <div class="step-content">
+                            <p class="step-identifier">Step three</p>
+
+                            <p class="step-description"><span class="important">Select the Multiplayer option</span> from the menu and <span class="important">click Add Server</span>. In the <span class="important">Server Address</span> field, type <span class="important">mc.blockeley.com</span>. Then, click <span class="important">Done</span>, <span class="important">select the Blockeley Minecraft server</span> from the multiplayer menu, and <span class="important">click Join Server</span>.</p>
+                        </div>
+                    </li>
+                </template>
+
+                <template v-if="selectedEdition === 'bedrock'">
+                    <li class="step">
+                        <div class="step-image">
+                            <img src="/images/steps/bedrock/one.png">
+                        </div>
+
+                        <div class="step-content">
+                            <p class="step-identifier">Step one</p>
+
+                            <p class="step-description"><span class="important">Register for an Xbox Live account</span> through Microsoft if you do not already have one. <span class="important">Download Minecraft Bedrock Edition</span> on Android, iOS, or Windows 10.</p>
+
+                            <a class="button" href="https://www.xbox.com/en-US/live/minecraft/sign-up">Minecraft sign up</a>
+                        </div>
+                    </li>
+
+                    <li class="step">
+                        <div class="step-image">
+                            <img src="/images/steps/bedrock/two.png">
+                        </div>
+
+                        <div class="step-content">
+                            <p class="step-identifier">Step two</p>
+
+                            <p class="step-description"><span class="important">Open Minecraft Bedrock Edition</span> and <span class="important">sign in with your Xbox Live account</span> through Microsoft. Once signed in, <span class="important">click play</span> and <span class="important">select Servers</span>.</p>
+                        </div>
+                    </li>
+
+                    <li class="step">
+                        <div class="step-image">
+                            <img src="/images/steps/bedrock/three.png">
+                        </div>
+
+                        <div class="step-content">
+                            <p class="step-identifier">Step three</p>
+
+                            <p class="step-description"><span class="important">Scroll to the bottom of the list of Featured Servers</span> and <span class="important">click Add Server</span>. In the <span class="important">Server Address</span> field, type <span class="important">mc.blockeley.com</span>. Then, <span class="important">click Save</span>, <span class="important">select the Blockeley Minecraft server</span> from the list of Additional Servers, and <span class="important">click Join Server</span>.</p>
+                        </div>
+                    </li>
+                </template>
+            </ul>
 
             <div class="heading heading-center">
                 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -83,40 +137,34 @@
                 <h2 class="heading-text">Featured locations</h2>
             </div>
 
-            <div class="row justify-content-center">
+            <div id="locations" class="row justify-content-center">
                 <div class="col-lg-4">
-                    <div class="feature">
-                        <div class="feature-image">
-                            <img src="images/art-one.png">
-                        </div>
+                    <div class="location">
+                        <img src="images/locations/one.png">
                     </div>
                 </div>
 
                 <div class="col-lg-4">
-                    <div class="feature">
-                        <div class="feature-image">
-                            <img src="images/art-two.png">
-                        </div>
+                    <div class="location">
+                        <img src="images/locations/two.png">
                     </div>
                 </div>
 
                 <div class="col-lg-4">
-                    <div class="feature">
-                        <div class="feature-image">
-                            <img src="images/art-three.png">
-                        </div>
+                    <div class="location">
+                        <img src="images/locations/three.jpg">
                     </div>
                 </div>
 
                 <div class="col-lg-4">
-                    <div class="feature feature-placeholder">
-                        <p class="feature-caption">Coming soon...</p>
+                    <div class="location">
+                        <img src="images/locations/four.png">
                     </div>
                 </div>
 
                 <div class="col-lg-4">
-                    <div class="feature feature-placeholder">
-                        <p class="feature-caption">Coming soon...</p>
+                    <div class="location">
+                        <img src="images/locations/five.jpg">
                     </div>
                 </div>
             </div>
@@ -124,11 +172,39 @@
     </div>
 </template>
 
+<style lang="scss">
+#campus {
+    .options {
+        justify-content: center;
+
+        margin-bottom: 48px;
+    }
+
+    #locations {
+        margin-bottom: -24px;
+
+        .location {
+            margin-bottom: 24px;
+        }
+    }
+}
+</style>
+
 <script>
 export default {
     name: "Campus",
 
+    data( ) {
+        return {
+            selectedEdition: "java"
+        };
+    },
+
     methods: {
+        setSelectedEdition(edition) {
+            this.selectedEdition = edition;
+        },
+
         explore( ) {
             window.scroll({
                 behavior: "smooth",

@@ -1,7 +1,10 @@
-.step-wrapper {
+ul.steps {
+    display: flex;
+    flex-direction: column;
 
-    // Requires :nth-child
-    .step {
+    list-style-type: none;
+
+    li.step {
         @media (min-width: 992px) {
             display: flex;
             align-items: center;
@@ -111,10 +114,10 @@
         }
 
         .step-image {
+            @include image-card;
+
             @media (max-width: 992px) {
-                // 16x9 aspect ratio
-                width: 100%;
-                padding-top: calc(100% / 16 * 9);
+                @include aspect-ratio-16x9;
             }
 
             @media (min-width: 992px) {
@@ -122,41 +125,6 @@
                 height: 288px;
 
                 flex-shrink: 0;
-            }
-
-            position: relative;
-
-            border: 2px solid black;
-
-            &::before {
-                // Required for pseudo-element
-                content: "";
-
-                position: absolute;
-
-                height: calc(100% + 4px);
-                width: calc(100% + 4px);
-
-                right: 2px;
-                bottom: 2px;
-
-                z-index: -1;
-
-                background-color: #FFC02E;
-            }
-
-            img {
-                @media (max-width: 992px) {
-                    position: absolute;
-
-                    top: 0;
-                    left: 0;
-                }
-
-                height: 100%;
-                width: 100%;
-
-                object-fit: cover;
             }
         }
     }

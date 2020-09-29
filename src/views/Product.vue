@@ -31,15 +31,15 @@
 
                         <h2 class="variant">{{ option.name }}</h2>
 
-                        <div class="option-wrapper">
+                        <ul class="options">
 
-                            <div class="option"
+                            <li class="option"
                                  v-for="value in option.values"
                                  :class="{ active: value.value === selectedOptions[option.name] }"
                                  :key="value.value"
-                                 @click="setSelectedOption(option.name, value.value)">{{ value.value }}</div>
+                                 @click="setSelectedOption(option.name, value.value)">{{ value.value }}</li>
 
-                        </div>
+                        </ul>
 
                     </div>
 
@@ -54,6 +54,9 @@
 </template>
 
 <style lang="scss">
+@import "../../public/scss/mixins/image-card",
+        "../../public/scss/mixins/aspect-ratio-6x8";
+
 #item {
     @media (min-width: 992px) {
         height: calc(100vh - 58px);
@@ -66,48 +69,8 @@
         padding-top: 64px;
     }
 
-    .option-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-
-        margin: -4px;
-
-        padding-bottom: 24px;
-
-        .option {
-            display: inline-block;
-
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 1;
-            color: rgba(black, 0.5);
-
-            border: 2px dashed rgba(black, 0.5);
-
-            padding: 13px 24px;
-
-            margin: 4px;
-
-            transition: color 100ms ease-in-out,
-                        border-color 100ms ease-in-out,
-                        background-color 100ms ease-in-out;
-
-            &:hover {
-                color: black;
-
-                border-color: black;
-
-                cursor: pointer;
-            }
-
-            &.active {
-                border-color: #FFC02E;
-
-                color: #FFC02E;
-
-                background-color: rgba(#FFC02E, 0.1);
-            }
-        }
+    .options {
+        margin-bottom: 24px;
     }
 
     .preview-wrapper {
@@ -119,46 +82,8 @@
         }
 
         .preview {
-            position: relative;
-
-            // 6x8 aspect ratio
-            width: 100%;
-            padding-top: calc(100% / 6 * 8);
-
-            border: 2px solid black;
-
-            margin-bottom: 16px;
-
-            img {
-                position: absolute;
-
-                height: 100%;
-                width: 100%;
-
-                left: 50%;
-                top: 50%;
-
-                transform: translate(-50%, -50%);
-
-                object-fit: cover;
-            }
-
-            &::before {
-                // Required for pseudo-element
-                content: "";
-
-                position: absolute;
-
-                height: calc(100% + 4px);
-                width: calc(100% + 4px);
-
-                right: 2px;
-                bottom: 2px;
-
-                z-index: -1;
-
-                background-color: #FFC02E;
-            }
+            @include image-card;
+            @include aspect-ratio-6x8;
         }
     }
 

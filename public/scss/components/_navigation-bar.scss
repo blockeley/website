@@ -46,12 +46,14 @@
 
 				position: absolute;
 
-				background-color: transparent;
+				background-color: #FFC02E;
 
 				left: 0;
-				bottom: 0px;
+				bottom: 0;
 
-				transition: background-color 100ms ease-in-out;
+				opacity: 0;
+
+				transition: opacity 100ms ease-in-out;
 			}
 
 			&:hover {
@@ -60,17 +62,13 @@
 				cursor: pointer;
 			}
 
-			&.disabled {
-				color: rgba(0, 0, 0, 0.25);
-			}
-
 			&.active {
 				background-color: rgba(#FFC02E, 0.1);
 
 				color: #FFC02E;
 
 				&::after {
-					background-color: #FFC02E;
+					opacity: 1;
 				}
 			}
 		}

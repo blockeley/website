@@ -55,7 +55,6 @@
     h2.splash-title {
         margin-bottom: 32px;
 
-        color: rgba(black, 0.25);
         line-height: 1.5;
 
         .important {

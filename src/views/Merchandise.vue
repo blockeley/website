@@ -10,7 +10,7 @@
                         <p class="splash-description"><span class="important">Purchase Blockeley merchandise and support the Blockeley project.</span> Express school spirit on and off the virtual Minecraft campus with our unique Blockeley t-shirts.</p>
 
                         <div class="splash-buttons">
-                            
+
                             <a class="button"
                                @click="browse( )">Browse products</a>
 
@@ -52,6 +52,10 @@
                         <router-link :to="{ name: 'Product', params: { identifier: product.handle } }">
 
                             <div class="product-preview">
+                                <div class="preview-icon">
+                                    <i class="material-icons">arrow_forward</i>
+                                </div>
+
                                 <img :src="product.variants[0].image.src">
                             </div>
 

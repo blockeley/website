@@ -31,6 +31,68 @@
     }
     */
 
+    .product-preview {
+		@include image-card;
+        @include aspect-ratio-6x8;
+
+        .preview-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: absolute;
+
+            z-index: 2;
+
+            height: 40px;
+            width: 40px;
+
+            border-radius: 50%;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            background-color: #FFC02E;
+
+            color: white;
+
+            opacity: 0;
+
+            transition: opacity 250ms ease-in-out;
+        }
+
+        &::after {
+            // Required for pseudo-element
+            content: "";
+
+            position: absolute;
+
+            z-index: 1;
+
+            height: 100%;
+            width: 100%;
+
+            left: 0;
+            top: 0;
+
+            background-color: rgba(black, 0.5);
+
+            opacity: 0;
+
+            transition: opacity 250ms ease-in-out;
+        }
+
+        &:hover {
+            .preview-icon, &::after {
+                opacity: 1;
+            }
+        }
+
+        margin-bottom: 16px;
+    }
+
     h2.product-name {
         text-align: center;
 
@@ -53,49 +115,6 @@
         .important {
             color: black;
             font-weight: 500;
-        }
-    }
-
-    .product-preview {
-		position: relative;
-
-		// 6x8 aspect ratio
-        width: 100%;
-        padding-top: calc(100% / 6 * 8);
-
-        border: 2px solid black;
-
-        margin-bottom: 16px;
-
-        img {
-            position: absolute;
-
-            height: 100%;
-            width: 100%;
-
-            left: 50%;
-            top: 50%;
-
-            transform: translate(-50%, -50%);
-
-            object-fit: cover;
-        }
-
-        &::before {
-            // Required for pseudo-element
-            content: "";
-
-            position: absolute;
-
-            height: calc(100% + 4px);
-            width: calc(100% + 4px);
-
-            right: 2px;
-            bottom: 2px;
-
-            z-index: -1;
-
-            background-color: #FFC02E;
         }
     }
 }
