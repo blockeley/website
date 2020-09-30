@@ -8,19 +8,27 @@ a.icon-button {
     align-items: center;
     justify-content: center;
 
-    color: black;
+    color: rgba(white, 0.5);
 
     transition: color 100ms ease-in-out,
                 background-color 100ms ease-in-out;
 
     &.icon-button-alt {
         background-color: rgba(black, 0.05);
+
+        color: black;
+
+        &:hover {
+            background-color: rgba(#FFC02E, 0.1);
+
+            color: #FFC02E;
+        }
     }
 
     &.active, &:hover {
-        background-color: rgba(#FFC02E, 0.1);
+        background-color: rgba(white, 0.1);
 
-        color: #FFC02E;
+        color: white;
     }
 
     &:not(.active):hover {

@@ -57,8 +57,7 @@ a.button:not(.button-progress):hover {
   z-index: 998;
   position: sticky;
   top: 0;
-  background-color: white;
-  border-bottom: 2px solid black;
+  background-color: #FFC02E;
 }
 .navigation-bar > .container, .navigation-bar > .container-fluid {
   display: flex;
@@ -78,9 +77,9 @@ a.button:not(.button-progress):hover {
   position: relative;
   font-size: 14px;
   font-weight: 500;
-  color: black;
+  color: rgba(255, 255, 255, 0.5);
   line-height: 1;
-  height: 54px;
+  height: 56px;
   padding-right: 12px;
   padding-left: 12px;
   transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
@@ -90,19 +89,19 @@ a.button:not(.button-progress):hover {
   height: 2px;
   width: 100%;
   position: absolute;
-  background-color: #FFC02E;
+  background-color: white;
   left: 0;
   bottom: 0;
   opacity: 0;
   transition: opacity 100ms ease-in-out;
 }
 .navigation-bar ul.navigation-bar-menu li.menu-item a.item-link:hover {
-  color: #FFC02E;
+  color: white;
   cursor: pointer;
 }
 .navigation-bar ul.navigation-bar-menu li.menu-item a.item-link.active {
-  background-color: rgba(255, 192, 46, 0.1);
-  color: #FFC02E;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
 }
 .navigation-bar ul.navigation-bar-menu li.menu-item a.item-link.active::after {
   opacity: 1;
@@ -184,15 +183,20 @@ a.icon-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: black;
+  color: rgba(255, 255, 255, 0.5);
   transition: color 100ms ease-in-out, background-color 100ms ease-in-out;
 }
 a.icon-button.icon-button-alt {
   background-color: rgba(0, 0, 0, 0.05);
+  color: black;
 }
-a.icon-button.active, a.icon-button:hover {
+a.icon-button.icon-button-alt:hover {
   background-color: rgba(255, 192, 46, 0.1);
   color: #FFC02E;
+}
+a.icon-button.active, a.icon-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
 }
 a.icon-button:not(.active):hover {
   cursor: pointer;

@@ -7,8 +7,7 @@
 
 	top: 0;
 
-	background-color: white;
-	border-bottom: 2px solid black;
+	background-color: #FFC02E;
 
 	// Grid
 	> .container, > .container-fluid {
@@ -35,10 +34,10 @@
 
 			font-size: 14px;
 			font-weight: 500;
-			color: black;
+			color: rgba(white, 0.5);
 			line-height: 1;
 
-			height: 54px;
+			height: 56px;
 			padding-right: 12px;
 			padding-left: 12px;
 
@@ -54,7 +53,7 @@
 
 				position: absolute;
 
-				background-color: #FFC02E;
+				background-color: white;
 
 				left: 0;
 				bottom: 0;
@@ -65,15 +64,15 @@
 			}
 
 			&:hover {
-				color: #FFC02E;
+				color: white;
 
 				cursor: pointer;
 			}
 
 			&.active {
-				background-color: rgba(#FFC02E, 0.1);
+				background-color: rgba(white, 0.1);
 
-				color: #FFC02E;
+				color: white;
 
 				&::after {
 					opacity: 1;

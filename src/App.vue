@@ -129,7 +129,7 @@
 
             border-radius: 50%;
 
-            background-color: #FFC02E;
+            background-color: white;
         }
     }
 }
