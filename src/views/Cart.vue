@@ -160,7 +160,7 @@
         @media (min-width: 992px) {
             position: sticky;
 
-            top: 48px;
+            top: 104px;
         }
 
         // Specific .card
