@@ -16,7 +16,8 @@
                             <router-link to="/campus"
                                          class="button">Minecraft campus</router-link>
 
-                            <a class="button" href="https://streamlabs.com/offtheirplate1" target="_blank">Support Blockeley</a>
+                            <router-link to="/merchandise"
+                                         class="button">Support Blockeley</router-link>
 
                             <a class="button" href="https://discord.gg/mmAK4D5" target="_blank">Discord community</a>
 

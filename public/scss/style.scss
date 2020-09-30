@@ -1,18 +1,17 @@
-@import "mixins/aspect-ratio-16x9",
-		"mixins/aspect-ratio-6x8",
-		"mixins/image-card";
+@import "animations/progress";
 
 @import "components/button",
 		"components/navigation-bar",
 		"components/mobile-navigation",
+		"components/progress",
 		"components/icon-button",
 		"components/splash",
 		"components/heading",
-		"components/location",
 		"components/step",
 		"components/footer",
 		"components/product",
-		"components/options";
+		"components/options",
+		"components/card";
 
 // Global
 *, *::after, *::before {
@@ -24,11 +23,11 @@ a {
 }
 
 body {
+	position: relative;
+
 	font-family: "Poppins", sans-serif;
 
 	background-color: #F5F7F9;
-
-	position: relative;
 
 	&.body-limit {
 		height: 100%;
@@ -55,6 +54,7 @@ body {
 	}
 }
 
+// Normalize
 h1, h2, h3, h4, h5, p, body, ul {
 	margin: 0;
 }

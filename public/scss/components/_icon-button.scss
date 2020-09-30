@@ -13,6 +13,10 @@ a.icon-button {
     transition: color 100ms ease-in-out,
                 background-color 100ms ease-in-out;
 
+    &.icon-button-alt {
+        background-color: rgba(black, 0.05);
+    }
+
     &.active, &:hover {
         background-color: rgba(#FFC02E, 0.1);
 

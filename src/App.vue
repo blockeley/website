@@ -86,7 +86,7 @@
                 </ul>
 
                 <router-link to="/cart"
-                             id="cart"
+                             id="cart-link"
                              class="icon-button ml-auto"
                              :class="{ 'has-notification': $store.state.cart > 0 }">
 
@@ -109,7 +109,7 @@
 </template>
 
 <style lang="scss">
-#cart {
+#cart-link {
     margin-left: 24px;
 
     &.has-notification {

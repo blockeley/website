@@ -1,41 +1,9 @@
 .product {
-    /*
-    Tags
+    // Specific .card.card-image.card-6x8
+    .card.card-image.card-6x8 {
+        &::after {
+            content: "arrow_forward";
 
-    &.product-popular, &.product-new {
-		.product-preview::after {
-		    display: inline-block;
-
-		    position: absolute;
-
-		    top: 16px;
-		    left: -2px;
-
-		    padding: 13px 24px 13px 26px;
-
-		    font-size: 14px;
-		    font-weight: 500;
-		    line-height: 1;
-		    color: white;
-
-		    background-color: #FFC02E;
-		}
-	}
-
-    &.product-popular .product-preview::after {
-        content: "Popular";
-    }
-
-    &.product-new .product-preview::after {
-        content: "New";
-    }
-    */
-
-    .product-preview {
-		@include image-card;
-        @include aspect-ratio-6x8;
-
-        .preview-icon {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -54,6 +22,9 @@
 
             transform: translate(-50%, -50%);
 
+            font-family: "Material Icons";
+            font-size: 24px;
+
             background-color: #FFC02E;
 
             color: white;
@@ -63,7 +34,7 @@
             transition: opacity 250ms ease-in-out;
         }
 
-        &::after {
+        &::before {
             // Required for pseudo-element
             content: "";
 
@@ -85,7 +56,7 @@
         }
 
         &:hover {
-            .preview-icon, &::after {
+            &::before, &::after {
                 opacity: 1;
             }
         }

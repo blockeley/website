@@ -1,62 +1,71 @@
 <template>
-    <div v-if="product" id="item">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="preview-wrapper">
-                        <div class="preview">
+    <div id="item">
 
-                            <img :src="product.variants[currentVariant].image.src">
+        <template v-if="product">
 
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="preview-wrapper">
+                            <div class="card card-image card-6x8">
+
+                                <img :src="product.variants[currentVariant].image.src">
+
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-lg-6">
-                    <div class="heading">
-                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                            <path fill="#FFC02E" d="M28.3,-25.1C35,-14.1,37.8,-2.4,39.5,16.7C41.3,35.7,42,62.2,32.7,66C23.4,69.7,4,50.8,-18.3,39.5C-40.6,28.2,-65.8,24.5,-68.4,15.1C-70.9,5.7,-50.8,-9.4,-35.6,-22.3C-20.4,-35.3,-10.2,-46.2,0.3,-46.4C10.7,-46.6,21.5,-36.2,28.3,-25.1Z" transform="translate(100 100)" />
-                        </svg>
+                    <div class="col-lg-6">
+                        <div class="heading">
+                            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#FFC02E" d="M28.3,-25.1C35,-14.1,37.8,-2.4,39.5,16.7C41.3,35.7,42,62.2,32.7,66C23.4,69.7,4,50.8,-18.3,39.5C-40.6,28.2,-65.8,24.5,-68.4,15.1C-70.9,5.7,-50.8,-9.4,-35.6,-22.3C-20.4,-35.3,-10.2,-46.2,0.3,-46.4C10.7,-46.6,21.5,-36.2,28.3,-25.1Z" transform="translate(100 100)" />
+                            </svg>
 
-                        <h1 class="heading-text">{{ product.title }}</h1>
+                            <h1 class="heading-text">{{ product.title }}</h1>
+                        </div>
+
+                        <p class="price">Starting at <span class="important">${{ product.variants[0].price }}</span></p>
+
+                        <p class="description"
+                           v-html="product.descriptionHtml" />
+
+                        <div v-for="option in product.options"
+                             :key="option.id">
+
+                            <h2 class="variant">{{ option.name }}</h2>
+
+                            <ul class="options">
+
+                                <li class="option"
+                                     v-for="value in option.values"
+                                     :class="{ active: value.value === selectedOptions[option.name] }"
+                                     :key="value.value"
+                                     @click="setSelectedOption(option.name, value.value)">{{ value.value }}</li>
+
+                            </ul>
+
+                        </div>
+
+                        <a class="button"
+                           :class="{ 'button-progress': pending }"
+                           @click="addToCart( )">Add to cart for ${{ this.product.variants[currentVariant].price }}</a>
+
                     </div>
-
-                    <p class="price">Starting at <span class="important">${{ product.variants[0].price }}</span></p>
-
-                    <p class="description"
-                       v-html="product.descriptionHtml" />
-
-                    <div v-for="option in product.options"
-                         :key="option.id">
-
-                        <h2 class="variant">{{ option.name }}</h2>
-
-                        <ul class="options">
-
-                            <li class="option"
-                                 v-for="value in option.values"
-                                 :class="{ active: value.value === selectedOptions[option.name] }"
-                                 :key="value.value"
-                                 @click="setSelectedOption(option.name, value.value)">{{ value.value }}</li>
-
-                        </ul>
-
-                    </div>
-
-                    <a class="button"
-                       :class="{ 'button-loading': loading }"
-                       @click="addToCart( )">Add to cart for ${{ this.product.variants[currentVariant].price }}</a>
-
                 </div>
             </div>
-        </div>
+
+        </template>
+
+        <template v-else>
+
+            <div class="progress"><!-- load --></div>
+
+        </template>
+
     </div>
 </template>
 
 <style lang="scss">
-@import "../../public/scss/mixins/image-card",
-        "../../public/scss/mixins/aspect-ratio-6x8";
-
 #item {
     @media (min-width: 992px) {
         height: calc(100vh - 58px);
@@ -79,11 +88,6 @@
         @media (max-width: 992px) {
             margin-left: 12.5%;
             margin-bottom: 64px;
-        }
-
-        .preview {
-            @include image-card;
-            @include aspect-ratio-6x8;
         }
     }
 
@@ -125,7 +129,7 @@ export default {
             selectedOptions: null,
             currentVariant: null,
 
-            loading: false
+            pending: false
         };
     },
 
@@ -137,7 +141,9 @@ export default {
         },
 
         async addToCart( ) {
-            this.loading = true;
+            if(this.loading) return;
+
+            this.pending = true;
 
             let identifier = this.$store.state.identifier;
 
@@ -156,7 +162,7 @@ export default {
             await this.$client.checkout.addLineItems(identifier, product);
             this.$store.commit("incrementCart");
 
-            this.loading = false;
+            this.pending = false;
         },
 
         updateCurrentVariant( ) {
@@ -191,10 +197,12 @@ export default {
     },
 
     watch: {
+        // Product -> product navigation
         $route( ) {
             this.product = null;
             this.selectedOptions = null;
             this.selectedVariation = null;
+            this.pending = false;
 
             this.render( );
         }

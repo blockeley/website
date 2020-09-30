@@ -48,9 +48,11 @@
             </ul>
 
             <ul class="steps">
+
                 <template v-if="selectedEdition === 'java'">
+
                     <li class="step">
-                        <div class="step-image">
+                        <div class="card card-image card-16x9">
                             <img src="/images/steps/java/one.png">
                         </div>
 
@@ -64,7 +66,7 @@
                     </li>
 
                     <li class="step">
-                        <div class="step-image">
+                        <div class="card card-image card-16x9">
                             <img src="/images/steps/java/two.png">
                         </div>
 
@@ -76,7 +78,7 @@
                     </li>
 
                     <li class="step">
-                        <div class="step-image">
+                        <div class="card card-image card-16x9">
                             <img src="/images/steps/java/three.png">
                         </div>
 
@@ -86,11 +88,13 @@
                             <p class="step-description"><span class="important">Select the Multiplayer option</span> from the menu and <span class="important">click Add Server</span>. In the <span class="important">Server Address</span> field, type <span class="important">mc.blockeley.com</span>. Then, click <span class="important">Done</span>, <span class="important">select the Blockeley Minecraft server</span> from the multiplayer menu, and <span class="important">click Join Server</span>.</p>
                         </div>
                     </li>
+
                 </template>
 
                 <template v-if="selectedEdition === 'bedrock'">
+
                     <li class="step">
-                        <div class="step-image">
+                        <div class="card card-image card-16x9">
                             <img src="/images/steps/bedrock/one.png">
                         </div>
 
@@ -104,7 +108,7 @@
                     </li>
 
                     <li class="step">
-                        <div class="step-image">
+                        <div class="card card-image card-16x9">
                             <img src="/images/steps/bedrock/two.png">
                         </div>
 
@@ -116,7 +120,7 @@
                     </li>
 
                     <li class="step">
-                        <div class="step-image">
+                        <div class="card card-image card-16x9">
                             <img src="/images/steps/bedrock/three.png">
                         </div>
 
@@ -126,7 +130,9 @@
                             <p class="step-description"><span class="important">Scroll to the bottom of the list of Featured Servers</span> and <span class="important">click Add Server</span>. In the <span class="important">Server Address</span> field, type <span class="important">mc.blockeley.com</span>. Then, <span class="important">click Save</span>, <span class="important">select the Blockeley Minecraft server</span> from the list of Additional Servers, and <span class="important">click Join Server</span>.</p>
                         </div>
                     </li>
+
                 </template>
+
             </ul>
 
             <div class="heading heading-center">
@@ -139,31 +145,31 @@
 
             <div id="locations" class="row justify-content-center">
                 <div class="col-lg-4">
-                    <div class="location">
+                    <div class="card card-image card-16x9">
                         <img src="images/locations/one.png">
                     </div>
                 </div>
 
                 <div class="col-lg-4">
-                    <div class="location">
+                    <div class="card card-image card-16x9">
                         <img src="images/locations/two.png">
                     </div>
                 </div>
 
                 <div class="col-lg-4">
-                    <div class="location">
+                    <div class="card card-image card-16x9">
                         <img src="images/locations/three.jpg">
                     </div>
                 </div>
 
                 <div class="col-lg-4">
-                    <div class="location">
+                    <div class="card card-image card-16x9">
                         <img src="images/locations/four.png">
                     </div>
                 </div>
 
                 <div class="col-lg-4">
-                    <div class="location">
+                    <div class="card card-image card-16x9">
                         <img src="images/locations/five.jpg">
                     </div>
                 </div>
@@ -183,7 +189,8 @@
     #locations {
         margin-bottom: -24px;
 
-        .location {
+        // Specific .card.card-image
+        .card.card-image {
             margin-bottom: 24px;
         }
     }

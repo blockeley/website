@@ -108,19 +108,16 @@ ul.steps {
 
                     top: 0;
 
-                    z-index: -1;
+                    z-index: 1;
                 }
             }
         }
 
-        .step-image {
-            @include image-card;
-
-            @media (max-width: 992px) {
-                @include aspect-ratio-16x9;
-            }
-
+        // Overwite .card.card-image.card-16x9
+        .card.card-image.card-16x9 {
             @media (min-width: 992px) {
+                padding: unset;
+
                 width: 512px;
                 height: 288px;
 
