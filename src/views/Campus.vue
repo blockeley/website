@@ -1,13 +1,14 @@
 <template>
     <div id="campus">
-        <div class="splash splash-center">
+        <div class="splash splash-center splash-continue">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
-                        <h2 class="splash-title">University of California, Berkeley</h2>
-                        <h1 class="splash-heading">in Minecraft</h1>
+                        <h2 class="sub-heading">University of California, Berkeley</h2>
 
-                        <p class="splash-description"><span class="important">Blockeley aims to recreate the entire University of California, Berkeley campus in Minecraft.</span> Volunteer builders have put hours into replicating buildings, parks, and other various locations around campus to create a genuine virtual experience for our visitors.</p>
+                        <h1 class="heading">in Minecraft</h1>
+
+                        <p class="description"><span class="important">Blockeley aims to recreate the entire University of California, Berkeley campus in Minecraft.</span> Volunteer builders have put hours into replicating buildings, parks, and other various locations around campus to create a genuine virtual experience for our visitors.</p>
 
                         <div class="splash-buttons">
 
@@ -20,20 +21,10 @@
                     </div>
                 </div>
             </div>
-
-            <div class="splash-icon">
-                <i class="material-icons">arrow_downward</i>
-            </div>
         </div>
 
         <div id="explore" class="container">
-            <div class="heading heading-center">
-                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="#FFC02E" d="M28.3,-25.1C35,-14.1,37.8,-2.4,39.5,16.7C41.3,35.7,42,62.2,32.7,66C23.4,69.7,4,50.8,-18.3,39.5C-40.6,28.2,-65.8,24.5,-68.4,15.1C-70.9,5.7,-50.8,-9.4,-35.6,-22.3C-20.4,-35.3,-10.2,-46.2,0.3,-46.4C10.7,-46.6,21.5,-36.2,28.3,-25.1Z" transform="translate(100 100)" />
-                </svg>
-
-                <h2 class="heading-text">Explore in Minecraft</h2>
-            </div>
+            <h2 class="heading heading-section heading-background">Explore in Minecraft</h2>
 
             <ul class="options">
 
@@ -59,7 +50,7 @@
                         <div class="step-content">
                             <p class="step-identifier">Step one</p>
 
-                            <p class="step-description"><span class="important">Register for a Minecraft account</span> if you do not already have one. <span class="important">Download Minecraft Java Edition</span> on Windows, macOS, or Linux.</p>
+                            <p class="description"><span class="important">Register for a Minecraft account</span> if you do not already have one. <span class="important">Download Minecraft Java Edition</span> on Windows, macOS, or Linux.</p>
 
                             <a class="button" href="https://www.minecraft.net/en-us/download/">Download Minecraft</a>
                         </div>
@@ -73,7 +64,7 @@
                         <div class="step-content">
                             <p class="step-identifier">Step two</p>
 
-                            <p class="step-description"><span class="important">Open the Minecraft Java Edition launcher</span> and <span class="important">sign in with your Minecraft account</span>. Once signed in, <span class="important">click play</span> to launch Minecraft Java Edition.</p>
+                            <p class="description"><span class="important">Open the Minecraft Java Edition launcher</span> and <span class="important">sign in with your Minecraft account</span>. Once signed in, <span class="important">click play</span> to launch Minecraft Java Edition.</p>
                         </div>
                     </li>
 
@@ -85,7 +76,7 @@
                         <div class="step-content">
                             <p class="step-identifier">Step three</p>
 
-                            <p class="step-description"><span class="important">Select the Multiplayer option</span> from the menu and <span class="important">click Add Server</span>. In the <span class="important">Server Address</span> field, type <span class="important">mc.blockeley.com</span>. Then, click <span class="important">Done</span>, <span class="important">select the Blockeley Minecraft server</span> from the multiplayer menu, and <span class="important">click Join Server</span>.</p>
+                            <p class="description"><span class="important">Select the Multiplayer option</span> from the menu and <span class="important">click Add Server</span>. In the <span class="important">Server Address</span> field, type <span class="important">mc.blockeley.com</span>. Then, click <span class="important">Done</span>, <span class="important">select the Blockeley Minecraft server</span> from the multiplayer menu, and <span class="important">click Join Server</span>.</p>
                         </div>
                     </li>
 
@@ -101,7 +92,7 @@
                         <div class="step-content">
                             <p class="step-identifier">Step one</p>
 
-                            <p class="step-description"><span class="important">Register for an Xbox Live account</span> through Microsoft if you do not already have one. <span class="important">Download Minecraft Bedrock Edition</span> on Android, iOS, or Windows 10.</p>
+                            <p class="description"><span class="important">Register for an Xbox Live account</span> through Microsoft if you do not already have one. <span class="important">Download Minecraft Bedrock Edition</span> on Android, iOS, or Windows 10.</p>
 
                             <a class="button" href="https://www.xbox.com/en-US/live/minecraft/sign-up">Minecraft sign up</a>
                         </div>
@@ -115,7 +106,7 @@
                         <div class="step-content">
                             <p class="step-identifier">Step two</p>
 
-                            <p class="step-description"><span class="important">Open Minecraft Bedrock Edition</span> and <span class="important">sign in with your Xbox Live account</span> through Microsoft. Once signed in, <span class="important">click play</span> and <span class="important">select Servers</span>.</p>
+                            <p class="description"><span class="important">Open Minecraft Bedrock Edition</span> and <span class="important">sign in with your Xbox Live account</span> through Microsoft. Once signed in, <span class="important">click play</span> and <span class="important">select Servers</span>.</p>
                         </div>
                     </li>
 
@@ -127,7 +118,7 @@
                         <div class="step-content">
                             <p class="step-identifier">Step three</p>
 
-                            <p class="step-description"><span class="important">Scroll to the bottom of the list of Featured Servers</span> and <span class="important">click Add Server</span>. In the <span class="important">Server Address</span> field, type <span class="important">mc.blockeley.com</span>. Then, <span class="important">click Save</span>, <span class="important">select the Blockeley Minecraft server</span> from the list of Additional Servers, and <span class="important">click Join Server</span>.</p>
+                            <p class="description"><span class="important">Scroll to the bottom of the list of Featured Servers</span> and <span class="important">click Add Server</span>. In the <span class="important">Server Address</span> field, type <span class="important">mc.blockeley.com</span>. Then, <span class="important">click Save</span>, <span class="important">select the Blockeley Minecraft server</span> from the list of Additional Servers, and <span class="important">click Join Server</span>.</p>
                         </div>
                     </li>
 
@@ -135,13 +126,7 @@
 
             </ul>
 
-            <div class="heading heading-center">
-                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="#FFC02E" d="M28.3,-25.1C35,-14.1,37.8,-2.4,39.5,16.7C41.3,35.7,42,62.2,32.7,66C23.4,69.7,4,50.8,-18.3,39.5C-40.6,28.2,-65.8,24.5,-68.4,15.1C-70.9,5.7,-50.8,-9.4,-35.6,-22.3C-20.4,-35.3,-10.2,-46.2,0.3,-46.4C10.7,-46.6,21.5,-36.2,28.3,-25.1Z" transform="translate(100 100)" />
-                </svg>
-
-                <h2 class="heading-text">Featured locations</h2>
-            </div>
+            <h2 class="heading heading-section heading-background">Featured locations</h2>
 
             <div id="locations" class="row justify-content-center">
                 <div class="col-lg-4">
@@ -180,6 +165,7 @@
 
 <style lang="scss">
 #campus {
+    // Specific .options
     .options {
         justify-content: center;
 

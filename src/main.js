@@ -22,19 +22,20 @@ const storage = new VueXPersist({
 const store = new VueX.Store({
     state: {
         identifier: null,
-        cart: 0
+        quantity: 0
     },
+
     mutations: {
         setIdentifier(state, identifier) {
             state.identifier = identifier;
         },
 
-        incrementCart(state) {
-            state.cart++;
+        increaseQuantity(state, quantity) {
+            state.quantity += quantity || 1;
         },
 
-        decrementCart(state) {
-            state.cart--;
+        decreaseQuantity(state, quantity) {
+            state.quantity -= quantity || 1;
         }
     },
     plugins: [ storage.plugin ]

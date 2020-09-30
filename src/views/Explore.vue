@@ -6,10 +6,11 @@
                     <div class="col-lg-8">
                         <img id="logo" src="images/logo.png">
 
-                        <h1 class="splash-heading">Blockeley</h1>
-                        <h2 class="splash-title">the <span class="important">#1 Minecraft university</span> in the world</h2>
+                        <h1 class="heading heading-splash">Blockeley</h1>
 
-                        <p class="splash-description">The Blockeley Minecraft server contains a <span class="important">virtual replica of the University of California, Berkeley campus</span> in Minecraft. In May, 2020, Blockeley hosted a <span class="important">virtual graduation</span> for the class of 2020 and <span class="important">two-day virtual musical festival</span> with some of the world's most popular artists.</p>
+                        <h2 class="sub-heading">the <span class="important">#1 Minecraft university</span> in the world</h2>
+
+                        <p class="description">The Blockeley Minecraft server contains a <span class="important">virtual replica of the University of California, Berkeley campus</span> in Minecraft. In May, 2020, Blockeley hosted a <span class="important">virtual graduation</span> for the class of 2020 and <span class="important">two-day virtual musical festival</span> with some of the world's most popular artists.</p>
 
                         <div class="splash-buttons">
 
@@ -47,22 +48,29 @@
         max-width: 100%;
     }
 
-    h1.splash-heading {
+    // Specific .heading
+    h1.heading.heading-splash {
         font-size: 64px;
 
         margin-bottom: 16px;
     }
 
-    h2.splash-title {
-        margin-bottom: 32px;
-
+    // Specific .sub-heading
+    h2.sub-heading {
         line-height: 1.5;
+
+        margin-bottom: 32px;
 
         .important {
             color: black;
 
             border-bottom: 2px dashed rgba(black, 0.25);
         }
+    }
+
+    // Specific .description
+    p.description {
+        margin-bottom: 32px;
     }
 }
 </style>

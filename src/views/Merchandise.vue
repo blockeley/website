@@ -3,14 +3,15 @@
 
         <template v-if="products">
 
-            <div class="splash">
+            <div class="splash splash-continue">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6">
-                            <h2 class="splash-title">Blockeley</h2>
-                            <h1 class="splash-heading">Merchandise</h1>
+                            <h2 class="sub-heading">Blockeley</h2>
 
-                            <p class="splash-description"><span class="important">Purchase Blockeley merchandise and support the Blockeley project.</span> Express school spirit on and off the virtual Minecraft campus with our unique Blockeley t-shirts.</p>
+                            <h1 class="heading">Merchandise</h1>
+
+                            <p class="description"><span class="important">Purchase Blockeley merchandise and support the Blockeley project.</span> Express school spirit on and off the virtual Minecraft campus with our unique Blockeley t-shirts.</p>
 
                             <div class="splash-buttons">
 
@@ -23,26 +24,16 @@
                         </div>
                     </div>
 
-                    <div class="splash-preview">
-                        <img class="preview-shirt" src="images/shirt.png">
+                    <div id="preview">
+                        <img src="images/shirt.png">
 
-                        <img class="preview-logo" src="images/logo.png">
+                        <img src="images/logo.png">
                     </div>
-                </div>
-
-                <div class="splash-icon">
-                    <i class="material-icons">arrow_downward</i>
                 </div>
             </div>
 
             <div class="container">
-                <div id="browse" class="heading heading-center">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#FFC02E" d="M28.3,-25.1C35,-14.1,37.8,-2.4,39.5,16.7C41.3,35.7,42,62.2,32.7,66C23.4,69.7,4,50.8,-18.3,39.5C-40.6,28.2,-65.8,24.5,-68.4,15.1C-70.9,5.7,-50.8,-9.4,-35.6,-22.3C-20.4,-35.3,-10.2,-46.2,0.3,-46.4C10.7,-46.6,21.5,-36.2,28.3,-25.1Z" transform="translate(100 100)" />
-                    </svg>
-
-                    <h2 class="heading-text">Products</h2>
-                </div>
+                <h2 id="browse" class="heading heading-section heading-background">Products</h2>
 
                 <div id="products" class="row justify-content-center">
 
@@ -62,9 +53,9 @@
 
                             </router-link>
 
-                            <h2 class="product-name">{{ product.title }}</h2>
+                            <h2 class="sub-heading sub-heading-alt">{{ product.title }}</h2>
 
-                            <p class="product-description">Starting at <span class="important">${{ product.variants[0].price }}</span></p>
+                            <p class="description">Starting at <span class="important">${{ product.variants[0].price }}</span></p>
 
                         </div>
 
@@ -90,16 +81,17 @@
     #products {
         margin-bottom: -48px;
 
+        // Specific .product
         .product {
             padding-bottom: 48px;
         }
     }
 
-    // Specific .splash
+    // Specific .splash -> .container
     .splash .container {
         position: relative;
 
-        .splash-preview {
+        #preview {
             z-index: -1;
 
             position: absolute;
@@ -119,7 +111,7 @@
                 transform: translateY(-50%);
             }
 
-            img.preview-shirt {
+            img:first-child {
                 opacity: 0.1;
 
                 @media (max-width: 992px) {
@@ -129,7 +121,7 @@
                 }
             }
 
-            img.preview-logo {
+            img:last-child {
                 position: absolute;
 
                 height: 192px;

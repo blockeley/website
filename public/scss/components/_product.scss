@@ -1,5 +1,5 @@
 .product {
-    // Specific .card.card-image.card-6x8
+    // Component .card.card-image.card-6x8
     .card.card-image.card-6x8 {
         &::after {
             content: "arrow_forward";
@@ -64,28 +64,15 @@
         margin-bottom: 16px;
     }
 
-    h2.product-name {
+    // Component .sub-heading.sub-heading-alt
+    h2.sub-heading.sub-heading-alt {
         text-align: center;
-
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 1.2;
-        color: black;
 
         margin-bottom: 8px;
     }
 
-    p.product-description {
+    // Component .description
+    p.description {
         text-align: center;
-
-        font-size: 14px;
-        font-weight: 300;
-        line-height: 1.2;
-        color: rgba(black, 0.5);
-
-        .important {
-            color: black;
-            font-weight: 500;
-        }
     }
 }

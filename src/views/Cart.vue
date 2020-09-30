@@ -6,15 +6,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="items">
+                        <ul class="items">
 
-                            <div v-for="item in checkout.lineItems"
+                            <li v-for="item in checkout.lineItems"
                                  :key="item.id"
                                  class="item">
 
-                                <p class="item-quantity">{{ item.quantity }}x</p>
-
-                                <div class="item-preview-wrapper">
+                                <div class="item-preview">
                                     <div class="card card-image card-6x8">
 
                                         <img :src="item.variant.image.src">
@@ -23,12 +21,14 @@
                                 </div>
 
                                 <div class="item-content">
-                                    <h2 class="item-title">{{ item.title }}</h2>
+                                    <h2 class="sub-heading sub-heading-alt">{{ item.title }}</h2>
 
-                                    <p class="item-options" v-html="getOptions(item.variant.title)" />
+                                    <p class="description" v-html="getOptions(item.variant.title)" />
 
-                                    <p class="item-price">Priced at <span class="important">${{ item.variant.price }}</span></p>
+                                    <p class="description">Priced at <span class="important">${{ item.variant.price }}</span></p>
                                 </div>
+
+                                <h3 class="sub-heading">{{ item.quantity }}x</h3>
 
                                 <div class="item-buttons">
 
@@ -55,47 +55,49 @@
 
                                 </div>
 
-                            </div>
+                            </li>
 
-                        </div>
+                        </ul>
                     </div>
 
                     <div class="col-lg-4">
-                        <div id="order-summary" class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Order summary</h2>
+                        <div id="order-summary">
+                            <div class="card">
+                                <h3 class="card-header">Order summary</h3>
+
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <p class="description">Sub-total</p>
+
+                                        <p class="description">
+                                            <span class="important">${{ checkout.subtotalPrice }}</span>
+                                        </p>
+                                    </div>
+
+                                        <div class="d-flex justify-content-between">
+                                        <p class="description">Tax estimate</p>
+
+                                        <p class="description">
+                                            <span class="important">${{ checkout.totalTax }}</span>
+                                        </p>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <p class="description">Total estimate</p>
+
+                                        <p class="description">
+                                            <span class="important">${{ checkout.totalPrice }}</span>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="card-row">
-                                <p class="card-index">Sub-total</p>
+                            <div class="text-center">
 
-                                <p class="card-value">${{ checkout.subtotalPrice }}</p>
+                                <a class="button"
+                                   :href="checkout.webUrl">Check out</a>
+
                             </div>
-
-                            <div class="card-row">
-                                <p class="card-index">Tax estimate</p>
-
-                                <p class="card-value">${{ checkout.totalTax }}</p>
-                            </div>
-
-                            <div class="card-row">
-                                <p class="card-index">Total estimate</p>
-
-                                <p class="card-value">${{ checkout.totalPrice }}</p>
-                            </div>
-                        </div>
-
-                        <div id="shipping-address" class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Shipping address</h2>
-                            </div>
-                        </div>
-
-                        <div id="order-button-wrapper">
-
-                            <a class="button"
-                               :href="checkout.webUrl">Check out</a>
-
                         </div>
                     </div>
                 </div>
@@ -109,9 +111,9 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
-                            <h1 class="splash-heading">Oops</h1>
+                            <h1 class="heading">Oops</h1>
 
-                            <p class="splash-description"><span class="important">There are no items in your cart.</span>
+                            <p class="description"><span class="important">There are no items in your cart.</span>
                                                       <br>Support Blockeley by purchasing merchandise or donating.</p>
 
                             <div class="splash-buttons">
@@ -142,142 +144,28 @@
 #cart {
     min-height: calc(100vh - 58px);
 
-    padding-top: 64px;
-
-    // Specific .card
-    #shipping-address.card, #order-summary.card {
-        margin-bottom: 24px;
-
-        padding: 24px;
-
-        .card-header {
-            height: 54px;
-
-            background-color: black;
-
-            padding-right: 24px;
-            padding-left: 24px;
-
-            margin: -24px -24px 24px -24px;
-
-            display: flex;
-            align-items: center;
-
-            h2.card-title {
-                font-size: 16px;
-                font-weight: 500;
-                line-height: 1;
-                color: white;
-            }
+    // Specific .items
+    @media (max-width: 992px) {
+        ul.items {
+            margin-bottom: 48px;
         }
     }
 
-    // Specific .card
-    #shipping-address.card {
-
+    // Specific .items
+    #order-summary, ul.items {
+        margin-top: 64px;
     }
 
-    // Specific .card
-    #order-summary.card {
-        .card-row {
-            display: flex;
-            justify-content: space-between;
+    #order-summary {
+        @media (min-width: 992px) {
+            position: sticky;
 
-            &:not(:last-child) {
-                margin-bottom: 8px;
-            }
-
-            p.card-index, p.card-value {
-                font-size: 16px;
-                line-height: 1;
-            }
-
-            p.card-index {
-                font-weight: 300;
-                color: rgba(black, 0.5);
-            }
-
-            p.card-value {
-                font-weight: 500;
-                color: black;
-            }
-        }
-    }
-
-    #order-button-wrapper {
-        text-align: center;
-    }
-
-    .item {
-        display: flex;
-        align-items: center;
-
-        &:not(:first-child) {
-            margin-top: 48px;
+            top: 48px;
         }
 
-        &:not(:last-child) {
-            padding-bottom: 48px;
-
-            border-bottom: 2px dashed rgba(black, 0.1);
-        }
-
-        p.item-quantity {
-            font-size: 24px;
-            font-weight: 700;
-            line-height: 1;
-            color: rgba(black, 0.25);
-
-            width: 64px;
-
-            margin-right: 24px;
-        }
-
-        .item-buttons {
-            display: flex;
-
-            margin-left: 24px;
-
-            a.icon-button:not(:last-child) {
-                margin-right: 8px;
-            }
-        }
-
-        .item-content {
-            flex-grow: 1;
-
-            h2.item-title {
-                font-size: 24px;
-                font-weight: 700;
-                line-height: 1.2;
-                color: black;
-
-                margin-bottom: 4px;
-            }
-
-            p.item-price, p.item-options {
-                font-size: 16px;
-                font-weight: 300;
-                line-height: 1.2;
-                color: rgba(black, 0.5);
-
-                .important {
-                    font-weight: 500;
-                    color: black;
-                }
-            }
-
-            p.item-options {
-                margin-bottom: 24px;
-            }
-        }
-
-        .item-preview-wrapper {
-            @media (min-width: 992px) {
-                width: 128px;
-
-                margin-right: 24px;
-            }
+        // Specific .card
+        .card {
+            margin-bottom: 24px;
         }
     }
 }
@@ -335,13 +223,20 @@ export default {
 
             const checkout = await this.$client.checkout.updateLineItems(this.checkout.id, update);
 
+            if(increment) this.$store.commit("increaseQuantity");
+            else this.$store.commit("decreaseQuantity");
+
             this.checkout = checkout;
         },
 
         async removeItem(identifier) {
+            const index = this.checkout.lineItems.findIndex(item => item.id === identifier);
+            const { quantity } = this.checkout.lineItems[index];
+
             const remove = [ identifier ];
 
             const checkout = await this.$client.checkout.removeLineItems(this.checkout.id, remove);
+            this.$store.commit("decreaseQuantity", quantity);
 
             this.checkout = checkout;
         }

@@ -1,0 +1,10 @@
+.sub-heading {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: rgba(black, 0.25);
+
+    &.sub-heading-alt {
+        color: black;
+    }
+}

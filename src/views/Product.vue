@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <div class="preview-wrapper">
+                        <div id="preview">
                             <div class="card card-image card-6x8">
 
                                 <img :src="product.variants[currentVariant].image.src">
@@ -16,23 +16,19 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <div class="heading">
-                            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="#FFC02E" d="M28.3,-25.1C35,-14.1,37.8,-2.4,39.5,16.7C41.3,35.7,42,62.2,32.7,66C23.4,69.7,4,50.8,-18.3,39.5C-40.6,28.2,-65.8,24.5,-68.4,15.1C-70.9,5.7,-50.8,-9.4,-35.6,-22.3C-20.4,-35.3,-10.2,-46.2,0.3,-46.4C10.7,-46.6,21.5,-36.2,28.3,-25.1Z" transform="translate(100 100)" />
-                            </svg>
+                        <h1 class="heading heading-background">{{ product.title }}</h1>
 
-                            <h1 class="heading-text">{{ product.title }}</h1>
-                        </div>
+                        <p id="price" class="description">Starting at <span class="important">${{ product.variants[0].price }}</span></p>
 
-                        <p class="price">Starting at <span class="important">${{ product.variants[0].price }}</span></p>
-
-                        <p class="description"
+                        <p id="description" class="description"
                            v-html="product.descriptionHtml" />
 
                         <div v-for="option in product.options"
                              :key="option.id">
 
-                            <h2 class="variant">{{ option.name }}</h2>
+                            <h2 class="description">
+                                <span class="important">{{ option.name }}</span>
+                            </h2>
 
                             <ul class="options">
 
@@ -78,11 +74,7 @@
         padding-top: 64px;
     }
 
-    .options {
-        margin-bottom: 24px;
-    }
-
-    .preview-wrapper {
+    #preview {
         max-width: 75%;
 
         @media (max-width: 992px) {
@@ -91,27 +83,26 @@
         }
     }
 
-    h2.variant {
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 1;
-        color: black;
+    // Specific .heading
+    h1.heading.heading-background {
+        margin-bottom: 8px;
 
+        &::before {
+            top: -176px;
+            left: -144px;
+
+            transform: rotate(90deg);
+        }
+    }
+
+    // Specific .description
+    h2.description {
         margin-bottom: 8px;
     }
 
-    p.price, p.description {
-        font-size: 16px;
-        font-weight: 300;
-        line-height: 1.2;
-        color: rgba(black, 0.5);
-
+    // Specific .description, .options
+    p#price.description, p#description.description, .options {
         margin-bottom: 24px;
-    }
-
-    p.price .important {
-        font-weight: 500;
-        color: black;
     }
 }
 </style>
@@ -160,7 +151,7 @@ export default {
             };
 
             await this.$client.checkout.addLineItems(identifier, product);
-            this.$store.commit("incrementCart");
+            this.$store.commit("increaseQuantity");
 
             this.pending = false;
         },
