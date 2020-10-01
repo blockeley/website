@@ -124,8 +124,8 @@
 
             position: absolute;
 
-            top: 3px;
-            right: 3px;
+            top: 2px;
+            right: 2px;
 
             height: 8px;
             width: 8px;
