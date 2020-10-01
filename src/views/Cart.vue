@@ -105,7 +105,13 @@
 
         </template>
 
-        <template v-else-if="done">
+        <template v-else-if="loading">
+
+            <div class="progress"><!-- load --></div>
+
+        </template>
+
+        <template v-else>
 
             <div class="splash splash-center">
                 <div class="container">
@@ -128,12 +134,6 @@
                     </div>
                 </div>
             </div>
-
-        </template>
-
-        <template v-else>
-
-            <div class="progress"><!-- load --></div>
 
         </template>
 
@@ -199,7 +199,7 @@ export default {
     data( ) {
         return {
             checkout: null,
-            done: false
+            loading: true
         };
     },
 
@@ -215,14 +215,15 @@ export default {
         },
 
         async render( ) {
-            this.done = true;
+            if( ! this.$store.state.identifier ) {
+                this.loading = false;
 
-            if( ! this.$store.state.identifier ) return;
+                return;
+            }
 
             const checkout = await this.$client.checkout.fetch(this.$store.state.identifier);
 
-            console.log(checkout);
-
+            this.loading = false;
             this.checkout = checkout;
         },
 
