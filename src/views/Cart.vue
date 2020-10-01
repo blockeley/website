@@ -145,14 +145,11 @@
     min-height: calc(100vh - 58px);
 
     // Specific .items
-    @media (max-width: 992px) {
-        ul.items {
+    ul.items {
+        @media (max-width: 992px) {
             margin-bottom: 48px;
         }
-    }
 
-    // Specific .items
-    #order-summary, ul.items {
         margin-top: 64px;
     }
 
@@ -161,6 +158,8 @@
             position: sticky;
 
             top: 104px;
+
+            margin-top: 64px;
         }
 
         // Specific .card

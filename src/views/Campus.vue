@@ -213,8 +213,12 @@
         box-shadow: -4px -4px #21bf73;
     }
 
-    .step-identifier, .step-identifier::before {
-        background-color: #21bf73;
+    @media (min-width: 992px) {
+        .steps .step:nth-child(odd) {
+            .step-identifier, .step-identifier::before {
+                background-color: #21bf73;
+            }
+        }
     }
 }
 </style>
