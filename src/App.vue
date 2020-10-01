@@ -18,7 +18,7 @@
                     <img class="navigation-bar-brand" src="/images/logo.png">
 
                     <router-link to="/cart"
-                                 id="cart"
+                                 id="mobile-cart-link"
                                  class="icon-button ml-auto"
                                  :class="{ 'has-notification': $store.state.cart > 0 }"
                                  @click="closeMobileNavigation( )">
@@ -112,7 +112,7 @@
 </template>
 
 <style lang="scss">
-#cart-link {
+#cart-link, #mobile-cart-link {
     margin-left: 24px;
 
     &.has-notification {
