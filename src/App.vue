@@ -20,7 +20,7 @@
                     <router-link to="/cart"
                                  id="mobile-cart-link"
                                  class="icon-button ml-auto"
-                                 :class="{ 'has-notification': $store.state.cart > 0 }"
+                                 :class="{ 'has-notification': $store.state.quantity > 0 }"
                                  @click="closeMobileNavigation( )">
 
                         <i class="material-icons">shopping_cart</i>
