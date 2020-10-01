@@ -14,7 +14,7 @@
 
                     </a>
 
-                    <img class="navigation-bar-brand" src="images/logo.png">
+                    <img class="navigation-bar-brand" src="/images/logo.png">
 
                     <router-link to="/cart"
                                  id="cart"
@@ -65,7 +65,7 @@
 
                 </a>
 
-                <img class="navigation-bar-brand" src="images/logo.png">
+                <img class="navigation-bar-brand" src="/images/logo.png">
 
                 <ul class="navigation-bar-menu ml-auto d-none d-lg-flex">
                     <li class="menu-item">
