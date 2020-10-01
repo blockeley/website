@@ -3,6 +3,7 @@
 
         <div v-if="mobileNavigation"
              class="mobile-navigation">
+
             <div class="navigation-bar">
                 <div class="container-fluid">
 
@@ -49,9 +50,12 @@
                     <router-link to="/merchandise" class="item-link">Merchandise</router-link>
                 </li>
             </ul>
+
         </div>
 
-        <div class="navigation-bar">
+        <div class="navigation-bar"
+             :class="currentClass">
+
             <div class="container">
 
                 <a class="icon-button d-lg-none mr-auto"
@@ -133,6 +137,27 @@
         }
     }
 }
+
+// Specific .navigation-bar
+.navigation-bar {
+    transition: background-color 100ms ease-in-out;
+
+    &.navigation-bar-campus {
+        background-color: #21bf73;
+    }
+
+    &.navigation-bar-merchandise {
+        background-color: #3fc5f0;
+    }
+
+    &.navigation-bar-cart {
+        background-color: #835858;
+    }
+
+    &.navigation-bar-product {
+        background-color: #f09ae9;
+    }
+}
 </style>
 
 <script>
@@ -141,7 +166,9 @@ export default {
 
     data( ) {
         return {
-            mobileNavigation: false
+            mobileNavigation: false,
+
+            currentClass: "navigation-bar-explore"
         };
     },
 
@@ -162,7 +189,9 @@ export default {
     },
 
     watch: {
-        $route( ) {
+        $route(to) {
+            this.currentClass = "navigation-bar-" + to.name.toLowerCase( );
+
             this.closeMobileNavigation( );
         }
     }
