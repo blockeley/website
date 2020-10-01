@@ -105,7 +105,7 @@
 
         </template>
 
-        <template v-else-if="checkout">
+        <template v-else-if="done">
 
             <div class="splash splash-center">
                 <div class="container">
@@ -180,6 +180,10 @@
         box-shadow: 4px 4px #835858;
     }
 
+    .heading {
+        text-shadow: 4px 4px #835858;
+    }
+
     .icon-button.icon-button-alt:hover {
         color: #835858;
 
@@ -194,7 +198,8 @@ export default {
 
     data( ) {
         return {
-            checkout: null
+            checkout: null,
+            done: false
         };
     },
 
@@ -210,6 +215,8 @@ export default {
         },
 
         async render( ) {
+            this.done = true;
+
             if( ! this.$store.state.identifier ) return;
 
             const checkout = await this.$client.checkout.fetch(this.$store.state.identifier);
