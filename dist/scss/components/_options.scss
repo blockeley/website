@@ -1,0 +1,44 @@
+ul.options {
+	display: flex;
+	flex-wrap: wrap;
+
+	list-style-type: none;
+
+	// Negate .option
+	margin: -4px;
+
+	li.option {
+		display: inline-block;
+
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 1;
+		color: rgba(black, 0.5);
+
+		border: 2px dashed rgba(black, 0.5);
+
+		padding: 13px 24px;
+
+		margin: 4px;
+
+		transition: color 100ms ease-in-out,
+					border-color 100ms ease-in-out,
+					background-color 100ms ease-in-out;
+
+		&:hover {
+			color: black;
+
+			border-color: black;
+
+			cursor: pointer;
+		}
+
+		&.active {
+			border-color: #FFC02E;
+
+			color: #FFC02E;
+
+			background-color: rgba(#FFC02E, 0.1);
+		}
+	}
+}

@@ -1,0 +1,26 @@
+.footer {
+    padding-top: 256px;
+    padding-bottom: 24px;
+
+    p.footer-text {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.2;
+        color: rgba(black, 0.25);
+
+        text-align: center;
+
+        a {
+            color: rgba(black, 0.5);
+            font-weight: 500;
+
+            transition: color 100ms ease-in-out;
+
+            &:hover {
+                color: rgba(black, 0.75);
+
+                cursor: pointer;
+            }
+        }
+    }
+}

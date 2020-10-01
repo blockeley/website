@@ -1,0 +1,75 @@
+.input {
+	height: 54px;
+
+	position: relative;
+
+	background-color: #F5F7F9;
+
+	border-radius: 4px 4px 0 0;
+
+	border-bottom: 2px solid black;
+
+	transition: border-color 100ms ease-in-out,
+				background-color 100ms ease-in-out;
+
+	&:hover:not(:focus-within) {
+		background-color: rgba(black, 0.05);
+	}
+
+	label {
+		position: absolute;
+
+		font-size: 16px;
+		font-weight: 300;
+		line-height: 1;
+		color: rgba(black, 0.5);
+
+		left: 15px;
+		top: 19px;
+
+		pointer-events: none;
+
+		transition: font-size 100ms ease-in-out,
+					top 100ms ease-in-out,
+					color 100ms ease-in-out;
+	}
+
+	input {
+		width: 100%;
+		height: 100%;
+
+		padding: 26px 15px 12px 15px;
+
+		font-family: "Poppins", sans-serif;
+		font-size: 16px;
+		font-weight: 300;
+		line-height: 1;
+		color: black;
+
+		// Default
+		border: none;
+		background: transparent;
+
+		&:focus {
+			outline: none;
+		}
+
+		&::placeholder {
+			color: transparent;
+		}
+	}
+
+	&:focus-within {
+		border-color: #FFC02E;
+
+		label {
+			color: #FFC02E;
+		}
+	}
+
+	&:focus-within label, input:not(:placeholder-shown) + label {
+		font-size: 12px;
+
+		top: 8px;
+	}
+}
