@@ -143,7 +143,7 @@
 
                 <div class="col-lg-4">
                     <div class="card card-image card-16x9">
-                        <img src="images/locations/three.jpg">
+                        <img src="images/locations/three.JPG">
                     </div>
                 </div>
 
@@ -155,7 +155,7 @@
 
                 <div class="col-lg-4">
                     <div class="card card-image card-16x9">
-                        <img src="images/locations/five.jpg">
+                        <img src="images/locations/five.JPG">
                     </div>
                 </div>
             </div>
