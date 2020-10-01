@@ -157,8 +157,9 @@ a.button:not(.button-progress):hover {
 }
 
 .progress {
-  height: calc(100vh - 58px);
+  height: calc(100vh - 56px);
   width: 100%;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,6 +170,7 @@ a.button:not(.button-progress):hover {
   width: 48px;
   left: 50%;
   top: 50%;
+  position: absolute;
   border-radius: 50%;
   border-style: solid;
   border-width: 2px;

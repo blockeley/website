@@ -1,5 +1,6 @@
 <template>
-    <div id="application">
+    <div id="application"
+         :class="currentClass">
 
         <div v-if="mobileNavigation"
              class="mobile-navigation">
@@ -53,9 +54,7 @@
 
         </div>
 
-        <div class="navigation-bar"
-             :class="currentClass">
-
+        <div class="navigation-bar">
             <div class="container">
 
                 <a class="icon-button d-lg-none mr-auto"
@@ -138,24 +137,44 @@
     }
 }
 
-// Specific .navigation-bar
-.navigation-bar {
-    transition: background-color 100ms ease-in-out;
+/*
+ *  Page colors
+ *
+ */
+$page-colors: (
+    "campus": #21bf73,
+    "merchandise": #3fc5f0,
+    "cart": #835858,
+    "product": #f09ae9
+);
 
-    &.navigation-bar-campus {
-        background-color: #21bf73;
+#application {
+    .navigation-bar {
+        transition: background-color 100ms ease-in-out;
     }
 
-    &.navigation-bar-merchandise {
-        background-color: #3fc5f0;
-    }
+    @each $page, $color in $page-colors {
+        &.page-#{$page} {
+            .navigation-bar {
+                background-color: $color;
+            }
 
-    &.navigation-bar-cart {
-        background-color: #835858;
-    }
+            .mobile-navigation-menu .menu-item .item-link {
+                &.active {
+                    background-color: rgba($color, 0.1);
 
-    &.navigation-bar-product {
-        background-color: #f09ae9;
+                    color: $color;
+
+                    &::after {
+                        background-color: $color;
+                    }
+                }
+
+                &:hover:not(.active) {
+                    color: $color;
+                }
+            }
+        }
     }
 }
 </style>
@@ -168,7 +187,7 @@ export default {
         return {
             mobileNavigation: false,
 
-            currentClass: "navigation-bar-explore"
+            currentClass: "page-explore"
         };
     },
 
@@ -190,7 +209,7 @@ export default {
 
     watch: {
         $route(to) {
-            this.currentClass = "navigation-bar-" + to.name.toLowerCase( );
+            this.currentClass = "page-" + to.name.toLowerCase( );
 
             this.closeMobileNavigation( );
         }
