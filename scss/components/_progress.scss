@@ -1,6 +1,8 @@
 .progress {
-    height: calc(100vh - 58px);
+    height: calc(100vh - 56px);
     width: 100%;
+
+    position: relative;
 
     display: flex;
     align-items: center;
@@ -15,6 +17,8 @@
 
         left: 50%;
         top: 50%;
+
+        position: absolute;
 
         border-radius: 50%;
 
