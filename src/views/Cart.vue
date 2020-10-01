@@ -107,7 +107,7 @@
 
         <template v-else-if="loading">
 
-            <div class="progress"><!-- load --></div>
+            <div class="splash splash-progress"><!-- loading --></div>
 
         </template>
 
@@ -166,28 +166,6 @@
         .card {
             margin-bottom: 24px;
         }
-    }
-
-    /*
-     *  Page color
-     *
-     */
-    .card {
-        box-shadow: -4px -4px #835858;
-    }
-
-    .button {
-        box-shadow: 4px 4px #835858;
-    }
-
-    .heading {
-        text-shadow: 4px 4px #835858;
-    }
-
-    .icon-button.icon-button-alt:hover {
-        color: #835858;
-
-        background-color: rgba(#835858, 0.1);
     }
 }
 </style>

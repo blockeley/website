@@ -1,12 +1,29 @@
-a.icon-button {
-    border-radius: 50%;
+/*
+ *	Application color
+ *
+ */
+#application {
+	@each $name, $color in $colors {
+		&.color-#{$name} .icon-button.icon-button-alt:hover {
+			background-color: rgba($color, 0.1);
 
-    height: 40px;
-    width: 40px;
+            color: $color;
+		}
+	}
+}
 
+/*
+ *	Icon button
+ *
+ */
+.icon-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
 
     color: rgba(white, 0.5);
 

@@ -1,12 +1,32 @@
-a.button {
+/*
+ *	Application color
+ *
+ */
+#application {
+	@each $name, $color in $colors {
+		&.color-#{$name} .button {
+			box-shadow: 4px 4px $color;
+		}
+	}
+}
+
+/*
+ *	Button
+ *
+ */
+.button {
 	display: inline-flex;
 	align-items: center;
 
+	position: relative;
+
 	height: 48px;
+
+	padding-right: 24px;
+	padding-left: 24px;
 
 	border: 2px solid black;
 	background-color: white;
-
     box-shadow: 4px 4px #FFC02E;
 
 	white-space: nowrap;
@@ -15,11 +35,6 @@ a.button {
 	font-weight: 500;
 	line-height: 1;
 	color: black;
-
-	position: relative;
-
-	padding-right: 24px;
-	padding-left: 24px;
 
 	transition: background-color 100ms ease-in-out,
 				color 100ms ease-in-out;
@@ -33,6 +48,8 @@ a.button {
 			// Required for pseudo-element
 			content: "";
 
+			position: absolute;
+
 			height: 24px;
 			width: 24px;
 
@@ -41,13 +58,11 @@ a.button {
 
 			border-radius: 50%;
 
-			position: absolute;
-
 			border-style: solid;
 			border-width: 2px;
 			border-color: black black black transparent;
 
-			animation: progress 500ms linear infinite;
+			animation: button-progress 500ms linear infinite;
 		}
 	}
 
@@ -58,4 +73,23 @@ a.button {
 
 		cursor: pointer;
 	}
+}
+
+// Hijacks transform
+@keyframes button-progress {
+	0% {
+    	transform: translate(-50%, -50%) rotate(0deg);
+  	}
+
+  	25% {
+    	transform: translate(-50%, -50%) rotate(120deg);
+  	}
+
+  	75% {
+    	transform: translate(-50%, -50%) rotate(240deg);
+  	}
+
+  	100% {
+    	transform: translate(-50%, -50%) rotate(360deg);
+  	}
 }

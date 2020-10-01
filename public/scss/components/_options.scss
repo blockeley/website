@@ -1,10 +1,28 @@
+/*
+ *	Application color
+ *
+ */
+#application {
+	@each $name, $color in $colors {
+		&.color-#{$name} ul.options li.option.active {
+			border-color: $color;
+			background-color: rgba($color, 0.1);
+
+			color: $color;
+		}
+	}
+}
+
+/*
+ *	Options
+ *
+ */
 ul.options {
 	display: flex;
 	flex-wrap: wrap;
 
 	list-style-type: none;
 
-	// Negate .option
 	margin: -4px;
 
 	li.option {
@@ -35,10 +53,9 @@ ul.options {
 
 		&.active {
 			border-color: #FFC02E;
+			background-color: rgba(#FFC02E, 0.1);
 
 			color: #FFC02E;
-
-			background-color: rgba(#FFC02E, 0.1);
 		}
 	}
 }

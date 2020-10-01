@@ -1,6 +1,6 @@
 <template>
     <div id="application"
-         :class="currentClass">
+         :class="colorClass">
 
         <div v-if="mobileNavigation"
              class="mobile-navigation">
@@ -136,47 +136,6 @@
         }
     }
 }
-
-/*
- *  Page colors
- *
- */
-$page-colors: (
-    "campus": #21bf73,
-    "merchandise": #3fc5f0,
-    "cart": #835858,
-    "product": #f09ae9
-);
-
-#application {
-    .navigation-bar {
-        transition: background-color 100ms ease-in-out;
-    }
-
-    @each $page, $color in $page-colors {
-        &.page-#{$page} {
-            .navigation-bar {
-                background-color: $color;
-            }
-
-            .mobile-navigation-menu .menu-item .item-link {
-                &.active {
-                    background-color: rgba($color, 0.1);
-
-                    color: $color;
-
-                    &::after {
-                        background-color: $color;
-                    }
-                }
-
-                &:hover:not(.active) {
-                    color: $color;
-                }
-            }
-        }
-    }
-}
 </style>
 
 <script>
@@ -187,21 +146,21 @@ export default {
         return {
             mobileNavigation: false,
 
-            currentClass: "page-explore"
+            colorClass: "color-explore"
         };
     },
 
     methods: {
         openMobileNavigation( ) {
             const body = document.getElementsByTagName("body")[0];
-            body.classList.add("body-limit");
+            body.classList.add("disabled");
 
             this.mobileNavigation = true;
         },
 
         closeMobileNavigation( ) {
             const body = document.getElementsByTagName("body")[0];
-            body.classList.remove("body-limit");
+            body.classList.remove("disabled");
 
             this.mobileNavigation = false;
         }
@@ -209,7 +168,7 @@ export default {
 
     watch: {
         $route(to) {
-            this.currentClass = "page-" + to.name.toLowerCase( );
+            this.colorClass = "color-" + to.name.toLowerCase( );
 
             this.closeMobileNavigation( );
         }

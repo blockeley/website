@@ -1,3 +1,19 @@
+/*
+ *	Application color
+ *
+ */
+#application {
+	@each $name, $color in $colors {
+		&.color-#{$name} .navigation-bar {
+			background-color: $color;
+		}
+	}
+}
+
+/*
+ *	Navigation bar
+ *
+ */
 .navigation-bar {
 	height: 56px;
 
@@ -8,6 +24,9 @@
 	top: 0;
 
 	background-color: #FFC02E;
+
+	// Application color
+	transition: background-color 100ms ease-in-out;
 
 	// Grid
 	> .container, > .container-fluid {
@@ -38,6 +57,7 @@
 			line-height: 1;
 
 			height: 56px;
+
 			padding-right: 12px;
 			padding-left: 12px;
 
@@ -48,15 +68,15 @@
 				// Required for pseudo
 				content: "";
 
+				position: absolute;
+
 				height: 2px;
 				width: 100%;
 
-				position: absolute;
-
-				background-color: white;
-
 				left: 0;
 				bottom: 0;
+
+				background-color: white;
 
 				opacity: 0;
 

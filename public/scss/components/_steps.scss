@@ -1,3 +1,25 @@
+/*
+ *	Application color
+ *
+ */
+#application {
+	@each $name, $color in $colors {
+        @media (min-width: 992px) {
+    		&.color-#{$name} ul.steps li.step:nth-child(odd) .step-content p.step-identifier {
+                background-color: $color;
+
+                &::before {
+                    background-color: $color;
+                }
+    		}
+        }
+	}
+}
+
+/*
+ *	Steps
+ *
+ */
 ul.steps {
     display: flex;
     flex-direction: column;

@@ -1,3 +1,19 @@
+/*
+ *	Application color
+ *
+ */
+#application {
+	@each $name, $color in $colors {
+		&.color-#{$name} .card {
+			box-shadow: -4px -4px $color;
+		}
+	}
+}
+
+/*
+ *	Card
+ *
+ */
 .card {
     border: 2px solid black;
     box-shadow: -4px -4px #FFC02E;

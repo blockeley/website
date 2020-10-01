@@ -1,35 +1,73 @@
+/*
+ *	Application color
+ *
+ */
+#application {
+	@each $name, $color in $colors {
+		&.color-#{$name} .splash h1.heading {
+			text-shadow: 4px 4px $color;
+		}
+	}
+}
+
+/*
+ *	Splash
+ *
+ */
 .splash {
     display: flex;
     align-items: center;
 
-    position: relative;
-
     height: calc(100vh - 56px);
 
-    &.splash-continue::after {
-        content: "arrow_downward";
-
-        position: absolute;
-
-        display: flex;
-        align-items: center;
+    &.splash-progress {
         justify-content: center;
 
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
+        &::after {
+            // Required for pseudo-element
+            content: "";
 
-        left: 50%;
-        bottom: 24px;
+            height: 48px;
+            width: 48px;
 
-        transform: translateX(-50%);
+            border-radius: 50%;
 
-        font-family: "Material Icons";
-        font-size: 24px;
+            border-style: solid;
+            border-width: 2px;
+            border-color: black black black transparent;
 
-        background-color: black;
+            animation: splash-progress 500ms linear infinite;
+        }
+    }
 
-        color: white;
+    &.splash-continue {
+        position: relative;
+
+        &::after {
+            content: "arrow_downward";
+
+            position: absolute;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+
+            left: 50%;
+            bottom: 24px;
+
+            transform: translateX(-50%);
+
+            font-family: "Material Icons";
+            font-size: 24px;
+
+            background-color: black;
+
+            color: white;
+        }
     }
 
     &.splash-center {
@@ -75,4 +113,22 @@
             margin: 12px;
         }
     }
+}
+
+@keyframes splash-progress {
+	0% {
+    	transform: rotate(0deg);
+  	}
+
+  	25% {
+    	transform: rotate(120deg);
+  	}
+
+  	75% {
+    	transform: rotate(240deg);
+  	}
+
+  	100% {
+    	transform: rotate(360deg);
+  	}
 }

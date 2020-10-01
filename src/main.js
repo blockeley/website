@@ -42,7 +42,7 @@ const store = new VueX.Store({
 });
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount("#application");

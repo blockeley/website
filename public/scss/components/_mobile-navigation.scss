@@ -1,3 +1,31 @@
+/*
+ *	Application color
+ *
+ */
+#application {
+	@each $name, $color in $colors {
+		&.color-#{$name} .mobile-navigation ul.mobile-navigation-menu li.menu-item a.item-link {
+			&::after {
+				background-color: $color;
+			}
+
+			&:not(.active):hover {
+				color: $color;
+			}
+
+			&.active {
+				background-color: rgba($color, 0.1);
+
+				color: $color;
+			}
+		}
+	}
+}
+
+/*
+ *	Mobile navigation
+ *
+ */
 .mobile-navigation {
 	position: fixed;
 
@@ -54,7 +82,7 @@
 				transition: opacity 100ms ease-in-out;
 			}
 
-			&:hover {
+			&:not(.active):hover {
 				color: #FFC02E;
 
 				cursor: pointer;
