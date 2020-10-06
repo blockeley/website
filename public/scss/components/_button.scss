@@ -73,6 +73,27 @@
 
 		cursor: pointer;
 	}
+
+	&.button-alt {
+		border-color: white;
+		background-color: black;
+
+		color: white;
+
+		&.button-progress {
+			color: black;
+
+			&::after {
+				border-color: white white white transparent;
+			}
+		}
+
+		&:not(.button-progress):hover {
+			background-color: white;
+
+			color: black;
+		}
+	}
 }
 
 // Hijacks transform

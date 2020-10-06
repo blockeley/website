@@ -1,0 +1,88 @@
+/*
+ *	Application color
+ *
+ */
+#application {
+	@each $name, $color in $colors {
+		&.color-#{$name} ul.slides li.slide.active {
+			background-color: rgba($color, 0.1);
+
+            &::after {
+                background-color: $color;
+            }
+		}
+	}
+}
+
+/*
+ *	Slides
+ *
+ */
+ul.slides {
+    display: flex;
+
+    list-style-type: none;
+
+    overflow-x: auto;
+
+    li.slide {
+        position: relative;
+
+        flex-shrink: 0;
+
+        max-width: 192px;
+
+        padding: 24px 12px;
+
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.2;
+        color: rgba(white, 0.5);
+
+        transition: color 100ms ease-in-out,
+                    background-color 100ms ease-in-out;
+
+        &::after {
+            // Required for pseudo-element
+            content: "";
+
+            position: absolute;
+
+            height: 2px;
+            width: calc(100% - 24px);
+
+            left: 12px;
+            top: 0;
+
+            background-color: rgba(white, 0.5);
+
+            transition: width 100ms ease-in-out,
+                        left 100ms ease-in-out,
+                        background-color 100ms ease-in-out;
+        }
+
+        &:hover:not(.active) {
+            color: white;
+
+            cursor: pointer;
+
+            &::after {
+                background-color: white;
+            }
+        }
+
+        &.active {
+            background-color: rgba(#FFC02E, 0.1);
+
+            color: white;
+
+            &::after {
+                width: 100%;
+
+                left: 0;
+
+                background-color: #FFC02E;
+            }
+        }
+    }
+}

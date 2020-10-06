@@ -53,7 +53,7 @@
 
                             </router-link>
 
-                            <h2 class="sub-heading sub-heading-alt">{{ product.title }}</h2>
+                            <h2 class="sub-heading sub-heading-primary">{{ product.title }}</h2>
 
                             <p class="description">Starting at <span class="important">${{ product.variants[0].price }}</span></p>
 

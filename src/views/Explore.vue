@@ -32,6 +32,8 @@
 
 <style lang="scss">
 #explore .splash {
+    position: relative;
+
     #logo {
         position: absolute;
 

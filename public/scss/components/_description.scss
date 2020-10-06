@@ -8,4 +8,12 @@
         color: black;
         font-weight: 500;
     }
+
+    &.description-alt {
+        color: rgba(white, 0.5);
+
+        .important {
+            color: white;
+        }
+    }
 }

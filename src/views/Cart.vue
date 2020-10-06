@@ -21,7 +21,7 @@
                                 </div>
 
                                 <div class="item-content">
-                                    <h2 class="sub-heading sub-heading-alt">{{ item.title }}</h2>
+                                    <h2 class="sub-heading sub-heading-primary">{{ item.title }}</h2>
 
                                     <p class="description" v-html="getOptions(item.variant.title)" />
 
