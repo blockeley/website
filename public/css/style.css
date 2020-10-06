@@ -741,72 +741,10 @@ ul.steps li.step .step-content p.step-identifier::before {
   cursor: pointer;
 }
 
-/*
- *	Application color
- *
- */
-#application.color-campus .product .card.card-image.card-6x8::after {
-  background-color: #21bf73;
-}
-#application.color-merchandise .product .card.card-image.card-6x8::after {
-  background-color: #3fc5f0;
-}
-#application.color-cart .product .card.card-image.card-6x8::after {
-  background-color: #835858;
-}
-#application.color-product .product .card.card-image.card-6x8::after {
-  background-color: #f09ae9;
-}
-#application.color-media .product .card.card-image.card-6x8::after {
-  background-color: #ff4b5c;
-}
-#application.color-schedule .product .card.card-image.card-6x8::after {
-  background-color: #be79df;
-}
-
-/*
- *	Product
- *
- */
 .product .card.card-image.card-6x8 {
   margin-bottom: 16px;
 }
-.product .card.card-image.card-6x8::after {
-  content: "arrow_forward";
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  z-index: 2;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-family: "Material Icons";
-  font-size: 24px;
-  background-color: #FFC02E;
-  color: white;
-  opacity: 0;
-  transition: opacity 250ms ease-in-out;
-}
-.product .card.card-image.card-6x8::before {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transition: opacity 250ms ease-in-out;
-}
-.product .card.card-image.card-6x8:hover::before, .product .card.card-image.card-6x8:hover::after {
-  opacity: 1;
-}
-.product h2.sub-heading.sub-heading-alt {
+.product h2.sub-heading.sub-heading-primary {
   text-align: center;
   margin-bottom: 8px;
 }
@@ -963,20 +901,38 @@ ul.items li.item .item-buttons a.icon-button:not(:last-child) {
 #application.color-campus .card {
   box-shadow: -4px -4px #21bf73;
 }
+#application.color-campus .card.card-hover::after {
+  background-color: #21bf73;
+}
 #application.color-merchandise .card {
   box-shadow: -4px -4px #3fc5f0;
+}
+#application.color-merchandise .card.card-hover::after {
+  background-color: #3fc5f0;
 }
 #application.color-cart .card {
   box-shadow: -4px -4px #835858;
 }
+#application.color-cart .card.card-hover::after {
+  background-color: #835858;
+}
 #application.color-product .card {
   box-shadow: -4px -4px #f09ae9;
+}
+#application.color-product .card.card-hover::after {
+  background-color: #f09ae9;
 }
 #application.color-media .card {
   box-shadow: -4px -4px #ff4b5c;
 }
+#application.color-media .card.card-hover::after {
+  background-color: #ff4b5c;
+}
 #application.color-schedule .card {
   box-shadow: -4px -4px #be79df;
+}
+#application.color-schedule .card.card-hover::after {
+  background-color: #be79df;
 }
 
 /*
@@ -1003,16 +959,55 @@ ul.items li.item .item-buttons a.icon-button:not(:last-child) {
 .card .card-body {
   padding: 24px;
 }
-.card.card-image {
-  position: relative;
-}
-.card.card-image.card-16x9 {
+.card.card-16x9 {
   width: 100%;
   padding-top: calc(100% / 16 * 9);
 }
-.card.card-image.card-6x8 {
+.card.card-6x8 {
   width: 100%;
   padding-top: calc(100% / 6 * 8);
+}
+.card.card-hover {
+  position: relative;
+}
+.card.card-hover::after {
+  content: "arrow_forward";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 2;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Material Icons";
+  font-size: 24px;
+  color: white;
+  background-color: #FFC02E;
+  opacity: 0;
+  transition: opacity 250ms ease-in-out;
+}
+.card.card-hover::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 250ms ease-in-out;
+}
+.card.card-hover:hover::before, .card.card-hover:hover::after {
+  opacity: 1;
+}
+.card.card-image {
+  position: relative;
+  background-color: black;
 }
 .card.card-image img {
   position: absolute;
@@ -1109,6 +1104,34 @@ ul.slides li.slide.active::after {
   width: 100%;
   left: 0;
   background-color: #FFC02E;
+}
+
+.article .card.card-16x9.card-hover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 16px;
+  background-color: white;
+}
+.article .card.card-16x9.card-hover img {
+  position: absolute;
+  max-height: 64%;
+  max-width: 64%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.article h2.article-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: black;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.article p.description {
+  text-align: center;
 }
 
 /*

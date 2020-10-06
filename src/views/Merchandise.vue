@@ -45,7 +45,7 @@
 
                             <router-link :to="{ name: 'Product', params: { identifier: product.handle } }">
 
-                                <div class="card card-image card-6x8">
+                                <div class="card card-image card-6x8 card-hover">
 
                                     <img :src="product.variants[0].image.src">
 

@@ -1,0 +1,43 @@
+.article {
+    // Component .card
+    .card.card-16x9.card-hover {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        position: relative;
+
+        margin-bottom: 16px;
+
+        background-color: white;
+
+        img {
+            position: absolute;
+
+            max-height: 64%;
+            max-width: 64%;
+
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    // Component .sub-heading.sub-heading-alt
+    h2.article-title {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.2;
+        color: black;
+
+        text-align: center;
+
+        margin-bottom: 8px;
+    }
+
+    // Component .description
+    p.description {
+        text-align: center;
+    }
+}

@@ -1,87 +1,11 @@
-/*
- *	Application color
- *
- */
-#application {
-	@each $name, $color in $colors {
-		&.color-#{$name} .product .card.card-image.card-6x8::after {
-			background-color: $color;
-		}
-	}
-}
-
-/*
- *	Product
- *
- */
 .product {
-    // Component .card.card-image.card-6x8
+    // Component .card.card-image
     .card.card-image.card-6x8 {
-        &::after {
-            content: "arrow_forward";
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            position: absolute;
-
-            z-index: 2;
-
-            height: 40px;
-            width: 40px;
-
-            border-radius: 50%;
-
-            left: 50%;
-            top: 50%;
-
-            transform: translate(-50%, -50%);
-
-            font-family: "Material Icons";
-            font-size: 24px;
-
-            background-color: #FFC02E;
-
-            color: white;
-
-            opacity: 0;
-
-            transition: opacity 250ms ease-in-out;
-        }
-
-        &::before {
-            // Required for pseudo-element
-            content: "";
-
-            position: absolute;
-
-            z-index: 1;
-
-            height: 100%;
-            width: 100%;
-
-            left: 0;
-            top: 0;
-
-            background-color: rgba(black, 0.5);
-
-            opacity: 0;
-
-            transition: opacity 250ms ease-in-out;
-        }
-
-        &:hover {
-            &::before, &::after {
-                opacity: 1;
-            }
-        }
-
         margin-bottom: 16px;
     }
 
     // Component .sub-heading.sub-heading-alt
-    h2.sub-heading.sub-heading-alt {
+    h2.sub-heading.sub-heading-primary {
         text-align: center;
 
         margin-bottom: 8px;
