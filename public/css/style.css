@@ -255,11 +255,22 @@
  *
  */
 .mobile-navigation {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   z-index: 999;
   height: 100vh;
   width: 100vw;
   background-color: white;
+}
+.mobile-navigation .mobile-navigation-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: 16px;
+}
+.mobile-navigation .mobile-navigation-buttons a.icon-button.icon-button-alt:not(:last-child) {
+  margin-right: 8px;
 }
 .mobile-navigation ul.mobile-navigation-menu {
   display: flex;
@@ -940,6 +951,7 @@ ul.items li.item .item-buttons a.icon-button:not(:last-child) {
  *
  */
 .card {
+  position: relative;
   border: 2px solid black;
   box-shadow: -4px -4px #FFC02E;
   background-color: white;
@@ -959,6 +971,21 @@ ul.items li.item .item-buttons a.icon-button:not(:last-child) {
 .card .card-body {
   padding: 24px;
 }
+.card .card-label {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  position: absolute;
+  top: 16px;
+  left: 0;
+  padding-right: 24px;
+  padding-left: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  color: white;
+  background-color: black;
+}
 .card.card-16x9 {
   width: 100%;
   padding-top: calc(100% / 16 * 9);
@@ -966,9 +993,6 @@ ul.items li.item .item-buttons a.icon-button:not(:last-child) {
 .card.card-6x8 {
   width: 100%;
   padding-top: calc(100% / 6 * 8);
-}
-.card.card-hover {
-  position: relative;
 }
 .card.card-hover::after {
   content: "arrow_forward";
@@ -1006,7 +1030,6 @@ ul.items li.item .item-buttons a.icon-button:not(:last-child) {
   opacity: 1;
 }
 .card.card-image {
-  position: relative;
   background-color: black;
 }
 .card.card-image img {

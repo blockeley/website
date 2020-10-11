@@ -52,6 +52,20 @@
                 </li>
             </ul>
 
+            <div class="mobile-navigation-buttons">
+                <a href="https://www.instagram.com/blockeleyofficial" target="_blank" class="icon-button icon-button-alt">
+                    <i class="fab fa-instagram"><!-- icon --></i>
+                </a>
+
+                <a href="https://twitter.com/UBlockeley" target="_blank" class="icon-button icon-button-alt">
+                    <i class="fab fa-twitter"><!-- icon --></i>
+                </a>
+
+                <a href="https://www.facebook.com/pg/Blockeley" target="_blank" class="icon-button icon-button-alt">
+                    <i class="fab fa-facebook-f"><!-- icon --></i>
+                </a>
+            </div>
+
         </div>
 
         <div class="navigation-bar">
@@ -87,6 +101,18 @@
                         <router-link to="/merchandise" class="item-link">Merchandise</router-link>
                     </li>
                 </ul>
+
+                <a href="https://www.instagram.com/blockeleyofficial" target="_blank" class="icon-button ml-auto d-none d-lg-flex">
+                    <i class="fab fa-instagram"><!-- icon --></i>
+                </a>
+
+                <a href="https://twitter.com/UBlockeley" target="_blank" class="icon-button d-none d-lg-flex">
+                    <i class="fab fa-twitter"><!-- icon --></i>
+                </a>
+
+                <a href="https://www.facebook.com/pg/Blockeley" target="_blank" class="icon-button d-none d-lg-flex">
+                    <i class="fab fa-facebook-f"><!-- icon --></i>
+                </a>
 
                 <router-link to="/cart"
                              id="cart-link"

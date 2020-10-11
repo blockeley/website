@@ -132,30 +132,40 @@
                 <div class="col-lg-4">
                     <div class="card card-image card-16x9">
                         <img src="images/locations/one.png">
+
+                        <p class="card-label">Doe Memorial Library</p>
                     </div>
                 </div>
 
                 <div class="col-lg-4">
                     <div class="card card-image card-16x9">
                         <img src="images/locations/two.png">
+
+                        <p class="card-label">California Memorial Stadium</p>
                     </div>
                 </div>
 
                 <div class="col-lg-4">
                     <div class="card card-image card-16x9">
-                        <img src="images/locations/three.JPG">
+                        <img src="images/locations/three.png">
+
+                        <p class="card-label">Sather Tower</p>
                     </div>
                 </div>
 
                 <div class="col-lg-4">
                     <div class="card card-image card-16x9">
                         <img src="images/locations/four.png">
+
+                        <p class="card-label">Sather Gate</p>
                     </div>
                 </div>
 
                 <div class="col-lg-4">
                     <div class="card card-image card-16x9">
-                        <img src="images/locations/five.JPG">
+                        <img src="images/locations/five.png">
+
+                        <p class="card-label">Sproul Hall</p>
                     </div>
                 </div>
             </div>

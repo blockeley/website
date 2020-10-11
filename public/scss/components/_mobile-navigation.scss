@@ -27,6 +27,9 @@
  *
  */
 .mobile-navigation {
+	display: flex;
+	flex-direction: column;
+
 	position: fixed;
 
 	z-index: 999;
@@ -35,6 +38,19 @@
 	width: 100vw;
 
 	background-color: white;
+
+	.mobile-navigation-buttons {
+		display: flex;
+		justify-content: center;
+
+		margin-top: auto;
+		margin-bottom: 16px;
+
+		// Component .icon-button.icon-button-alt
+		a.icon-button.icon-button-alt:not(:last-child) {
+			margin-right: 8px;
+		}
+	}
 
 	ul.mobile-navigation-menu {
 		display: flex;
