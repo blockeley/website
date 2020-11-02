@@ -39,6 +39,7 @@
                     <router-link to="/campus" class="item-link">Campus</router-link>
                 </li>
 
+				<!--
                 <li class="menu-item">
                     <router-link to="/schedule" class="item-link">Schedule</router-link>
                 </li>
@@ -46,9 +47,14 @@
                 <li class="menu-item">
                     <router-link to="/media" class="item-link">Media</router-link>
                 </li>
+				-->
 
                 <li class="menu-item">
                     <router-link to="/merchandise" class="item-link">Merchandise</router-link>
+                </li>
+
+                <li class="menu-item">
+                    <a class="item-link" href="https://patreon.blockeley.com" target="_blank">Donate</a>
                 </li>
             </ul>
 
@@ -89,6 +95,7 @@
                         <router-link to="/campus" class="item-link">Campus</router-link>
                     </li>
 
+					<!--
                     <li class="menu-item">
                         <router-link to="/schedule" class="item-link">Schedule</router-link>
                     </li>
@@ -96,10 +103,15 @@
                     <li class="menu-item">
                         <router-link to="/media" class="item-link">Media</router-link>
                     </li>
+					-->
 
                     <li class="menu-item">
                         <router-link to="/merchandise" class="item-link">Merchandise</router-link>
                     </li>
+
+					<li class="menu-item">
+						<a class="item-link" href="https://patreon.blockeley.com" target="_blank">Donate</a>
+					</li>
                 </ul>
 
                 <a href="https://www.instagram.com/blockeleyofficial" target="_blank" class="icon-button ml-auto d-none d-lg-flex">
@@ -128,10 +140,13 @@
 
         <router-view />
 
-        <div class="container">
+        <div v-if="notRoot"
+            class="container">
+ 
             <div class="footer">
                 <p class="footer-text">Copyright 2020 <a>Blockeley</a>. Website design by <a href="https://mathhulk.com">Matthew Rowland</a>.</p>
             </div>
+
         </div>
 
     </div>
@@ -171,10 +186,16 @@ export default {
     data( ) {
         return {
             mobileNavigation: false,
-
+			
             colorClass: "color-explore"
         };
     },
+	
+	computed: {
+		notRoot( ) {
+			return this.$route.name !== "Explore"
+		}
+	},
 
     methods: {
         openMobileNavigation( ) {

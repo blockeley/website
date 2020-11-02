@@ -120,14 +120,14 @@
                             <h1 class="heading">Oops</h1>
 
                             <p class="description"><span class="important">There are no items in your cart.</span>
-                                                      <br>Support Blockeley by purchasing merchandise or donating.</p>
+                                                   <br>Support Blockeley development by purchasing merchandise or donating through Patreon.</p>
 
                             <div class="splash-buttons">
 
                                 <router-link to="/merchandise"
                                              class="button">Browse merchandise</router-link>
 
-                                <a class="button" href="https://streamlabs.com/offtheirplate1" target="_blank">Donate</a>
+                                <a class="button" href="https://patreon.blockeley.com" target="_blank">Patreon</a>
 
                             </div>
                         </div>

@@ -11,14 +11,16 @@
 
                             <h1 class="heading">Merchandise</h1>
 
-                            <p class="description"><span class="important">Purchase Blockeley merchandise and support the Blockeley project.</span> Express school spirit on and off the virtual Minecraft campus with our unique Blockeley t-shirts.</p>
+                            <p class="description"><span class="important">Purchase Blockeley merchandise and support the Blockeley project.</span>
+                                                   Express school spirit on and off the virtual Minecraft campus with our unique Blockeley t-shirts.
+                                                   <span class="important">Also consider supporting Blockeley development on Patreon.</span></p>
 
                             <div class="splash-buttons">
 
                                 <a class="button"
                                    @click="browse( )">Browse products</a>
 
-                                <a class="button" href="https://streamlabs.com/offtheirplate1">Donate</a>
+                                <a class="button" href="https://patreon.blockeley.com" target="_blank">Patreon</a>
 
                             </div>
                         </div>
