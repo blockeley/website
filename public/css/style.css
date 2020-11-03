@@ -17,7 +17,7 @@
   box-shadow: 4px 4px #3fc5f0;
 }
 #application.color-cart .button {
-  box-shadow: 4px 4px #835858;
+  box-shadow: 4px 4px #c87941;
 }
 #application.color-product .button {
   box-shadow: 4px 4px #f09ae9;
@@ -113,7 +113,7 @@
   background-color: #3fc5f0;
 }
 #application.color-cart .navigation-bar {
-  background-color: #835858;
+  background-color: #c87941;
 }
 #application.color-product .navigation-bar {
   background-color: #f09ae9;
@@ -155,7 +155,7 @@
   position: relative;
   font-size: 14px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.5);
   line-height: 1;
   height: 56px;
   padding-right: 12px;
@@ -169,17 +169,17 @@
   width: 100%;
   left: 0;
   bottom: 0;
-  background-color: white;
+  background-color: black;
   opacity: 0;
   transition: opacity 100ms ease-in-out;
 }
 .navigation-bar ul.navigation-bar-menu li.menu-item a.item-link:hover {
-  color: white;
+  color: black;
   cursor: pointer;
 }
 .navigation-bar ul.navigation-bar-menu li.menu-item a.item-link.active {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: black;
 }
 .navigation-bar ul.navigation-bar-menu li.menu-item a.item-link.active::after {
   opacity: 1;
@@ -210,14 +210,14 @@
   color: #3fc5f0;
 }
 #application.color-cart .mobile-navigation ul.mobile-navigation-menu li.menu-item a.item-link::after {
-  background-color: #835858;
+  background-color: #c87941;
 }
 #application.color-cart .mobile-navigation ul.mobile-navigation-menu li.menu-item a.item-link:not(.active):hover {
-  color: #835858;
+  color: #c87941;
 }
 #application.color-cart .mobile-navigation ul.mobile-navigation-menu li.menu-item a.item-link.active {
-  background-color: rgba(131, 88, 88, 0.1);
-  color: #835858;
+  background-color: rgba(200, 121, 65, 0.1);
+  color: #c87941;
 }
 #application.color-product .mobile-navigation ul.mobile-navigation-menu li.menu-item a.item-link::after {
   background-color: #f09ae9;
@@ -327,8 +327,8 @@
   color: #3fc5f0;
 }
 #application.color-cart .icon-button.icon-button-alt:hover {
-  background-color: rgba(131, 88, 88, 0.1);
-  color: #835858;
+  background-color: rgba(200, 121, 65, 0.1);
+  color: #c87941;
 }
 #application.color-product .icon-button.icon-button-alt:hover {
   background-color: rgba(240, 154, 233, 0.1);
@@ -354,7 +354,7 @@
   height: 40px;
   width: 40px;
   border-radius: 50%;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.5);
   transition: color 100ms ease-in-out, background-color 100ms ease-in-out;
 }
 .icon-button.icon-button-alt {
@@ -366,8 +366,8 @@
   color: #FFC02E;
 }
 .icon-button.active, .icon-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: black;
 }
 .icon-button:not(.active):hover {
   cursor: pointer;
@@ -384,7 +384,7 @@
   text-shadow: 4px 4px #3fc5f0;
 }
 #application.color-cart .splash h1.heading {
-  text-shadow: 4px 4px #835858;
+  text-shadow: 4px 4px #c87941;
 }
 #application.color-product .splash h1.heading {
   text-shadow: 4px 4px #f09ae9;
@@ -513,10 +513,10 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%233fc5f0' fill-opacity='0.1' transform='translate(100 100)' d='M28.3,-25.1C35,-14.1,37.8,-2.4,39.5,16.7C41.3,35.7,42,62.2,32.7,66C23.4,69.7,4,50.8,-18.3,39.5C-40.6,28.2,-65.8,24.5,-68.4,15.1C-70.9,5.7,-50.8,-9.4,-35.6,-22.3C-20.4,-35.3,-10.2,-46.2,0.3,-46.4C10.7,-46.6,21.5,-36.2,28.3,-25.1Z' /%3E%3C/svg%3E");
 }
 #application.color-cart .heading {
-  text-shadow: 2px 2px #835858;
+  text-shadow: 2px 2px #c87941;
 }
 #application.color-cart .heading.heading-background::before {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23835858' fill-opacity='0.1' transform='translate(100 100)' d='M28.3,-25.1C35,-14.1,37.8,-2.4,39.5,16.7C41.3,35.7,42,62.2,32.7,66C23.4,69.7,4,50.8,-18.3,39.5C-40.6,28.2,-65.8,24.5,-68.4,15.1C-70.9,5.7,-50.8,-9.4,-35.6,-22.3C-20.4,-35.3,-10.2,-46.2,0.3,-46.4C10.7,-46.6,21.5,-36.2,28.3,-25.1Z' /%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23c87941' fill-opacity='0.1' transform='translate(100 100)' d='M28.3,-25.1C35,-14.1,37.8,-2.4,39.5,16.7C41.3,35.7,42,62.2,32.7,66C23.4,69.7,4,50.8,-18.3,39.5C-40.6,28.2,-65.8,24.5,-68.4,15.1C-70.9,5.7,-50.8,-9.4,-35.6,-22.3C-20.4,-35.3,-10.2,-46.2,0.3,-46.4C10.7,-46.6,21.5,-36.2,28.3,-25.1Z' /%3E%3C/svg%3E");
 }
 #application.color-product .heading {
   text-shadow: 2px 2px #f09ae9;
@@ -624,10 +624,10 @@
 }
 @media (min-width: 992px) {
   #application.color-cart ul.steps li.step:nth-child(odd) .step-content p.step-identifier {
-    background-color: #835858;
+    background-color: #c87941;
   }
   #application.color-cart ul.steps li.step:nth-child(odd) .step-content p.step-identifier::before {
-    background-color: #835858;
+    background-color: #c87941;
   }
 }
 @media (min-width: 992px) {
@@ -788,9 +788,9 @@ ul.steps li.step .step-content p.step-identifier::before {
   color: #3fc5f0;
 }
 #application.color-cart ul.options li.option.active {
-  border-color: #835858;
-  background-color: rgba(131, 88, 88, 0.1);
-  color: #835858;
+  border-color: #c87941;
+  background-color: rgba(200, 121, 65, 0.1);
+  color: #c87941;
 }
 #application.color-product ul.options li.option.active {
   border-color: #f09ae9;
@@ -932,10 +932,10 @@ ul.items li.item .item-buttons a.icon-button:not(:last-child) {
   background-color: #3fc5f0;
 }
 #application.color-cart .card {
-  box-shadow: -4px -4px #835858;
+  box-shadow: -4px -4px #c87941;
 }
 #application.color-cart .card.card-hover::after {
-  background-color: #835858;
+  background-color: #c87941;
 }
 #application.color-product .card {
   box-shadow: -4px -4px #f09ae9;
@@ -1068,10 +1068,10 @@ ul.items li.item .item-buttons a.icon-button:not(:last-child) {
   background-color: #3fc5f0;
 }
 #application.color-cart ul.slides li.slide.active {
-  background-color: rgba(131, 88, 88, 0.1);
+  background-color: rgba(200, 121, 65, 0.1);
 }
 #application.color-cart ul.slides li.slide.active::after {
-  background-color: #835858;
+  background-color: #c87941;
 }
 #application.color-product ul.slides li.slide.active {
   background-color: rgba(240, 154, 233, 0.1);

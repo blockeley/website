@@ -25,7 +25,7 @@
     width: 40px;
     border-radius: 50%;
 
-    color: rgba(white, 0.5);
+    color: rgba(black, 0.5);
 
     transition: color 100ms ease-in-out,
                 background-color 100ms ease-in-out;
@@ -43,9 +43,9 @@
     }
 
     &.active, &:hover {
-        background-color: rgba(white, 0.1);
+        background-color: rgba(black, 0.1);
 
-        color: white;
+        color: black;
     }
 
     &:not(.active):hover {

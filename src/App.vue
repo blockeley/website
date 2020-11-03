@@ -15,7 +15,7 @@
 
                     </a>
 
-                    <img class="navigation-bar-brand" src="/images/logo.png">
+                    <img class="navigation-bar-brand" src="/images/logo-transparent.png">
 
                     <router-link to="/cart"
                                  id="mobile-cart-link"
@@ -84,7 +84,7 @@
 
                 </a>
 
-                <img class="navigation-bar-brand" src="/images/logo.png">
+                <img class="navigation-bar-brand" src="/images/logo-transparent.png">
 
                 <ul class="navigation-bar-menu ml-auto d-none d-lg-flex">
                     <li class="menu-item">
@@ -142,7 +142,7 @@
 
         <div v-if="notRoot"
             class="container">
- 
+
             <div class="footer">
                 <p class="footer-text">Copyright 2020 <a>Blockeley</a>. Website design by <a href="https://mathhulk.com">Matthew Rowland</a>.</p>
             </div>
@@ -173,7 +173,7 @@
 
             border-radius: 50%;
 
-            background-color: white;
+            background-color: black;
         }
     }
 }
@@ -186,11 +186,11 @@ export default {
     data( ) {
         return {
             mobileNavigation: false,
-			
+
             colorClass: "color-explore"
         };
     },
-	
+
 	computed: {
 		notRoot( ) {
 			return this.$route.name !== "Explore"

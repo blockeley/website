@@ -84,6 +84,7 @@
 
         width: 512px;
         max-width: 100%;
+        max-height: 75%;
     }
 
     // Specific .heading
