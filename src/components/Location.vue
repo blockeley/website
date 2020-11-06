@@ -47,18 +47,16 @@ export default {
 
     methods: {
         toggleFullScreen( ) {
-            if(this.fullScreen) {
-                const body = document.getElementsByTagName("body")[0];
-                body.classList.remove("disabled");
+            const body = document.getElementsByTagName("body")[0];
 
+            if(this.fullScreen) {
+                body.classList.remove("disabled");
                 this.fullScreen = false;
 
                 return undefined;
             }
 
-            const body = document.getElementsByTagName("body")[0];
             body.classList.add("disabled");
-
             this.fullScreen = true;
 
             return undefined;

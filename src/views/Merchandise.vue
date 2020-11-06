@@ -23,8 +23,8 @@
                 <Section heading="T-shirts, sweatshirts, and more" variant="background">
                     <template v-slot:subHeading>Merchandise</template>
 
-                    <template v-slot:description><span class="important">Profit from merchandise purchases allows Blockeley to fund the virtual Minecraft campus and more.</span>
-                                                 Every dollar Blockeley earns will be reinvested and covers server costs and funding for future events.</template>
+                    <template v-slot:description><span class="important">Your purchase will be a direct contribution to Blockeley and the virtual Minecraft server.</span>
+                                                 <br>Every dollar Blockeley earns will be reinvested and covers server costs and funding for future events.</template>
                 </Section>
             </div>
 
