@@ -1,247 +1,159 @@
 <template>
-    <div id="cart">
-
+    <div id="cart" :class="classObject">
         <template v-if="checkout && checkout.lineItems.length > 0">
-
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <ul class="items">
-
-                            <li v-for="item in checkout.lineItems"
-                                 :key="item.id"
-                                 class="item">
-
-                                <div class="item-preview">
-                                    <div class="card card-image card-6x8">
-
-                                        <img :src="item.variant.image.src">
-
-                                    </div>
-                                </div>
-
-                                <div class="item-content">
-                                    <h2 class="sub-heading sub-heading-primary">{{ item.title }}</h2>
-
-                                    <p class="description" v-html="getOptions(item.variant.title)" />
-
-                                    <p class="description">Priced at <span class="important">${{ item.variant.price }}</span></p>
-                                </div>
-
-                                <h3 class="sub-heading">{{ item.quantity }}x</h3>
-
-                                <div class="item-buttons">
-
-                                    <a class="icon-button icon-button-alt"
-                                       @click="updateItem(item.id)">
-
-                                        <i class="material-icons">add</i>
-
-                                    </a>
-
-                                    <a class="icon-button icon-button-alt"
-                                       @click="updateItem(item.id, false)">
-
-                                        <i class="material-icons">remove</i>
-
-                                    </a>
-
-                                    <a class="icon-button icon-button-alt"
-                                       @click="removeItem(item.id)">
-
-                                        <i class="material-icons">delete</i>
-
-                                    </a>
-
-                                </div>
-
-                            </li>
-
-                        </ul>
+                        <div id="items">
+                            <Item @updateQuantity="updateItemQuantity" @remove="removeItem" v-for="item in checkout.lineItems" :key="item.id" :item="item" />
+                        </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div id="order-summary">
-                            <div class="card">
-                                <h3 class="card-header">Order summary</h3>
+                            <div id="order-summary-card">
+                                <!-- Mix and match..? -->
+                                <p class="card-title">Order summary</p>
 
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <p class="description">Sub-total</p>
-
-                                        <p class="description">
-                                            <span class="important">${{ checkout.subtotalPrice }}</span>
-                                        </p>
+                                    <div class="card-row">
+                                        <p class="row-index">Sub-total</p>
+                                        <p class="row-value">${{ checkout.subtotalPrice }}</p>
                                     </div>
 
-                                        <div class="d-flex justify-content-between">
-                                        <p class="description">Tax estimate</p>
-
-                                        <p class="description">
-                                            <span class="important">${{ checkout.totalTax }}</span>
-                                        </p>
+                                    <div class="card-row">
+                                        <p class="row-index">Tax estimate</p>
+                                        <p class="row-value">${{ checkout.totalTax }}</p>
                                     </div>
 
-                                    <div class="d-flex justify-content-between">
-                                        <p class="description">Total estimate</p>
-
-                                        <p class="description">
-                                            <span class="important">${{ checkout.totalPrice }}</span>
-                                        </p>
+                                    <div class="card-row">
+                                        <p class="row-index">Total estimate</p>
+                                        <p class="row-value">${{ checkout.totalPrice }}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="text-center">
-
-                                <a class="button"
-                                   :href="checkout.webUrl">Check out</a>
-
+                            <div id="order-summary-button">
+                                <a target="_blank" :href="checkout.webUrl">
+                                    <Button>Check out</Button>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </template>
 
         <template v-else-if="loading">
-
-            <div class="splash splash-progress"><!-- loading --></div>
-
+            <Splash progress="true" />
         </template>
 
         <template v-else>
+            <Splash>
+                <Section heading="Oops" variant="background">
+                    <template v-slot:description><span class="important">You have not added anything to your cart.</span>
+                                                 <br>Support Blockeley development by purchasing merchandise or donating through Patreon.</template>
 
-            <div class="splash splash-center">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <h1 class="heading">Oops</h1>
+                    <template v-slot:buttons>
+                        <router-link to="/merchandise">
+                            <Button>Blockeley merchandise</Button>
+                        </router-link>
 
-                            <p class="description"><span class="important">There are no items in your cart.</span>
-                                                   <br>Support Blockeley development by purchasing merchandise or donating through Patreon.</p>
-
-                            <div class="splash-buttons">
-
-                                <router-link to="/merchandise"
-                                             class="button">Browse merchandise</router-link>
-
-                                <a class="button" href="https://patreon.blockeley.com" target="_blank">Patreon</a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+                        <a href="https://patreon.blockeley.com" target="_blank">
+                            <Button>Donate using Patreon</Button>
+                        </a>
+                    </template>
+                </Section>
+            </Splash>
         </template>
 
     </div>
 </template>
 
-<style lang="scss">
-#cart {
-    min-height: calc(100vh - 58px);
-
-    // Specific .items
-    ul.items {
-        @media (max-width: 992px) {
-            margin-bottom: 48px;
-        }
-
-        margin-top: 64px;
-    }
-
-    #order-summary {
-        @media (min-width: 992px) {
-            position: sticky;
-
-            top: 104px;
-
-            margin-top: 64px;
-        }
-
-        // Specific .card
-        .card {
-            margin-bottom: 24px;
-        }
-    }
-}
-</style>
-
 <script>
+import Splash from "@/components/Splash";
+import Button from "@/components/Button";
+import Section from "@/components/Section";
+import Item from "@/components/Item";
+
 export default {
     name: "Cart",
+
+    components: {
+        Splash,
+        Button,
+        Section,
+        Item
+    },
 
     data( ) {
         return {
             checkout: null,
-            loading: true
+
+            loading: true,
+            pending: false
         };
     },
 
+    computed: {
+        classObject( ) {
+            return {
+                "cart-pending": this.pending
+            };
+        }
+    },
+
     methods: {
-        getOptions(title) {
-            const options = title.split(" / ");
-
-            for(const index in options) {
-                options[index] = `<span class="important">` + options[index] + `</span>`;
-            }
-
-            return options.join(", ");
-        },
-
         async render( ) {
             if( ! this.$store.state.identifier ) {
                 this.loading = false;
 
-                return;
+                return undefined;
             }
 
-            const checkout = await this.$client.checkout.fetch(this.$store.state.identifier);
+            this.checkout = await this.$client.checkout.fetch(this.$store.state.identifier);
 
             this.loading = false;
-            this.checkout = checkout;
+
+            return undefined;
         },
 
-        async updateItem(identifier, increment = true) {
-            const index = this.checkout.lineItems.findIndex(item => item.id === identifier);
-            const item = this.checkout.lineItems[index];
+        async updateItemQuantity(identifier, increment = true) {
+            this.pending = true;
 
+            const itemIndex = this.checkout.lineItems.findIndex(item => item.id === identifier);
+            const item = this.checkout.lineItems[itemIndex];
+
+            // Maximum item quantity..?
             if( item.quantity === 1 && ! increment ) {
-                this.removeItem(identifier);
+                await this.removeItem(identifier);
 
-                return;
+                return undefined;
             }
 
-            if(item.quantity === 999 && increment) {
-                return;
-            }
-
-            const update = {
-                id: identifier,
-                quantity: increment ? item.quantity + 1 : item.quantity - 1
-            };
-
-            const checkout = await this.$client.checkout.updateLineItems(this.checkout.id, update);
+            const update = { id: identifier, quantity: increment ? item.quantity + 1 : item.quantity - 1 };
+            this.checkout = await this.$client.checkout.updateLineItems(this.checkout.id, update);
 
             if(increment) this.$store.commit("increaseQuantity");
             else this.$store.commit("decreaseQuantity");
 
-            this.checkout = checkout;
+            this.pending = false;
+
+            return undefined;
         },
 
         async removeItem(identifier) {
-            const index = this.checkout.lineItems.findIndex(item => item.id === identifier);
-            const { quantity } = this.checkout.lineItems[index];
+            this.pending = true;
 
-            const remove = [ identifier ];
+            const itemIndex = this.checkout.lineItems.findIndex(item => item.id === identifier);
+            const { quantity } = this.checkout.lineItems[itemIndex];
 
-            const checkout = await this.$client.checkout.removeLineItems(this.checkout.id, remove);
+            this.checkout = await this.$client.checkout.removeLineItems(this.checkout.id, [ identifier ]);
             this.$store.commit("decreaseQuantity", quantity);
 
-            this.checkout = checkout;
+            this.pending = false;
+
+            return undefined;
         }
     },
 
@@ -250,3 +162,114 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+@import "@/scss/colors";
+
+$color: map-get($colors, "cart");
+
+#cart {
+    min-height: calc(100vh - 56px);
+
+    transition: opacity 100ms ease-in-out;
+
+    &.cart-pending {
+        opacity: 0.5;
+
+        pointer-events: none;
+    }
+
+    .section.section-background {
+        // Override
+        margin-top: unset;
+        margin-bottom: unset;
+    }
+
+    #items {
+        margin-top: 48px;
+
+        @media (max-width: 992px) {
+            margin-bottom: 48px;
+        }
+
+        .item:not(:first-child) {
+            padding-top: 48px;
+        }
+
+        .item:not(:last-child) {
+            padding-bottom: 48px;
+
+            border-bottom: 2px dashed rgba(black, 0.1);
+        }
+    }
+
+    #order-summary {
+        @media (min-width: 992px) {
+            position: sticky;
+
+            top: 104px;
+
+            margin-top: 48px;
+        }
+
+        #order-summary-card {
+            border: 2px solid black;
+            box-shadow: -4px -4px $color;
+            background-color: white;
+
+            margin-bottom: 24px;
+
+            p.card-title {
+                display: flex;
+                align-items: center;
+
+                height: 56px;
+
+                background-color: black;
+
+                padding-right: 24px;
+                padding-left: 24px;
+
+                margin-top: -2px;
+
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 1;
+                color: white;
+            }
+
+            .card-body {
+                padding: 24px;
+
+                .card-row {
+                    display: flex;
+                    justify-content: space-between;
+
+                    &:not(:last-child) {
+                        margin-bottom: 4px;
+                    }
+
+                    p.row-index, p.row-value {
+                        font-size: 16px;
+                        line-height: 1;
+                    }
+
+                    p.row-index {
+                        font-weight: 300;
+                        color: rgba(black, 0.5);
+                    }
+
+                    p.row-value {
+                        font-weight: 500;
+                        color: black;
+                    }
+                }
+            }
+        }
+
+        #order-summary-button {
+            text-align: center;
+        }
+    }
+}
+</style>

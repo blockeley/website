@@ -1,150 +1,63 @@
 <template>
     <div id="store">
-
         <template v-if="products">
+            <Splash image="/images/shirt.png" continue="true">
+                <Section heading="Merchandise">
+                    <template v-slot:subHeading>Blockeley</template>
 
-            <div class="splash splash-continue">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <h2 class="sub-heading">Blockeley</h2>
+                    <template v-slot:description><span class="important">Purchase Blockeley merchandise and support Blockeley development.</span>
+                                                 <br>Express school spirit on and off our virtual Minecraft campus with unique Blockeley apparel. Interested in
+                                                 donating instead? Use the button below to learn more about the Blockeley Patreon.</template>
 
-                            <h1 class="heading">Merchandise</h1>
+                    <template v-slot:buttons>
+                        <Button @click.native="scrollToApparel">Browse apparel</Button>
 
-                            <p class="description"><span class="important">Purchase Blockeley merchandise and support the Blockeley project.</span>
-                                                   Express school spirit on and off the virtual Minecraft campus with our unique Blockeley t-shirts.
-                                                   <span class="important">Also consider supporting Blockeley development on Patreon.</span></p>
+                        <a href="https://patreon.blockeley.com">
+                            <Button>Patreon</Button>
+                        </a>
+                    </template>
+                </Section>
+            </Splash>
 
-                            <div class="splash-buttons">
+            <div id="apparel">
+                <Section heading="T-shirts, sweatshirts, and more" variant="background">
+                    <template v-slot:subHeading>Merchandise</template>
 
-                                <a class="button"
-                                   @click="browse( )">Browse products</a>
-
-                                <a class="button" href="https://patreon.blockeley.com" target="_blank">Patreon</a>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="preview">
-                        <img src="images/shirt.png">
-
-                        <img src="images/logo.png">
-                    </div>
-                </div>
+                    <template v-slot:description><span class="important">Profit from merchandise purchases allows Blockeley to fund the virtual Minecraft campus and more.</span>
+                                                 Every dollar Blockeley earns will be reinvested and covers server costs and funding for future events.</template>
+                </Section>
             </div>
 
             <div class="container">
-                <h2 id="browse" class="heading heading-section heading-background">Products</h2>
-
                 <div id="products" class="row justify-content-center">
-
-                    <div v-for="product in products"
-                         class="col-lg-3"
-                         :key="product.handle">
-
-                        <div class="product">
-
-                            <router-link :to="{ name: 'Product', params: { identifier: product.handle } }">
-
-                                <div class="card card-image card-6x8 card-hover">
-
-                                    <img :src="product.variants[0].image.src">
-
-                                </div>
-
-                            </router-link>
-
-                            <h2 class="sub-heading sub-heading-primary">{{ product.title }}</h2>
-
-                            <p class="description">Starting at <span class="important">${{ product.variants[0].price }}</span></p>
-
-                        </div>
-
+                    <div v-for="product in products" class="col-lg-3" :key="product.handle">
+                        <Product :image="product.images[0].src" :title="product.title" :price="product.variants[0].price" :identifier="product.handle" />
                     </div>
-
                 </div>
-
             </div>
-
         </template>
 
         <template v-else>
-
-            <div class="splash splash-progress"><!-- loading --></div>
-
+            <Splash progress="true" />
         </template>
-
     </div>
 </template>
 
-<style lang="scss">
-#store {
-    #products {
-        margin-bottom: -48px;
-
-        // Specific .product
-        .product {
-            padding-bottom: 48px;
-        }
-    }
-
-    // Specific .splash -> .container
-    .splash .container {
-        position: relative;
-
-        #preview {
-            z-index: -1;
-
-            position: absolute;
-
-            top: 50%;
-
-            @media (max-width: 992px) {
-                left: 50%;
-
-                transform: translate(-50%, -50%);
-            }
-
-            @media (min-width: 992px) {
-                // Mirror .container
-                right: 1rem;
-
-                transform: translateY(-50%);
-            }
-
-            img:first-child {
-                opacity: 0.1;
-
-                @media (max-width: 992px) {
-                    max-width: 100%;
-
-                    opacity: 0.05;
-                }
-            }
-
-            img:last-child {
-                position: absolute;
-
-                height: 192px;
-
-                left: 50%;
-                top: 25%;
-
-                transform: translateX(-50%);
-
-                @media (max-width: 992px) {
-                    opacity: 0.05;
-                }
-            }
-        }
-    }
-}
-</style>
-
 <script>
+import Button from "@/components/Button";
+import Splash from "@/components/Splash";
+import Section from "@/components/Section";
+import Product from "@/components/Product";
+
 export default {
     name: "Store",
+
+    components: {
+        Button,
+        Splash,
+        Section,
+        Product
+    },
 
     data( ) {
         return {
@@ -153,11 +66,11 @@ export default {
     },
 
     methods: {
-        browse( ) {
+        scrollToApparel( ) {
             window.scroll({
                 behavior: "smooth",
                 left: 0,
-                top: document.getElementById("browse").offsetTop
+                top: document.getElementById("apparel").offsetTop - 128
             });
         }
     },
@@ -170,3 +83,13 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+#products {
+    // margin-bottom: -24px;
+
+    .product {
+        margin-bottom: 24px;
+    }
+}
+</style>

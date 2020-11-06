@@ -1,32 +1,15 @@
 <template>
-    <div id="application"
-         :class="colorClass">
-
-        <div v-if="mobileNavigation"
-             class="mobile-navigation">
-
+    <div id="application" :class="colorClass">
+        <div v-if="mobileNavigation" class="mobile-navigation">
             <div class="navigation-bar">
                 <div class="container-fluid">
-
-                    <a class="icon-button d-lg-none mr-auto"
-                       @click="closeMobileNavigation( )">
-
-                        <i class="material-icons">close</i>
-
-                    </a>
+                    <IconButton @click.native="closeMobileNavigation" class="mr-auto" icon="close" />
 
                     <img class="navigation-bar-brand" src="/images/logo-transparent.png">
 
-                    <router-link to="/cart"
-                                 id="mobile-cart-link"
-                                 class="icon-button ml-auto"
-                                 :class="{ 'has-notification': $store.state.quantity > 0 }"
-                                 @click="closeMobileNavigation( )">
-
-                        <i class="material-icons">shopping_cart</i>
-
+                    <router-link to="/cart" class="ml-auto" >
+                        <IconButton :active="atCart" icon="shopping_cart" :notification="$store.state.quantity > 0" />
                     </router-link>
-
                 </div>
             </div>
 
@@ -39,7 +22,7 @@
                     <router-link to="/campus" class="item-link">Campus</router-link>
                 </li>
 
-				<!--
+                <!--
                 <li class="menu-item">
                     <router-link to="/schedule" class="item-link">Schedule</router-link>
                 </li>
@@ -47,7 +30,7 @@
                 <li class="menu-item">
                     <router-link to="/media" class="item-link">Media</router-link>
                 </li>
-				-->
+                -->
 
                 <li class="menu-item">
                     <router-link to="/merchandise" class="item-link">Merchandise</router-link>
@@ -58,31 +41,30 @@
                 </li>
             </ul>
 
+            <!--
             <div class="mobile-navigation-buttons">
                 <a href="https://www.instagram.com/blockeleyofficial" target="_blank" class="icon-button icon-button-alt">
-                    <i class="fab fa-instagram"><!-- icon --></i>
+                    <i class="fab fa-instagram" />
                 </a>
 
                 <a href="https://twitter.com/UBlockeley" target="_blank" class="icon-button icon-button-alt">
-                    <i class="fab fa-twitter"><!-- icon --></i>
+                    <i class="fab fa-twitter" />
                 </a>
 
                 <a href="https://www.facebook.com/pg/Blockeley" target="_blank" class="icon-button icon-button-alt">
-                    <i class="fab fa-facebook-f"><!-- icon --></i>
+                    <i class="fab fa-facebook-f" />
+                </a>
+
+                <a href="https://discord.gg/mmAK4D5" target="_blank" class="icon-button icon-button-alt">
+                    <i class="fab fa-discord" />
                 </a>
             </div>
-
+            -->
         </div>
 
         <div class="navigation-bar">
             <div class="container">
-
-                <a class="icon-button d-lg-none mr-auto"
-                   @click="openMobileNavigation( )">
-
-                    <i class="material-icons">menu</i>
-
-                </a>
+                <IconButton @click.native="openMobileNavigation" class="d-lg-none mr-auto" icon="menu" />
 
                 <img class="navigation-bar-brand" src="/images/logo-transparent.png">
 
@@ -95,7 +77,7 @@
                         <router-link to="/campus" class="item-link">Campus</router-link>
                     </li>
 
-					<!--
+                    <!--
                     <li class="menu-item">
                         <router-link to="/schedule" class="item-link">Schedule</router-link>
                     </li>
@@ -103,85 +85,61 @@
                     <li class="menu-item">
                         <router-link to="/media" class="item-link">Media</router-link>
                     </li>
-					-->
+                    -->
 
                     <li class="menu-item">
                         <router-link to="/merchandise" class="item-link">Merchandise</router-link>
                     </li>
 
-					<li class="menu-item">
-						<a class="item-link" href="https://patreon.blockeley.com" target="_blank">Donate</a>
-					</li>
+                    <li class="menu-item">
+                        <a class="item-link" href="https://patreon.blockeley.com" target="_blank">Donate</a>
+                    </li>
                 </ul>
 
+                <!--
                 <a href="https://www.instagram.com/blockeleyofficial" target="_blank" class="icon-button ml-auto d-none d-lg-flex">
-                    <i class="fab fa-instagram"><!-- icon --></i>
+                    <i class="fab fa-instagram" />
                 </a>
 
                 <a href="https://twitter.com/UBlockeley" target="_blank" class="icon-button d-none d-lg-flex">
-                    <i class="fab fa-twitter"><!-- icon --></i>
+                    <i class="fab fa-twitter" />
                 </a>
 
                 <a href="https://www.facebook.com/pg/Blockeley" target="_blank" class="icon-button d-none d-lg-flex">
-                    <i class="fab fa-facebook-f"><!-- icon --></i>
+                    <i class="fab fa-facebook-f" />
                 </a>
 
-                <router-link to="/cart"
-                             id="cart-link"
-                             class="icon-button ml-auto"
-                             :class="{ 'has-notification': $store.state.quantity > 0 }">
+                <a href="https://discord.gg/mmAK4D5" target="_blank" class="icon-button d-none d-lg-flex">
+                    <i class="fab fa-discord" />
+                </a>
+                -->
 
-                    <i class="material-icons">shopping_cart</i>
-
+                <router-link to="/cart" class="ml-auto" >
+                    <IconButton :active="atCart" icon="shopping_cart" :notification="$store.state.quantity > 0" />
                 </router-link>
-
             </div>
         </div>
 
         <router-view />
 
-        <div v-if="notRoot"
-            class="container">
-
+        <div v-if="notAtExplore" class="container">
             <div class="footer">
                 <p class="footer-text">Copyright 2020 <a>Blockeley</a>. Website design by <a href="https://mathhulk.com">Matthew Rowland</a>.</p>
             </div>
-
         </div>
 
     </div>
 </template>
 
-<style lang="scss">
-#cart-link, #mobile-cart-link {
-    margin-left: 24px;
-
-    &.has-notification {
-        position: relative;
-
-        &::after {
-            // Required for pseudo-element
-            content: "";
-
-            position: absolute;
-
-            top: 2px;
-            right: 2px;
-
-            height: 8px;
-            width: 8px;
-
-            border-radius: 50%;
-
-            background-color: black;
-        }
-    }
-}
-</style>
-
 <script>
+import IconButton from "@/components/IconButton";
+
 export default {
     name: "App",
+
+    components: {
+        IconButton
+    },
 
     data( ) {
         return {
@@ -191,11 +149,15 @@ export default {
         };
     },
 
-	computed: {
-		notRoot( ) {
-			return this.$route.name !== "Explore"
-		}
-	},
+    computed: {
+        notAtExplore( ) {
+            return this.$route.name !== "Explore";
+        },
+
+        atCart( ) {
+            return this.$route.name === "Cart";
+        }
+    },
 
     methods: {
         openMobileNavigation( ) {
@@ -222,3 +184,52 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+@import "@/scss/components/navigation-bar";
+@import "@/scss/components/mobile-navigation";
+@import "@/scss/components/footer";
+
+/*
+ *  Global
+ */
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    position: relative;
+
+    font-family: "Poppins", sans-serif;
+
+    background-color: #F5F7F9;
+
+    &.disabled {
+        height: 100%;
+
+        overflow: hidden;
+    }
+
+    &::before {
+        // Required for pseudo-element
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+        top: 0;
+
+        height: 100%;
+        width: 100%;
+
+        z-index: -1;
+
+        background-color: rgba(#FFC02E, 0.1);
+        background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.05'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+}
+</style>
