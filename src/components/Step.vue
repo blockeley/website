@@ -78,27 +78,26 @@ export default {
 
             margin-left: 24px;
 
-            p.step-title {
-                // Override
-                padding-left: unset;
+            p.step-title::before {
+                // Required for pseudo-element
+                content: "";
 
-                &::before {
-                    // Required for pseudo-element
-                    content: "";
+                position: absolute;
 
-                    position: absolute;
+                height: 40px;
+                width: 24px;
 
-                    height: 40px;
-                    width: 24px;
+                top: 0;
+                left: -24px;
 
-                    top: 0;
-                    left: -24px;
+                z-index: 1;
 
-                    z-index: 1;
-
-                    background-color: black;
-                }
+                background-color: black;
             }
+        }
+
+        &:not(.step-alternate) .step-content p.step-title {
+            padding-right: 24px;
         }
 
         &.step-alternate {
@@ -113,8 +112,7 @@ export default {
                 margin-right: 24px;
 
                 p.step-title {
-                    // Override
-                    padding-right: unset;
+                    padding-left: 24px;
 
                     &::before {
                         // Override
@@ -137,6 +135,11 @@ export default {
 
         .step-content {
             text-align: center;
+
+            p.step-title {
+                padding-right: 24px;
+                padding-left: 24px;
+            }
         }
     }
 
@@ -173,9 +176,6 @@ export default {
             font-weight: 500;
             line-height: 1;
             color: white;
-
-            padding-right: 24px;
-            padding-left: 24px;
 
             background-color: black;
 

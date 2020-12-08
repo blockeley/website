@@ -1,13 +1,13 @@
 <template>
-    <div class="product">
-        <div class="product-image">
-            <img :src="image">
+    <div class="merchandise-product">
+        <div class="merchandise-product-image">
+            <img :src="product.images[0].src">
         </div>
 
-        <div class="product-content">
-            <div class="product-text">
-                <p class="product-title">{{ title }}</p>
-                <p class="product-description">Starting at <span class="important">${{ price }}</span></p>
+        <div class="merchandise-product-content">
+            <div class="merchandise-product-text">
+                <p class="merchandise-product-title">{{ product.title }}</p>
+                <p class="merchandise-product-description">Starting at <span class="important">${{ product.variants[0].price }}</span></p>
             </div>
 
             <router-link :to="toObject">
@@ -21,24 +21,21 @@
 import IconButton from "@/components/IconButton";
 
 export default {
-    name: "Product",
+    name: "MerchandiseProduct",
 
     components: {
         IconButton
     },
 
     props: [
-        "title",
-        "image",
-        "price",
-        "identifier"
+        "product"
     ],
 
     computed: {
         toObject( ) {
             return {
                 name: "Product",
-                params: { identifier: this.identifier }
+                params: { identifier: this.product.handle }
             };
         }
     }
@@ -54,7 +51,7 @@ export default {
  */
 #application {
     @each $name, $color in $colors {
-        &.color-#{$name} .product {
+        &.color-#{$name} .merchandise-product {
             box-shadow: -4px -4px $color;
         }
     }
@@ -64,13 +61,13 @@ export default {
  *  Product
  *
  */
-.product {
+.merchandise-product {
     box-shadow: -4px -4px #FFC02E;
     background-color: black;
 
     padding: 2px 2px 0 2px;
 
-    .product-image {
+    .merchandise-product-image {
         position: relative;
 
         // Padding-top relative to width
@@ -91,7 +88,7 @@ export default {
        }
     }
 
-    .product-content {
+    .merchandise-product-content {
         display: flex;
         align-items: center;
 
@@ -100,14 +97,14 @@ export default {
         padding-left: 24px;
         padding-right: 24px;
 
-        .product-text {
+        .merchandise-product-text {
             flex-grow: 1;
 
             margin-right: 24px;
 
             overflow: hidden;
 
-            p.product-title {
+            p.merchandise-product-title {
                 font-size: 14px;
                 font-weight: 500;
                 color: white;
@@ -120,7 +117,7 @@ export default {
                 text-overflow: ellipsis;
             }
 
-            p.product-description {
+            p.merchandise-product-description {
                 font-size: 14px;
                 font-weight: 300;
                 line-height: 18px;

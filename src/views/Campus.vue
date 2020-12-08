@@ -28,11 +28,7 @@
         </div>
 
         <div class="container">
-            <div id="platforms">
-                <Option @click.native="setSelectedEdition(Editions.Java)" :active="selectedEdition === Editions.Java">Minecraft Java Edition</Option>
-
-                <Option @click.native="setSelectedEdition(Editions.Bedrock)" :active="selectedEdition === Editions.Bedrock">Minecraft Bedrock Edition</Option>
-            </div>
+            <Options :options="Object.keys(Editions)" centered="true" @change="setSelectedEdition" />
 
             <div id="steps">
                 <template v-if="selectedEdition === Editions.Java">
@@ -127,7 +123,7 @@
 import Location from "@/components/Location";
 import Button from "@/components/Button";
 import Section from "@/components/Section";
-import Option from "@/components/Option";
+import Options from "@/components/Options";
 import Step from "@/components/Step";
 import Splash from "@/components/Splash";
 
@@ -138,7 +134,7 @@ export default {
         Location,
         Button,
         Section,
-        Option,
+        Options,
         Step,
         Splash
     },
@@ -146,7 +142,7 @@ export default {
     data( ) {
         return {
             Editions: { Java: "java", Bedrock: "bedrock" },
-            Identifiers: { Explore: "explore", Locations: "location" },
+            Identifiers: { Explore: "explore", Locations: "locations" },
 
             locations: [
                 { title: "Doe Memorial Library", image: "images/locations/one.png" },
@@ -162,7 +158,7 @@ export default {
 
     methods: {
         setSelectedEdition(edition) {
-            this.selectedEdition = edition;
+            this.selectedEdition = this.Editions[edition];
         },
 
         scrollTo(identifier) {
@@ -177,22 +173,13 @@ export default {
 </script>
 
 <style lang="scss">
-#platforms {
-    text-align: center;
-
-    margin: -4px;
-
-    .option {
-        margin: 4px;
-    }
-}
-
 #steps .step {
     margin-top: 48px;
 }
 
 #gallery {
-    // margin-bottom: -24px;
+    // Overflows margin
+    margin-bottom: -24px;
 
     .location {
         margin-bottom: 24px;

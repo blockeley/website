@@ -12,7 +12,7 @@
                     <template v-slot:buttons>
                         <Button @click.native="scrollToApparel">Browse apparel</Button>
 
-                        <a href="https://patreon.blockeley.com">
+                        <a target="_blank" href="https://patreon.blockeley.com">
                             <Button>Patreon</Button>
                         </a>
                     </template>
@@ -23,15 +23,17 @@
                 <Section heading="T-shirts, sweatshirts, and more" variant="background">
                     <template v-slot:subHeading>Merchandise</template>
 
-                    <template v-slot:description><span class="important">Your purchase will be a direct contribution to Blockeley and the virtual Minecraft server.</span>
-                                                 <br>Every dollar Blockeley earns will be reinvested and covers server costs and funding for future events.</template>
+                    <template v-slot:description><span class="important">Your purchase directly contributes to the Blockeley project and the virtual Minecraft campus.</span>
+                                                 <br>Every dollar Blockeley earns will be reinvested and covers server costs as well as funding for future events.</template>
                 </Section>
             </div>
 
             <div class="container">
-                <div id="products" class="row justify-content-center">
-                    <div v-for="product in products" class="col-lg-3" :key="product.handle">
-                        <Product :image="product.images[0].src" :title="product.title" :price="product.variants[0].price" :identifier="product.handle" />
+                <Options :options="types" centered="true" @change="setSelectedType" />
+
+                <div id="merchandise-products" class="row justify-content-center">
+                    <div v-for="product in filteredProducts" class="col-xl-3 col-lg-4 col-md-6" :key="product.handle">
+                        <MerchandiseProduct :product="product" />
                     </div>
                 </div>
             </div>
@@ -47,7 +49,8 @@
 import Button from "@/components/Button";
 import Splash from "@/components/Splash";
 import Section from "@/components/Section";
-import Product from "@/components/Product";
+import Options from "@/components/Options";
+import MerchandiseProduct from "@/components/MerchandiseProduct";
 
 export default {
     name: "Store",
@@ -56,12 +59,17 @@ export default {
         Button,
         Splash,
         Section,
-        Product
+        Options,
+        MerchandiseProduct
     },
 
     data( ) {
         return {
-            products: null
+            products: null,
+            filteredProducts: null,
+
+            types: null,
+            selectedType: "All"
         };
     },
 
@@ -72,24 +80,53 @@ export default {
                 left: 0,
                 top: document.getElementById("apparel").offsetTop - 128
             });
+        },
+
+        setSelectedType(type) {
+            this.selectedType = type;
+
+            if(type === "All") {
+                this.filteredProducts = this.products;
+
+                return;
+            }
+
+            this.filteredProducts = this.products.filter(product => product.productType === type);
         }
     },
 
     mounted( ) {
         this.$client.product.fetchAll( )
         .then(products => {
+            let types = ["All"];
+
+            for(const product of products) {
+                if( product.productType.length === 0 || types.includes(product.productType) ) continue;
+
+                types.push(product.productType);
+            }
+
             this.products = products;
+            this.filteredProducts = products;
+            this.types = types;
         });
     }
 }
 </script>
 
 <style lang="scss">
-#products {
-    // margin-bottom: -24px;
+#store {
+    .options {
+        margin-bottom: 48px;
+    }
 
-    .product {
-        margin-bottom: 24px;
+    #merchandise-products {
+        // Overflows margin
+        margin-bottom: -24px;
+
+        .merchandise-product {
+            margin-bottom: 24px;
+        }
     }
 }
 </style>

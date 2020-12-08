@@ -4,20 +4,20 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <Preview id="product-preview" :front="product.images[0].src" :back="product.images[1] ? product.images[1].src : null" />
+                        <!-- To-do: Variant selection -->
+                        <Preview class="product-preview" :front="product.images[0].src" :back="product.images[1] ? product.images[1].src : null" />
                     </div>
 
                     <div class="col-lg-6">
-                        <p id="product-title">{{ product.title }}</p>
-                        <p id="product-price">Starting at <span class="important">${{ product.variants[0].price }}</span></p>
-                        <p id="product-description" v-html="product.descriptionHtml" />
+                        <p class="product-title">{{ product.title }}</p>
+                        <!-- Starting at... (varying variant price) -->
+                        <p class="product-price">Priced at <span class="important">${{ product.variants[0].price }}</span></p>
+                        <p class="product-description" v-html="product.descriptionHtml" />
 
                         <div v-for="option in product.options" :key="option.id">
                             <p class="product-options-title">{{ option.name }}</p>
 
-                            <div class="product-options">
-                                <Option v-for="value in option.values" :active="value.value === selectedOptions[option.name]" :key="value.value" @click.native="setSelectedOption(option.name, value.value)">{{ value.value }}</Option>
-                            </div>
+                            <Options :options="option.choices" @change="setSelectedOption(option.name, ...arguments)" />
                         </div>
 
                         <Button :progress="pending" @click.native="addToCart">Add to cart for ${{ this.product.variants[currentVariant].price }}</Button>
@@ -36,7 +36,7 @@
 <script>
 import Preview from "@/components/Preview";
 import Splash from "@/components/Splash";
-import Option from "@/components/Option";
+import Options from "@/components/Options";
 import Button from "@/components/Button";
 
 export default {
@@ -45,7 +45,7 @@ export default {
     components: {
         Preview,
         Splash,
-        Option,
+        Options,
         Button
     },
 
@@ -106,12 +106,13 @@ export default {
         async render( ) {
             const product = await this.$client.product.fetchByHandle(this.identifier);
 
-            console.log(product);
-
             let selectedOptions = { };
 
             for(const option of product.options) {
-                selectedOptions[option.name] = option.values[0].value;
+                // Trim product options for Options component
+                option.choices = option.values.map(value => value.value);
+
+                selectedOptions[option.name] = option.choices[0];
             }
 
             this.product = product;
@@ -126,7 +127,6 @@ export default {
     },
 
     watch: {
-        // Product -> product navigation
         $route( ) {
             this.product = null;
             this.selectedOptions = null;
@@ -152,7 +152,7 @@ $string: str-slice(inspect($color), 2);
         text-align: center;
     }
 
-    .product-options-title {
+    p.product-options-title {
         font-size: 16px;
         font-weight: 500;
         line-height: 1;
@@ -161,17 +161,12 @@ $string: str-slice(inspect($color), 2);
         margin-bottom: 8px;
     }
 
-    .product-options {
-        margin: -4px;
-
+    .options {
         padding-bottom: 24px;
-
-        .option {
-            margin: 4px;
-        }
     }
 
-    #product-preview {
+    // To-do: Variant selection
+    .product-preview {
         @media (min-width: 992px) {
             max-width: 72%;
 
@@ -181,7 +176,7 @@ $string: str-slice(inspect($color), 2);
         margin-top: 48px;
     }
 
-    #product-title {
+    .product-title {
         position: relative;
 
         margin-top: 48px;
@@ -195,7 +190,6 @@ $string: str-slice(inspect($color), 2);
 
         margin-bottom: 8px;
 
-        // Remove background on mobile
         @media (min-width: 512px) {
             &::before {
                 // Required for pseudo-element
@@ -219,12 +213,22 @@ $string: str-slice(inspect($color), 2);
         }
     }
 
-    #product-price .important {
+    .product-description, .product-price {
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.2;
+        color: rgba(black, 0.5);
+
+        margin-bottom: 24px;
+    }
+
+    .product-price .important {
         color: black;
         font-weight: 500;
     }
 
-    #product-description {
+    // To-do: Support more markdown
+    .product-description {
         strong {
             font-weight: 500;
         }
@@ -240,15 +244,6 @@ $string: str-slice(inspect($color), 2);
                 border-bottom-style: solid;
             }
         }
-    }
-
-    #product-description, #product-price {
-        font-size: 16px;
-        font-weight: 300;
-        line-height: 1.2;
-        color: rgba(black, 0.5);
-
-        margin-bottom: 24px;
     }
 }
 </style>

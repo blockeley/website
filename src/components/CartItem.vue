@@ -1,18 +1,18 @@
 <template>
-    <div class="item">
-        <div class="item-image">
+    <div class="cart-item">
+        <div class="cart-item-image">
             <img :src="item.variant.image.src">
         </div>
 
-        <div class="item-text">
-            <p class="item-title">{{ item.title }}</p>
-            <p class="item-variant" v-html="variant" />
-            <p class="item-price">Priced at <span class="important">${{ item.variant.price }}</span></p>
+        <div class="cart-item-text">
+            <p class="cart-item-title">{{ item.title }}</p>
+            <p class="cart-item-variant" v-html="variant" />
+            <p class="cart-item-price">Priced at <span class="important">${{ item.variant.price }}</span></p>
         </div>
 
-        <p class="item-quantity">x{{ item.quantity }}</p>
+        <p class="cart-item-quantity">x{{ item.quantity }}</p>
 
-        <div class="item-buttons">
+        <div class="cart-item-buttons">
             <IconButton @click.native="updateQuantity" icon="add" variant="color" />
 
             <IconButton @click.native="updateQuantity(false)" icon="remove" variant="color" />
@@ -26,7 +26,7 @@
 import IconButton from "@/components/IconButton";
 
 export default {
-    name: "Item",
+    name: "CartItem",
 
     components: {
         IconButton
@@ -79,25 +79,25 @@ export default {
  *    Item
  *
  */
-.item {
+.cart-item {
     @media (min-width: 992px) {
         display: flex;
         align-items: center;
 
-        .item-image {
+        .cart-item-image {
             width: 128px;
             height: 176px;
 
             margin-right: 24px;
         }
 
-        .item-text {
+        .cart-item-text {
             flex-grow: 1;
 
             margin-right: 24px;
         }
 
-        .item-quantity {
+        .cart-item-quantity {
             margin-right: 8px;
         }
     }
@@ -105,7 +105,7 @@ export default {
     @media (max-width: 992px) {
         text-align: center;
 
-        .item-image {
+        .cart-item-image {
             // Padding relative to width
             width: 100%;
 
@@ -114,30 +114,30 @@ export default {
             margin-bottom: 16px;
         }
 
-        .item-text {
+        .cart-item-text {
             margin-bottom: 16px;
         }
 
-        .item-quantity {
+        .cart-item-quantity {
             margin-bottom: 8px;
         }
     }
 
-    .item-text {
+    .cart-item-text {
         flex-grow: 1;
 
-        p.item-title {
+        p.cart-item-title {
             font-size: 24px;
             font-weight: 700;
             line-height: 1;
             color: black;
         }
 
-        p.item-title, p.item-variant {
+        p.cart-item-title, p.cart-item-variant {
             margin-bottom: 8px;
         }
 
-        p.item-price, p.item-variant {
+        p.cart-item-price, p.cart-item-variant {
             font-size: 16px;
             font-weight: 300;
             line-height: 1;
@@ -150,11 +150,11 @@ export default {
         }
     }
 
-    .item-buttons .icon-button:not(:last-child) {
+    .cart-item-buttons .icon-button:not(:last-child) {
         margin-right: 8px;
     }
 
-    .item-image {
+    .cart-item-image {
         position: relative;
 
         border: 2px solid black;
@@ -174,7 +174,7 @@ export default {
        }
     }
 
-    p.item-quantity {
+    p.cart-item-quantity {
         font-size: 24px;
         font-weight: 700;
         line-height: 1;

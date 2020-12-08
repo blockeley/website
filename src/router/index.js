@@ -2,7 +2,7 @@ import Vue from "vue";
 
 import VueRouter from "vue-router";
 
-import Explore from "../views/Explore.vue";
+import Explore from "@/views/Explore.vue";
 
 Vue.use(VueRouter);
 
@@ -15,23 +15,28 @@ const routes = [
     {
         path: "/campus",
         name: "Campus",
-        component: ( ) => import(/* webpackChunkName: "members" */ "../views/Campus.vue")
+        component: ( ) => import(/* webpackChunkName: "members" */ "@/views/Campus.vue")
     },
     {
         path: "/merchandise",
         name: "Merchandise",
-        component: ( ) => import(/* webpackChunkName: "member" */ "../views/Merchandise.vue"),
+        component: ( ) => import(/* webpackChunkName: "member" */ "@/views/Merchandise.vue"),
     },
     {
         path: "/product/:identifier",
         name: "Product",
         props: true,
-        component: ( ) => import(/* webpackChunkName: "member" */ "../views/Product.vue")
+        component: ( ) => import(/* webpackChunkName: "member" */ "@/views/Product.vue")
     },
     {
         path: "/cart",
         name: "Cart",
-        component: ( ) => import(/* webpackChunkName: "member" */ "../views/Cart.vue")
+        component: ( ) => import(/* webpackChunkName: "member" */ "@/views/Cart.vue")
+    },
+    {
+        path: "*",
+        name: "PageNotFound",
+        component: ( ) => import(/* webpackChunkName: "member" */ "@/views/PageNotFound.vue")
     }
 ];
 

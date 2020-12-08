@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div id="items">
-                            <Item @updateQuantity="updateItemQuantity" @remove="removeItem" v-for="item in checkout.lineItems" :key="item.id" :item="item" />
+                            <CartItem @updateQuantity="updateItemQuantity" @remove="removeItem" v-for="item in checkout.lineItems" :key="item.id" :item="item" />
                         </div>
                     </div>
 
@@ -50,7 +50,7 @@
 
         <template v-else>
             <Splash>
-                <Section heading="Oops" variant="background">
+                <Section heading="Uh oh!" variant="background">
                     <template v-slot:description><span class="important">You have not added anything to your cart.</span>
                                                  <br>Support Blockeley development by purchasing merchandise or donating through Patreon.</template>
 
@@ -74,7 +74,7 @@
 import Splash from "@/components/Splash";
 import Button from "@/components/Button";
 import Section from "@/components/Section";
-import Item from "@/components/Item";
+import CartItem from "@/components/CartItem";
 
 export default {
     name: "Cart",
@@ -83,7 +83,7 @@ export default {
         Splash,
         Button,
         Section,
-        Item
+        CartItem
     },
 
     data( ) {
@@ -179,12 +179,13 @@ $color: map-get($colors, "cart");
         pointer-events: none;
     }
 
+    // To-do: Section component option for background without margin
     .section.section-background {
-        // Override
         margin-top: unset;
         margin-bottom: unset;
     }
 
+    // To-do: CartItems component
     #items {
         margin-top: 48px;
 
@@ -212,6 +213,7 @@ $color: map-get($colors, "cart");
             margin-top: 48px;
         }
 
+        // To-do: Card component
         #order-summary-card {
             border: 2px solid black;
             box-shadow: -4px -4px $color;
