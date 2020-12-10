@@ -20,7 +20,7 @@
             </Splash>
 
             <div id="apparel">
-                <Section heading="T-shirts, sweatshirts, and more" variant="background">
+                <Section heading="T-shirts, sweatshirts, and more" variant="inline">
                     <template v-slot:subHeading>Merchandise</template>
 
                     <template v-slot:description><span class="important">Your purchase directly contributes to the Blockeley project and the virtual Minecraft campus.</span>
@@ -31,7 +31,7 @@
             <div class="container">
                 <Options :options="types" centered="true" @change="setSelectedType" />
 
-                <div id="merchandise-products" class="row justify-content-center">
+                <div id="merchandise-products-wrapper" class="row justify-content-center">
                     <div v-for="product in filteredProducts" class="col-xl-3 col-lg-4 col-md-6" :key="product.handle">
                         <MerchandiseProduct :product="product" />
                     </div>
@@ -115,18 +115,15 @@ export default {
 </script>
 
 <style lang="scss">
-#store {
-    .options {
-        margin-bottom: 48px;
-    }
+#store .options {
+    margin-bottom: 48px;
+}
 
-    #merchandise-products {
-        // Overflows margin
-        margin-bottom: -24px;
+#merchandise-products-wrapper {
+    margin-bottom: -24px;
 
-        .merchandise-product {
-            margin-bottom: 24px;
-        }
+    .merchandise-product {
+        margin-bottom: 24px;
     }
 }
 </style>

@@ -7,7 +7,8 @@
         <div class="merchandise-product-content">
             <div class="merchandise-product-text">
                 <p class="merchandise-product-title">{{ product.title }}</p>
-                <p class="merchandise-product-description">Starting at <span class="important">${{ product.variants[0].price }}</span></p>
+                <!-- Starting at..? -->
+                <p class="merchandise-product-description">Priced at <span class="important">${{ product.variants[0].price }}</span></p>
             </div>
 
             <router-link :to="toObject">

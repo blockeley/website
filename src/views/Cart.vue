@@ -4,36 +4,21 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div id="items">
+                        <div id="cart-items-wrapper">
                             <CartItem @updateQuantity="updateItemQuantity" @remove="removeItem" v-for="item in checkout.lineItems" :key="item.id" :item="item" />
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div id="order-summary">
-                            <div id="order-summary-card">
-                                <!-- Mix and match..? -->
-                                <p class="card-title">Order summary</p>
+                            <Card heading="Order summary">
+                                <!-- To-do: Extend card body support..? -->
+                                Sub-total <span class="important float-right">${{ checkout.subtotalPrice }}</span>
+                                <br>Tax estimate <span class="important float-right">${{ checkout.totalTax }}</span>
+                                <br>Total estimate <span class="important float-right">${{ checkout.totalPrice }}</span>
+                            </Card>
 
-                                <div class="card-body">
-                                    <div class="card-row">
-                                        <p class="row-index">Sub-total</p>
-                                        <p class="row-value">${{ checkout.subtotalPrice }}</p>
-                                    </div>
-
-                                    <div class="card-row">
-                                        <p class="row-index">Tax estimate</p>
-                                        <p class="row-value">${{ checkout.totalTax }}</p>
-                                    </div>
-
-                                    <div class="card-row">
-                                        <p class="row-index">Total estimate</p>
-                                        <p class="row-value">${{ checkout.totalPrice }}</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="order-summary-button">
+                            <div class="text-center">
                                 <a target="_blank" :href="checkout.webUrl">
                                     <Button>Check out</Button>
                                 </a>
@@ -75,6 +60,7 @@ import Splash from "@/components/Splash";
 import Button from "@/components/Button";
 import Section from "@/components/Section";
 import CartItem from "@/components/CartItem";
+import Card from "@/components/Card";
 
 export default {
     name: "Cart",
@@ -83,7 +69,8 @@ export default {
         Splash,
         Button,
         Section,
-        CartItem
+        CartItem,
+        Card
     },
 
     data( ) {
@@ -124,7 +111,7 @@ export default {
             const itemIndex = this.checkout.lineItems.findIndex(item => item.id === identifier);
             const item = this.checkout.lineItems[itemIndex];
 
-            // Maximum item quantity..?
+            // To-do: Maximum item quantity..?
             if( item.quantity === 1 && ! increment ) {
                 await this.removeItem(identifier);
 
@@ -173,105 +160,43 @@ $color: map-get($colors, "cart");
 
     transition: opacity 100ms ease-in-out;
 
+    // To-do: Manage checkout status
     &.cart-pending {
         opacity: 0.5;
 
         pointer-events: none;
     }
+}
 
-    // To-do: Section component option for background without margin
-    .section.section-background {
-        margin-top: unset;
-        margin-bottom: unset;
+#cart-items-wrapper {
+    margin-top: 48px;
+
+    @media (max-width: 992px) {
+        margin-bottom: 48px;
     }
 
-    // To-do: CartItems component
-    #items {
+    .cart-item:not(:first-child) {
+        padding-top: 48px;
+    }
+
+    .cart-item:not(:last-child) {
+        padding-bottom: 48px;
+
+        border-bottom: 2px dashed rgba(black, 0.1);
+    }
+}
+
+#order-summary {
+    @media (min-width: 992px) {
+        position: sticky;
+
+        top: 104px;
+
         margin-top: 48px;
-
-        @media (max-width: 992px) {
-            margin-bottom: 48px;
-        }
-
-        .item:not(:first-child) {
-            padding-top: 48px;
-        }
-
-        .item:not(:last-child) {
-            padding-bottom: 48px;
-
-            border-bottom: 2px dashed rgba(black, 0.1);
-        }
     }
 
-    #order-summary {
-        @media (min-width: 992px) {
-            position: sticky;
-
-            top: 104px;
-
-            margin-top: 48px;
-        }
-
-        // To-do: Card component
-        #order-summary-card {
-            border: 2px solid black;
-            box-shadow: -4px -4px $color;
-            background-color: white;
-
-            margin-bottom: 24px;
-
-            p.card-title {
-                display: flex;
-                align-items: center;
-
-                height: 56px;
-
-                background-color: black;
-
-                padding-right: 24px;
-                padding-left: 24px;
-
-                margin-top: -2px;
-
-                font-size: 14px;
-                font-weight: 500;
-                line-height: 1;
-                color: white;
-            }
-
-            .card-body {
-                padding: 24px;
-
-                .card-row {
-                    display: flex;
-                    justify-content: space-between;
-
-                    &:not(:last-child) {
-                        margin-bottom: 4px;
-                    }
-
-                    p.row-index, p.row-value {
-                        font-size: 16px;
-                        line-height: 1;
-                    }
-
-                    p.row-index {
-                        font-weight: 300;
-                        color: rgba(black, 0.5);
-                    }
-
-                    p.row-value {
-                        font-weight: 500;
-                        color: black;
-                    }
-                }
-            }
-        }
-
-        #order-summary-button {
-            text-align: center;
-        }
+    .card {
+        margin-bottom: 24px;
     }
 }
 </style>

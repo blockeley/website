@@ -17,7 +17,7 @@
         </Splash>
 
         <div id="explore">
-            <Section heading="Explore in Minecraft" variant="background">
+            <Section heading="Explore in Minecraft" variant="inline">
                 <template v-slot:subHeading>Campus</template>
 
                 <template v-slot:description><span class="important">The Blockeley Minecraft server welcomes visitors from anywhere.</span>
@@ -30,7 +30,7 @@
         <div class="container">
             <Options :options="Object.keys(Editions)" centered="true" @change="setSelectedEdition" />
 
-            <div id="steps">
+            <div id="steps-wrapper">
                 <template v-if="selectedEdition === Editions.Java">
                     <Step title="Step one" image="/images/steps/java/one.png">
                         <template v-slot:description><span class="important">Register for a Minecraft account</span> if you do not already have one.
@@ -88,7 +88,7 @@
         </div>
 
         <div id="locations">
-            <Section heading="Featured locations" variant="background">
+            <Section heading="Featured locations" variant="inline">
                 <template v-slot:subHeading>Campus</template>
 
                 <template v-slot:description><span class="important">With the help of volunteer builders, Blockeley has recreated much of the University of
@@ -110,7 +110,7 @@
         </div>
 
         <div class="container">
-            <div id="gallery" class="row justify-content-center">
+            <div id="locations-wrapper" class="row justify-content-center">
                 <div class="col-lg-4 col-md-6" v-for="location in locations" :key="location.title">
                     <Location :title="location.title" :image="location.image" />
                 </div>
@@ -173,12 +173,11 @@ export default {
 </script>
 
 <style lang="scss">
-#steps .step {
+#steps-wrapper .step {
     margin-top: 48px;
 }
 
-#gallery {
-    // Overflows margin
+#locations-wrapper {
     margin-bottom: -24px;
 
     .location {

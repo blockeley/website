@@ -35,7 +35,7 @@ export default {
 
     data( ) {
         return {
-            Variants: { Light: "light", Background: "background" }
+            Variants: { Light: "light", Background: "background", Inline: "inline" }
         }
     },
 
@@ -43,7 +43,8 @@ export default {
         classObject( ) {
             return {
                 "section-light": this.variant === this.Variants.Light,
-                "section-background": this.variant === this.Variants.Background
+                "section-background": [ this.Variants.Background, this.Variants.Inline ].includes(this.variant),
+                "section-inline": this.variant === this.Variants.Inline
             };
         },
 
@@ -94,45 +95,6 @@ export default {
 
     text-align: center;
 
-    &.section-light {
-        .section-header {
-            flex-direction: column-reverse;
-
-            p.section-sub-heading {
-                color: rgba(white, 0.25);
-                line-height: 1.5;
-
-                margin-bottom: 32px;
-
-                .important {
-                    color: white;
-
-                    border-bottom: 2px dashed rgba(white, 0.25);
-                }
-            }
-
-            p.section-heading {
-                font-size: 64px;
-                font-weight: 900;
-                color: white;
-
-                margin-bottom: 16px;
-            }
-        }
-
-        p.section-description {
-            color: rgba(white, 0.5);
-
-            &:not(:last-child) {
-                margin-bottom: 32px;
-            }
-
-            .important {
-                color: white;
-            }
-        }
-    }
-
     .section-header {
         display: flex;
         flex-direction: column;
@@ -182,10 +144,52 @@ export default {
         }
     }
 
-    &.section-background {
+    &.section-inline {
         margin-top: 256px;
         margin-bottom: 128px;
+    }
 
+    &.section-light {
+        .section-header {
+            flex-direction: column-reverse;
+
+            p.section-sub-heading {
+                color: rgba(white, 0.25);
+                line-height: 1.5;
+
+                margin-bottom: 32px;
+
+                .important {
+                    color: white;
+
+                    border-bottom: 2px dashed rgba(white, 0.25);
+                }
+            }
+
+            p.section-heading {
+                font-size: 64px;
+                font-weight: 900;
+                color: white;
+
+                margin-bottom: 16px;
+            }
+        }
+
+        p.section-description {
+            color: rgba(white, 0.5);
+
+            &:not(:last-child) {
+                margin-bottom: 32px;
+            }
+
+            .important {
+                color: white;
+            }
+        }
+    }
+
+    // Included with .section-inline
+    &.section-background {
         .section-header p.section-heading {
             font-size: 36px;
             font-weight: 700;

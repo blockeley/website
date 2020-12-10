@@ -1,11 +1,21 @@
 <template>
-    <div id="product">
+    <!-- To-do: Class-based view..? -->
+    <div class="product">
         <template v-if="product">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <!-- To-do: Variant selection -->
-                        <Preview class="product-preview" :front="product.images[0].src" :back="product.images[1] ? product.images[1].src : null" />
+                        <div class="product-preview-wrapper">
+                            <div class="product-images">
+                                <div @click="setSelectedImage(index)" v-for="(image, index) in product.images" :key="index" class="product-image" :class="{ active: index === selectedImage }">
+                                    <img :src="image.src">
+                                </div>
+                            </div>
+
+                            <div class="product-preview">
+                                <img :src="product.images[selectedImage].src">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-lg-6">
@@ -34,7 +44,7 @@
 </template>
 
 <script>
-import Preview from "@/components/Preview";
+//import Preview from "@/components/Preview";
 import Splash from "@/components/Splash";
 import Options from "@/components/Options";
 import Button from "@/components/Button";
@@ -43,7 +53,7 @@ export default {
     name: "Product",
 
     components: {
-        Preview,
+        //Preview,
         Splash,
         Options,
         Button
@@ -56,10 +66,10 @@ export default {
     data( ) {
         return {
             product: null,
-
             selectedOptions: null,
             currentVariant: null,
 
+            selectedImage: 0,
             pending: false
         };
     },
@@ -69,6 +79,10 @@ export default {
             this.selectedOptions[name] = value;
 
             this.updateCurrentVariant( );
+        },
+
+        setSelectedImage(image) {
+            this.selectedImage = image;
         },
 
         async addToCart( ) {
@@ -131,6 +145,8 @@ export default {
             this.product = null;
             this.selectedOptions = null;
             this.selectedVariation = null;
+
+            this.selectedImage = 0;
             this.pending = false;
 
             this.render( );
@@ -145,11 +161,137 @@ export default {
 $color: map-get($colors, "product");
 $string: str-slice(inspect($color), 2);
 
-#product {
+.product {
     min-height: calc(100vh - 56px);
 
     @media (max-width: 992px) {
         text-align: center;
+    }
+
+    .product-preview-wrapper {
+        display: flex;
+
+        margin-top: 48px;
+
+        .product-images {
+            width: 80px;
+
+            margin-right: 24px;
+
+            .product-image {
+                width: 100%;
+                height: 100px;
+
+                border: 2px solid black;
+                box-shadow: -4px -4px $color;
+                background-color: white;
+
+                position: relative;
+
+                &::after {
+                    // Required for pseudo-element
+                    content: "";
+
+                    height: 2px;
+                    width: 0;
+
+                    left: 50%;
+                    bottom: 0;
+
+                    transform: translateX(-50%);
+
+                    background-color: $color;
+
+                    position: absolute;
+
+                    transition: width 100ms ease-in-out;
+                }
+
+                img {
+                    position: absolute;
+
+                    height: 100%;
+                    width: 100%;
+
+                    left: 0;
+                    top: 0;
+
+                    object-fit: cover;
+
+                    transition: opacity 100ms ease-in-out;
+                }
+
+                &:not(:last-child) {
+                    margin-bottom: 16px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+
+                    &::after {
+                        width: 16px;
+                    }
+                }
+
+                &.active::after {
+                    width: 24px;
+                }
+            }
+        }
+
+        .product-preview {
+            width: 100%;
+
+            // Reduced to 4x5 from 6x8
+            padding-top: calc(100% / 4 * 5);
+
+            border: 2px solid black;
+            box-shadow: -4px -4px $color;
+            background-color: white;
+
+            position: relative;
+
+            img {
+                position: absolute;
+
+                height: 100%;
+                width: 100%;
+
+                left: 0;
+                top: 0;
+
+                object-fit: cover;
+            }
+        }
+
+        @media (max-width: 992px) {
+            flex-direction: column-reverse;
+
+            .product-images {
+                display: flex;
+                justify-content: center;
+
+                width: 100%;
+
+                // Override
+                margin-right: unset;
+
+                .product-image {
+                    width: 80px;
+
+                    &:not(:last-child) {
+                        margin-right: 16px;
+
+                        // Override
+                        margin-bottom: unset;
+                    }
+                }
+            }
+
+            .product-preview {
+                margin-bottom: 16px;
+            }
+        }
     }
 
     p.product-options-title {
@@ -163,17 +305,10 @@ $string: str-slice(inspect($color), 2);
 
     .options {
         padding-bottom: 24px;
-    }
 
-    // To-do: Variant selection
-    .product-preview {
-        @media (min-width: 992px) {
-            max-width: 72%;
-
-            margin-left: 14%;
+        @media (max-width: 992px) {
+            justify-content: center;
         }
-
-        margin-top: 48px;
     }
 
     .product-title {

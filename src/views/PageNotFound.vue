@@ -34,11 +34,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-// To-do: Section component option for background without margin
-#page-not-found .section.section-background {
-    margin-top: unset;
-    margin-bottom: unset;
-}
-</style>

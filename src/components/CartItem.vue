@@ -69,7 +69,7 @@ export default {
  */
 #application {
     @each $name, $color in $colors {
-        &.color-#{$name} .item .item-image {
+        &.color-#{$name} .cart-item .cart-item-image {
             box-shadow: -4px -4px $color;
         }
     }

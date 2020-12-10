@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    name: "IconButton",
+    name: "Button",
 
     props: [
         "alternate",

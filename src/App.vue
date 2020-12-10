@@ -22,16 +22,6 @@
                     <router-link to="/campus" class="item-link">Campus</router-link>
                 </li>
 
-                <!--
-                <li class="menu-item">
-                    <router-link to="/schedule" class="item-link">Schedule</router-link>
-                </li>
-
-                <li class="menu-item">
-                    <router-link to="/media" class="item-link">Media</router-link>
-                </li>
-                -->
-
                 <li class="menu-item">
                     <router-link to="/merchandise" class="item-link">Merchandise</router-link>
                 </li>
@@ -40,26 +30,6 @@
                     <a class="item-link" href="https://patreon.blockeley.com" target="_blank">Donate</a>
                 </li>
             </ul>
-
-            <!--
-            <div class="mobile-navigation-buttons">
-                <a href="https://www.instagram.com/blockeleyofficial" target="_blank" class="icon-button icon-button-alt">
-                    <i class="fab fa-instagram" />
-                </a>
-
-                <a href="https://twitter.com/UBlockeley" target="_blank" class="icon-button icon-button-alt">
-                    <i class="fab fa-twitter" />
-                </a>
-
-                <a href="https://www.facebook.com/pg/Blockeley" target="_blank" class="icon-button icon-button-alt">
-                    <i class="fab fa-facebook-f" />
-                </a>
-
-                <a href="https://discord.gg/mmAK4D5" target="_blank" class="icon-button icon-button-alt">
-                    <i class="fab fa-discord" />
-                </a>
-            </div>
-            -->
         </div>
 
         <div class="navigation-bar">
@@ -77,16 +47,6 @@
                         <router-link to="/campus" class="item-link">Campus</router-link>
                     </li>
 
-                    <!--
-                    <li class="menu-item">
-                        <router-link to="/schedule" class="item-link">Schedule</router-link>
-                    </li>
-
-                    <li class="menu-item">
-                        <router-link to="/media" class="item-link">Media</router-link>
-                    </li>
-                    -->
-
                     <li class="menu-item">
                         <router-link to="/merchandise" class="item-link">Merchandise</router-link>
                     </li>
@@ -95,24 +55,6 @@
                         <a class="item-link" href="https://patreon.blockeley.com" target="_blank">Donate</a>
                     </li>
                 </ul>
-
-                <!--
-                <a href="https://www.instagram.com/blockeleyofficial" target="_blank" class="icon-button ml-auto d-none d-lg-flex">
-                    <i class="fab fa-instagram" />
-                </a>
-
-                <a href="https://twitter.com/UBlockeley" target="_blank" class="icon-button d-none d-lg-flex">
-                    <i class="fab fa-twitter" />
-                </a>
-
-                <a href="https://www.facebook.com/pg/Blockeley" target="_blank" class="icon-button d-none d-lg-flex">
-                    <i class="fab fa-facebook-f" />
-                </a>
-
-                <a href="https://discord.gg/mmAK4D5" target="_blank" class="icon-button d-none d-lg-flex">
-                    <i class="fab fa-discord" />
-                </a>
-                -->
 
                 <router-link to="/cart" class="ml-auto" >
                     <IconButton :active="atCart" icon="shopping_cart" :notification="$store.state.quantity > 0" />
@@ -172,6 +114,19 @@ export default {
             body.classList.remove("disabled");
 
             this.mobileNavigation = false;
+        },
+
+        // To-do: Manage checkout status
+        async updateCheckout( ) {
+            try {
+                await this.$client.checkout.fetch(this.$store.state.identifier);
+            } catch(error) {
+                // console.log(error)
+                console.log("An error occurred while fetching the previous checkout. The checkout cache has been cleared.");
+
+                this.$store.commit("setIdentifier", null);
+                this.$store.commit("decreaseQuantity", this.$store.state.quantity);
+            }
         }
     },
 
@@ -181,6 +136,10 @@ export default {
 
             this.closeMobileNavigation( );
         }
+    },
+
+    mounted( ) {
+        this.updateCheckout( );
     }
 }
 </script>
