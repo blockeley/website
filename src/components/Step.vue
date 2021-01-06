@@ -11,8 +11,11 @@
                 <slot name="description" />
             </p>
 
-            <div v-if="hasButtons" class="slot-buttons">
-                <slot name="buttons" />
+            <slot name="button" />
+
+            <!-- To-do: Alert component -->
+            <div v-if="hasAlert" class="step-alert">
+                <slot name="alert" />
             </div>
         </div>
     </div>
@@ -51,8 +54,14 @@ export default {
  */
 #application {
     @each $name, $color in $colors {
-        &.color-#{$name} .step .step-image {
-            box-shadow: -4px -4px $color;
+        &.color-#{$name} .step {
+            .step-image {
+                box-shadow: 4px 4px $color;
+            }
+
+            .step-alert {
+                background-color: $color;
+            }
         }
     }
 }
@@ -67,6 +76,7 @@ export default {
         align-items: center;
 
         .step-image {
+            // Prevent growing content from shrinking image
             flex-shrink: 0;
 
             width: 512px;
@@ -104,7 +114,7 @@ export default {
             flex-direction: row-reverse;
 
             .step-content {
-                // Override
+                // To-do: Place in :not()
                 margin-left: unset;
 
                 text-align: right;
@@ -115,7 +125,7 @@ export default {
                     padding-left: 24px;
 
                     &::before {
-                        // Override
+                        // To-do: Place in :not()
                         left: unset;
 
                         right: -24px;
@@ -127,9 +137,9 @@ export default {
 
     @media (max-width: 992px) {
         .step-image {
-             // Padding relative to width
              width: 100%;
 
+             // 16x9 width to height ratio
              padding-top: calc(100% / 16 * 9);
         }
 
@@ -143,14 +153,21 @@ export default {
         }
     }
 
+    // Remove line breaks for mobile devices
+    @media (max-width: 1200px) {
+        .step-content p.step-description br {
+            display: none;
+        }
+    }
+
     .step-image {
         position: relative;
 
         border: 2px solid black;
-        box-shadow: -4px -4px #FFC02E;
+        box-shadow: 4px 4px #FFC02E;
         background-color: white;
 
-        img {
+        img, &::after {
             position: absolute;
 
             height: 100%;
@@ -158,8 +175,17 @@ export default {
 
             left: 0;
             top: 0;
+        }
 
+        img {
             object-fit: cover;
+        }
+
+        &::after {
+            // Required for pseudo-element
+            content: "";
+
+            border: 4px solid rgba(white, 0.25);
         }
     }
 
@@ -198,11 +224,27 @@ export default {
             }
         }
 
-        p.step-buttons {
-            margin: -12px;
+        // To-do: Alert component
+        .step-alert {
+            background-color: #FFC02E;
 
-            .button {
-                margin: 12px;
+            height: 40px;
+
+            display: inline-flex;
+            align-items: center;
+
+            padding-right: 16px;
+            padding-left: 12px;
+
+            border-radius: 20px;
+
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(white, 0.75);
+            line-height: 1.25;
+
+            i.material-icons {
+                margin-right: 8px;
             }
         }
     }

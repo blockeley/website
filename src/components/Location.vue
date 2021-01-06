@@ -1,13 +1,17 @@
 <template>
     <div class="location" :class="classObject">
-        <div class="location-header">
-            <p class="location-heading">{{ title }}</p>
-
-            <IconButton :icon="icon" @click.native="toggleFullScreen" variant="light" />
-        </div>
-
         <div class="location-image">
             <img :src="image">
+        </div>
+
+        <div class="location-header">
+            <div class="header-text">
+                <p class="location-heading">{{ title }}</p>
+
+                <p class="location-description">/warp {{ warp }}</p>
+            </div>
+
+            <IconButton :icon="icon" @click.native="toggleFullScreen" variant="light" />
         </div>
     </div>
 </template>
@@ -24,7 +28,8 @@ export default {
 
     props: [
         "title",
-        "image"
+        "image",
+        "warp"
     ],
 
     data( ) {
@@ -41,7 +46,7 @@ export default {
         },
 
         icon( ) {
-            return this.fullScreen ? "close_fullscreen" : "open_in_full";
+            return this.fullScreen ? "fullscreen_exit" : "fullscreen";
         }
     },
 
@@ -75,7 +80,7 @@ export default {
 #application {
     @each $name, $color in $colors {
         &.color-#{$name} .location {
-            box-shadow: -4px -4px $color;
+            box-shadow: 4px 4px $color;
         }
     }
 }
@@ -85,76 +90,146 @@ export default {
  *
  */
 .location {
-    border: 2px solid black;
-    box-shadow: -4px -4px #FFC02E;
-    background-color: white;
+    background-color: black;
 
+    &:not(.location-full-screen) {
+        border: 2px solid black;
+        box-shadow: 4px 4px #FFC02E;
+
+        .location-image {
+            width: 100%;
+
+            // 16x9 width to height ratio
+            padding-top: calc(100% / 16 * 9);
+        }
+
+        .location-header {
+            display: flex;
+            align-items: center;
+
+            position: relative;
+
+            height: 64px;
+
+            padding-right: 24px;
+            padding-left: 24px;
+
+            .header-text {
+                flex-grow: 1;
+
+                margin-right: 24px;
+
+                overflow: hidden;
+
+                p.location-heading {
+                    text-overflow: ellipsis;
+
+                    overflow: hidden;
+
+                    white-space: nowrap;
+                }
+            }
+
+            &::before {
+                // Required for pseudo-element
+                content: "";
+
+                position: absolute;
+
+                height: 96px;
+                width: 100%;
+
+                top: -96px;
+                left: 0;
+
+                background: linear-gradient(to bottom, transparent, black);
+            }
+        }
+    }
+
+    // To-do: Optimize full screen for mobile visitors
     &.location-full-screen {
-        // Override
-        border: unset;
-        box-shadow: unset;
-
-        display: flex;
-        flex-direction: column;
-
         position: fixed;
 
         left: 0;
         top: 0;
 
-        z-index: 999;
-
         height: 100vh;
         width: 100vw;
 
-        .location-header {
-            flex-shrink: 0;
-
-            // Override
-            margin-top: unset;
-        }
+        // Force full screen image above content
+        z-index: 999;
 
         .location-image {
-            // Override
-            width: unset;
-            padding-top: unset;
+            width: 100%;
+            height: 100%;
 
-            flex-grow: 1;
+            &::after {
+                border-width: 4px;
+                border-color: rgba(black, 0.25);
+            }
+        }
+
+        .location-header {
+            .header-text {
+                position: absolute;
+
+                display: inline-flex;
+                flex-direction: column;
+                align-items: center;
+
+                top: 24px;
+                left: 24px;
+
+                p.location-heading {
+                    padding-right: 24px;
+                    padding-left: 24px;
+
+                    background-color: rgba(black, 0.25);
+
+                    border-radius: 20px;
+
+                    display: flex;
+                    align-items: center;
+
+                    height: 40px;
+
+                    margin-bottom: 4px;
+                }
+            }
+
+            // Force different IconButton color scheme
+            .icon-button {
+                position: absolute;
+
+                top: 24px;
+                right: 24px;
+
+                background-color: rgba(black, 0.25);
+            }
         }
     }
 
-    .location-header {
-        display: flex;
-        align-items: center;
-
-        height: 56px;
-
-        background-color: black;
-
-        padding-right: 24px;
-        padding-left: 24px;
-
-        margin-top: -2px;
-
+    .location-header .header-text {
         p.location-heading {
-            flex-grow: 1;
-
             font-size: 14px;
             font-weight: 500;
-            line-height: 1;
+            line-height: 1.25;
             color: white;
+        }
+
+        p.location-description {
+            font-size: 12px;
+            font-weight: 300;
+            line-height: 1.25;
+            color: rgba(white, 0.5);
         }
     }
 
     .location-image {
         position: relative;
 
-         // Padding relative to width
-         width: 100%;
-
-         padding-top: calc(100% / 16 * 9);
-
-        img {
+        img, &::after {
             position: absolute;
 
             height: 100%;
@@ -162,8 +237,21 @@ export default {
 
             left: 0;
             top: 0;
+        }
 
+        img {
             object-fit: cover;
+        }
+
+        &::after {
+            // Required for pseudo-element
+            content: "";
+
+            border-style: solid;
+            border-width: 4px 4px 0 4px;
+            border-color: rgba(white, 0.25);
+
+            // backdrop-filter: blur(2px);
         }
     }
 }

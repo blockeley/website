@@ -34,9 +34,9 @@
                 <template v-if="selectedEdition === Editions.Java">
                     <Step title="Step one" image="/images/steps/java/one.png">
                         <template v-slot:description><span class="important">Register for a Minecraft account</span> if you do not already have one.
-                                                     <span class="important">Download Minecraft Java Edition</span> on Windows, macOS, or Linux.</template>
+                                                     <br><span class="important">Download Minecraft Java Edition</span> on Windows, macOS, or Linux.</template>
 
-                        <template v-slot:buttons>
+                        <template v-slot:button>
                             <a href="https://www.minecraft.net/en-us/download/" target="_blank">
                                 <Button>Download Minecraft</Button>
                             </a>
@@ -44,26 +44,30 @@
                     </Step>
 
                     <Step title="Step two" image="/images/steps/java/two.png" alternate="true">
-                        <template v-slot:description><span class="important">Open the Minecraft Java Edition launcher</span> and
-                                                     <span class="important">sign in with your Minecraft account</span>. Once signed in,
-                                                     <span class="important">click play</span> to launch Minecraft Java Edition.</template>
+                        <template v-slot:description><span class="important">Open the Minecraft Java Edition launcher.</span>
+                                                     <br><span class="important">Sign in with your Minecraft account</span> (or your Microsoft account).
+                                                     <br><span class="important">Click play</span> to launch Minecraft Java Edition.</template>
+
+                        <template v-slot:alert>
+                            <i class="material-icons">priority_high</i>
+                            Remember to use the latest release
+                        </template>
                     </Step>
 
                     <Step title="Step three" image="/images/steps/java/three.png">
-                        <template v-slot:description><span class="important">Select the Multiplayer option</span> from the menu and
-                                                     <span class="important">click Add Server</span>. In the <span class="important">Server Address</span> field, type
-                                                     <span class="important">mc.blockeley.com</span>. Then, click <span class="important">Done</span>,
-                                                     <span class="important">select the Blockeley Minecraft server</span> from the multiplayer menu, and
-                                                     <span class="important">click Join Server</span>.</template>
+                        <template v-slot:description><span class="important">Select the Multiplayer option</span> from the menu.
+                                                     <br><span class="important">Click Add Server</span> and type <span class="important">mc.blockeley.com</span> in the <span class="important">Server Address</span> field.
+                                                     <br><span class="important">Click done</span> and <span class="important">select the Blockeley Minecraft server</span> from the multiplayer menu.
+                                                     <br><span class="important">Click Join Server.</span></template>
                     </Step>
                 </template>
 
                 <template v-else>
                     <Step title="Step one" image="/images/steps/bedrock/one.png">
                         <template v-slot:description><span class="important">Register for an Xbox Live account</span> through Microsoft if you do not already have one.
-                                                     <span class="important">Download Minecraft Bedrock Edition</span> on Android, iOS, or Windows 10.</template>
+                                                     <br><span class="important">Download Minecraft Bedrock Edition</span> on Android, iOS, or Windows 10.</template>
 
-                        <template v-slot:buttons>
+                        <template v-slot:button>
                             <a href="https://www.xbox.com/en-US/live/minecraft/sign-up" target="_blank">
                                 <Button>Minecraft sign up</Button>
                             </a>
@@ -71,17 +75,16 @@
                     </Step>
 
                     <Step title="Step two" image="/images/steps/bedrock/two.png" alternate="true">
-                        <template v-slot:description><span class="important">Open Minecraft Bedrock Edition</span> and
-                                                     <span class="important">sign in with your Xbox Live account</span> through Microsoft. Once signed in,
-                                                     <span class="important">click play</span> and <span class="important">select Servers</span>.</template>
+                        <template v-slot:description><span class="important">Open Minecraft Bedrock Edition.</span>
+                                                     <br><span class="important">Sign in with your Xbox Live account</span> through Microsoft.
+                                                     <br><span class="important">Click play</span> and <span class="important">select Servers</span>.</template>
                     </Step>
 
                     <Step title="Step three" image="/images/steps/bedrock/three.png">
-                        <template v-slot:description><span class="important">Scroll to the bottom of the list of Featured Servers</span> and
-                                                     <span class="important">click Add Server</span>. In the <span class="important">Server Address</span> field, type
-                                                     <span class="important">mc.blockeley.com</span>. Then, <span class="important">click Save</span>,
-                                                     <span class="important">select the Blockeley Minecraft server</span> from the list of Additional Servers, and
-                                                     <span class="important">click Join Server</span>.</template>
+                        <template v-slot:description><span class="important">Scroll to the bottom of the Featured Servers list.</span>
+                                                     <br><span class="important">Click Add Server</span>and type <span class="important">mc.blockeley.com</span> in the <span class="important">Server Address</span> field.
+                                                     <br><span class="important">Click Save</span> and <span class="important">select the Blockeley Minecraft server</span> from the list of Additional Servers.
+                                                     <br><span class="important">click Join Server</span>.</template>
                     </Step>
                 </template>
             </div>
@@ -112,7 +115,7 @@
         <div class="container">
             <div id="locations-wrapper" class="row justify-content-center">
                 <div class="col-lg-4 col-md-6" v-for="location in locations" :key="location.title">
-                    <Location :title="location.title" :image="location.image" />
+                    <Location :title="location.title" :image="location.image" :warp="location.warp" />
                 </div>
             </div>
         </div>
@@ -145,11 +148,11 @@ export default {
             Identifiers: { Explore: "explore", Locations: "locations" },
 
             locations: [
-                { title: "Doe Memorial Library", image: "images/locations/one.png" },
-                { title: "California Memorial Stadium", image: "images/locations/two.png" },
-                { title: "Sather Tower", image: "images/locations/three.png" },
-                { title: "Sather Gate", image: "images/locations/four.png" },
-                { title: "Sproul Hall", image: "images/locations/five.png" }
+                { title: "Doe Memorial Library", image: "images/locations/one.png", warp: "Doe" },
+                { title: "California Memorial Stadium", image: "images/locations/two.png", warp: "Stadium" },
+                { title: "Sather Tower", image: "images/locations/three.png", warp: "Campanile" },
+                { title: "Sather Gate", image: "images/locations/four.png", warp: "SatherGate" },
+                { title: "Sproul Hall", image: "images/locations/five.png", warp: "Sproul" }
             ],
 
             selectedEdition: "java"

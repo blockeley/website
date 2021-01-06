@@ -120,6 +120,13 @@ export default {
         }
     }
 
+    // Remove line breaks for mobile devices
+    @media (max-width: 1200px) {
+        p.section-description br {
+            display: none;
+        }
+    }
+
     p.section-description {
         font-size: 16px;
         font-weight: 300;
