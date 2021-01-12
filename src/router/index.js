@@ -23,7 +23,7 @@ const routes = [
         component: ( ) => import(/* webpackChunkName: "member" */ "@/views/Merchandise.vue"),
     },
     {
-        path: "/product/:identifier",
+        path: "/merchandise/:identifier",
         name: "Product",
         props: true,
         component: ( ) => import(/* webpackChunkName: "member" */ "@/views/Product.vue")
@@ -33,10 +33,16 @@ const routes = [
         name: "Cart",
         component: ( ) => import(/* webpackChunkName: "member" */ "@/views/Cart.vue")
     },
+    // 404
     {
         path: "*",
         name: "PageNotFound",
         component: ( ) => import(/* webpackChunkName: "member" */ "@/views/PageNotFound.vue")
+    },
+    // Allow previous product URLs
+    {
+        path: "/product/:identifier",
+        redirect: "/merchandise/:identifier"
     }
 ];
 

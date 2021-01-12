@@ -1,8 +1,27 @@
 <template>
-    <!-- To-do: Pretty Product component -->
     <div class="product">
         <template v-if="product">
             <div class="container">
+                <div class="product-header">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="header-left">
+                                <router-link to="/merchandise">
+                                    <IconButton variant="color" icon="arrow_back" />
+                                </router-link>
+
+                                <p class="header-description">Back to Merchandise</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="header-right">
+                                <p class="product-heading">{{ product.title }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="product-preview-wrapper">
@@ -19,9 +38,6 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <p class="product-title">{{ product.title }}</p>
-                        <!-- Starting at... (varying variant price) -->
-                        <p class="product-price">Priced at <span class="important">${{ product.variants[0].price }}</span></p>
                         <p class="product-description" v-html="product.descriptionHtml" />
 
                         <div v-for="option in product.options" :key="option.id">
@@ -35,6 +51,8 @@
                 </div>
             </div>
 
+            <!-- To-do: Merchandise suggestion based on selected item's category..? Fill space -->
+
         </template>
 
         <template v-else>
@@ -44,19 +62,19 @@
 </template>
 
 <script>
-//import Preview from "@/components/Preview";
 import Splash from "@/components/Splash";
 import Options from "@/components/Options";
 import Button from "@/components/Button";
+import IconButton from "@/components/IconButton";
 
 export default {
     name: "Product",
 
     components: {
-        //Preview,
         Splash,
         Options,
-        Button
+        Button,
+        IconButton
     },
 
     props: [
@@ -120,6 +138,9 @@ export default {
         async render( ) {
             const product = await this.$client.product.fetchByHandle(this.identifier);
 
+            // Send user to merchandise if product does not exist
+            if( ! product ) return this.$router.push("/merchandise");
+
             let selectedOptions = { };
 
             for(const option of product.options) {
@@ -162,33 +183,126 @@ $color: map-get($colors, "product");
 $string: str-slice(inspect($color), 2);
 
 .product {
+    // Force footer below fold
     min-height: calc(100vh - 56px);
 
     @media (max-width: 992px) {
         text-align: center;
     }
 
+    .product-header {
+        margin-top: 24px;
+        margin-bottom: 24px;
+
+        .header-left, .header-right {
+            display: flex;
+            align-items: center;
+
+            @media (min-width: 992px) {
+                height: 48px;
+            }
+
+            @media (max-width: 992px) {
+                justify-content: center;
+            }
+        }
+
+        .header-left {
+            @media (max-width: 992px) {
+                margin-bottom: 24px;
+            }
+
+            p.header-description {
+                font-size: 14px;
+                font-weight: 300;
+                line-height: 1;
+                color: rgba(black, 0.5);
+
+                margin-left: 24px;
+            }
+        }
+
+        .header-right p.product-heading {
+            font-size: 36px;
+            font-weight: 700;
+            color: black;
+            line-height: 1;
+
+            text-shadow: 4px 4px $color;
+
+            position: relative;
+
+            @media (min-width: 512px) {
+                &::before {
+                    // Required for pseudo-element
+                    content: "";
+
+                    z-index: -1;
+
+                    position: absolute;
+
+                    height: 512px;
+                    width: 512px;
+
+                    top: 50%;
+                    left: 0;
+
+                    transform: translate(-50%, -50%);
+
+                    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23#{$string}' fill-opacity='0.075' transform='translate(100 100)' d='M28.3,-25.1C35,-14.1,37.8,-2.4,39.5,16.7C41.3,35.7,42,62.2,32.7,66C23.4,69.7,4,50.8,-18.3,39.5C-40.6,28.2,-65.8,24.5,-68.4,15.1C-70.9,5.7,-50.8,-9.4,-35.6,-22.3C-20.4,-35.3,-10.2,-46.2,0.3,-46.4C10.7,-46.6,21.5,-36.2,28.3,-25.1Z' /%3E%3C/svg%3E");
+                    background-repeat: no-repeat;
+                }
+            }
+        }
+    }
+
     .product-preview-wrapper {
         display: flex;
 
-        margin-top: 48px;
+        @media (max-width: 992px) {
+            flex-direction: column-reverse;
+        }
 
         .product-images {
             width: 80px;
 
-            margin-right: 24px;
+            flex-shrink: 0;
+
+            @media (min-width: 992px) {
+                margin-right: 24px;
+            }
+
+            @media (max-width: 992px) {
+                display: flex;
+                justify-content: center;
+
+                margin-bottom: 24px;
+
+                width: 100%;
+            }
 
             .product-image {
                 height: 100px;
+                width: 100%;
 
                 overflow: hidden;
 
-                img {
-                    transition: transform 250ms ease-in-out;
+                @media (min-width: 992px) {
+                    &:not(:last-child) {
+                        margin-bottom: 16px;
+                    }
                 }
 
-                &:not(:last-child) {
-                    margin-bottom: 16px;
+                @media (max-width: 992px) {
+                    width: 80px;
+
+                    &:not(:last-child) {
+                        margin-right: 16px;
+                    }
+                }
+
+                img {
+                    transition: transform 250ms ease-in-out;
                 }
 
                 &::after {
@@ -228,6 +342,12 @@ $string: str-slice(inspect($color), 2);
             // 4x5 width to height ratio
             padding-top: calc(100% / 4 * 5);
 
+            width: 100%;
+
+            @media (max-width: 992px) {
+                margin-bottom: 16px;
+            }
+
             &::after {
                 // Required for pseudo-element
                 content: "";
@@ -241,14 +361,10 @@ $string: str-slice(inspect($color), 2);
                 top: 0;
 
                 border: 4px solid rgba(black, 0.1);
-
-                // backdrop-filter: blur(2px);
             }
         }
 
         .product-images .product-image, .product-preview {
-            width: 100%;
-
             border: 2px solid black;
             box-shadow: 4px 4px $color;
             background-color: white;
@@ -265,35 +381,6 @@ $string: str-slice(inspect($color), 2);
                 top: 0;
 
                 object-fit: cover;
-            }
-        }
-
-        @media (max-width: 992px) {
-            flex-direction: column-reverse;
-
-            .product-images {
-                display: flex;
-                justify-content: center;
-
-                width: 100%;
-
-                // Override
-                margin-right: unset;
-
-                .product-image {
-                    width: 80px;
-
-                    &:not(:last-child) {
-                        margin-right: 16px;
-
-                        // Override
-                        margin-bottom: unset;
-                    }
-                }
-            }
-
-            .product-preview {
-                margin-bottom: 16px;
             }
         }
     }
@@ -315,59 +402,66 @@ $string: str-slice(inspect($color), 2);
         }
     }
 
-    .product-title {
-        position: relative;
-
-        margin-top: 48px;
-
-        font-size: 36px;
-        font-weight: 700;
+    .product-price .important {
         color: black;
-        line-height: 1;
-
-        text-shadow: 4px 4px $color;
-
-        margin-bottom: 8px;
-
-        @media (min-width: 512px) {
-            &::before {
-                // Required for pseudo-element
-                content: "";
-
-                z-index: -1;
-
-                position: absolute;
-
-                height: 512px;
-                width: 512px;
-
-                top: 50%;
-                left: 0;
-
-                transform: translate(-50%, -50%);
-
-                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23#{$string}' fill-opacity='0.075' transform='translate(100 100)' d='M28.3,-25.1C35,-14.1,37.8,-2.4,39.5,16.7C41.3,35.7,42,62.2,32.7,66C23.4,69.7,4,50.8,-18.3,39.5C-40.6,28.2,-65.8,24.5,-68.4,15.1C-70.9,5.7,-50.8,-9.4,-35.6,-22.3C-20.4,-35.3,-10.2,-46.2,0.3,-46.4C10.7,-46.6,21.5,-36.2,28.3,-25.1Z' /%3E%3C/svg%3E");
-                background-repeat: no-repeat;
-            }
-        }
+        font-weight: 500;
     }
 
-    .product-description, .product-price {
+    // To-do: More markdown support
+    .product-description {
         font-size: 16px;
         font-weight: 300;
         line-height: 1.2;
         color: rgba(black, 0.5);
 
         margin-bottom: 24px;
-    }
 
-    .product-price .important {
-        color: black;
-        font-weight: 500;
-    }
+        table {
+            width: 100%;
 
-    // To-do: Support more markdown
-    .product-description {
+            // To-do: Finish table markdown
+
+            /*text-align: left;
+
+            background-color: white;
+            border: 2px solid black;
+            box-shadow: 4px 4px $color;
+
+            th {
+                background-color: black;
+
+                height: 46px;
+
+                vertical-align: middle;
+
+                padding-left: 24px;
+                padding-right: 24px;
+
+                font-size: 14px;
+                font-weight: 500;
+                color: white;
+                line-height: 1;
+
+                small {
+                    color: rgba(white, 0.5);
+                    font-weight: 300;
+                }
+            }
+
+            td {
+                padding: 12px;
+            }*/
+        }
+
+        ul {
+            list-style-type: disc;
+            list-style-position: outside;
+
+            margin-left: 18px;
+
+            text-align: left;
+        }
+
         strong {
             font-weight: 500;
         }

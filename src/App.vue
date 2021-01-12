@@ -66,6 +66,7 @@
 
         <div v-if="notAtExplore" class="container">
             <div class="footer">
+                <!-- To-do: Non-affiliation notice -->
                 <p class="footer-text">Copyright 2020 <a>Blockeley</a>. Website design by <a href="https://mathhulk.com">Matthew Rowland</a>.</p>
             </div>
         </div>
@@ -116,13 +117,12 @@ export default {
             this.mobileNavigation = false;
         },
 
-        // To-do: Manage checkout status
+        // To-do: Cart pop-up component
         async updateCheckout( ) {
             try {
                 await this.$client.checkout.fetch(this.$store.state.identifier);
             } catch(error) {
                 // console.log(error)
-                console.log("An error occurred while fetching the previous checkout. The checkout cache has been cleared.");
 
                 this.$store.commit("setIdentifier", null);
                 this.$store.commit("decreaseQuantity", this.$store.state.quantity);

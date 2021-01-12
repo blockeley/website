@@ -1,4 +1,5 @@
 <template>
+    <!-- To-do: New cart design -->
     <div id="cart" :class="classObject">
         <template v-if="checkout && checkout.lineItems.length > 0">
             <div class="container">

@@ -42,6 +42,7 @@ export default {
 
     position: relative;
 
+    // To-do: Responsive
     height: 40px;
 
     padding-right: 16px;

@@ -161,6 +161,8 @@ export default {
     methods: {
         setSelectedEdition(edition) {
             this.selectedEdition = this.Editions[edition];
+
+            return undefined;
         },
 
         scrollTo(identifier) {
@@ -169,17 +171,15 @@ export default {
                 left: 0,
                 top: document.getElementById(identifier).offsetTop - 128
             });
+
+            return undefined;
         },
 
-        updateStatus( ) {
-            // Weird hack lol don't judge me
-            let $this = this;
+        async updateStatus( ) {
+            const response = await fetch("https://api.mcsrvstat.us/2/mc.blockeley.com");
+            this.status = await response.json( );
 
-            fetch("https://api.mcsrvstat.us/2/mc.blockeley.com")
-            .then( response => response.json( ) )
-            .then(function(data) {
-                $this.status = data;
-            });
+            return undefined;
         }
     },
 
@@ -194,7 +194,8 @@ export default {
     },
 
     mounted( ) {
-        // Option to disable auto-update..?
+        // To-do: Implement option to disable, or implement speed check for, auto-update
+        this.updateStatus( );
         setInterval(this.updateStatus, 3000);
     }
 }
