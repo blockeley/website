@@ -13,6 +13,8 @@
 
                     <Button @click.native="scrollTo(Identifiers.Locations)">Browse featured locations</Button>
                 </template>
+
+                <alert :icon="statusIcon" :message="statusMessage" />
             </Section>
         </Splash>
 
@@ -36,11 +38,9 @@
                         <template v-slot:description><span class="important">Register for a Minecraft account</span> if you do not already have one.
                                                      <br><span class="important">Download Minecraft Java Edition</span> on Windows, macOS, or Linux.</template>
 
-                        <template v-slot:button>
-                            <a href="https://www.minecraft.net/en-us/download/" target="_blank">
-                                <Button>Download Minecraft</Button>
-                            </a>
-                        </template>
+                        <a href="https://www.minecraft.net/en-us/download/" target="_blank">
+                            <Button>Download Minecraft</Button>
+                        </a>
                     </Step>
 
                     <Step title="Step two" image="/images/steps/java/two.png" alternate="true">
@@ -48,10 +48,7 @@
                                                      <br><span class="important">Sign in with your Minecraft account</span> (or your Microsoft account).
                                                      <br><span class="important">Click play</span> to launch Minecraft Java Edition.</template>
 
-                        <template v-slot:alert>
-                            <i class="material-icons">priority_high</i>
-                            Remember to use the latest release
-                        </template>
+                        <alert icon="priority_high" message="Remember to use the latest release" />
                     </Step>
 
                     <Step title="Step three" image="/images/steps/java/three.png">
@@ -67,11 +64,9 @@
                         <template v-slot:description><span class="important">Register for an Xbox Live account</span> through Microsoft if you do not already have one.
                                                      <br><span class="important">Download Minecraft Bedrock Edition</span> on Android, iOS, or Windows 10.</template>
 
-                        <template v-slot:button>
-                            <a href="https://www.xbox.com/en-US/live/minecraft/sign-up" target="_blank">
-                                <Button>Minecraft sign up</Button>
-                            </a>
-                        </template>
+                        <a href="https://www.xbox.com/en-US/live/minecraft/sign-up" target="_blank">
+                            <Button>Minecraft sign up</Button>
+                        </a>
                     </Step>
 
                     <Step title="Step two" image="/images/steps/bedrock/two.png" alternate="true">
@@ -129,6 +124,7 @@ import Section from "@/components/Section";
 import Options from "@/components/Options";
 import Step from "@/components/Step";
 import Splash from "@/components/Splash";
+import Alert from "@/components/Alert";
 
 export default {
     name: "Campus",
@@ -139,7 +135,8 @@ export default {
         Section,
         Options,
         Step,
-        Splash
+        Splash,
+        Alert
     },
 
     data( ) {
@@ -155,7 +152,9 @@ export default {
                 { title: "Sproul Hall", image: "images/locations/five.png", warp: "Sproul" }
             ],
 
-            selectedEdition: "java"
+            selectedEdition: "java",
+
+            status: null
         };
     },
 
@@ -170,7 +169,33 @@ export default {
                 left: 0,
                 top: document.getElementById(identifier).offsetTop - 128
             });
+        },
+
+        updateStatus( ) {
+            // Weird hack lol don't judge me
+            let $this = this;
+
+            fetch("https://api.mcsrvstat.us/2/mc.blockeley.com")
+            .then( response => response.json( ) )
+            .then(function(data) {
+                $this.status = data;
+            });
         }
+    },
+
+    computed: {
+        statusIcon( ) {
+            return this.status && this.status.online ? "play_arrow" : "close";
+        },
+
+        statusMessage( ) {
+            return this.status && this.status.online ? this.status.players.online + " players on mc.blockeley.com" : "mc.blockeley.com is offline";
+        }
+    },
+
+    mounted( ) {
+        // Option to disable auto-update..?
+        setInterval(this.updateStatus, 3000);
     }
 }
 </script>

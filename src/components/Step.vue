@@ -11,12 +11,7 @@
                 <slot name="description" />
             </p>
 
-            <slot name="button" />
-
-            <!-- To-do: Alert component -->
-            <div v-if="hasAlert" class="step-alert">
-                <slot name="alert" />
-            </div>
+            <slot />
         </div>
     </div>
 </template>
@@ -36,10 +31,6 @@ export default {
             return {
                 "step-alternate": this.alternate
             };
-        },
-
-        hasButtons( ) {
-            return !! this.$slots.buttons;
         }
     }
 }
@@ -221,30 +212,6 @@ export default {
 
             &:not(:last-child) {
                 margin-bottom: 24px;
-            }
-        }
-
-        // To-do: Alert component
-        .step-alert {
-            background-color: #FFC02E;
-
-            height: 40px;
-
-            display: inline-flex;
-            align-items: center;
-
-            padding-right: 16px;
-            padding-left: 12px;
-
-            border-radius: 20px;
-
-            font-size: 14px;
-            font-weight: 500;
-            color: rgba(white, 0.75);
-            line-height: 1.25;
-
-            i.material-icons {
-                margin-right: 8px;
             }
         }
     }

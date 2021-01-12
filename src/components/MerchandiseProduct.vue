@@ -1,32 +1,24 @@
 <template>
-    <div class="merchandise-product">
-        <div class="merchandise-product-image">
-            <img :src="product.images[0].src">
-        </div>
-
-        <div class="merchandise-product-content">
-            <div class="merchandise-product-text">
-                <p class="merchandise-product-title">{{ product.title }}</p>
-                <!-- Starting at..? -->
-                <p class="merchandise-product-description">Priced at <span class="important">${{ product.variants[0].price }}</span></p>
+    <router-link :to="toObject">
+        <div class="merchandise-product">
+            <div class="merchandise-product-image">
+                <img :src="product.images[0].src">
             </div>
 
-            <router-link :to="toObject">
-                <IconButton icon="arrow_forward" variant="light" />
-            </router-link>
+            <div class="merchandise-product-header">
+                <div class="header-text">
+                    <p class="merchandise-product-heading">{{ product.title }}</p>
+
+                    <p class="merchandise-product-description">$ {{ product.variants[0].price }} USD</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </router-link>
 </template>
 
 <script>
-import IconButton from "@/components/IconButton";
-
 export default {
     name: "MerchandiseProduct",
-
-    components: {
-        IconButton
-    },
 
     props: [
         "product"
@@ -52,8 +44,8 @@ export default {
  */
 #application {
     @each $name, $color in $colors {
-        &.color-#{$name} .merchandise-product {
-            box-shadow: -4px -4px $color;
+        &.color-#{$name} .merchandise-product .merchandise-product-header {
+            border-bottom-color: $color;
         }
     }
 }
@@ -63,71 +55,87 @@ export default {
  *
  */
 .merchandise-product {
-    box-shadow: -4px -4px #FFC02E;
-    background-color: black;
+    border: 2px solid black;
+    background-color: white;
 
-    padding: 2px 2px 0 2px;
+    position: relative;
+
+    &::after {
+        // Required for pseudo-element
+        content: "";
+
+        position: absolute;
+
+        height: calc(100% - 4px);
+        width: 100%;
+
+        left: 0;
+        top: 0;
+
+        border-style: solid;
+        border-width: 4px 4px 0 4px;
+        border-color: rgba(black, 0.1);
+
+        // backdrop-filter: blur(2px);
+    }
+
+    &:hover .merchandise-product-image img {
+        transform: scale(1.05);
+    }
 
     .merchandise-product-image {
         position: relative;
 
-        // Padding-top relative to width
         width: 100%;
 
+        // 6x8 width to height ratio
         padding-top: calc(100% / 6 * 8);
 
-       img {
-           position: absolute;
+        overflow: hidden;
 
-           height: 100%;
-           width: 100%;
+        img {
+            position: absolute;
 
-           left: 0;
-           top: 0;
+            height: 100%;
+            width: 100%;
 
-           object-fit: cover;
-       }
+            left: 0;
+            top: 0;
+
+            object-fit: cover;
+
+            transition: transform 250ms ease-in-out;
+        }
     }
 
-    .merchandise-product-content {
+    .merchandise-product-header {
         display: flex;
         align-items: center;
 
-        height: 64px;
+        height: 128px;
 
-        padding-left: 24px;
-        padding-right: 24px;
+        border-bottom: 4px solid #FFC02E;
 
-        .merchandise-product-text {
-            flex-grow: 1;
+        .header-text {
+            text-align: center;
 
-            margin-right: 24px;
+            padding-left: 24px;
+            padding-right: 24px;
 
-            overflow: hidden;
+            width: 100%;
 
-            p.merchandise-product-title {
+            p.merchandise-product-heading {
                 font-size: 14px;
                 font-weight: 500;
-                color: white;
-                line-height: 18px;
-
-                overflow: hidden;
-
-                white-space: nowrap;
-
-                text-overflow: ellipsis;
+                color: black;
+                line-height: 1.25;
             }
 
             p.merchandise-product-description {
                 font-size: 14px;
                 font-weight: 300;
-                line-height: 18px;
-                color: rgba(white, 0.5);
-
-                .important {
-                    color: white;
-                    font-weight: 500;
-                }
+                line-height: 1.25;
+                color: rgba(black, 0.5);
             }
         }
     }

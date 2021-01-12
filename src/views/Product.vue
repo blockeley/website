@@ -1,5 +1,5 @@
 <template>
-    <!-- To-do: Class-based view..? -->
+    <!-- To-do: Pretty Product component -->
     <div class="product">
         <template v-if="product">
             <div class="container">
@@ -179,74 +179,78 @@ $string: str-slice(inspect($color), 2);
             margin-right: 24px;
 
             .product-image {
-                width: 100%;
                 height: 100px;
 
-                border: 2px solid black;
-                box-shadow: -4px -4px $color;
-                background-color: white;
-
-                position: relative;
-
-                &::after {
-                    // Required for pseudo-element
-                    content: "";
-
-                    height: 2px;
-                    width: 0;
-
-                    left: 50%;
-                    bottom: 0;
-
-                    transform: translateX(-50%);
-
-                    background-color: $color;
-
-                    position: absolute;
-
-                    transition: width 100ms ease-in-out;
-                }
+                overflow: hidden;
 
                 img {
-                    position: absolute;
-
-                    height: 100%;
-                    width: 100%;
-
-                    left: 0;
-                    top: 0;
-
-                    object-fit: cover;
-
-                    transition: opacity 100ms ease-in-out;
+                    transition: transform 250ms ease-in-out;
                 }
 
                 &:not(:last-child) {
                     margin-bottom: 16px;
                 }
 
-                &:hover {
-                    cursor: pointer;
+                &::after {
+                    // Required for pseudo-element
+                    content: "";
 
-                    &::after {
-                        width: 16px;
-                    }
+                    position: absolute;
+
+                    height: 8px;
+                    width: 8px;
+
+                    left: -12px;
+                    top: 4px;
+
+                    border-radius: 50%;
+
+                    background-color: $color;
+
+                    transition: left 100ms ease-in-out;
                 }
 
                 &.active::after {
-                    width: 24px;
+                    left: 4px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+
+                    img {
+                        transform: scale(1.1);
+                    }
                 }
             }
         }
 
         .product-preview {
-            width: 100%;
-
-            // Reduced to 4x5 from 6x8
+            // 4x5 width to height ratio
             padding-top: calc(100% / 4 * 5);
 
+            &::after {
+                // Required for pseudo-element
+                content: "";
+
+                position: absolute;
+
+                height: 100%;
+                width: 100%;
+
+                left: 0;
+                top: 0;
+
+                border: 4px solid rgba(black, 0.1);
+
+                // backdrop-filter: blur(2px);
+            }
+        }
+
+        .product-images .product-image, .product-preview {
+            width: 100%;
+
             border: 2px solid black;
-            box-shadow: -4px -4px $color;
+            box-shadow: 4px 4px $color;
             background-color: white;
 
             position: relative;

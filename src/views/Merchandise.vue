@@ -16,6 +16,8 @@
                             <Button>Patreon</Button>
                         </a>
                     </template>
+
+                    <alert icon="favorite" message="A special thanks to Lin Tan for his generous contributions" />
                 </Section>
             </Splash>
 
@@ -50,6 +52,7 @@ import Button from "@/components/Button";
 import Splash from "@/components/Splash";
 import Section from "@/components/Section";
 import Options from "@/components/Options";
+import Alert from "@/components/Alert";
 import MerchandiseProduct from "@/components/MerchandiseProduct";
 
 export default {
@@ -60,7 +63,8 @@ export default {
         Splash,
         Section,
         Options,
-        MerchandiseProduct
+        MerchandiseProduct,
+        Alert
     },
 
     data( ) {

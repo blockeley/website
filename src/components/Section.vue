@@ -1,4 +1,5 @@
 <template>
+    <!-- To-do: Pretty Section component -->
     <div class="section" :class="classObject">
         <div class="container">
             <div class="row justify-content-center">
@@ -18,6 +19,8 @@
                     <div v-if="hasButtons" class="section-buttons">
                         <slot name="buttons" />
                     </div>
+
+                    <slot />
                 </div>
             </div>
         </div>
@@ -148,6 +151,10 @@ export default {
 
         .button {
             margin: 12px;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 24px;
         }
     }
 
