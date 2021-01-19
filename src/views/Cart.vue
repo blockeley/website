@@ -152,52 +152,47 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/scss/colors";
-
-$color: map-get($colors, "cart");
-
 #cart {
     min-height: calc(100vh - 56px);
 
     transition: opacity 100ms ease-in-out;
 
-    // To-do: Manage checkout status
     &.cart-pending {
         opacity: 0.5;
 
         pointer-events: none;
     }
-}
 
-#cart-items-wrapper {
-    margin-top: 48px;
-
-    @media (max-width: 992px) {
-        margin-bottom: 48px;
-    }
-
-    .cart-item:not(:first-child) {
-        padding-top: 48px;
-    }
-
-    .cart-item:not(:last-child) {
-        padding-bottom: 48px;
-
-        border-bottom: 2px dashed rgba(black, 0.1);
-    }
-}
-
-#order-summary {
-    @media (min-width: 992px) {
-        position: sticky;
-
-        top: 104px;
-
+    #cart-items-wrapper {
         margin-top: 48px;
+
+        @media (max-width: 992px) {
+            margin-bottom: 48px;
+        }
+
+        .cart-item:not(:first-child) {
+            padding-top: 48px;
+        }
+
+        .cart-item:not(:last-child) {
+            padding-bottom: 48px;
+
+            border-bottom: 2px dashed rgba(black, 0.1);
+        }
     }
 
-    .card {
-        margin-bottom: 24px;
+    #order-summary {
+        @media (min-width: 992px) {
+            position: sticky;
+
+            top: 104px;
+
+            margin-top: 48px;
+        }
+
+        .card {
+            margin-bottom: 24px;
+        }
     }
 }
 </style>

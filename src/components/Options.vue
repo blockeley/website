@@ -41,27 +41,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/scss/colors";
-
-/*
- *	Application color
- *
- */
-#application {
-	@each $name, $color in $colors {
-		&.color-#{$name} .options .option.active {
-			border-color: $color;
-			background-color: rgba($color, 0.1);
-
-			color: $color;
-		}
-	}
-}
-
-/*
- *  Options
- *
- */
 .options {
     display: flex;
     flex-wrap: wrap;
@@ -103,10 +82,10 @@ export default {
         }
 
         &.active {
-            border-color: #FFC02E;
-            background-color: rgba(#FFC02E, 0.1);
+            border-color: var(--accent-color);
+            background-color: var(--accent-color-transparent);
 
-            color: #FFC02E;
+            color: var(--accent-color);
         }
     }
 }

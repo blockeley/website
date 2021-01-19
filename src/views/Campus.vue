@@ -202,15 +202,17 @@ export default {
 </script>
 
 <style lang="scss">
-#steps-wrapper .step {
-    margin-top: 48px;
-}
+#campus {
+    #steps-wrapper .step {
+        margin-top: 48px;
+    }
 
-#locations-wrapper {
-    margin-bottom: -24px;
+    #locations-wrapper {
+        margin-bottom: -24px;
 
-    .location {
-        margin-bottom: 24px;
+        .location {
+            margin-bottom: 24px;
+        }
     }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div id="store">
+    <div id="merchandise">
         <template v-if="products">
             <Splash image="/images/shirt.png" continue="true">
                 <Section heading="Merchandise">
@@ -119,15 +119,17 @@ export default {
 </script>
 
 <style lang="scss">
-#store .options {
-    margin-bottom: 48px;
-}
+#merchandise {
+    .options {
+        margin-bottom: 48px;
+    }
 
-#merchandise-products-wrapper {
-    margin-bottom: -24px;
+    #merchandise-products-wrapper {
+        margin-bottom: -24px;
 
-    .merchandise-product {
-        margin-bottom: 24px;
+        .merchandise-product {
+            margin-bottom: 24px;
+        }
     }
 }
 </style>

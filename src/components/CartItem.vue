@@ -61,24 +61,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/scss/colors";
-
-/*
- *    Application color
- *
- */
-#application {
-    @each $name, $color in $colors {
-        &.color-#{$name} .cart-item .cart-item-image {
-            box-shadow: -4px -4px $color;
-        }
-    }
-}
-
-/*
- *    Item
- *
- */
 .cart-item {
     @media (min-width: 992px) {
         display: flex;
@@ -158,7 +140,7 @@ export default {
         position: relative;
 
         border: 2px solid black;
-        box-shadow: -4px -4px #FFC02E;
+        box-shadow: -4px -4px var(--accent-color);
         background-color: white;
 
        img {

@@ -36,24 +36,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/scss/colors";
-
-/*
- *    Application color
- *
- */
-#application {
-    @each $name, $color in $colors {
-        &.color-#{$name} .merchandise-product .merchandise-product-header {
-            border-bottom-color: $color;
-        }
-    }
-}
-
-/*
- *  Product
- *
- */
 .merchandise-product {
     border: 2px solid black;
     background-color: white;
@@ -61,7 +43,7 @@ export default {
     position: relative;
 
     &::after {
-        // Required for pseudo-element
+        // Required for pseudo-elements
         content: "";
 
         position: absolute;
@@ -75,8 +57,6 @@ export default {
         border-style: solid;
         border-width: 4px 4px 0 4px;
         border-color: rgba(black, 0.1);
-
-        // backdrop-filter: blur(2px);
     }
 
     &:hover .merchandise-product-image img {
@@ -114,7 +94,7 @@ export default {
 
         height: 128px;
 
-        border-bottom: 4px solid #FFC02E;
+        border-bottom: 4px solid var(--accent-color);
 
         .header-text {
             text-align: center;

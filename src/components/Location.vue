@@ -94,7 +94,7 @@ export default {
 
     &:not(.location-full-screen) {
         border: 2px solid black;
-        box-shadow: 4px 4px #FFC02E;
+        box-shadow: 4px 4px var(--accent-color);
 
         .location-image {
             width: 100%;
@@ -131,7 +131,7 @@ export default {
             }
 
             &::before {
-                // Required for pseudo-element
+                // Required for pseudo-elements
                 content: "";
 
                 position: absolute;
@@ -157,7 +157,6 @@ export default {
         height: 100vh;
         width: 100vw;
 
-        // Force full screen image above content
         z-index: 999;
 
         .location-image {
@@ -198,7 +197,7 @@ export default {
                 }
             }
 
-            // Force different IconButton color scheme
+            // To-do: Dark transparent IconButton
             .icon-button {
                 position: absolute;
 
@@ -244,14 +243,12 @@ export default {
         }
 
         &::after {
-            // Required for pseudo-element
+            // Required for pseudo-elements
             content: "";
 
             border-style: solid;
             border-width: 4px 4px 0 4px;
             border-color: rgba(white, 0.25);
-
-            // backdrop-filter: blur(2px);
         }
     }
 }

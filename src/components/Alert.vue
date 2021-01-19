@@ -18,24 +18,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/scss/colors";
-
-/*
- *    Application color
- *
- */
-#application {
-    @each $name, $color in $colors {
-        &.color-#{$name} .alert {
-            background-color: $color;
-        }
-    }
-}
-
-/*
- *    Button
- *
- */
 .alert {
     display: inline-flex;
     align-items: center;
@@ -45,7 +27,7 @@ export default {
     padding-right: 16px;
     padding-left: 16px;
 
-    background-color: #FFC02E;
+    background-color: var(--accent-color);
 
     border-radius: 4px;
 

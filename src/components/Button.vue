@@ -25,24 +25,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/scss/colors";
-
-/*
- *    Application color
- *
- */
-#application {
-    @each $name, $color in $colors {
-        &.color-#{$name} .button {
-            box-shadow: 4px 4px $color;
-        }
-    }
-}
-
-/*
- *    Button
- *
- */
 .button {
     display: inline-flex;
     align-items: center;
@@ -56,7 +38,7 @@ export default {
 
     border: 2px solid black;
     background-color: white;
-    box-shadow: 4px 4px #FFC02E;
+    box-shadow: 4px 4px var(--accent-color);
 
     white-space: nowrap;
 
@@ -74,7 +56,7 @@ export default {
         user-select: none;
 
         &::after {
-            // Required for pseudo-element
+            // Required for pseudo-elements
             content: "";
 
             position: absolute;

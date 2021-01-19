@@ -34,11 +34,12 @@ export default {
 </script>
 
 <style lang="scss">
+// To-do: Responsive Splash for small mobile devices
 .splash {
     display: flex;
     align-items: center;
 
-    // Is this right..?
+    // Do I need this?
     justify-content: center;
 
     position: relative;
@@ -118,7 +119,7 @@ export default {
         justify-content: center;
 
         &::after {
-            // Required for pseudo-element
+            // Required for pseudo-elements
             content: "";
 
             height: 48px;

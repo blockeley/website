@@ -35,26 +35,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/scss/colors";
-
-/*
- *    Application color
- *
- */
-#application {
-    @each $name, $color in $colors {
-        &.color-#{$name} .icon-button.icon-button-color:hover {
-            background-color: rgba($color, 0.1);
-
-            color: $color;
-        }
-    }
-}
-
-/*
- *    Icon button
- *
- */
 .icon-button {
     display: inline-flex;
     align-items: center;
@@ -78,9 +58,9 @@ export default {
         color: black;
 
         &.active, &:hover {
-            background-color: rgba(#FFC02E, 0.1);
+            background-color: var(--accent-color-transparent);
 
-            color: #FFC02E;
+            color: var(--accent-color);
         }
     }
 
@@ -94,12 +74,11 @@ export default {
         }
     }
 
-    // Default required
     &.icon-button-notification {
         position: relative;
 
         &::after {
-            // Required for pseudo-element
+            // Required for pseudo-elements
             content: "";
 
             position: absolute;

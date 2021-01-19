@@ -19,27 +19,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/scss/colors";
-
-/*
- *    Application color
- *
- */
-#application {
-    @each $name, $color in $colors {
-        &.color-#{$name} .card {
-            box-shadow: -4px -4px $color;
-        }
-    }
-}
-
-/*
- *    Card
- *
- */
 .card {
     border: 2px solid black;
-    box-shadow: -4px -4px #FFC02E;
+    box-shadow: -4px -4px var(--accent-color);
     background-color: white;
 
     p.card-heading {

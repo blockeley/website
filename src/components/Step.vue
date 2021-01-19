@@ -37,30 +37,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/scss/colors";
-
-/*
- *    Application color
- *
- */
-#application {
-    @each $name, $color in $colors {
-        &.color-#{$name} .step {
-            .step-image {
-                box-shadow: 4px 4px $color;
-            }
-
-            .step-alert {
-                background-color: $color;
-            }
-        }
-    }
-}
-
-/*
- *    Steps
- *
- */
 .step {
     @media (min-width: 992px) {
         display: flex;
@@ -80,7 +56,7 @@ export default {
             margin-left: 24px;
 
             p.step-title::before {
-                // Required for pseudo-element
+                // Required for pseudo-elements
                 content: "";
 
                 position: absolute;
@@ -155,7 +131,7 @@ export default {
         position: relative;
 
         border: 2px solid black;
-        box-shadow: 4px 4px #FFC02E;
+        box-shadow: 4px 4px var(--accent-color);
         background-color: white;
 
         img, &::after {
@@ -173,7 +149,7 @@ export default {
         }
 
         &::after {
-            // Required for pseudo-element
+            // Required for pseudo-elements
             content: "";
 
             border: 4px solid rgba(white, 0.25);

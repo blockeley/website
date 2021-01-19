@@ -132,7 +132,7 @@ export default {
 
     watch: {
         $route(to) {
-            this.colorClass = "color-" + to.name.toLowerCase( );
+            this.colorClass = "color-" + to.name;
 
             this.closeMobileNavigation( );
         }
@@ -148,6 +148,30 @@ export default {
 @import "@/scss/components/navigation-bar";
 @import "@/scss/components/mobile-navigation";
 @import "@/scss/components/footer";
+
+/*
+ *  Colors
+ */
+@import "@/scss/colors";
+
+#application {
+    --accent-color: #ffc02e;
+    --accent-color-transparent: rgba(#ffc02e, 0.1);
+    --accent-color-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffc02e' fill-opacity='0.075' transform='translate(100 100)' d='M28.3,-25.1C35,-14.1,37.8,-2.4,39.5,16.7C41.3,35.7,42,62.2,32.7,66C23.4,69.7,4,50.8,-18.3,39.5C-40.6,28.2,-65.8,24.5,-68.4,15.1C-70.9,5.7,-50.8,-9.4,-35.6,-22.3C-20.4,-35.3,-10.2,-46.2,0.3,-46.4C10.7,-46.6,21.5,-36.2,28.3,-25.1Z' /%3E%3C/svg%3E");
+
+    @each $identifier, $color in $colors {
+        &.color-#{$identifier} {
+            $string: str-slice(inspect($color), 2);
+
+            $color-transparent: rgba($color, 0.1);
+            $color-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23#{$string}' fill-opacity='0.075' transform='translate(100 100)' d='M28.3,-25.1C35,-14.1,37.8,-2.4,39.5,16.7C41.3,35.7,42,62.2,32.7,66C23.4,69.7,4,50.8,-18.3,39.5C-40.6,28.2,-65.8,24.5,-68.4,15.1C-70.9,5.7,-50.8,-9.4,-35.6,-22.3C-20.4,-35.3,-10.2,-46.2,0.3,-46.4C10.7,-46.6,21.5,-36.2,28.3,-25.1Z' /%3E%3C/svg%3E");
+
+            --accent-color: #{$color};
+            --accent-color-transparent: #{$color-transparent};
+            --accent-color-image: #{$color-image};
+        }
+    }
+}
 
 /*
  *  Global
