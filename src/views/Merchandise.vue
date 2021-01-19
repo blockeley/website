@@ -17,7 +17,7 @@
                         </a>
                     </template>
 
-                    <alert icon="favorite" message="A special thanks to Lin Tan for his generous contributions" />
+                    <alert icon="favorite" message="A special thanks to Lin Tan for their generous contributions" />
                 </Section>
             </Splash>
 

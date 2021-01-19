@@ -158,6 +158,11 @@ export default {
         }
     }
 
+    // Component .alert
+    .alert p.alert-message {
+        text-align: left;
+    }
+
     &.section-inline {
         margin-top: 256px;
         margin-bottom: 128px;
@@ -212,7 +217,7 @@ export default {
         // Remove background on mobile
         @media (min-width: 512px) {
             &::before {
-                // Required for pseudo-element
+                // Required for pseudo-elements
                 content: "";
 
                 z-index: -1;
@@ -221,6 +226,9 @@ export default {
 
                 height: 512px;
                 width: 512px;
+
+                // Problem with media query?
+                max-width: 100%;
 
                 top: 50%;
                 left: 50%;

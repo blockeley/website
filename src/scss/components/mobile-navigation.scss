@@ -1,33 +1,3 @@
-@import "@/scss/colors";
-
-/*
- *	Application color
- *
- */
-#application {
-	@each $name, $color in $colors {
-		&.color-#{$name} .mobile-navigation ul.mobile-navigation-menu li.menu-item a.item-link {
-			&::after {
-				background-color: $color;
-			}
-
-			&:not(.active):hover {
-				color: $color;
-			}
-
-			&.active {
-				background-color: rgba($color, 0.1);
-
-				color: $color;
-			}
-		}
-	}
-}
-
-/*
- *	Mobile navigation
- *
- */
 .mobile-navigation {
 	display: flex;
 	flex-direction: column;
@@ -70,7 +40,7 @@
 
 			font-size: 14px;
 			font-weight: 500;
-			color: black;
+			color: rgba(black, 0.5);
 			line-height: 1;
 
 			height: 48px;
@@ -82,7 +52,7 @@
 						color 100ms ease-in-out;
 
 			&::after {
-				// Required for pseudo
+				// Required for pseudo-elements
 				content: "";
 
 				height: 100%;
@@ -90,7 +60,7 @@
 
 				position: absolute;
 
-				background-color: #FFC02E;
+				background-color: black;
 
 				left: 0;
 				bottom: 0;
@@ -101,15 +71,15 @@
 			}
 
 			&:not(.active):hover {
-				color: #FFC02E;
+				color: black;
 
 				cursor: pointer;
 			}
 
 			&.active {
-				background-color: rgba(#FFC02E, 0.1);
+				background-color: rgba(black, 0.1);
 
-				color: #FFC02E;
+				color: black;
 
 				&::after {
 					opacity: 1;
