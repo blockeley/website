@@ -6,8 +6,9 @@
                     <template v-slot:subHeading>Blockeley</template>
 
                     <template v-slot:description><span class="important">Purchase Blockeley merchandise and support Blockeley development.</span>
-                                                 <br>Express school spirit on and off our virtual Minecraft campus with unique Blockeley apparel. Interested in
-                                                 donating instead? Use the button below to learn more about the Blockeley Patreon.</template>
+                                                 <br>Express your school spirit with unique Blockeley apparel. Not interested in Blockeley apparel,
+                                                 but still looking to support Blockeley development? Use the button below to learn more about our
+                                                 Patreon!</template>
 
                     <template v-slot:buttons>
                         <Button @click.native="scrollToApparel">Browse apparel</Button>
@@ -25,8 +26,10 @@
                 <Section heading="T-shirts, sweatshirts, and more" variant="inline">
                     <template v-slot:subHeading>Merchandise</template>
 
-                    <template v-slot:description><span class="important">Your purchase directly contributes to the Blockeley project and the virtual Minecraft campus.</span>
-                                                 <br>Every dollar Blockeley earns will be reinvested and covers server costs as well as funding for future events.</template>
+                    <template v-slot:description><span class="important">One hundred percent of the profits we earn from your purchase fund the Blockeley
+                                                 Minecraft server and Blockeley events.</span> Watch Discord for more information on upcoming limited
+                                                 edition items and public polls where you can vote on which items and designs you believe best fit the
+                                                 Blockeley theme.</template>
                 </Section>
             </div>
 

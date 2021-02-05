@@ -4,14 +4,14 @@
             <Section heading="in Minecraft">
                 <template v-slot:subHeading>University of California, Berkeley</template>
 
-                <template v-slot:description><span class="important">Blockeley aims to recreate the entire University of California, Berkeley campus in Minecraft.</span>
-                                             <br>Volunteer builders have put hours into replicating buildings, parks, and other various locations around campus to create
-                                             a genuine virtual experience for our visitors.</template>
+                <template v-slot:description><span class="important">We aim to recreate the entire Berkeley campus in Minecraft for you to explore.</span>
+                                             <br>Student volunteers have spent hundreds of hours replicating buildings, parks, historical landmarks, and other
+                                             various locations around the Berkeley campus to create a genuine virtual experience for our guests.</template>
 
                 <template v-slot:buttons>
                     <Button @click.native="scrollTo(Identifiers.Explore)">Explore in Minecraft</Button>
 
-                    <Button @click.native="scrollTo(Identifiers.Locations)">Browse featured locations</Button>
+                    <Button @click.native="scrollTo(Identifiers.Locations)">View featured locations</Button>
                 </template>
 
                 <alert :icon="statusIcon" :message="statusMessage" />
@@ -22,10 +22,10 @@
             <Section heading="Explore in Minecraft" variant="inline">
                 <template v-slot:subHeading>Campus</template>
 
-                <template v-slot:description><span class="important">The Blockeley Minecraft server welcomes visitors from anywhere.</span>
-                                             However, access to the virtual campus requires either Minecraft Java Edition or Minecraft Bedrock Edition.
-                                             Access will not be limited for users on Minecraft Bedrock Edition when possible.
-                                             <span class="important">Learn how to access the Blockeley server on either platform below.</span></template>
+                <template v-slot:description><span class="important">We welcome visitors from around the world to explore the Berkeley campus virtually.</span>
+                                             However, access to the virtual campus requires either Minecraft Java Edition or Minecraft Bedrock Edition. Despite
+                                             the differences between the Java and Bedrock editions, we do we do everything we can to provide an amazing experience
+                                             on both platforms! <span class="important">Learn how to access the Blockeley Minecraft server on either platform below.</span></template>
             </Section>
         </div>
 
@@ -89,19 +89,18 @@
             <Section heading="Featured locations" variant="inline">
                 <template v-slot:subHeading>Campus</template>
 
-                <template v-slot:description><span class="important">With the help of volunteer builders, Blockeley has recreated much of the University of
-                                             California, Berkeley campus in Minecraft.</span> Interested in contributing to the virtual campus? Fill out an
-                                             application below and become a Blockeley builder. For visitors without Minecraft, a live three-dimensional render
-                                             of the virtual Minecraft campus as well as a gallery containing images of prominent campus locations can be
-                                             found below.</template>
+                <template v-slot:description><span class="important">Such an amazing feat would not be possible without the help of student volunteers and we
+                                             are always looking for more help!</span> If you are interested in contributing and creating the next generation
+                                             of our Minecraft campus, please fill out an application linked below. <span class="important">For guests without
+                                             Minecraft, feel free to launch our online map and explore the Blockeley Minecraft server in your browser!</span></template>
 
                 <template v-slot:buttons>
                     <a href="https://map.blockeley.com" target="_blank">
-                        <Button>Launch our online map</Button>
+                        <Button>Explore in the browser</Button>
                     </a>
 
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSebaih8bBY5wOGvmInL2Xi5Y691UlvVrg0thSPz8LfR_Vfb6w/viewform" target="_blank">
-                        <Button>Builder application</Button>
+                        <Button>Apply as a builder</Button>
                     </a>
                 </template>
             </Section>
@@ -189,7 +188,7 @@ export default {
         },
 
         statusMessage( ) {
-            return this.status && this.status.online ? this.status.players.online + " players on mc.blockeley.com" : "mc.blockeley.com is offline";
+            return this.status && this.status.online ? this.status.players.online + " player(s) on mc.blockeley.com" : "mc.blockeley.com is offline";
         }
     },
 

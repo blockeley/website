@@ -1,5 +1,4 @@
 <template>
-    <!-- To-do: Pretty Section component -->
     <div class="section" :class="classObject">
         <div class="container">
             <div class="row justify-content-center">
@@ -20,6 +19,10 @@
                         <slot name="buttons" />
                     </div>
 
+                    <div v-if="hasLinkButtons" class="section-link-buttons">
+                        <slot name="linkButtons" />
+                    </div>
+
                     <slot />
                 </div>
             </div>
@@ -31,6 +34,7 @@
 export default {
     name: "Section",
 
+    // To-do: Proper style parameters
     props: [
         "heading",
         "variant"
@@ -53,6 +57,10 @@ export default {
 
         hasButtons( ) {
             return !! this.$slots.buttons;
+        },
+
+        hasLinkButtons( ) {
+            return !! this.$slots.linkButtons;
         },
 
         hasSubHeading( ) {
@@ -95,7 +103,7 @@ export default {
         }
     }
 
-    // Remove line breaks for mobile devices
+    // To-do: Properly remove line breaks on mobile devices
     @media (max-width: 1200px) {
         p.section-description br {
             display: none;
@@ -109,7 +117,7 @@ export default {
         color: rgba(black, 0.5);
 
         .important {
-            color: black;
+            color: rgba(black, 0.75);
             font-weight: 500;
         }
 
@@ -119,25 +127,35 @@ export default {
     }
 
     .section-buttons {
-        margin: -12px;
+        margin: -8px;
 
         .button {
-            margin: 12px;
+            margin: 8px;
         }
 
         &:not(:last-child) {
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }
     }
 
-    // Component .alert
-    .alert p.alert-message {
-        text-align: left;
+    .section-link-buttons {
+        margin: -8px;
+
+        .link-button {
+            margin: 8px;
+        }
     }
 
     &.section-inline {
-        margin-top: 256px;
-        margin-bottom: 128px;
+        @media (min-width: 992px) {
+            margin-top: 256px;
+            margin-bottom: 128px;
+        }
+
+        @media (max-width: 992px) {
+            margin-top: 128px;
+            margin-bottom: 64px;
+        }
     }
 
     &.section-light {
@@ -151,7 +169,7 @@ export default {
                 margin-bottom: 32px;
 
                 .important {
-                    color: white;
+                    color: rgba(white, 0.75);
 
                     border-bottom: 2px dashed rgba(white, 0.25);
                 }
@@ -174,19 +192,18 @@ export default {
             }
 
             .important {
-                color: white;
+                color: rgba(white, 0.75);
             }
         }
     }
 
-    // Included with .section-inline
     &.section-background {
         .section-header p.section-heading {
             font-size: 36px;
             font-weight: 700;
         }
 
-        // Remove background on mobile
+        // To-do: Properly display background on mobile devices
         @media (min-width: 512px) {
             &::before {
                 // Required for pseudo-elements
@@ -199,7 +216,6 @@ export default {
                 height: 512px;
                 width: 512px;
 
-                // Problem with media query?
                 max-width: 100%;
 
                 top: 50%;
@@ -207,7 +223,6 @@ export default {
 
                 transform: translate(-50%, -50%);
 
-                // To-do: Accent color for background-image
                 background-image: var(--accent-color-image);
                 background-repeat: no-repeat;
             }

@@ -29,13 +29,13 @@ export default {
 
     background-color: var(--accent-color);
 
-    border-radius: 4px;
-
     p.alert-message {
         font-size: 14px;
         font-weight: 500;
         line-height: 1.25;
         color: rgba(white, 0.75);
+
+        text-align: left;
 
         // 40px default height (14px + 13px * 2)
         margin-top: 13px;

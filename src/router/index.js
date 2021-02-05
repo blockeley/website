@@ -2,15 +2,15 @@ import Vue from "vue";
 
 import VueRouter from "vue-router";
 
-import Explore from "@/views/Explore.vue";
+import Home from "@/views/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: "/",
-        name: "Explore",
-        component: Explore
+        name: "Home",
+        component: Home
     },
     {
         path: "/campus",

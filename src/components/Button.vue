@@ -1,4 +1,5 @@
 <template>
+    <!-- To-do: Implement href and router-link attributes -->
     <div class="button" :class="classObject">
         <slot />
     </div>
@@ -107,7 +108,7 @@ export default {
     }
 }
 
-// Required for alignment
+// Both transform properties required for alignment
 @keyframes button-progress {
     0% {
         transform: translate(-50%, -50%) rotate(0deg);

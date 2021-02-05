@@ -1,5 +1,7 @@
 <template>
     <div id="application" :class="colorClass">
+        <DiscordNotification />
+
         <div v-if="mobileNavigation" class="mobile-navigation">
             <div class="navigation-bar">
                 <div class="container-fluid">
@@ -40,7 +42,7 @@
 
                 <ul class="navigation-bar-menu ml-auto d-none d-lg-flex">
                     <li class="menu-item">
-                        <router-link to="/" class="item-link" exact>Explore</router-link>
+                        <router-link to="/" class="item-link" exact>Home</router-link>
                     </li>
 
                     <li class="menu-item">
@@ -76,12 +78,14 @@
 
 <script>
 import IconButton from "@/components/IconButton";
+import DiscordNotification from "@/components/DiscordNotification";
 
 export default {
     name: "App",
 
     components: {
-        IconButton
+        IconButton,
+        DiscordNotification
     },
 
     data( ) {
@@ -94,7 +98,7 @@ export default {
 
     computed: {
         notAtExplore( ) {
-            return this.$route.name !== "Explore";
+            return this.$route.name !== "Home";
         },
 
         atCart( ) {
