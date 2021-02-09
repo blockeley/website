@@ -5,13 +5,13 @@
                 <template v-slot:subHeading>University of California, Berkeley</template>
 
                 <template v-slot:description><span class="important">We aim to recreate the entire Berkeley campus in Minecraft for you to explore.</span>
-                                             <br>Student volunteers have spent hundreds of hours replicating buildings, parks, historical landmarks, and other
+                                             <br>Student volunteers have spent thousands of hours replicating buildings, parks, historical landmarks, and other
                                              various locations around the Berkeley campus to create a genuine virtual experience for our guests.</template>
 
                 <template v-slot:buttons>
-                    <Button @click.native="scrollTo(Identifiers.Explore)">Explore in Minecraft</Button>
+                    <Button @click="scrollTo(Identifiers.Explore)">Explore in Minecraft</Button>
 
-                    <Button @click.native="scrollTo(Identifiers.Locations)">View featured locations</Button>
+                    <Button @click="scrollTo(Identifiers.Locations)">View featured locations</Button>
                 </template>
 
                 <alert :icon="statusIcon" :message="statusMessage" />
@@ -38,9 +38,7 @@
                         <template v-slot:description><span class="important">Register for a Minecraft account</span> if you do not already have one.
                                                      <br><span class="important">Download Minecraft Java Edition</span> on Windows, macOS, or Linux.</template>
 
-                        <a href="https://www.minecraft.net/en-us/download/" target="_blank">
-                            <Button>Download Minecraft</Button>
-                        </a>
+                        <Button href="https://www.minecraft.net/en-us/download/" target="_blank">Download Minecraft</Button>
                     </Step>
 
                     <Step title="Step two" image="/images/steps/java/two.png" alternate="true">
@@ -64,9 +62,7 @@
                         <template v-slot:description><span class="important">Register for an Xbox Live account</span> through Microsoft if you do not already have one.
                                                      <br><span class="important">Download Minecraft Bedrock Edition</span> on Android, iOS, or Windows 10.</template>
 
-                        <a href="https://www.xbox.com/en-US/live/minecraft/sign-up" target="_blank">
-                            <Button>Minecraft sign up</Button>
-                        </a>
+                        <Button href="https://www.xbox.com/en-US/live/minecraft/sign-up" target="_blank">Minecraft sign up</Button>
                     </Step>
 
                     <Step title="Step two" image="/images/steps/bedrock/two.png" alternate="true">
@@ -90,23 +86,21 @@
                 <template v-slot:subHeading>Campus</template>
 
                 <template v-slot:description><span class="important">Such an amazing feat would not be possible without the help of student volunteers and we
-                                             are always looking for more help!</span> If you are interested in contributing and creating the next generation
+                                             are always looking for new builders.</span> If you are interested in contributing and creating the next generation
                                              of our Minecraft campus, please fill out an application linked below. <span class="important">For guests without
-                                             Minecraft, feel free to launch our online map and explore the Blockeley Minecraft server in your browser!</span></template>
+                                             Minecraft, feel free to launch our online map and explore the Blockeley Minecraft server in your browser.</span></template>
 
                 <template v-slot:buttons>
-                    <a href="https://map.blockeley.com" target="_blank">
-                        <Button>Explore in the browser</Button>
-                    </a>
+                    <!-- To-do: Pop-up..? -->
+                    <Button href="https://map.blockeley.com" target="_blank">Explore in the browser</Button>
 
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSebaih8bBY5wOGvmInL2Xi5Y691UlvVrg0thSPz8LfR_Vfb6w/viewform" target="_blank">
-                        <Button>Apply as a builder</Button>
-                    </a>
+                    <Button href="https://docs.google.com/forms/d/e/1FAIpQLSebaih8bBY5wOGvmInL2Xi5Y691UlvVrg0thSPz8LfR_Vfb6w/viewform" target="_blank">Apply as a builder</Button>
                 </template>
             </Section>
         </div>
 
         <div class="container">
+            <!-- To-do: Remove Bootstrap utilities -->
             <div id="locations-wrapper" class="row justify-content-center">
                 <div class="col-lg-4 col-md-6" v-for="location in locations" :key="location.title">
                     <Location :title="location.title" :image="location.image" :warp="location.warp" />
@@ -160,8 +154,6 @@ export default {
     methods: {
         setSelectedEdition(edition) {
             this.selectedEdition = this.Editions[edition];
-
-            return undefined;
         },
 
         scrollTo(identifier) {
@@ -170,15 +162,11 @@ export default {
                 left: 0,
                 top: document.getElementById(identifier).offsetTop - 128
             });
-
-            return undefined;
         },
 
         async updateStatus( ) {
             const response = await fetch("https://api.mcsrvstat.us/2/mc.blockeley.com");
             this.status = await response.json( );
-
-            return undefined;
         }
     },
 
@@ -193,7 +181,7 @@ export default {
     },
 
     mounted( ) {
-        // To-do: Implement option to disable, or implement speed check for, auto-update
+        // To-do: Allow users to disable or base frequency on connection
         this.updateStatus( );
         setInterval(this.updateStatus, 3000);
     }

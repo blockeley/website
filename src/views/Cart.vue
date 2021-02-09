@@ -1,6 +1,10 @@
 <template>
     <!-- To-do: New cart design -->
     <div id="cart" :class="classObject">
+        <component :is="div">
+            <h1>test</h1>
+        </component>
+
         <template v-if="checkout && checkout.lineItems.length > 0">
             <div class="container">
                 <div class="row">
@@ -13,7 +17,6 @@
                     <div class="col-lg-4">
                         <div id="order-summary">
                             <Card heading="Order summary">
-                                <!-- To-do: Extend card body support..? -->
                                 Sub-total <span class="important float-right">${{ checkout.subtotalPrice }}</span>
                                 <br>Tax estimate <span class="important float-right">${{ checkout.totalTax }}</span>
                                 <br>Total estimate <span class="important float-right">${{ checkout.totalPrice }}</span>
@@ -106,6 +109,7 @@ export default {
             return undefined;
         },
 
+        // To-do: Move cart functionality to store
         async updateItemQuantity(identifier, increment = true) {
             this.pending = true;
 

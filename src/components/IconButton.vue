@@ -1,18 +1,22 @@
 <template>
-    <div class="icon-button" :class="classObject">
+    <component :is="component" :href="href" :to="to" :target="target" class="icon-button" :class="classObject" @click="click">
         <i class="material-icons">{{ icon }}</i>
-    </div>
+    </component>
 </template>
 
 <script>
 export default {
     name: "IconButton",
 
+    // To-do: Proper style proponent
     props: [
         "icon",
         "active",
         "variant",
-        "notification"
+        "notification",
+        "to",
+        "target",
+        "href"
     ],
 
     data( ) {
@@ -29,6 +33,18 @@ export default {
                 "icon-button-notification": this.notification,
                 "active": this.active
             };
+        },
+
+        component( ) {
+            if(this.href) return "a";
+            if(this.to) return "router-link";
+            return "div";
+        }
+    },
+
+    methods: {
+        click( ) {
+            this.$emit("click");
         }
     }
 }
@@ -49,8 +65,7 @@ export default {
 
     color: rgba(black, 0.5);
 
-    transition: color 100ms ease-in-out,
-                background-color 100ms ease-in-out;
+    transition: 100ms;
 
     &.icon-button-color {
         background-color: rgba(black, 0.05);

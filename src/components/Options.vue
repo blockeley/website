@@ -69,9 +69,7 @@ export default {
 
         border: 2px dashed rgba(black, 0.5);
 
-        transition: color 100ms ease-in-out,
-                    border-color 100ms ease-in-out,
-                    background-color 100ms ease-in-out;
+        transition: 100ms;
 
         &:hover {
             color: black;

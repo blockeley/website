@@ -1,4 +1,5 @@
 <template>
+    <!-- To-do: Remove component -->
     <div class="card">
         <p class="card-heading">{{ heading }}</p>
 

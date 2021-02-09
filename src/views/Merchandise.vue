@@ -11,11 +11,9 @@
                                                  Patreon!</template>
 
                     <template v-slot:buttons>
-                        <Button @click.native="scrollToApparel">Browse apparel</Button>
+                        <Button @click="scrollToApparel">Browse apparel</Button>
 
-                        <a target="_blank" href="https://patreon.blockeley.com">
-                            <Button>Patreon</Button>
-                        </a>
+                        <Button target="_blank" href="https://patreon.blockeley.com">Patreon</Button>
                     </template>
 
                     <alert icon="favorite" message="A special thanks to Lin Tan for their generous contributions" />
@@ -36,10 +34,9 @@
             <div class="container">
                 <Options :options="types" centered="true" @change="setSelectedType" />
 
+                <!-- To-do: Remove Bootstrap utilities -->
                 <div id="merchandise-products-wrapper" class="row justify-content-center">
-                    <div v-for="product in filteredProducts" class="col-xl-3 col-lg-4 col-md-6" :key="product.handle">
-                        <MerchandiseProduct :product="product" />
-                    </div>
+                    <MerchandiseProduct v-for="product in filteredProducts" :key="product.handle" :product="product" />
                 </div>
             </div>
         </template>

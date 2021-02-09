@@ -1,19 +1,21 @@
 <template>
-    <router-link :to="toObject">
-        <div class="merchandise-product">
-            <div class="merchandise-product-image">
-                <img :src="product.images[0].src">
-            </div>
+    <div class="col-xl-3 col-lg-4 col-md-6">
+        <router-link :to="toObject">
+            <div class="merchandise-product">
+                <div class="merchandise-product-image">
+                    <img :src="product.images[0].src">
+                </div>
 
-            <div class="merchandise-product-header">
-                <div class="header-text">
-                    <p class="merchandise-product-heading">{{ product.title }}</p>
+                <div class="merchandise-product-header">
+                    <div class="header-text">
+                        <p class="merchandise-product-heading">{{ product.title }}</p>
 
-                    <p class="merchandise-product-description">$ {{ product.variants[0].price }} USD</p>
+                        <p class="merchandise-product-description">$ {{ product.variants[0].price }} USD</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </router-link>
+        </router-link>
+    </div>
 </template>
 
 <script>
@@ -84,7 +86,7 @@ export default {
 
             object-fit: cover;
 
-            transition: transform 250ms ease-in-out;
+            transition: 250ms;
         }
     }
 

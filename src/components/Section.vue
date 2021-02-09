@@ -34,7 +34,7 @@
 export default {
     name: "Section",
 
-    // To-do: Proper style parameters
+    // To-do: Proper style proponent
     props: [
         "heading",
         "variant"

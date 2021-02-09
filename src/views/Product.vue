@@ -26,6 +26,7 @@
                     <div class="col-lg-6">
                         <div class="product-preview-wrapper">
                             <div class="product-images">
+                                <!-- To-do: Image preview option component..? -->
                                 <div @click="setSelectedImage(index)" v-for="(image, index) in product.images" :key="index" class="product-image" :class="{ active: index === selectedImage }">
                                     <img :src="image.src">
                                 </div>
@@ -46,13 +47,12 @@
                             <Options :options="option.choices" @change="setSelectedOption(option.name, ...arguments)" />
                         </div>
 
-                        <Button :progress="pending" @click.native="addToCart">Add to cart for ${{ this.product.variants[currentVariant].price }}</Button>
+                        <Button :progress="pending" @click="addToCart">Add to cart for ${{ this.product.variants[currentVariant].price }}</Button>
                     </div>
                 </div>
             </div>
 
-            <!-- To-do: Merchandise suggestion based on selected item's category..? Fill space -->
-
+            <!-- To-do: Merchandise suggestion based on selected item's category..? -->
         </template>
 
         <template v-else>
@@ -138,13 +138,11 @@ export default {
         async render( ) {
             const product = await this.$client.product.fetchByHandle(this.identifier);
 
-            // Send user to merchandise if product does not exist
             if( ! product ) return this.$router.push("/merchandise");
 
             let selectedOptions = { };
 
             for(const option of product.options) {
-                // Trim product options for Options component
                 option.choices = option.values.map(value => value.value);
 
                 selectedOptions[option.name] = option.choices[0];
@@ -177,7 +175,6 @@ export default {
 </script>
 
 <style lang="scss">
-// Create a product pop-up instead?
 .product {
     min-height: calc(100vh - 56px);
 

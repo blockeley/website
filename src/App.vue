@@ -1,42 +1,19 @@
 <template>
     <div id="application" :class="colorClass">
-        <DiscordNotification />
+        <Notification desktopMessage="Learn more about Blockeley and chat with Blockeley team members as well as our community on Discord."
+                      mobileMessage="Join us on Discord.">
+            <LinkButton href="https://discord.gg/mmAK4D5" alternate="true" size="small">Launch Discord</LinkButton>
+        </Notification>
 
-        <div v-if="mobileNavigation" class="mobile-navigation">
-            <div class="navigation-bar">
-                <div class="container-fluid">
-                    <IconButton @click.native="closeMobileNavigation" class="mr-auto" icon="close" />
+        <MobileNavigation v-if="mobileNavigation" :atCart="atCart" @close="closeMobileNavigation" />
 
-                    <img class="navigation-bar-brand" src="/images/logo-transparent.png">
+        <!--<GraduationNotification />-->
 
-                    <router-link to="/cart" class="ml-auto" >
-                        <IconButton :active="atCart" icon="shopping_cart" :notification="$store.state.quantity > 0" />
-                    </router-link>
-                </div>
-            </div>
-
-            <ul class="mobile-navigation-menu">
-                <li class="menu-item">
-                    <router-link to="/" class="item-link" exact>Explore</router-link>
-                </li>
-
-                <li class="menu-item">
-                    <router-link to="/campus" class="item-link">Campus</router-link>
-                </li>
-
-                <li class="menu-item">
-                    <router-link to="/merchandise" class="item-link">Merchandise</router-link>
-                </li>
-
-                <li class="menu-item">
-                    <a class="item-link" href="https://patreon.blockeley.com" target="_blank">Donate</a>
-                </li>
-            </ul>
-        </div>
-
+        <!-- To-do: Implement NavigationBar, NavigationBarBrand, NavigationBarMenu, etc. components -->
         <div class="navigation-bar">
             <div class="container">
-                <IconButton @click.native="openMobileNavigation" class="d-lg-none mr-auto" icon="menu" />
+                <!-- To-do: Remove Bootstrap utilities -->
+                <IconButton @click="openMobileNavigation" class="d-lg-none mr-auto" icon="menu" />
 
                 <img class="navigation-bar-brand" src="/images/logo-transparent.png">
 
@@ -58,34 +35,35 @@
                     </li>
                 </ul>
 
-                <router-link to="/cart" class="ml-auto" >
-                    <IconButton :active="atCart" icon="shopping_cart" :notification="$store.state.quantity > 0" />
-                </router-link>
+                <!-- To-do: Remove Bootstrap utilities -->
+                <IconButton to="/cart" class="ml-auto" icon="shopping_cart" :notification="$store.state.quantity > 0" />
             </div>
         </div>
 
         <router-view />
 
-        <div v-if="notAtExplore" class="container">
-            <div class="footer">
-                <!-- To-do: Non-affiliation notice -->
-                <p class="footer-text">Copyright 2020 <a>Blockeley</a>. Website design by <a href="https://mathhulk.com">Matthew Rowland</a>.</p>
-            </div>
-        </div>
-
+        <Footer v-if="notAtExplore" />
     </div>
 </template>
 
 <script>
 import IconButton from "@/components/IconButton";
-import DiscordNotification from "@/components/DiscordNotification";
+import LinkButton from "@/components/LinkButton";
+import Notification from "@/components/Notification";
+import MobileNavigation from "@/components/MobileNavigation";
+import Footer from "@/components/Footer";
+// import GraduationNotification from "@/components/GraduationNotification";
 
 export default {
     name: "App",
 
     components: {
         IconButton,
-        DiscordNotification
+        Notification,
+        MobileNavigation,
+        Footer,
+        LinkButton,
+        // GraduationNotification
     },
 
     data( ) {
@@ -121,13 +99,11 @@ export default {
             this.mobileNavigation = false;
         },
 
-        // To-do: Cart pop-up component
+        // To-do: Cart pop-up component..?
         async updateCheckout( ) {
             try {
                 await this.$client.checkout.fetch(this.$store.state.identifier);
             } catch(error) {
-                // console.log(error)
-
                 this.$store.commit("setIdentifier", null);
                 this.$store.commit("decreaseQuantity", this.$store.state.quantity);
             }
@@ -150,8 +126,6 @@ export default {
 
 <style lang="scss">
 @import "@/scss/components/navigation-bar";
-@import "@/scss/components/mobile-navigation";
-@import "@/scss/components/footer";
 
 /*
  *  Colors
@@ -193,30 +167,13 @@ body {
 
     font-family: "Poppins", sans-serif;
 
-    background-color: #F5F7F9;
+    background-color: #F5F2E5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 
     &.disabled {
         height: 100%;
 
         overflow: hidden;
-    }
-
-    &::before {
-        // Required for pseudo-element
-        content: "";
-
-        position: absolute;
-
-        left: 0;
-        top: 0;
-
-        height: 100%;
-        width: 100%;
-
-        z-index: -1;
-
-        background-color: rgba(#FFC02E, 0.1);
-        background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.05'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
 }
 </style>

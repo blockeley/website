@@ -1,8 +1,7 @@
 <template>
-    <!-- To-do: Implement href and router-link attributes -->
-    <div class="link-button" :class="classObject">
+    <component :is="component" :href="href" :to="to" :target="target" class="link-button" :class="classObject" @click="click">
         <slot />
-    </div>
+    </component>
 </template>
 
 <script>
@@ -11,7 +10,10 @@ export default {
 
     props: [
         "alternate",
-        "size"
+        "size",
+        "to",
+        "target",
+        "href"
     ],
 
     computed: {
@@ -20,6 +22,18 @@ export default {
                 "link-button-alternate": this.alternate,
                 "link-button-small": this.size === "small"
             };
+        },
+
+        component( ) {
+            if(this.href) return "a";
+            if(this.to) return "router-link";
+            return "div";
+        }
+    },
+
+    methods: {
+        click( ) {
+            this.$emit("click");
         }
     }
 }
@@ -34,10 +48,13 @@ export default {
 
     font-size: 14px;
     font-weight: 500;
-    color: rgba(black, 0.75);
     line-height: 1;
 
-    border-bottom: 2px solid rgba(black, 0.75);
+    // color: rgba(black, 0.75);
+    color: rgba(black, 0.5);
+
+    // border-bottom: 2px solid rgba(black, 0.75);
+    border-bottom: 2px solid rgba(black, 0.5);
 
     transition: 100ms;
 

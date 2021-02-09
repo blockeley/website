@@ -13,11 +13,11 @@
         <p class="cart-item-quantity">x{{ item.quantity }}</p>
 
         <div class="cart-item-buttons">
-            <IconButton @click.native="updateQuantity" icon="add" variant="color" />
+            <IconButton @click="updateQuantity" icon="add" variant="color" />
 
-            <IconButton @click.native="updateQuantity(false)" icon="remove" variant="color" />
+            <IconButton @click="updateQuantity(false)" icon="remove" variant="color" />
 
-            <IconButton @click.native="remove" icon="delete" variant="color" />
+            <IconButton @click="remove" icon="delete" variant="color" />
         </div>
     </div>
 </template>
@@ -61,6 +61,7 @@ export default {
 </script>
 
 <style lang="scss">
+// To-do: New CartItem design
 .cart-item {
     @media (min-width: 992px) {
         display: flex;

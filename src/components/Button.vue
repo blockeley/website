@@ -1,8 +1,7 @@
 <template>
-    <!-- To-do: Implement href and router-link attributes -->
-    <div class="button" :class="classObject">
+    <component :is="component" :href="href" :to="to" :target="target" class="button" :class="classObject" @click="click">
         <slot />
-    </div>
+    </component>
 </template>
 
 <script>
@@ -11,7 +10,10 @@ export default {
 
     props: [
         "alternate",
-        "progress"
+        "progress",
+        "to",
+        "target",
+        "href"
     ],
 
     computed: {
@@ -20,6 +22,18 @@ export default {
                 "button-alternate": this.alternate,
                 "button-progress": this.progress
             };
+        },
+
+        component( ) {
+            if(this.href) return "a";
+            if(this.to) return "router-link";
+            return "div";
+        }
+    },
+
+    methods: {
+        click( )  {
+            this.$emit("click");
         }
     }
 }
@@ -48,8 +62,7 @@ export default {
     line-height: 1;
     color: black;
 
-    transition: background-color 100ms ease-in-out,
-                color 100ms ease-in-out;
+    transition: 100ms;
 
     &.button-progress {
         color: white;
@@ -108,7 +121,6 @@ export default {
     }
 }
 
-// Both transform properties required for alignment
 @keyframes button-progress {
     0% {
         transform: translate(-50%, -50%) rotate(0deg);

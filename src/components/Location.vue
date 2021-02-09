@@ -11,7 +11,7 @@
                 <p class="location-description">/warp {{ warp }}</p>
             </div>
 
-            <IconButton :icon="icon" @click.native="toggleFullScreen" variant="light" />
+            <IconButton :icon="icon" @click="toggleFullScreen" variant="light" />
         </div>
     </div>
 </template>
@@ -71,24 +71,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/scss/colors";
-
-/*
- *    Application color
- *
- */
-#application {
-    @each $name, $color in $colors {
-        &.color-#{$name} .location {
-            box-shadow: 4px 4px $color;
-        }
-    }
-}
-
-/*
- *    Location
- *
- */
 .location {
     background-color: black;
 

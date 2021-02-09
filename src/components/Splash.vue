@@ -14,6 +14,7 @@
 export default {
     name: "Splash",
 
+    // To-do: Handle edge cases in view components instead..?
     props: [
         "image",
         "video",
@@ -38,7 +39,7 @@ export default {
     position: relative;
 
     &:last-child, &.splash-progress {
-        // Force full-height for Home and splash-progress
+        // Always fill height for Home and .splash-progress
         min-height: calc(100vh - 96px);
     }
 
@@ -126,7 +127,7 @@ export default {
     }
 
     &.splash-progress {
-        // Force alignment on splash-progress
+        // Always align for .splash-progress
         display: flex;
         align-items: center;
         justify-content: center;

@@ -10,18 +10,12 @@
                                              virtual events to celebrate the accomplishments of Berkeley students during this difficult time.</template>
 
                 <template v-slot:buttons>
-                    <router-link to="/campus">
-                        <Button alternate="true">Minecraft campus</Button>
-                    </router-link>
+                    <Button alternate="true" to="/campus">Minecraft campus</Button>
 
-                    <router-link to="/merchandise">
-                        <Button alternate="true">Blockeley merchandise</Button>
-                    </router-link>
+                    <Button alternate="true" to="/merchandise">Blockeley merchandise</Button>
 
                     <!--
-                    <router-link to="/donate">
-                        <Button alternate="true">Support Blockeley</Button>
-                    </router-link>
+                    <Button alternate="true" to="/donate">Support Blockeley</Button>
                     -->
                 </template>
 

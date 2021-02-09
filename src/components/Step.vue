@@ -43,7 +43,6 @@ export default {
         align-items: center;
 
         .step-image {
-            // Prevent growing content from shrinking image
             flex-shrink: 0;
 
             width: 512px;
@@ -120,7 +119,7 @@ export default {
         }
     }
 
-    // Remove line breaks for mobile devices
+    // To-do: Properly remove line breaks for mobile devices
     @media (max-width: 1200px) {
         .step-content p.step-description br {
             display: none;
