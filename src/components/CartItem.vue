@@ -122,7 +122,7 @@ export default {
 
         p.cart-item-price, p.cart-item-variant {
             font-size: 16px;
-            font-weight: 300;
+            font-weight: 400;
             line-height: 1;
             color: rgba(black, 0.5);
 

@@ -115,7 +115,7 @@ export default {
 
             p.merchandise-product-description {
                 font-size: 14px;
-                font-weight: 300;
+                font-weight: 400;
                 line-height: 1.25;
                 color: rgba(black, 0.5);
             }

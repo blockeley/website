@@ -201,7 +201,7 @@ export default {
 
         p.location-description {
             font-size: 12px;
-            font-weight: 300;
+            font-weight: 400;
             line-height: 1.25;
             color: rgba(white, 0.5);
         }

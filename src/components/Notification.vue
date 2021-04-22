@@ -37,7 +37,7 @@ export default {
 
         p.notification-message {
             font-size: 12px;
-            font-weight: 300;
+            font-weight: 400;
             color: rgba(white, 0.5);
             line-height: 1;
 

@@ -27,7 +27,7 @@ export default {
 
     p.footer-text {
         font-size: 14px;
-        font-weight: 500;
+        font-weight: 400;
         line-height: 1.2;
         color: rgba(black, 0.25);
 

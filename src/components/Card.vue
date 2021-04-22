@@ -48,7 +48,7 @@ export default {
         padding: 24px;
 
         font-size: 16px;
-        font-weight: 300;
+        font-weight: 400;
         color: rgba(black, 0.5);
         line-height: 1.25;
 

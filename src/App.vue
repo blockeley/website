@@ -7,7 +7,7 @@
 
         <MobileNavigation v-if="mobileNavigation" :atCart="atCart" @close="closeMobileNavigation" />
 
-        <!--<GraduationNotification />-->
+        <CommencementNotification v-if="commencementNotification" @close="closeCommencementNotification" />
 
         <!-- To-do: Implement NavigationBar, NavigationBarBrand, NavigationBarMenu, etc. components -->
         <div class="navigation-bar">
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <router-view />
+        <router-view @openCommencementNotification="openCommencementNotification" />
 
         <Footer v-if="notAtExplore" />
     </div>
@@ -52,7 +52,7 @@ import LinkButton from "@/components/LinkButton";
 import Notification from "@/components/Notification";
 import MobileNavigation from "@/components/MobileNavigation";
 import Footer from "@/components/Footer";
-// import GraduationNotification from "@/components/GraduationNotification";
+import CommencementNotification from "@/components/CommencementNotification";
 
 export default {
     name: "App",
@@ -63,12 +63,13 @@ export default {
         MobileNavigation,
         Footer,
         LinkButton,
-        // GraduationNotification
+        CommencementNotification
     },
 
     data( ) {
         return {
             mobileNavigation: false,
+            commencementNotification: false,
 
             colorClass: "color-explore"
         };
@@ -86,17 +87,27 @@ export default {
 
     methods: {
         openMobileNavigation( ) {
-            const body = document.getElementsByTagName("body")[0];
-            body.classList.add("disabled");
-
+            document.body.classList.add("disabled");
             this.mobileNavigation = true;
         },
 
         closeMobileNavigation( ) {
-            const body = document.getElementsByTagName("body")[0];
-            body.classList.remove("disabled");
-
+            document.body.classList.remove("disabled");
             this.mobileNavigation = false;
+        },
+
+        openCommencementNotification( ) {
+            document.body.classList.add("disabled");
+            this.commencementNotification = true;
+        },
+
+        closeCommencementNotification(save) {
+            document.body.classList.remove("disabled");
+            this.commencementNotification = false;
+
+            if(save) {
+                window.localStorage.setItem("graduationNotification", true);
+            }
         },
 
         // To-do: Cart pop-up component..?
@@ -120,6 +131,12 @@ export default {
 
     mounted( ) {
         this.updateCheckout( );
+
+        console.log(window.localStorage.getItem("graduationNotification"))
+
+        if( ! window.localStorage.getItem("graduationNotification") ) {
+            this.openCommencementNotification( );
+        }
     }
 }
 </script>

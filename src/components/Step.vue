@@ -176,7 +176,7 @@ export default {
 
         p.step-description {
             font-size: 16px;
-            font-weight: 300;
+            font-weight: 400;
             line-height: 1.2;
             color: rgba(black, 0.5);
 
