@@ -15,7 +15,7 @@
                                               experience for students graduating virtually this spring and benefit the Berkeley community
                                               by donating all funds raised to the Berkeley Relief Fund.
 
-                                              <span class="commencement-notification-action">Join our Minecraft commencement server using the IP
+                                              <span class="commencement-notification-action">Connect to our Minecraft commencement server using the IP
                                                                                              <span class="action-important">blockeley.com</span>.</span></template>
 
                  <template v-slot:buttons>
