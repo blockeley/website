@@ -4,16 +4,30 @@
             <Section heading="Commencement">
                 <template v-slot:subHeading>Spring 2021</template>
 
-                <template v-slot:description><span class="important">Blockeley will be hosting the second annual virtual commencement in
+                <!--<template v-slot:description><span class="important">Blockeley will be hosting the second annual virtual commencement in
                                              Minecraft on May 15th at 10 AM PST.</span> Hoping to provide a memorable experience for students
                                              graduating virtually this spring as well as benefit the Berkeley community, Blockeley will be
                                              donating all funds raised to the Berkeley Relief Fund. The Berkeley Relief Fund aids small businesses,
-                                             nonprofit organizations, and residential tenants impacted by the COVID-19 pandemic.</template>
+                                             nonprofit organizations, and residential tenants impacted by the COVID-19 pandemic.</template>-->
+
+                 <template v-slot:description><span class="important">Join the Blockeley community for our second annual virtual commencement
+                                              in Minecraft or on Twitch starting today at 10 AM PST.</span> We hope to provide a memorable
+                                              experience for students graduating virtually this spring and benefit the Berkeley community
+                                              by donating all funds raised to the Berkeley Relief Fund.
+
+                                              <span class="commencement-notification-action">Connect to our Minecraft commencement server using
+                                                                                             <span class="action-important">blockeley.com</span>.</span></template>
+
+                 <template v-slot:buttons>
+                     <Button target="_blank" href="https://omnil.ink/blockeley">Learn more</Button>
+
+                     <Button target="_blank" href="https://www.youtube.com/watch?v=naA8n9GzJF4">Watch live</Button>
+                 </template>
+
+                 <template v-slot:linkButtons>
+                     <LinkButton target="_blank" href="https://berkeleyrelieffund.org/">Berkeley Relief Fund</LinkButton>
+                 </template>
             </Section>
-
-            <p class="commencement-notification-action">Connect to our Minecraft server using <span class="important">blockeley.com</span>
-
-            <p class="commencement-notification-description">For more information, <a href="https://omnil.ink/blockeley">click here</a>.</p>
         </div>
 
         <div class="commencement-notification-old">
@@ -29,17 +43,15 @@
                                              Berkeley like never before!</template>
 
                 <template v-slot:buttons>
-                    <Button target="_blank" href="https://www.facebook.com/events/457337791999275/">Learn more</Button>
+                    <Button target="_blank" href="https://oldmap.blockeley.com">Explore online</Button>
 
-                    <Button target="_blank" href="https://www.youtube.com/watch?v=naA8n9GzJF4">Trailer</Button>
+                    <Button target="_blank" href="https://www.youtube.com/watch?v=naA8n9GzJF4">Watch trailer</Button>
 
                     <Button @click="close">Close</Button>
                 </template>
 
                 <template v-slot:linkButtons>
-                    <LinkButton target="_blank" href="https://berkeleyrelieffund.org/">Berkeley Relief Fund</LinkButton>
-
-                    <LinkButton @click="close(true)">Do not show me again</LinkButton>
+                    <LinkButton @click="close(true)">Do not show me this again</LinkButton>
                 </template>
             </Section>
         </div>
@@ -116,40 +128,20 @@ export default {
             padding-top: 48px;
         }
 
-        p.commencement-notification-action {
+        .commencement-notification-action {
             font-size: 16px;
             font-weight: 500;
             color: black;
             line-height: 1;
 
-            margin-top: 32px;
+            display: inline-block;
 
-            .important {
-                background-color: black;
+            margin-top: 24px;
 
-                padding: 8px 16px;
-
-                color: white;
-
-                margin-left: 8px;
-            }
-        }
-
-        p.commencement-notification-description {
-            font-size: 16px;
-            font-weight: 400;
-            color: rgba(black, 0.5);
-            line-height: 1;
-
-            margin-top: 32px;
-
-            a {
+            .action-important {
                 color: black;
-                font-weight: 500;
 
-                &:hover {
-                    border-bottom: 2px solid rgba(black, 0.1);
-                }
+                background: rgba(black, 0.1);
             }
         }
 
