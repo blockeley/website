@@ -3,7 +3,7 @@
         <div class="location-image">
             <img :src="image">
         </div>
-
+        
         <div class="location-header">
             <div class="header-text">
                 <p class="location-heading">{{ title }}</p>

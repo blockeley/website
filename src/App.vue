@@ -27,6 +27,10 @@
                     </li>
 
                     <li class="menu-item">
+                        <router-link to="/century" class="item-link">19th Century</router-link>
+                    </li>
+
+                    <li class="menu-item">
                         <router-link to="/merchandise" class="item-link">Merchandise</router-link>
                     </li>
 

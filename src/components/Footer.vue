@@ -2,7 +2,7 @@
     <div class="container">
         <div class="footer">
             <!-- To-do: Expand footer and include non-affiliation notice -->
-            <p class="footer-text">Copyright 2020 <a>Blockeley</a>. Website design by <a href="https://mathhulk.com">Matthew Rowland</a>.</p>
+            <p class="footer-text">Copyright 2021 <a>Blockeley</a>. Website design by <a href="https://mathhulk.com">Matthew Rowland</a>.</p>
         </div>
     </div>
 </template>
