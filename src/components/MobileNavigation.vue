@@ -6,9 +6,6 @@
                 <IconButton @click="close" class="mr-auto" icon="close" />
 
                 <img class="navigation-bar-brand" src="/images/logo-transparent.png">
-
-                <!-- To-do: Remove Bootstrap utilities -->
-                <IconButton to="/cart" class="ml-auto" icon="shopping_cart" :notification="$store.state.quantity > 0" />
             </div>
         </div>
 
@@ -20,10 +17,6 @@
 
             <li class="menu-item">
                 <router-link to="/campus" class="item-link">Campus</router-link>
-            </li>
-
-            <li class="menu-item">
-                <router-link to="/merchandise" class="item-link">Merchandise</router-link>
             </li>
 
             <li class="menu-item">

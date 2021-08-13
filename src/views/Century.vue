@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="century">
         <Splash image="/images/logo-transparent.png" continue="true">
                 <Section heading="Blockeley, 1893">
                     <template v-slot:subHeading></template>
@@ -75,5 +75,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+#century {
+    font-family: "Merriweather";
+}
 </style>

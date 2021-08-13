@@ -7,8 +7,6 @@
 
         <MobileNavigation v-if="mobileNavigation" :atCart="atCart" @close="closeMobileNavigation" />
 
-        <CommencementNotification v-if="commencementNotification" @close="closeCommencementNotification" />
-
         <!-- To-do: Implement NavigationBar, NavigationBarBrand, NavigationBarMenu, etc. components -->
         <div class="navigation-bar">
             <div class="container">
@@ -31,20 +29,13 @@
                     </li>
 
                     <li class="menu-item">
-                        <router-link to="/merchandise" class="item-link">Merchandise</router-link>
-                    </li>
-
-                    <li class="menu-item">
                         <a class="item-link" href="https://patreon.blockeley.com" target="_blank">Donate</a>
                     </li>
                 </ul>
-
-                <!-- To-do: Remove Bootstrap utilities -->
-                <IconButton to="/cart" class="ml-auto" icon="shopping_cart" :notification="$store.state.quantity > 0" />
             </div>
         </div>
 
-        <router-view @openCommencementNotification="openCommencementNotification" />
+        <router-view />
 
         <Footer v-if="notAtExplore" />
     </div>
@@ -52,11 +43,10 @@
 
 <script>
 import IconButton from "@/components/IconButton";
-import LinkButton from "@/components/LinkButton";
 import Notification from "@/components/Notification";
 import MobileNavigation from "@/components/MobileNavigation";
+import LinkButton from "@/components/LinkButton";
 import Footer from "@/components/Footer";
-import CommencementNotification from "@/components/CommencementNotification";
 
 export default {
     name: "App",
@@ -66,8 +56,7 @@ export default {
         Notification,
         MobileNavigation,
         Footer,
-        LinkButton,
-        CommencementNotification
+        LinkButton
     },
 
     data( ) {

@@ -18,36 +18,20 @@ const routes = [
         component: ( ) => import(/* webpackChunkName: "members" */ "@/views/Campus.vue")
     },
     {
+        path: "/maps",
+        name: "Maps",
+        component: ( ) => import(/* webpackChunkName: "maps" */ "@/views/Maps.vue")
+    },
+    {
         path: "/century",
         name: "Century",
         component: ( ) => import(/* webpackChunkName: "members" */ "@/views/Century.vue")
-    },
-    {
-        path: "/merchandise",
-        name: "Merchandise",
-        component: ( ) => import(/* webpackChunkName: "member" */ "@/views/Merchandise.vue"),
-    },
-    {
-        path: "/merchandise/:identifier",
-        name: "Product",
-        props: true,
-        component: ( ) => import(/* webpackChunkName: "member" */ "@/views/Product.vue")
-    },
-    {
-        path: "/cart",
-        name: "Cart",
-        component: ( ) => import(/* webpackChunkName: "member" */ "@/views/Cart.vue")
     },
     // 404
     {
         path: "*",
         name: "PageNotFound",
         component: ( ) => import(/* webpackChunkName: "member" */ "@/views/PageNotFound.vue")
-    },
-    // Allow previous product URLs
-    {
-        path: "/product/:identifier",
-        redirect: "/merchandise/:identifier"
     }
 ];
 

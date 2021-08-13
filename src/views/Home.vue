@@ -19,10 +19,6 @@
                     -->
                 </template>
 
-                <template v-slot:linkButtons>
-                    <LinkButton alternate="true" @click="openCommencementNotification">Spring 2021 Commencement</LinkButton>
-                </template>
-
                 <!--
                 <template v-slot:linkButtons>
                     <LinkButton alternate="true">Meet our team</LinkButton>
@@ -36,7 +32,6 @@
 
 <script>
 import Button from "@/components/Button";
-import LinkButton from "@/components/LinkButton";
 import Section from "@/components/Section";
 import Splash from "@/components/Splash";
 
@@ -46,8 +41,7 @@ export default {
     components: {
         Section,
         Button,
-        Splash,
-        LinkButton
+        Splash
     },
 
     methods: {
