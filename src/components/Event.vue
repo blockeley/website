@@ -59,7 +59,7 @@ export default {
                 line-height: 1.2;
                 color: black;
 
-                text-shadow: 4px 4px var(--accent-color);
+                text-shadow: 4px 4px rgba(var(--accent-color)F0);
 
                 margin-bottom: 24px;
             }

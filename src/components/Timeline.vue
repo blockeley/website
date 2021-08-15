@@ -29,9 +29,10 @@ export default {
 
 <style lang="scss">
     .timeline-wrapper {
-        margin-top: 24px;
+        margin-top: 48px;
         margin-left: 16px;
         margin-right: 16px;
+        margin-bottom: 48px;
 
         .timeline {
             position: relative;
@@ -43,7 +44,7 @@ export default {
 
                     top: 0;
                     bottom: 0;
-                    left: 50%;
+                    left: calc(50% - .25rem + 1px);
 
                     border-left: .5rem dotted #505050;
                 }
