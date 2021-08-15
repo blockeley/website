@@ -11,7 +11,7 @@
                         <p class="section-heading">{{ heading }}</p>
                     </div>
 
-                    <p class="section-description">
+                    <p v-if="hasDescription" class="section-description">
                         <slot name="description" />
                     </p>
 
@@ -65,6 +65,10 @@ export default {
 
         hasSubHeading( ) {
             return !! this.$slots.subHeading;
+        },
+
+        hasDescription( ) {
+            return !! this.$slots.description;
         }
     }
 }

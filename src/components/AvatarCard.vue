@@ -1,8 +1,13 @@
 <template>
     <div class="avatar-card" :class="classObject">
-        <div class="avatar-card-image">
-            <img :src="img">
+        <div class="avatar-card-icon">
+            <img :src="icon">
         </div>
+
+        <div class="avatar-card-image">
+            <img :src="head">
+        </div>
+        
         <div class="avatar-card-details">
             <p class="avatar-card-ign"> {{ ign }} </p>
             <p v-if="name" class="avatar-card-name"> {{ name }} </p>
@@ -18,10 +23,10 @@ export default {
     name: "AvatarCard",
 
     props: [
-        "image",
         "name",
         "ign",
-        "role"
+        "role",
+        "img"
     ],
 
     data( ) {
@@ -36,8 +41,11 @@ export default {
 
             };
         },
-        img( ) {
+        head( ) {
             return "https://mc-heads.net/avatar/" + this.ign;
+        },
+        icon( ) {
+            return "images/avatars/icons8-" + this.img + "-50.png";
         }
     }
 }
@@ -45,6 +53,8 @@ export default {
 
 <style lang="scss">
 .avatar-card {
+    
+
     background-color: rgb(240, 240, 240);
     
     box-shadow: 4px 4px var(--accent-color);
@@ -73,6 +83,38 @@ export default {
             width: 100%;
 
             object-fit: cover;
+        }
+    }
+    .avatar-card-icon {
+        position: absolute;
+
+        img {
+            position: relative;
+            
+            top: 6px;
+            left: 6px;
+
+            z-index: 10;
+            
+            width: 36px;
+            height: 36px;
+
+            
+        }
+        &::after {
+            position: absolute;
+            // Required for pseudo-elements
+            content: "";
+
+            height: 50px;
+            width: 50px;
+
+            transform: translateX(-36px);
+
+            z-index: 9;
+            background-color: rgb(240, 240, 240);
+
+            border-radius: 50%;
         }
     }
 
@@ -113,6 +155,7 @@ export default {
             padding-bottom: 6px;
             font-size: 14px;
             font-weight: 400;
+            line-height: 1.25;
         }
     }
 

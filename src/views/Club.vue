@@ -14,30 +14,31 @@
             <Timeline :events="events" />
         </div>
         <div class="admin-wrapper">
-            <Section heading="Club Members" />
+            <Section heading="Club Members">
+                <template v-slot:subHeading>Meet Our Team</template>
+            </Section>
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-lg-10 col-md-11 col-xs-12">
                         <div class="avatars-wrapper">
                             <AvatarCard v-for="member in this.members" :key="member.ign" :ign="member.ign" :name="member.name"
-                                :image="member.image" :role="member.role" />
+                                :img="member.img" :role="member.role" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="thanks">
-            <Section heading="Builders of Blockeley">
-                <template v-slot:subHeading>Thank You</template>
-            </Section>
+        <div class="thanks-wrapper">
+            <div class="thanks"> 
+                <Section heading="Builders of Blockeley">
+                    <template v-slot:subHeading>Thank You</template>
+                    <template v-slot:buttons>
+                        <Button href="https://docs.google.com/forms/d/e/1FAIpQLSebaih8bBY5wOGvmInL2Xi5Y691UlvVrg0thSPz8LfR_Vfb6w/viewform" target="_blank">Apply as a builder</Button>
+                    </template>
+                </Section>
+            </div>
             <Credits :credits="shuffleBuilders()" />
         </div>
-        <Section heading="Get Involved">
-            <template v-slot:buttons>
-                <Button href="https://docs.google.com/forms/d/e/1FAIpQLSebaih8bBY5wOGvmInL2Xi5Y691UlvVrg0thSPz8LfR_Vfb6w/viewform" target="_blank">Apply as a builder</Button>
-            </template>
-        </Section>
-    
     </div>
 </template>
 
@@ -62,22 +63,22 @@ export default {
     data ( ) {
         return {
             members: [
-                { ign: "X1_Dragon", role: "President" },
-                { ign: "SimpleDF", role: "Vice President" },
-                { ign: "Mistri", role: "Technology" },
-                { ign: "RojoM", role: "Technology" },
-                { ign: "Mathematician", role: "Technology" },
-                { ign: "Mathhulk", role: "Technology" },
-                { ign: "SkyTechBytes", role: "Flex" },
-                { ign: "Rimpo__", role: "PR" },
-                { ign: "Swannnie", role: "HR" },
-                { ign: "Pikiwikibulbie", role: "Events/Production" },
-                { ign: "GetNuanced", role: "Events/Production" },
-                { ign: "Agent_bjorn", role: "Advisory Board" },
-                { ign: "Zetrox42", role: "Advisory Board" },
-                { ign: "Zebraturkey96", role: "Advisory Board" },
-                { ign: "Whale_Watch", role: "Advisory Board" },
-                { ign: "Onnowhere", role: "Advisory Board" },
+                { ign: "X1_Dragon", role: "President", img: "administrator-male" },
+                { ign: "SimpleDF", role: "Vice President", img: "businesswoman" },
+                { ign: "Mistri", role: "Technology", img: "console" },
+                { ign: "RojoM", role: "Technology", img: "server" },
+                { ign: "Mathematician", role: "Technology", img: "console" },
+                { ign: "Mathhulk", role: "Technology", img: "web-design" },
+                { ign: "SkyTechBytes", role: "Flex", img: "idea" },
+                { ign: "Rimpo__", role: "PR", img: "megaphone" },
+                { ign: "Swannnie", role: "HR", img: "chat" },
+                { ign: "Pikiwikibulbie", role: "Events/Production", img: "event" },
+                { ign: "GetNuanced", role: "Events/Production", img: "clapperboard" },
+                { ign: "Agent_bjorn", role: "Advisory Board", img: "name-tag" },
+                { ign: "Zetrox42", role: "Advisory Board", img: "name-tag" },
+                { ign: "Zebraturkey96", role: "Advisory Board", img: "name-tag" },
+                { ign: "Whale_Watch", role: "Advisory Board", img: "name-tag" },
+                { ign: "Onnowhere", role: "Advisory Board", img: "name-tag" },
             ],
             events: [
                 { date: "March 13th, 2020", title: "National Lockdown", description: "The Covid-19 pandemic forces classes to be taught remotely" },
@@ -133,14 +134,17 @@ export default {
         justify-content: center;
         align-content: space-between;
     }
-    .thanks {
+    .thanks-wrapper {
         @extend .space-wrapper;
-        margin-top: 48px;
+        margin-top: 96px;
         margin-bottom: 48px;
         padding-top: 48px;
         padding-bottom: 48px;
 
         background-color: rgb(240, 240, 240);
-        height: 600px;
+        height: 700px;
+    }
+    .thanks {
+        margin-bottom: 36px;
     }
 </style>
