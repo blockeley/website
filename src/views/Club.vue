@@ -7,12 +7,12 @@
                 <template v-slot:description><span class="important">We aim to recreate the entire Berkeley campus in Minecraft for you to explore.</span>
                                              <br>Student volunteers have spent thousands of hours replicating buildings, parks, historical landmarks, and other
                                              various locations around the Berkeley campus to create a genuine virtual experience for our guests.</template>
-
-                <alert :icon="statusIcon" :message="statusMessage" />
             </Section>
         </Splash>
-        <Section heading="Our Story" />
-        <Timeline :events="events"/>
+        <div class="story-wrapper">
+            <Section heading="Our Story" />
+            <Timeline :events="events" />
+        </div>
         <div class="admin-wrapper">
             <Section heading="Club Members" />
             <div class="container-fluid">
@@ -30,9 +30,13 @@
             <Section heading="Builders of Blockeley">
                 <template v-slot:subHeading>Thank You</template>
             </Section>
-            <Credits :credits="builders" />
+            <Credits :credits="shuffleBuilders()" />
         </div>
-        <Section heading="Get Involved" />
+        <Section heading="Get Involved">
+            <template v-slot:buttons>
+                <Button href="https://docs.google.com/forms/d/e/1FAIpQLSebaih8bBY5wOGvmInL2Xi5Y691UlvVrg0thSPz8LfR_Vfb6w/viewform" target="_blank">Apply as a builder</Button>
+            </template>
+        </Section>
     
     </div>
 </template>
@@ -43,6 +47,7 @@ import Section from "@/components/Section";
 import Timeline from "@/components/Timeline";
 import AvatarCard from "@/components/AvatarCard";
 import Credits from "@/components/Credits";
+import Button from "@/components/Button";
 
 export default {
     name: "Club",
@@ -51,7 +56,8 @@ export default {
         Section,
         Timeline,
         AvatarCard,
-        Credits
+        Credits,
+        Button
     },
     data ( ) {
         return {
@@ -80,20 +86,46 @@ export default {
                 { date: "May, 2020", title: "Blockeley Commencement", description: "Blockeley hosts a virtual graduation in Minecraft for the class of 2020" }
             ],
             builders: [
-                "one", "one", "one", "one", "one", "two", "one", "one", "one", "one", "one", "one", "one", "one", "one", "three", "one", "one", "one", "one", "one", "two", "one", "one", "one", "one", "one", "one", "one", "one", "one", "three"
+                "Sample Text","Aj11240","RevivedAlt","atoge2","HiddenCamera","poncho72781","CorporalRivalle","HugeClicker","11zaq","The1800Guy","wellfedbison"
             ]
         }
     },
+    methods: {
+        shuffleBuilders() {
+            // @source https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/ 
+            // Start from the last element and swap
+            // one by one. We don't need to run for
+            // the first element that's why i > 0
+            const n = this.builders.length;
+            const arr = [...this.builders];
+            for (let i = n - 1; i > 0; i--)
+            {
+            
+                // Pick a random index from 0 to i inclusive
+                let j = Math.floor(Math.random() * (i + 1));
+        
+                // Swap arr[i] with the element
+                // at random index
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+    }
 }
 </script>
 
 <style lang="scss">
-
+    .space-wrapper {
+        margin-top: 36px;
+        margin-bottom: 36px;
+        padding-top: 36px;
+        padding-bottom: 36px;
+    }
+    .story-wrapper {
+        @extend .space-wrapper;
+    }
     .admin-wrapper {
-        margin-top: 24px;
-        margin-bottom: 24px;
-        padding-top: 24px;
-        padding-bottom: 24px;
+        @extend .space-wrapper;
     }
     .avatars-wrapper {
         display: flex;
@@ -102,11 +134,13 @@ export default {
         align-content: space-between;
     }
     .thanks {
-        margin-top: 24px;
-        margin-bottom: 24px;
-        padding-top: 24px;
-        padding-bottom: 24px;
-        background-color: white;
-        height: 60vh;
+        @extend .space-wrapper;
+        margin-top: 48px;
+        margin-bottom: 48px;
+        padding-top: 48px;
+        padding-bottom: 48px;
+
+        background-color: rgb(240, 240, 240);
+        height: 600px;
     }
 </style>

@@ -58,18 +58,6 @@ export default {
                 { date: "1894", title: "Conservatory", image: "images/century/Conservatory.png", caption: "Conservatory", warp: "Conservatory" },
             ],
         };
-    },
-
-    methods: {
-        method2( ) {
-
-        }
-    },
-
-    computed: {
-        method1( ) {
-            return null;
-        }
     }
 }
 </script>

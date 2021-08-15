@@ -45,7 +45,7 @@ export default {
 
 <style lang="scss">
 .avatar-card {
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(240, 240, 240);
     
     box-shadow: 4px 4px var(--accent-color);
 
