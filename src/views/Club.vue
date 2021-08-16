@@ -14,7 +14,7 @@
             <Timeline :events="events" />
         </div>
         <div class="admin-wrapper">
-            <Section heading="Club Members">
+            <Section heading="Executive Board">
                 <template v-slot:subHeading>Meet Our Team</template>
             </Section>
             <div class="container-fluid">
@@ -23,6 +23,21 @@
                         <div class="avatars-wrapper">
                             <AvatarCard v-for="member in this.members" :key="member.ign" :ign="member.ign" :name="member.name"
                                 :img="member.img" :role="member.role" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="admin-wrapper">
+            <Section heading="Alumni Board">
+                <template v-slot:subHeading>Alumni</template>
+            </Section>
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-md-11 col-xs-12">
+                        <div class="avatars-wrapper">
+                            <AvatarCard v-for="alum in this.alumni" :key="alum.ign" :ign="alum.ign" :name="alum.name"
+                                :img="alum.img" :role="alum.role" />
                         </div>
                     </div>
                 </div>
@@ -65,16 +80,18 @@ export default {
             members: [
                 { ign: "X1_Dragon", role: "President", img: "administrator-male" },
                 { ign: "SimpleDF", role: "Vice President", img: "businesswoman" },
-                { ign: "Mistri", role: "Technology", img: "console" },
-                { ign: "RojoM", role: "Technology", img: "server" },
-                { ign: "Mathematician", role: "Technology", img: "console" },
-                { ign: "Mathhulk", role: "Technology", img: "web-design" },
+                { ign: "Mistri", role: "Backend", img: "server" },
+                { ign: "RojoM", role: "Backend", img: "server" },
+                { ign: "Mathematician", role: "Consultant", img: "console" },
+                { ign: "Mathhulk", role: "Frontend", img: "web-design" },
                 { ign: "SkyTechBytes", role: "Flex", img: "idea" },
                 { ign: "Rimpo__", role: "PR", img: "megaphone" },
                 { ign: "Swannnie", role: "HR", img: "chat" },
                 { ign: "Pikiwikibulbie", role: "Events/Production", img: "event" },
                 { ign: "GetNuanced", role: "Events/Production", img: "clapperboard" },
-                { ign: "Agent_bjorn", role: "Advisory Board", img: "name-tag" },
+            ],
+            alumni: [
+                { ign: "Agentbjorn", role: "Advisory Board", img: "name-tag" },
                 { ign: "Zetrox42", role: "Advisory Board", img: "name-tag" },
                 { ign: "Zebraturkey96", role: "Advisory Board", img: "name-tag" },
                 { ign: "Whale_Watch", role: "Advisory Board", img: "name-tag" },
