@@ -7,8 +7,6 @@
 
         <MobileNavigation v-if="mobileNavigation" :atCart="atCart" @close="closeMobileNavigation" />
 
-        <CommencementNotification v-if="commencementNotification" @close="closeCommencementNotification" />
-
         <!-- To-do: Implement NavigationBar, NavigationBarBrand, NavigationBarMenu, etc. components -->
         <div class="navigation-bar">
             <div class="container">
@@ -52,7 +50,6 @@ import LinkButton from "@/components/LinkButton";
 import Notification from "@/components/Notification";
 import MobileNavigation from "@/components/MobileNavigation";
 import Footer from "@/components/Footer";
-import CommencementNotification from "@/components/CommencementNotification";
 
 export default {
     name: "App",
@@ -62,14 +59,12 @@ export default {
         Notification,
         MobileNavigation,
         Footer,
-        LinkButton,
-        CommencementNotification
+        LinkButton
     },
 
     data( ) {
         return {
             mobileNavigation: false,
-            commencementNotification: false,
 
             colorClass: "color-explore"
         };
@@ -96,20 +91,6 @@ export default {
             this.mobileNavigation = false;
         },
 
-        openCommencementNotification( ) {
-            document.body.classList.add("disabled");
-            this.commencementNotification = true;
-        },
-
-        closeCommencementNotification(save) {
-            document.body.classList.remove("disabled");
-            this.commencementNotification = false;
-
-            if(save) {
-                window.localStorage.setItem("graduationNotification", true);
-            }
-        },
-
         // To-do: Cart pop-up component..?
         async updateCheckout( ) {
             try {
@@ -131,12 +112,6 @@ export default {
 
     mounted( ) {
         this.updateCheckout( );
-
-        console.log(window.localStorage.getItem("graduationNotification"))
-
-        if( ! window.localStorage.getItem("graduationNotification") ) {
-            this.openCommencementNotification( );
-        }
     }
 }
 </script>
