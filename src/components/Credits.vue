@@ -3,10 +3,9 @@
         <!-- This element has its contents scrolling -->
         <div class="credits-wrapper" id="credits-boundary">
             <!-- This element actually moves -->
-            <div class="credits">
+            <div class="credits" @mouseover="setHovering(true)" @mouseleave="setHovering(false)">
                 <div class="credits-spacer"> </div>
-                    <p class="credits-item" v-for="item in this.credits" :key="'name-' + item" 
-                        @mouseover="setHovering(true)" @mouseleave="setHovering(false)">
+                    <p class="credits-item" v-for="item in this.credits" :key="item">
                         {{ item }}
                     </p>
                 <div class="credits-spacer"> </div>
@@ -20,7 +19,7 @@
 export default {
     name: "Credits",
 
-    mounted: function ( ) { 
+    mounted: function ( ) {
         const target = document.getElementById("credits-boundary");
         const height = target.clientHeight;
         let current = 0;
@@ -30,10 +29,10 @@ export default {
         setInterval(() => {
             if (this.hovering) {
                 //Do not scroll while hovering
-                //return; //Uncomment to allow the scrolling to stop when hovering over the hover container
+                return; //Uncomment to allow the scrolling to stop when hovering over the hover container
             }
 
-            //      CONSTANT               VARIABLE          
+            //      CONSTANT               VARIABLE
             if (target.scrollHeight - target.scrollTop <= height) {
                 //Restart credits
                 current = 0;
@@ -76,6 +75,9 @@ export default {
         max-height: 400px;
         overflow: hidden;
 
+        display: flex;
+        justify-content: center;
+
         &::before {
             content: "";
 
@@ -108,13 +110,7 @@ export default {
         }
     }
     .credits {
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
-
         text-align: center;
-
-        position: relative;
 
         .credits-item {
             margin-top: 12px;
@@ -124,7 +120,7 @@ export default {
             font-weight: 700;
 
             text-shadow: 3px 3px var(--accent-color);
-            
+
         }
     }
 </style>
