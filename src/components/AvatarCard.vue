@@ -4,9 +4,7 @@
             <img :src="icon">
         </div>
 
-        <div class="avatar-card-image">
-            <img :src="head">
-        </div>
+        <AvatarImage :ign="ign" />
         
         <div class="avatar-card-details">
             <p class="avatar-card-ign"> {{ ign }} </p>
@@ -18,9 +16,14 @@
 </template>
 
 <script>
+import AvatarImage from '@/components/AvatarImage'
 
 export default {
     name: "AvatarCard",
+
+    components: {
+        AvatarImage
+    },
 
     props: [
         "name",
@@ -40,9 +43,6 @@ export default {
             return {
 
             };
-        },
-        head( ) {
-            return "https://mc-heads.net/avatar/" + this.ign;
         },
         icon( ) {
             return "images/avatars/icons8-" + this.img + "-50.png";
@@ -66,25 +66,7 @@ export default {
     margin-top: 24px;
     margin-left: 24px;
     margin-right: 24px;
-
-    .avatar-card-image {
-        position: relative;
-        left: calc(50% - 50px);
-
-        height: 100px;
-        width: 100px;
-        
-        margin-top: 24px;
-
-        img {
-            position: absolute;
-            border-radius: 12.5%;
-            height: 100%;
-            width: 100%;
-
-            object-fit: cover;
-        }
-    }
+    
     .avatar-card-icon {
         position: absolute;
 

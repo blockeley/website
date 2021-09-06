@@ -12,12 +12,15 @@
             </p>
         </div>
         
-        <Location v-if="image" :image="image" :title="caption" :warp="warp" />
+        <Location v-if="image && warp" :image="image" :title="caption" :warp="warp" />
+
+        <Framed v-if="image && !warp" :image="image" />
     </div>
 </template>
 
 <script>
 import Location from '@/components/Location'
+import Framed from '@/components/Framed'
 
 export default {
     name: "Event",
@@ -30,7 +33,8 @@ export default {
         "description"
     ],
     components: {
-        Location
+        Location,
+        Framed
     }
 }
 </script>

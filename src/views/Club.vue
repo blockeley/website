@@ -99,9 +99,12 @@ export default {
             ],
             events: [
                 { date: "March 13th, 2020", title: "National Lockdown", description: "The Covid-19 pandemic forces classes to be taught remotely" },
-                { date: "April, 2020", title: "Construction of Blockeley Begins", description: "" },
-                { date: "April, 2020", title: "Building Expands to the entirety of the UC Berkeley Campus", description: "" },
-                { date: "May, 2020", title: "Blockeley Commencement", description: "Blockeley hosts a virtual graduation in Minecraft for the class of 2020" }
+                { date: "March 15th, 2020", title: "Construction of Blockeley Begins", description: "", image: "images/history/image6.png" },
+                { date: "April 16th, 2020", title: "The \"Big Post\" is sent out", description: "", image: "images/history/image5.png" },
+                { date: "May 16th, 2020", title: "Blockeley Commencement", description: "Blockeley hosts a virtual graduation in Minecraft for the class of 2020", image: "images/history/image7.png" },
+                { date: "May 17th, 2020", title: "Blockeley Music Festival", description: "", image: "images/history/image1.png" },
+                { date: "June 11th, 2020", title: "MineMarch", description: "A virtual protest for Black Lives Matter is held in Blockeley", image: "images/history/image3.png" },
+                { date: "July 4th, 2020", title: "July 4th Celebration", description: "", image: "images/history/image2.png" }
             ],
             builders: [
                 "Sample Text","Aj11240","RevivedAlt","atoge2","HiddenCamera","poncho72781","CorporalRivalle","HugeClicker","11zaq","The1800Guy","wellfedbison"

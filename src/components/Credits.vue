@@ -1,9 +1,14 @@
 <template>
     <div class="credits-viewport">
+        <!-- This element has its contents scrolling -->
         <div class="credits-wrapper" id="credits-boundary">
+            <!-- This element actually moves -->
             <div class="credits">
                 <div class="credits-spacer"> </div>
-                <p class="credits-item" v-for="item in this.credits" :key="item">{{ item }}</p>
+                    <p class="credits-item" v-for="item in this.credits" :key="'name-' + item" 
+                        @mouseover="setHovering(true)" @mouseleave="setHovering(false)">
+                        {{ item }}
+                    </p>
                 <div class="credits-spacer"> </div>
             </div>
         </div>
@@ -23,6 +28,11 @@ export default {
         //scrollTop is a variable that changes, representing how far we have scrolled down
         //height is the client Height, which, means scrollHeight (total height) - scrollTop (current) will never equal zero because there will be some clientHeight visible.
         setInterval(() => {
+            if (this.hovering) {
+                //Do not scroll while hovering
+                //return; //Uncomment to allow the scrolling to stop when hovering over the hover container
+            }
+
             //      CONSTANT               VARIABLE          
             if (target.scrollHeight - target.scrollTop <= height) {
                 //Restart credits
@@ -37,7 +47,19 @@ export default {
 
     props: [
         "credits"
-    ]
+    ],
+
+    data( ) {
+        return {
+            hovering: false
+        };
+    },
+
+    methods: {
+        setHovering(isHovering) {
+            this.hovering = isHovering;
+        }
+    }
 }
 </script>
 
