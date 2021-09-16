@@ -65,6 +65,8 @@ import AvatarCard from "@/components/AvatarCard";
 import Credits from "@/components/Credits";
 import Button from "@/components/Button";
 
+import Builders from '@/data/builders';
+
 export default {
     name: "Club",
     components: {
@@ -106,9 +108,7 @@ export default {
                 { date: "June 11th, 2020", title: "MineMarch", description: "A virtual protest for Black Lives Matter is held in Blockeley", image: "images/history/image3.png" },
                 { date: "July 4th, 2020", title: "July 4th Celebration", description: "", image: "images/history/image2.png" }
             ],
-            builders: [
-                "Sample Text","Aj11240","RevivedAlt","atoge2","HiddenCamera","poncho72781","CorporalRivalle","HugeClicker","11zaq","The1800Guy","wellfedbison"
-            ]
+            builders: Builders.text.split(" ")
         }
     },
     methods: {
