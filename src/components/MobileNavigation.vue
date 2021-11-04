@@ -15,17 +15,21 @@
                 <router-link to="/" class="item-link" exact>Explore</router-link>
             </li>
 
+            <!--
 			<li class="menu-item">
                 <router-link to="/club" class="item-link">Club</router-link>
             </li>
+            -->
 
             <li class="menu-item">
                 <router-link to="/campus" class="item-link">Campus</router-link>
             </li>
 
+            <!--
 			<li class="menu-item">
                 <router-link to="/century" class="item-link">19th Century</router-link>
             </li>
+            -->
 
             <li class="menu-item">
                 <a class="item-link" href="https://patreon.blockeley.com" target="_blank">Donate</a>
