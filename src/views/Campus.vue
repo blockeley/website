@@ -190,6 +190,12 @@ export default {
 
 <style lang="scss">
 #campus {
+    padding-bottom: 256px;
+
+    @media (max-width: 992px) {
+        padding-bottom: 128px;
+    }
+
     #steps-wrapper .step {
         margin-top: 48px;
     }

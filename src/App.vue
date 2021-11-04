@@ -45,7 +45,7 @@
 
         <router-view />
 
-        <Footer v-if="notAtExplore" />
+        <Footer />
     </div>
 </template>
 
@@ -70,20 +70,9 @@ export default {
     data( ) {
         return {
             mobileNavigation: false,
-            commencementNotification: false,
 
             colorClass: "color-explore"
         };
-    },
-
-    computed: {
-        notAtExplore( ) {
-            return this.$route.name !== "Home";
-        },
-
-        atCart( ) {
-            return this.$route.name === "Cart";
-        }
     },
 
     methods: {
@@ -96,30 +85,6 @@ export default {
             document.body.classList.remove("disabled");
             this.mobileNavigation = false;
         },
-
-        openCommencementNotification( ) {
-            document.body.classList.add("disabled");
-            this.commencementNotification = true;
-        },
-
-        closeCommencementNotification(save) {
-            document.body.classList.remove("disabled");
-            this.commencementNotification = false;
-
-            if(save) {
-                window.localStorage.setItem("graduationNotification", true);
-            }
-        },
-
-        // To-do: Cart pop-up component..?
-        async updateCheckout( ) {
-            try {
-                await this.$client.checkout.fetch(this.$store.state.identifier);
-            } catch(error) {
-                this.$store.commit("setIdentifier", null);
-                this.$store.commit("decreaseQuantity", this.$store.state.quantity);
-            }
-        }
     },
 
     watch: {
@@ -127,16 +92,6 @@ export default {
             this.colorClass = "color-" + to.name;
 
             this.closeMobileNavigation( );
-        }
-    },
-
-    mounted( ) {
-        this.updateCheckout( );
-
-        console.log(window.localStorage.getItem("graduationNotification"))
-
-        if( ! window.localStorage.getItem("graduationNotification") ) {
-            this.openCommencementNotification( );
         }
     }
 }

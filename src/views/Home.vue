@@ -10,17 +10,10 @@
                                              virtual events to celebrate the accomplishments of Berkeley students during this difficult time.</template>
 
                 <template v-slot:buttons>
-                    <Button alternate="true" href="https://www.youtube.com/watch?v=x8Kfdpakz_k" target="_blank">Learn more</Button>
+                    <Button alternate="true" href="https://www.youtube.com/watch?v=x8Kfdpakz_k" target="_blank">Watch the trailer</Button>
 
-                    <Button alternate="true" to="/campus">Tour Blockeley</Button>
+                    <Button alternate="true" to="/campus">Learn more</Button>
                 </template>
-
-                <!--
-                <template v-slot:linkButtons>
-                    <LinkButton alternate="true">Meet our team</LinkButton>
-                    <LinkButton alternate="true">Upcoming events</LinkButton>
-                </template>
-                -->
             </Section>
         </Splash>
     </div>
@@ -38,12 +31,6 @@ export default {
         Section,
         Button,
         Splash
-    },
-
-    methods: {
-        openCommencementNotification( ) {
-            this.$emit("openCommencementNotification");
-        }
     }
 }
 </script>

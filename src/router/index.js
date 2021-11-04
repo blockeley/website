@@ -12,31 +12,25 @@ const routes = [
         name: "Home",
         component: Home
     },
-    {
-        path: "/club",
-        name: "Club",
-        component: ( ) => import(/* webpackChunkName: "club" */ "@/views/Club.vue")
-    },
+    //{
+    //    path: "/club",
+    //    name: "Club",
+    //    component: ( ) => import(/* webpackChunkName: "club" */ "@/views/Club.vue")
+    //},
     {
         path: "/campus",
         name: "Campus",
-        component: ( ) => import(/* webpackChunkName: "members" */ "@/views/Campus.vue")
+        component: ( ) => import(/* webpackChunkName: "campus" */ "@/views/Campus.vue")
     },
-    {
-        path: "/maps",
-        name: "Maps",
-        component: ( ) => import(/* webpackChunkName: "maps" */ "@/views/Maps.vue")
-    },
-    {
-        path: "/century",
-        name: "Century",
-        component: ( ) => import(/* webpackChunkName: "members" */ "@/views/Century.vue")
-    },
-    // 404
+    //{
+    //    path: "/century",
+    //    name: "Century",
+    //    component: ( ) => import(/* webpackChunkName: "century" */ "@/views/Century.vue")
+    //},
     {
         path: "*",
         name: "PageNotFound",
-        component: ( ) => import(/* webpackChunkName: "member" */ "@/views/PageNotFound.vue")
+        component: ( ) => import(/* webpackChunkName: "404" */ "@/views/PageNotFound.vue")
     }
 ];
 
