@@ -5,13 +5,13 @@
         </div>
 
         <AvatarImage :ign="ign" />
-        
+
         <div class="avatar-card-details">
             <p class="avatar-card-ign"> {{ ign }} </p>
             <p v-if="name" class="avatar-card-name"> {{ name }} </p>
             <p class="avatar-card-role"> {{ role }} </p>
         </div>
-        
+
     </div>
 </template>
 
@@ -53,10 +53,10 @@ export default {
 
 <style lang="scss">
 .avatar-card {
-    
+
 
     background-color: rgb(240, 240, 240);
-    
+
     box-shadow: 4px 4px var(--accent-color);
 
     border-radius: 8px;
@@ -66,22 +66,22 @@ export default {
     margin-top: 24px;
     margin-left: 24px;
     margin-right: 24px;
-    
+
     .avatar-card-icon {
         position: absolute;
 
         img {
             position: relative;
-            
+
             top: 6px;
             left: 6px;
 
             z-index: 10;
-            
+
             width: 36px;
             height: 36px;
 
-            
+
         }
         &::after {
             position: absolute;
@@ -118,12 +118,14 @@ export default {
         color: rgb(20, 20, 20);
 
         white-space: normal;
-        
+
         .avatar-card-ign {
             padding-top: 6px;
             padding-bottom: 6px;
             font-size: 18px;
             font-weight: 500;
+
+            word-break: break-word;
         }
         .avatar-card-name {
             padding-top: 6px;
@@ -131,7 +133,7 @@ export default {
             font-size: 14px;
             font-weight: 400;
         }
-        
+
         .avatar-card-role {
             padding-top: 6px;
             padding-bottom: 6px;

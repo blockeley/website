@@ -1,21 +1,21 @@
 <template>
     <div id="club">
         <Splash image="/images/logo-transparent.png" continue="true">
-            <Section heading="in Minecraft">
-                <template v-slot:subHeading>University of California, Berkeley</template>
+            <Section heading="Our mission">
+                <template v-slot:subHeading>Blockeley</template>
 
-                <template v-slot:description><span class="important">We aim to recreate the entire Berkeley campus in Minecraft for you to explore.</span>
-                                             <br>Student volunteers have spent thousands of hours replicating buildings, parks, historical landmarks, and other
-                                             various locations around the Berkeley campus to create a genuine virtual experience for our guests.</template>
+                <template v-slot:description><span class="important">We serve as a living monument of the University of California, Berkeley campus.</span>
+                                             <br>As we continue to expand our one-to-one recreation of the campus in Minecraft, we exist as a virtual representation
+                                             of the culture and history which drive Berkeley's students, faculty, staff, and alumni.</template>
             </Section>
         </Splash>
         <div class="story-wrapper">
-            <Section heading="Our Story" />
+            <Section heading="Our story" />
             <Timeline :events="events" />
         </div>
         <div class="admin-wrapper">
             <Section heading="Executive Board">
-                <template v-slot:subHeading>Meet Our Team</template>
+                <template v-slot:subHeading>Meet our Team</template>
             </Section>
             <div class="container-fluid">
                 <div class="row justify-content-center">
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="thanks-wrapper">
-            <div class="thanks"> 
+            <div class="thanks">
                 <Section heading="Builders of Blockeley">
                     <template v-slot:subHeading>Thank You</template>
                     <template v-slot:buttons>
@@ -80,17 +80,20 @@ export default {
     data ( ) {
         return {
             members: [
-                { ign: "X1_Dragon", role: "President", img: "administrator-male" },
-                { ign: "SimpleDF", role: "Vice President", img: "businesswoman" },
-                { ign: "Mistri", role: "Backend", img: "server" },
-                { ign: "RojoM", role: "Backend", img: "server" },
-                { ign: "Mathematician", role: "Consultant", img: "console" },
-                { ign: "Mathhulk", role: "Frontend", img: "web-design" },
-                { ign: "SkyTechBytes", role: "Flex", img: "idea" },
+                { ign: "X1_Dragon", role: "Executive", img: "administrator-male" },
+                { ign: "SimpleDF", role: "Executive", img: "administrator-male" },
+                { ign: "Mistri", role: "Tech", img: "server" },
+                { ign: "RojoM", role: "Tech", img: "server" },
+                { ign: "BGHDDevelopment", role: "Tech", img: "server" },
+                { ign: "mathhulk", role: "Tech", img: "server" },
                 { ign: "Rimpo__", role: "PR", img: "megaphone" },
+                { ign: "JingleTheLeo", role: "PR", img: "megaphone" },
+                { ign: "ZophiaXP", role: "PR", img: "megaphone" },
                 { ign: "Swannnie", role: "HR", img: "chat" },
+                { ign: "Zcat", role: "HR", img: "chat" },
+                { ign: "SkyTechBytes", role: "HR", img: "chat" },
                 { ign: "Pikiwikibulbie", role: "Events/Production", img: "event" },
-                { ign: "GetNuanced", role: "Events/Production", img: "clapperboard" },
+                { ign: "GetNuanced", role: "Events/Production", img: "event" },
             ],
             alumni: [
                 { ign: "Agentbjorn", role: "Advisory Board", img: "name-tag" },
@@ -98,6 +101,8 @@ export default {
                 { ign: "Zebraturkey96", role: "Advisory Board", img: "name-tag" },
                 { ign: "Whale_Watch", role: "Advisory Board", img: "name-tag" },
                 { ign: "Onnowhere", role: "Advisory Board", img: "name-tag" },
+                { ign: "Mathematician", role: "Advisory Board", img: "name-tag" },
+                { ign: "falcon_heavy", role: "Advisory Board", img: "name-tag" },
             ],
             events: [
                 { date: "March 13th, 2020", title: "National Lockdown", description: "The Covid-19 pandemic forces classes to be taught remotely" },
@@ -113,7 +118,7 @@ export default {
     },
     methods: {
         shuffleBuilders() {
-            // @source https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/ 
+            // @source https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
             // Start from the last element and swap
             // one by one. We don't need to run for
             // the first element that's why i > 0
@@ -121,10 +126,10 @@ export default {
             const arr = [...this.builders];
             for (let i = n - 1; i > 0; i--)
             {
-            
+
                 // Pick a random index from 0 to i inclusive
                 let j = Math.floor(Math.random() * (i + 1));
-        
+
                 // Swap arr[i] with the element
                 // at random index
                 [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -156,15 +161,16 @@ export default {
     }
     .thanks-wrapper {
         @extend .space-wrapper;
-        margin-top: 96px;
-        margin-bottom: 48px;
-        padding-top: 48px;
-        padding-bottom: 48px;
+        margin-top: 48px;
+        padding-top: 96px;
+        padding-bottom: 96px;
 
-        background-color: rgb(240, 240, 240);
-        height: 700px;
+        margin-bottom: 0;
+
+        background: linear-gradient(to bottom, transparent, white 25%);
+        height: 756px;
     }
     .thanks {
-        margin-bottom: 36px;
+        margin-bottom: 96px;
     }
 </style>

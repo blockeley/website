@@ -91,7 +91,7 @@ export default {
 
             z-index: 100;
 
-            background: linear-gradient(to bottom, rgb(240, 240, 240), transparent);
+            background: linear-gradient(to bottom, white, transparent);
         }
         &::after {
             content: "";
@@ -106,7 +106,7 @@ export default {
 
             z-index: 100;
 
-            background: linear-gradient(to bottom, transparent, rgb(240, 240, 240));
+            background: linear-gradient(to bottom, transparent, white);
         }
     }
     .credits {
