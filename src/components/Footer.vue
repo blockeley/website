@@ -2,7 +2,7 @@
     <div class="footer">
         <div class="footer-body container">
             <div class="row">
-                <div class="footer-text col-lg-3">
+                <div class="col-lg-3">
                     <img class="footer-image" src="images/logo-transparent.png">
 
                     <p class="footer-description">We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with
@@ -11,7 +11,11 @@
                     <p class="footer-title">Build together.</p>
                 </div>
 
-                <!-- To-do: Social media links and copyright notice -->
+                <div class="footer-text col-lg-6">
+                  <p class="footer-description">Follow us on Twitter.</p>
+
+                  <a class="footer-link" href="https://twitter.com/blockeley">@UBlockeley</a>
+                </div>
             </div>
 
             <img class="footer-backdrop" src="images/island.png">
@@ -83,8 +87,6 @@ export default {
         font-weight: 300;
         line-height: 1.25;
         color: rgba(white, 0.5);
-
-        margin-bottom: 16px;
     }
 
     p.footer-title {
@@ -92,6 +94,34 @@ export default {
         font-weight: 500;
         color: white;
         line-height: 1;
+
+        margin-top: 16px;
+    }
+
+    a.footer-link {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(white, 0.75);
+      line-height: 1.5;
+
+      margin-top: 8px;
+
+      border-bottom: 2px solid rgba(white, 0.75);
+
+      transition: 100ms;
+
+      &:hover {
+        color: white;
+
+        border-color: white;
+      }
+    }
+
+    .footer-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 }
 </style>
