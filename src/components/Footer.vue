@@ -14,7 +14,7 @@
                 <div class="footer-text col-lg-6">
                   <p class="footer-description">Follow us on Twitter.</p>
 
-                  <a class="footer-link" href="https://twitter.com/blockeley">@UBlockeley</a>
+                  <a class="footer-link" target="_blank" href="https://twitter.com/UBlockeley">@UBlockeley</a>
                 </div>
             </div>
 
