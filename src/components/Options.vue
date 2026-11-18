@@ -8,6 +8,8 @@
 export default {
     name: "Options",
 
+    emits: [ "change" ],
+
     props: [
         "options",
         "centered"

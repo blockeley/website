@@ -1,24 +1,11 @@
 # blockeley
 
-## Project setup
-```
-yarn install
-```
+Built with [Vue 3](https://vuejs.org), [Vite](https://vite.dev) and [Bun](https://bun.sh).
 
-### Compiles and hot-reloads for development
+```bash
+bun install      # install dependencies
+bun run dev      # dev server with hot reload
+bun run build    # production build into dist/
+bun run preview  # serve the production build locally
+bun run lint     # lint
 ```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

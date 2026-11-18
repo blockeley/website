@@ -8,6 +8,8 @@
 export default {
     name: "IconButton",
 
+    emits: [ "click" ],
+
     // To-do: Proper style proponent
     props: [
         "icon",

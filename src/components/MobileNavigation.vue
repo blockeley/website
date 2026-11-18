@@ -12,7 +12,7 @@
         <!-- To-do: Implement MobileNavigationMenu and MobileNavigationMenuItem components -->
         <ul class="mobile-navigation-menu">
             <li class="menu-item">
-                <router-link to="/" class="item-link" exact>Explore</router-link>
+                <router-link to="/" class="item-link">Explore</router-link>
             </li>
 
             <!--
@@ -39,10 +39,12 @@
 </template>
 
 <script>
-import IconButton from "@/components/IconButton";
+import IconButton from "@/components/IconButton.vue";
 
 export default {
     name: "MobileNavigation",
+
+    emits: [ "close" ],
 
     components: {
         IconButton

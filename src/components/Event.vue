@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import Location from '@/components/Location'
-import Framed from '@/components/Framed'
+import Location from '@/components/Location.vue';
+import Framed from '@/components/Framed.vue';
 
 export default {
     name: "Event",
@@ -62,8 +62,6 @@ export default {
                 font-weight: 900;
                 line-height: 1.2;
                 color: black;
-
-                text-shadow: 4px 4px rgba(var(--accent-color)F0);
 
                 margin-bottom: 24px;
             }

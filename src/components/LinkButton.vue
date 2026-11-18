@@ -8,6 +8,8 @@
 export default {
     name: "LinkButton",
 
+    emits: [ "click" ],
+
     props: [
         "alternate",
         "size",

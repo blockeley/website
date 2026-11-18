@@ -21,7 +21,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10 col-md-11 col-xs-12">
                         <div class="avatars-wrapper">
-                            <AvatarCard v-for="member in this.members" :key="member.ign" :ign="member.ign" :name="member.name"
+                            <AvatarCard v-for="member in members" :key="member.ign" :ign="member.ign" :name="member.name"
                                 :img="member.img" :role="member.role" />
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10 col-md-11 col-xs-12">
                         <div class="avatars-wrapper">
-                            <AvatarCard v-for="alum in this.alumni" :key="alum.ign" :ign="alum.ign" :name="alum.name"
+                            <AvatarCard v-for="alum in alumni" :key="alum.ign" :ign="alum.ign" :name="alum.name"
                                 :img="alum.img" :role="alum.role" />
                         </div>
                     </div>
@@ -58,14 +58,14 @@
 </template>
 
 <script>
-import Splash from "@/components/Splash";
-import Section from "@/components/Section";
-import Timeline from "@/components/Timeline";
-import AvatarCard from "@/components/AvatarCard";
-import Credits from "@/components/Credits";
-import Button from "@/components/Button";
+import Splash from "@/components/Splash.vue";
+import Section from "@/components/Section.vue";
+import Timeline from "@/components/Timeline.vue";
+import AvatarCard from "@/components/AvatarCard.vue";
+import Credits from "@/components/Credits.vue";
+import Button from "@/components/Button.vue";
 
-import Builders from '@/data/builders';
+import Builders from '@/data/builders.js';
 
 export default {
     name: "Club",
@@ -106,12 +106,12 @@ export default {
             ],
             events: [
                 { date: "March 13th, 2020", title: "National Lockdown", description: "The Covid-19 pandemic forces classes to be taught remotely" },
-                { date: "March 15th, 2020", title: "Construction of Blockeley Begins", description: "", image: "images/history/image6.png" },
-                { date: "April 16th, 2020", title: "The \"Big Post\" is sent out", description: "", image: "images/history/image5.png" },
-                { date: "May 16th, 2020", title: "Blockeley Commencement", description: "Blockeley hosts a virtual graduation in Minecraft for the class of 2020", image: "images/history/image7.png" },
-                { date: "May 17th, 2020", title: "Blockeley Music Festival", description: "", image: "images/history/image1.png" },
-                { date: "June 11th, 2020", title: "MineMarch", description: "A virtual protest for Black Lives Matter is held in Blockeley", image: "images/history/image3.png" },
-                { date: "July 4th, 2020", title: "July 4th Celebration", description: "", image: "images/history/image2.png" }
+                { date: "March 15th, 2020", title: "Construction of Blockeley Begins", description: "", image: "/images/history/image6.png" },
+                { date: "April 16th, 2020", title: "The \"Big Post\" is sent out", description: "", image: "/images/history/image5.png" },
+                { date: "May 16th, 2020", title: "Blockeley Commencement", description: "Blockeley hosts a virtual graduation in Minecraft for the class of 2020", image: "/images/history/image7.png" },
+                { date: "May 17th, 2020", title: "Blockeley Music Festival", description: "", image: "/images/history/image1.png" },
+                { date: "June 11th, 2020", title: "MineMarch", description: "A virtual protest for Black Lives Matter is held in Blockeley", image: "/images/history/image3.png" },
+                { date: "July 4th, 2020", title: "July 4th Celebration", description: "", image: "/images/history/image2.png" }
             ],
             builders: Builders.text.split(" ")
         }

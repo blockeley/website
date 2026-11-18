@@ -8,6 +8,8 @@
 export default {
     name: "Button",
 
+    emits: [ "click" ],
+
     props: [
         "alternate",
         "progress",

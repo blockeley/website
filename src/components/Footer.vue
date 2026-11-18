@@ -3,7 +3,7 @@
         <div class="footer-body container">
             <div class="row">
                 <div class="col-lg-3">
-                    <img class="footer-image" src="images/logo-transparent.png">
+                    <img class="footer-image" src="/images/logo-transparent.png">
 
                     <p class="footer-description">We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with
                                              Mojang Synergies AB, or any of its subsidiaries or its affiliates.</p>
@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <img class="footer-backdrop" src="images/island.png">
+            <img class="footer-backdrop" src="/images/island.png">
         </div>
     </div>
 </template>

@@ -111,13 +111,13 @@
 </template>
 
 <script>
-import Location from "@/components/Location";
-import Button from "@/components/Button";
-import Section from "@/components/Section";
-import Options from "@/components/Options";
-import Step from "@/components/Step";
-import Splash from "@/components/Splash";
-import Alert from "@/components/Alert";
+import Location from "@/components/Location.vue";
+import Button from "@/components/Button.vue";
+import Section from "@/components/Section.vue";
+import Options from "@/components/Options.vue";
+import Step from "@/components/Step.vue";
+import Splash from "@/components/Splash.vue";
+import Alert from "@/components/Alert.vue";
 
 export default {
     name: "Campus",
@@ -138,11 +138,11 @@ export default {
             Identifiers: { Explore: "explore", Locations: "locations" },
 
             locations: [
-                { title: "Doe Memorial Library", image: "images/locations/one.png", warp: "Doe" },
-                { title: "California Memorial Stadium", image: "images/locations/two.png", warp: "Stadium" },
-                { title: "Sather Tower", image: "images/locations/three.png", warp: "Campanile" },
-                { title: "Sather Gate", image: "images/locations/four.png", warp: "SatherGate" },
-                { title: "Sproul Hall", image: "images/locations/five.png", warp: "Sproul" }
+                { title: "Doe Memorial Library", image: "/images/locations/one.png", warp: "Doe" },
+                { title: "California Memorial Stadium", image: "/images/locations/two.png", warp: "Stadium" },
+                { title: "Sather Tower", image: "/images/locations/three.png", warp: "Campanile" },
+                { title: "Sather Gate", image: "/images/locations/four.png", warp: "SatherGate" },
+                { title: "Sproul Hall", image: "/images/locations/five.png", warp: "Sproul" }
             ],
 
             selectedEdition: "java",

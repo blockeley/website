@@ -33,10 +33,10 @@
 </template>
 
 <script>
-import Button from "@/components/Button";
-import Section from "@/components/Section";
-import Splash from "@/components/Splash";
-import Timeline from "@/components/Timeline";
+import Button from "@/components/Button.vue";
+import Section from "@/components/Section.vue";
+import Splash from "@/components/Splash.vue";
+import Timeline from "@/components/Timeline.vue";
 
 export default {
     name: "Century",
@@ -51,11 +51,11 @@ export default {
     data( ) {
         return {
             events: [
-                { date: "1873", title: "North Hall", image: "images/century/NorthHall.png", caption: "North Hall", warp: "NorthHall" },
-                { date: "1879", title: "Mining and Mechanic Arts Building", image: "images/century/MMAB.png", caption: "Mining and Mechanic Arts Building", warp: "MMAB" },
-                { date: "1881", title: "Bacon Hall", image: "images/century/BaconHall.png", caption: "Bacon Hall", warp: "BaconHall" },
-                { date: "1893", title: "Mechanics Building", image: "images/century/Mechanics.png", caption: "Mechanics Building", warp: "Mechanics" },
-                { date: "1894", title: "Conservatory", image: "images/century/Conservatory.png", caption: "Conservatory", warp: "Conservatory" },
+                { date: "1873", title: "North Hall", image: "/images/century/NorthHall.png", caption: "North Hall", warp: "NorthHall" },
+                { date: "1879", title: "Mining and Mechanic Arts Building", image: "/images/century/MMAB.png", caption: "Mining and Mechanic Arts Building", warp: "MMAB" },
+                { date: "1881", title: "Bacon Hall", image: "/images/century/BaconHall.png", caption: "Bacon Hall", warp: "BaconHall" },
+                { date: "1893", title: "Mechanics Building", image: "/images/century/Mechanics.png", caption: "Mechanics Building", warp: "Mechanics" },
+                { date: "1894", title: "Conservatory", image: "/images/century/Conservatory.png", caption: "Conservatory", warp: "Conservatory" },
             ],
         };
     }

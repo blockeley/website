@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import IconButton from "@/components/IconButton";
+import IconButton from "@/components/IconButton.vue";
 
 export default {
     name: "Location",

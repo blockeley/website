@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import AvatarImage from '@/components/AvatarImage'
+import AvatarImage from '@/components/AvatarImage.vue';
 
 export default {
     name: "AvatarCard",
@@ -45,7 +45,7 @@ export default {
             };
         },
         icon( ) {
-            return "images/avatars/icons8-" + this.img + "-50.png";
+            return "/images/avatars/icons8-" + this.img + "-50.png";
         }
     }
 }

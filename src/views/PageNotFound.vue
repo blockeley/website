@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import Splash from "@/components/Splash";
-import Button from "@/components/Button";
-import Section from "@/components/Section";
+import Splash from "@/components/Splash.vue";
+import Button from "@/components/Button.vue";
+import Section from "@/components/Section.vue";
 
 export default {
     name: "PageNotFound",

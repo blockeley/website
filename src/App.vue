@@ -5,7 +5,7 @@
             <LinkButton href="https://discord.gg/mmAK4D5" alternate="true" size="small">Launch Discord</LinkButton>
         </Notification>
 
-        <MobileNavigation v-if="mobileNavigation" :atCart="atCart" @close="closeMobileNavigation" />
+        <MobileNavigation v-if="mobileNavigation" @close="closeMobileNavigation" />
 
         <!-- To-do: Implement NavigationBar, NavigationBarBrand, NavigationBarMenu, etc. components -->
         <div class="navigation-bar">
@@ -17,7 +17,7 @@
 
                 <ul class="navigation-bar-menu ml-auto d-none d-lg-flex">
                     <li class="menu-item">
-                        <router-link to="/" class="item-link" exact>Home</router-link>
+                        <router-link to="/" class="item-link">Home</router-link>
                     </li>
 
                     <li class="menu-item">
@@ -48,11 +48,11 @@
 </template>
 
 <script>
-import IconButton from "@/components/IconButton";
-import Notification from "@/components/Notification";
-import MobileNavigation from "@/components/MobileNavigation";
-import LinkButton from "@/components/LinkButton";
-import Footer from "@/components/Footer";
+import IconButton from "@/components/IconButton.vue";
+import Notification from "@/components/Notification.vue";
+import MobileNavigation from "@/components/MobileNavigation.vue";
+import LinkButton from "@/components/LinkButton.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
     name: "App",
@@ -67,10 +67,14 @@ export default {
 
     data( ) {
         return {
-            mobileNavigation: false,
-
-            colorClass: "color-explore"
+            mobileNavigation: false
         };
+    },
+
+    computed: {
+        colorClass( ) {
+            return "color-" + String(this.$route.name || "explore");
+        }
     },
 
     methods: {
@@ -86,9 +90,7 @@ export default {
     },
 
     watch: {
-        $route(to) {
-            this.colorClass = "color-" + to.name;
-
+        $route( ) {
             this.closeMobileNavigation( );
         }
     }
@@ -96,12 +98,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/scss/components/navigation-bar";
-
-/*
- *  Colors
- */
-@import "@/scss/colors";
+@use "sass:meta";
+@use "sass:string";
+@use "@/scss/components/navigation-bar";
+@use "@/scss/colors" as *;
 
 #application {
     --accent-color: #ffc02e;
@@ -110,7 +110,7 @@ export default {
 
     @each $identifier, $color in $colors {
         &.color-#{$identifier} {
-            $string: str-slice(inspect($color), 2);
+            $string: string.slice(meta.inspect($color), 2);
 
             $color-transparent: rgba($color, 0.1);
             $color-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23#{$string}' fill-opacity='0.075' transform='translate(100 100)' d='M28.3,-25.1C35,-14.1,37.8,-2.4,39.5,16.7C41.3,35.7,42,62.2,32.7,66C23.4,69.7,4,50.8,-18.3,39.5C-40.6,28.2,-65.8,24.5,-68.4,15.1C-70.9,5.7,-50.8,-9.4,-35.6,-22.3C-20.4,-35.3,-10.2,-46.2,0.3,-46.4C10.7,-46.6,21.5,-36.2,28.3,-25.1Z' /%3E%3C/svg%3E");

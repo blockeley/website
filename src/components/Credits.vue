@@ -5,7 +5,7 @@
             <!-- This element actually moves -->
             <div class="credits" @mouseover="setHovering(true)" @mouseleave="setHovering(false)">
                 <div class="credits-spacer"> </div>
-                    <p class="credits-item" v-for="item in this.credits" :key="item">
+                    <p class="credits-item" v-for="item in credits" :key="item">
                         {{ item }}
                     </p>
                 <div class="credits-spacer"> </div>
