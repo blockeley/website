@@ -1,6 +1,6 @@
 <template>
     <div id="explore">
-        <Splash video="/videos/background.mp4" poster="/images/poster.jpg">
+        <Splash video="/videos/background.mp4" poster="/images/poster.webp">
             <Section heading="Blockeley" variant="light">
                 <template v-slot:subHeading>the <span class="important">#1 Minecraft university</span> in the world</template>
 

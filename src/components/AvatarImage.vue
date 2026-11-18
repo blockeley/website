@@ -1,6 +1,6 @@
 <template>
     <div class="avatar-image">
-        <img :src="head">
+        <img :src="head" width="100" height="100" loading="lazy" decoding="async" :alt="ign">
     </div>
 </template>
 

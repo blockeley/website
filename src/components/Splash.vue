@@ -1,9 +1,9 @@
 <template>
     <div class="splash" :class="classObject">
-        <img v-if="image" class="splash-image" :src="image" />
+        <img v-if="image" class="splash-image" :src="image" alt="" />
 
         <div v-if="video && poster" class="splash-video">
-            <video :src="video" :poster="poster" autoplay loop muted playsinline />
+            <video :src="video" :poster="poster" autoplay loop muted playsinline disablepictureinpicture />
         </div>
 
         <slot />
@@ -58,7 +58,8 @@ export default {
         height: calc(100vh - 96px);
 
         &.splash-continue::after {
-            content: "arrow_downward";
+            // Material Icons arrow_downward (Apache 2.0), drawn without the icon font
+            content: "";
 
             display: flex;
             align-items: center;
@@ -76,11 +77,7 @@ export default {
 
             transform: translateX(-50%);
 
-            font-family: "Material Icons";
-            font-size: 24px;
-            color: white;
-
-            background-color: black;
+            background: black url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='m20 12-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z'/%3E%3C/svg%3E") center / 24px no-repeat;
 
         }
     }

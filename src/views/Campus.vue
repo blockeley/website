@@ -1,6 +1,6 @@
 <template>
     <div id="campus">
-        <Splash image="/images/logo-transparent.png" continue="true">
+        <Splash image="/images/logo-transparent.webp" continue="true">
             <Section heading="in Minecraft">
                 <template v-slot:subHeading>University of California, Berkeley</template>
 
@@ -34,14 +34,14 @@
 
             <div id="steps-wrapper">
                 <template v-if="selectedEdition === Editions.Java">
-                    <Step title="Step one" image="/images/steps/java/one.png">
+                    <Step title="Step one" image="/images/steps/java/one.webp">
                         <template v-slot:description><span class="important">Register for a Minecraft account</span> if you do not already have one.
                                                      <br><span class="important">Download Minecraft Java Edition</span> on Windows, macOS, or Linux.</template>
 
                         <Button href="https://www.minecraft.net/en-us/download/" target="_blank">Download Minecraft</Button>
                     </Step>
 
-                    <Step title="Step two" image="/images/steps/java/two.png" alternate="true">
+                    <Step title="Step two" image="/images/steps/java/two.webp" alternate="true">
                         <template v-slot:description><span class="important">Open the Minecraft Java Edition launcher.</span>
                                                      <br><span class="important">Sign in with your Minecraft account</span> (or your Microsoft account).
                                                      <br><span class="important">Click play</span> to launch Minecraft Java Edition.</template>
@@ -49,7 +49,7 @@
                         <alert icon="priority_high" message="Remember to use the latest release" />
                     </Step>
 
-                    <Step title="Step three" image="/images/steps/java/three.png">
+                    <Step title="Step three" image="/images/steps/java/three.webp">
                         <template v-slot:description><span class="important">Select the Multiplayer option</span> from the menu.
                                                      <br><span class="important">Click Add Server</span> and type <span class="important">mc.blockeley.com</span> in the <span class="important">Server Address</span> field.
                                                      <br><span class="important">Click done</span> and <span class="important">select the Blockeley Minecraft server</span> from the multiplayer menu.
@@ -58,20 +58,20 @@
                 </template>
 
                 <template v-else>
-                    <Step title="Step one" image="/images/steps/bedrock/one.png">
+                    <Step title="Step one" image="/images/steps/bedrock/one.webp">
                         <template v-slot:description><span class="important">Register for an Xbox Live account</span> through Microsoft if you do not already have one.
                                                      <br><span class="important">Download Minecraft Bedrock Edition</span> on Android, iOS, or Windows 10.</template>
 
                         <Button href="https://www.xbox.com/en-US/live/minecraft/sign-up" target="_blank">Minecraft sign up</Button>
                     </Step>
 
-                    <Step title="Step two" image="/images/steps/bedrock/two.png" alternate="true">
+                    <Step title="Step two" image="/images/steps/bedrock/two.webp" alternate="true">
                         <template v-slot:description><span class="important">Open Minecraft Bedrock Edition.</span>
                                                      <br><span class="important">Sign in with your Xbox Live account</span> through Microsoft.
                                                      <br><span class="important">Click play</span> and <span class="important">select Servers</span>.</template>
                     </Step>
 
-                    <Step title="Step three" image="/images/steps/bedrock/three.png">
+                    <Step title="Step three" image="/images/steps/bedrock/three.webp">
                         <template v-slot:description><span class="important">Scroll to the bottom of the Featured Servers list.</span>
                                                      <br><span class="important">Click Add Server</span>and type <span class="important">mc.blockeley.com</span> in the <span class="important">Server Address</span> field.
                                                      <br><span class="important">Click Save</span> and <span class="important">select the Blockeley Minecraft server</span> from the list of Additional Servers.
@@ -138,11 +138,11 @@ export default {
             Identifiers: { Explore: "explore", Locations: "locations" },
 
             locations: [
-                { title: "Doe Memorial Library", image: "/images/locations/one.png", warp: "Doe" },
-                { title: "California Memorial Stadium", image: "/images/locations/two.png", warp: "Stadium" },
-                { title: "Sather Tower", image: "/images/locations/three.png", warp: "Campanile" },
-                { title: "Sather Gate", image: "/images/locations/four.png", warp: "SatherGate" },
-                { title: "Sproul Hall", image: "/images/locations/five.png", warp: "Sproul" }
+                { title: "Doe Memorial Library", image: "/images/locations/one.webp", warp: "Doe" },
+                { title: "California Memorial Stadium", image: "/images/locations/two.webp", warp: "Stadium" },
+                { title: "Sather Tower", image: "/images/locations/three.webp", warp: "Campanile" },
+                { title: "Sather Gate", image: "/images/locations/four.webp", warp: "SatherGate" },
+                { title: "Sproul Hall", image: "/images/locations/five.webp", warp: "Sproul" }
             ],
 
             selectedEdition: "java",
@@ -165,8 +165,14 @@ export default {
         },
 
         async updateStatus( ) {
-            const response = await fetch("https://api.mcsrvstat.us/2/mc.blockeley.com");
-            this.status = await response.json( );
+            if(document.hidden) return;
+
+            try {
+                const response = await fetch("https://api.mcsrvstat.us/3/mc.blockeley.com");
+                this.status = await response.json( );
+            } catch {
+                // Keep showing the last known status
+            }
         }
     },
 
@@ -181,9 +187,17 @@ export default {
     },
 
     mounted( ) {
-        // To-do: Allow users to disable or base frequency on connection
+        // mcsrvstat.us caches results for a minute, so polling faster only adds requests
         this.updateStatus( );
-        setInterval(this.updateStatus, 3000);
+        this.statusInterval = setInterval(this.updateStatus, 60000);
+
+        document.addEventListener("visibilitychange", this.updateStatus);
+    },
+
+    beforeUnmount( ) {
+        clearInterval(this.statusInterval);
+
+        document.removeEventListener("visibilitychange", this.updateStatus);
     }
 }
 </script>

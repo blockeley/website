@@ -1,7 +1,7 @@
 <template>
     <div class="location" :class="classObject">
         <div class="location-image">
-            <img :src="image">
+            <img :src="image" loading="lazy" decoding="async" alt="">
         </div>
         
         <div class="location-header">
@@ -48,6 +48,10 @@ export default {
         icon( ) {
             return this.fullScreen ? "fullscreen_exit" : "fullscreen";
         }
+    },
+
+    beforeUnmount( ) {
+        if(this.fullScreen) document.body.classList.remove("disabled");
     },
 
     methods: {

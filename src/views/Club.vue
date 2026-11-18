@@ -1,6 +1,6 @@
 <template>
     <div id="club">
-        <Splash image="/images/logo-transparent.png" continue="true">
+        <Splash image="/images/logo-transparent.webp" continue="true">
             <Section heading="Our mission">
                 <template v-slot:subHeading>Blockeley</template>
 
@@ -52,7 +52,7 @@
                     </template>
                 </Section>
             </div>
-            <Credits :credits="shuffleBuilders()" />
+            <Credits :credits="builders" />
         </div>
     </div>
 </template>
@@ -65,7 +65,19 @@ import AvatarCard from "@/components/AvatarCard.vue";
 import Credits from "@/components/Credits.vue";
 import Button from "@/components/Button.vue";
 
-import Builders from '@/data/builders.js';
+import Builders from "@/data/builders.js";
+
+// Fisher-Yates shuffle, run once per visit rather than on every render
+function shuffle(items) {
+    const array = [ ...items ];
+
+    for(let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random( ) * (i + 1));
+        [ array[i], array[j] ] = [ array[j], array[i] ];
+    }
+
+    return array;
+}
 
 export default {
     name: "Club",
@@ -106,35 +118,14 @@ export default {
             ],
             events: [
                 { date: "March 13th, 2020", title: "National Lockdown", description: "The Covid-19 pandemic forces classes to be taught remotely" },
-                { date: "March 15th, 2020", title: "Construction of Blockeley Begins", description: "", image: "/images/history/image6.png" },
-                { date: "April 16th, 2020", title: "The \"Big Post\" is sent out", description: "", image: "/images/history/image5.png" },
-                { date: "May 16th, 2020", title: "Blockeley Commencement", description: "Blockeley hosts a virtual graduation in Minecraft for the class of 2020", image: "/images/history/image7.png" },
-                { date: "May 17th, 2020", title: "Blockeley Music Festival", description: "", image: "/images/history/image1.png" },
-                { date: "June 11th, 2020", title: "MineMarch", description: "A virtual protest for Black Lives Matter is held in Blockeley", image: "/images/history/image3.png" },
-                { date: "July 4th, 2020", title: "July 4th Celebration", description: "", image: "/images/history/image2.png" }
+                { date: "March 15th, 2020", title: "Construction of Blockeley Begins", description: "", image: "/images/history/image6.webp" },
+                { date: "April 16th, 2020", title: "The \"Big Post\" is sent out", description: "", image: "/images/history/image5.webp" },
+                { date: "May 16th, 2020", title: "Blockeley Commencement", description: "Blockeley hosts a virtual graduation in Minecraft for the class of 2020", image: "/images/history/image7.webp" },
+                { date: "May 17th, 2020", title: "Blockeley Music Festival", description: "", image: "/images/history/image1.webp" },
+                { date: "June 11th, 2020", title: "MineMarch", description: "A virtual protest for Black Lives Matter is held in Blockeley", image: "/images/history/image3.webp" },
+                { date: "July 4th, 2020", title: "July 4th Celebration", description: "", image: "/images/history/image2.webp" }
             ],
-            builders: Builders.text.split(" ")
-        }
-    },
-    methods: {
-        shuffleBuilders() {
-            // @source https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
-            // Start from the last element and swap
-            // one by one. We don't need to run for
-            // the first element that's why i > 0
-            const n = this.builders.length;
-            const arr = [...this.builders];
-            for (let i = n - 1; i > 0; i--)
-            {
-
-                // Pick a random index from 0 to i inclusive
-                let j = Math.floor(Math.random() * (i + 1));
-
-                // Swap arr[i] with the element
-                // at random index
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr;
+            builders: shuffle(Builders.text.split(" "))
         }
     }
 }

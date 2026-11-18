@@ -1,48 +1,25 @@
 <template>
     <div class="credits-viewport">
-        <!-- This element has its contents scrolling -->
-        <div class="credits-wrapper" id="credits-boundary">
-            <!-- This element actually moves -->
-            <div class="credits" @mouseover="setHovering(true)" @mouseleave="setHovering(false)">
-                <div class="credits-spacer"> </div>
-                    <p class="credits-item" v-for="item in credits" :key="item">
-                        {{ item }}
-                    </p>
-                <div class="credits-spacer"> </div>
+        <!-- This element clips the credits -->
+        <div class="credits-wrapper" ref="wrapper">
+            <!-- This element moves, using a compositor-only transform animation -->
+            <div class="credits" ref="credits" :style="animationStyle">
+                <div class="credits-spacer"></div>
+                <p class="credits-item" v-for="item in credits" :key="item">
+                    {{ item }}
+                </p>
+                <div class="credits-spacer"></div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+// Scroll speed of the credits: 1px every 25ms
+const PIXELS_PER_SECOND = 40;
 
 export default {
     name: "Credits",
-
-    mounted: function ( ) {
-        const target = document.getElementById("credits-boundary");
-        const height = target.clientHeight;
-        let current = 0;
-        //scrollHeight is a constant that represents the total height of the overflow content
-        //scrollTop is a variable that changes, representing how far we have scrolled down
-        //height is the client Height, which, means scrollHeight (total height) - scrollTop (current) will never equal zero because there will be some clientHeight visible.
-        setInterval(() => {
-            if (this.hovering) {
-                //Do not scroll while hovering
-                return; //Uncomment to allow the scrolling to stop when hovering over the hover container
-            }
-
-            //      CONSTANT               VARIABLE
-            if (target.scrollHeight - target.scrollTop <= height) {
-                //Restart credits
-                current = 0;
-            } else {
-                current += 1;
-            }
-            target.scroll(0, current);
-            //Update credits every 25 milliseconds
-        }, 25);
-    },
 
     props: [
         "credits"
@@ -50,14 +27,37 @@ export default {
 
     data( ) {
         return {
-            hovering: false
+            distance: 0
         };
     },
 
-    methods: {
-        setHovering(isHovering) {
-            this.hovering = isHovering;
+    computed: {
+        animationStyle( ) {
+            if( ! this.distance ) return { };
+
+            return {
+                "--credits-distance": `-${ this.distance }px`,
+                "--credits-duration": `${ this.distance / PIXELS_PER_SECOND }s`
+            };
         }
+    },
+
+    methods: {
+        measure( ) {
+            this.distance = Math.max(0, this.$refs.credits.offsetHeight - this.$refs.wrapper.clientHeight);
+        }
+    },
+
+    mounted( ) {
+        this.measure( );
+
+        // Re-measure when web fonts load or the viewport changes the line wrapping
+        this.observer = new ResizeObserver(( ) => this.measure( ));
+        this.observer.observe(this.$refs.credits);
+    },
+
+    beforeUnmount( ) {
+        this.observer?.disconnect( );
     }
 }
 </script>
@@ -74,6 +74,10 @@ export default {
     .credits-wrapper {
         max-height: 400px;
         overflow: hidden;
+
+        @media (prefers-reduced-motion: reduce) {
+            overflow-y: auto;
+        }
 
         display: flex;
         justify-content: center;
@@ -110,7 +114,22 @@ export default {
         }
     }
     .credits {
+        // Size to the content (not the 400px wrapper) so the scroll distance can be measured
+        align-self: flex-start;
+
         text-align: center;
+
+        animation: credits-scroll var(--credits-duration, 0s) linear infinite;
+
+        will-change: transform;
+
+        &:hover {
+            animation-play-state: paused;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+        }
 
         .credits-item {
             margin-top: 12px;
@@ -121,6 +140,12 @@ export default {
 
             text-shadow: 3px 3px var(--accent-color);
 
+        }
+    }
+
+    @keyframes credits-scroll {
+        to {
+            transform: translateY(var(--credits-distance, 0));
         }
     }
 </style>

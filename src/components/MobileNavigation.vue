@@ -5,7 +5,7 @@
                 <!-- To-do: Remove Bootstrap utilities -->
                 <IconButton @click="close" class="mr-auto" icon="close" />
 
-                <img class="navigation-bar-brand" src="/images/logo-transparent.png">
+                <img class="navigation-bar-brand" src="/images/logo-transparent.webp" alt="Blockeley">
             </div>
         </div>
 

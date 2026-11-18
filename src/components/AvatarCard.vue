@@ -1,7 +1,7 @@
 <template>
     <div class="avatar-card" :class="classObject">
         <div class="avatar-card-icon">
-            <img :src="icon">
+            <img :src="icon" width="36" height="36" loading="lazy" decoding="async" alt="">
         </div>
 
         <AvatarImage :ign="ign" />

@@ -1,0 +1,38 @@
+/* Meyer reset v2.0 (public domain) - https://meyerweb.com/eric/tools/css/reset/ */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
+
+/*
+ * Bootstrap v5.0.0-alpha1 grid + utilities (MIT) - https://getbootstrap.com
+ * Only the rules for classes this site uses; previously both full files (~96 KB) were loaded from cdnjs.
+ */
+.container,.container-fluid{width:100%;padding-right:1rem;padding-left:1rem;margin-right:auto;margin-left:auto}
+@media (min-width:576px){.container{max-width:540px}
+}
+@media (min-width:768px){.container{max-width:720px}
+}
+@media (min-width:992px){.container{max-width:960px}
+}
+@media (min-width:1200px){.container{max-width:1140px}
+}
+@media (min-width:1400px){.container{max-width:1320px}
+}
+.row{--bs-gutter-x:1.5rem;--bs-gutter-y:0;display:flex;flex:1 0 100%;flex-wrap:wrap;margin-top:calc(var(--bs-gutter-y) * -1);margin-right:calc(var(--bs-gutter-x)/ -2);margin-left:calc(var(--bs-gutter-x)/ -2)}
+.row>*{box-sizing:border-box;flex-shrink:0;width:100%;max-width:100%;padding-right:calc(var(--bs-gutter-x)/ 2);padding-left:calc(var(--bs-gutter-x)/ 2);margin-top:var(--bs-gutter-y)}
+@media (min-width:768px){.col-md-5{flex:0 0 auto;width:41.666667%}
+.col-md-6{flex:0 0 auto;width:50%}
+.col-md-11{flex:0 0 auto;width:91.666667%}
+}
+@media (min-width:992px){.col-lg-3{flex:0 0 auto;width:25%}
+.col-lg-4{flex:0 0 auto;width:33.333333%}
+.col-lg-6{flex:0 0 auto;width:50%}
+.col-lg-8{flex:0 0 auto;width:66.666667%}
+.col-lg-10{flex:0 0 auto;width:83.333333%}
+}
+.d-none{display:none!important}
+.justify-content-center{justify-content:center!important}
+.mr-auto{margin-right:auto!important}
+.ml-auto{margin-left:auto!important}
+@media (min-width:992px){.d-lg-none{display:none!important}
+.d-lg-flex{display:flex!important}
+}
+

@@ -1,14 +1,20 @@
 <template>
     <div class="alert">
-        <i class="material-icons">{{ icon }}</i>
+        <Icon :name="icon" />
 
         <p class="alert-message">{{ message }}</p>
     </div>
 </template>
 
 <script>
+import Icon from "@/components/Icon.vue";
+
 export default {
     name: "Alert",
+
+    components: {
+        Icon
+    },
 
     props: [
         "icon",
@@ -42,7 +48,7 @@ export default {
         margin-bottom: 13px
     }
 
-    i.material-icons {
+    svg.icon {
         color: rgba(white, 0.75);
 
         margin-right: 16px;

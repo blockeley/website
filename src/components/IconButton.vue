@@ -1,12 +1,18 @@
 <template>
     <component :is="component" :href="href" :to="to" :target="target" class="icon-button" :class="classObject" @click="click">
-        <i class="material-icons">{{ icon }}</i>
+        <Icon :name="icon" />
     </component>
 </template>
 
 <script>
+import Icon from "@/components/Icon.vue";
+
 export default {
     name: "IconButton",
+
+    components: {
+        Icon
+    },
 
     emits: [ "click" ],
 

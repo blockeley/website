@@ -1,7 +1,7 @@
 <template>
     <div class="framed" :class="classObject">
         <div class="framed-image">
-            <img :src="image">
+            <img :src="image" loading="lazy" decoding="async" alt="">
         </div>
     </div>
 </template>

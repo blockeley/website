@@ -3,7 +3,7 @@
         <div class="container"> 
             <div id="" class="row justify-content-center">
                 <div class="col-lg-4 col-md-5 timeline">
-                    <Event v-for="event in events" :key="event.warp" :title="event.title" :caption="event.caption"
+                    <Event v-for="event in events" :key="event.title" :title="event.title" :caption="event.caption"
                         :image="event.image" :warp="event.warp" :date="event.date" :description="event.description"/>
                 </div>
             </div>

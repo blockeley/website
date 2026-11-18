@@ -13,7 +13,7 @@
                 <!-- To-do: Remove Bootstrap utilities -->
                 <IconButton @click="openMobileNavigation" class="d-lg-none mr-auto" icon="menu" />
 
-                <img class="navigation-bar-brand" src="/images/logo-transparent.png">
+                <img class="navigation-bar-brand" src="/images/logo-transparent.webp" alt="Blockeley">
 
                 <ul class="navigation-bar-menu ml-auto d-none d-lg-flex">
                     <li class="menu-item">

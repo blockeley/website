@@ -1,7 +1,7 @@
 <template>
     <div class="step" :class="classObject">
         <div class="step-image">
-            <img :src="image">
+            <img :src="image" loading="lazy" decoding="async" alt="">
         </div>
 
         <div class="step-content">
