@@ -178,11 +178,15 @@ export default {
 
     computed: {
         statusIcon( ) {
-            return this.status && this.status.online ? "play_arrow" : "close";
+            if( ! this.status ) return "priority_high";
+
+            return this.status.online ? "play_arrow" : "close";
         },
 
         statusMessage( ) {
-            return this.status && this.status.online ? this.status.players.online + " player(s) on mc.blockeley.com" : "mc.blockeley.com is offline";
+            if( ! this.status ) return "Checking mc.blockeley.com";
+
+            return this.status.online ? this.status.players.online + " player(s) on mc.blockeley.com" : "mc.blockeley.com is offline";
         }
     },
 

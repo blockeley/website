@@ -125,8 +125,13 @@ export default {
                 { date: "June 11th, 2020", title: "MineMarch", description: "A virtual protest for Black Lives Matter is held in Blockeley", image: "/images/history/image3.webp" },
                 { date: "July 4th, 2020", title: "July 4th Celebration", description: "", image: "/images/history/image2.webp" }
             ],
-            builders: shuffle(Builders.text.split(" "))
+            builders: Builders.text.split(" ")
         }
+    },
+
+    mounted( ) {
+        // Shuffled in the browser so the pre-rendered HTML hydrates without a mismatch
+        this.builders = shuffle(this.builders);
     }
 }
 </script>

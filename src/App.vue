@@ -48,6 +48,10 @@
 </template>
 
 <script>
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import { useHead } from "@unhead/vue";
+
 import IconButton from "@/components/IconButton.vue";
 import Notification from "@/components/Notification.vue";
 import MobileNavigation from "@/components/MobileNavigation.vue";
@@ -63,6 +67,14 @@ export default {
         MobileNavigation,
         Footer,
         LinkButton
+    },
+
+    setup( ) {
+        const route = useRoute( );
+
+        useHead({
+            title: computed(( ) => route.meta.title ? `${ route.meta.title } | Blockeley` : "Blockeley | The #1 Minecraft university in the world")
+        });
     },
 
     data( ) {
