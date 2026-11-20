@@ -2,9 +2,9 @@
     <div id="century">
         <Splash image="/images/logo-transparent.webp" continue>
                 <Section heading="Blockeley, 1893">
-                    <template v-slot:subHeading></template>
+                    <template #subHeading />
 
-                    <template v-slot:description><span class="important">We aim to recreate the entire Berkeley campus in Minecraft for you to explore.</span>
+                    <template #description><span class="important">We aim to recreate the entire Berkeley campus in Minecraft for you to explore.</span>
                                                 <br>Student volunteers have spent thousands of hours replicating buildings, parks, historical landmarks, and other
                                                 various locations around the Berkeley campus to create a genuine virtual experience for our guests.</template>
 
@@ -13,14 +13,14 @@
 
         <div id="locations">
             <Section heading="Featured locations" variant="inline">
-                <template v-slot:subHeading>19th Century</template>
+                <template #subHeading>19th Century</template>
 
-                <template v-slot:description><span class="important">Such an amazing feat would not be possible without the help of student volunteers and we
+                <template #description><span class="important">Such an amazing feat would not be possible without the help of student volunteers and we
                                              are always looking for new builders.</span> If you are interested in contributing and creating the next generation
                                              of our Minecraft campus, please fill out an application linked below. <span class="important">For guests without
                                              Minecraft, feel free to launch our online map and explore the Blockeley Minecraft server in your browser.</span></template>
 
-                <template v-slot:buttons>
+                <template #buttons>
                     <!-- To-do: Pop-up..? -->
                     <Button href="https://oldmap.blockeley.com" target="_blank">Explore in the browser</Button>
 
@@ -33,6 +33,8 @@
 </template>
 
 <script setup lang="ts">
+// Not routed yet. To publish it, move this file to app/pages/century.vue, add
+// definePageMeta({ title: "19th Century", accent: "#e4d7ac" }) and uncomment its link in site.ts.
 // Only this (currently unrouted) page uses Merriweather, so it loads with this chunk instead of on every page
 import "@fontsource/merriweather/latin-400.css";
 

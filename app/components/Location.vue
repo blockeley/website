@@ -11,7 +11,7 @@
                 <p class="location-description">/warp {{ warp }}</p>
             </div>
 
-            <IconButton :icon="fullScreen ? 'fullscreen_exit' : 'fullscreen'" @click="fullScreen = ! fullScreen" light />
+            <IconButton :icon="fullScreen ? 'fullscreen_exit' : 'fullscreen'" light @click="fullScreen = ! fullScreen" />
         </div>
     </div>
 </template>

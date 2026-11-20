@@ -7,7 +7,12 @@ export const BUILDER_APPLICATION_URL = "https://docs.google.com/forms/d/e/1FAIpQ
 // Accent colour for pages that don't set meta.accent (see App.vue)
 export const DEFAULT_ACCENT = "#ffc02e";
 
-export type NavigationLink = { label: string } & ({ to: string } | { href: string });
+export interface NavigationLink {
+    label: string;
+    to: string;
+    // Opens in a new tab
+    external?: boolean;
+}
 
 // Used by both the desktop navigation bar and the mobile menu
 export const navigationLinks: NavigationLink[] = [
@@ -15,5 +20,5 @@ export const navigationLinks: NavigationLink[] = [
     { label: "Campus", to: "/campus" },
     { label: "Club", to: "/club" },
     // { label: "19th Century", to: "/century" },
-    { label: "Donate", href: PATREON_URL }
+    { label: "Donate", to: PATREON_URL, external: true }
 ];

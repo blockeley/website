@@ -2,7 +2,7 @@
     <div class="mobile-navigation">
         <div class="navigation-bar">
             <div class="container-fluid">
-                <IconButton @click="$emit('close')" class="mr-auto" icon="close" />
+                <IconButton class="mr-auto" icon="close" @click="$emit('close')" />
 
                 <img class="navigation-bar-brand" src="/images/logo-small.webp" alt="Blockeley">
             </div>

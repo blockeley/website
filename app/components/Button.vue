@@ -1,21 +1,23 @@
 <template>
-    <component :is="tag" :href="href" :to="to" class="button" :class="{ 'button-alternate': alternate }">
+    <NuxtLink v-if="to ?? href" :to="to ?? href" class="button" :class="{ 'button-alternate': alternate }">
         <slot />
-    </component>
+    </NuxtLink>
+
+    <div v-else class="button" :class="{ 'button-alternate': alternate }">
+        <slot />
+    </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { RouterLink, type RouteLocationRaw } from "vue-router";
+import type { RouteLocationRaw } from "#vue-router";
 
-// Other attributes (target, @click, ...) fall through to the rendered element
-const props = defineProps<{
+// Other attributes (target, @click, ...) fall through to the rendered element.
+// NuxtLink renders a plain <a> for external URLs.
+defineProps<{
     alternate?: boolean;
     to?: RouteLocationRaw;
     href?: string;
 }>( );
-
-const tag = computed(( ) => props.href ? "a" : props.to ? RouterLink : "div");
 </script>
 
 <style lang="scss">

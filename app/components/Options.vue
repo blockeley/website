@@ -1,6 +1,6 @@
 <template>
     <div class="options" :class="{ 'options-centered': centered }">
-        <div class="option" v-for="option in options" :key="option" @click="selected = option" :class="{ active: selected === option }">{{ option }}</div>
+        <div v-for="option in options" :key="option" class="option" :class="{ active: selected === option }" @click="selected = option">{{ option }}</div>
     </div>
 </template>
 

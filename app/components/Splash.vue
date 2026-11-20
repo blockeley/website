@@ -1,6 +1,6 @@
 <template>
     <div class="splash" :class="{ 'splash-continue': $props.continue }">
-        <img v-if="image" class="splash-image" :src="image" alt="" />
+        <img v-if="image" class="splash-image" :src="image" alt="" >
 
         <div v-if="video && poster" class="splash-video">
             <video ref="videoElement" :src="video" :poster="poster" preload="none" loop muted playsinline disablepictureinpicture />

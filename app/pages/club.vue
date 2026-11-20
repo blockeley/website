@@ -2,9 +2,9 @@
     <div id="club">
         <Splash image="/images/logo-transparent.webp" continue>
             <Section heading="Our mission">
-                <template v-slot:subHeading>Blockeley</template>
+                <template #subHeading>Blockeley</template>
 
-                <template v-slot:description><span class="important">We serve as a living monument of the University of California, Berkeley campus.</span>
+                <template #description><span class="important">We serve as a living monument of the University of California, Berkeley campus.</span>
                                              <br>As we continue to expand our one-to-one recreation of the campus in Minecraft, we exist as a virtual representation
                                              of the culture and history which drive Berkeley's students, faculty, staff, and alumni.</template>
             </Section>
@@ -15,7 +15,7 @@
         </div>
         <div v-for="board in boards" :key="board.heading" class="admin-wrapper">
             <Section :heading="board.heading">
-                <template v-slot:subHeading>{{ board.subHeading }}</template>
+                <template #subHeading>{{ board.subHeading }}</template>
             </Section>
             <div class="container-fluid">
                 <div class="row justify-content-center">
@@ -30,8 +30,8 @@
         <div class="thanks-wrapper">
             <div class="thanks">
                 <Section heading="Builders of Blockeley">
-                    <template v-slot:subHeading>Thank You</template>
-                    <template v-slot:buttons>
+                    <template #subHeading>Thank You</template>
+                    <template #buttons>
                         <Button :href="BUILDER_APPLICATION_URL" target="_blank">Apply as a builder</Button>
                     </template>
                 </Section>
@@ -54,6 +54,8 @@ import Button from "@/components/Button.vue";
 import builderNames from "@/data/builders";
 import { BUILDER_APPLICATION_URL } from "@/site";
 import type { Member, TimelineEvent } from "@/types";
+
+definePageMeta({ title: "Club", accent: "#9155ff" });
 
 // Fisher-Yates shuffle, run once per visit rather than on every render
 function shuffle<T>(items: readonly T[]): T[] {

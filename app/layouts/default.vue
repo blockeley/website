@@ -1,7 +1,8 @@
 <template>
-    <div id="application" :style="{ '--accent-color': route.meta.accent ?? DEFAULT_ACCENT }">
-        <Notification desktopMessage="Learn more about Blockeley and chat with Blockeley team members as well as our community on Discord."
-                      mobileMessage="Join us on Discord.">
+    <div id="application" :style="{ '--accent-color': props.accent ?? route.meta.accent ?? DEFAULT_ACCENT }">
+        <Notification
+desktop-message="Learn more about Blockeley and chat with Blockeley team members as well as our community on Discord."
+                      mobile-message="Join us on Discord.">
             <LinkButton :href="DISCORD_URL" alternate small>Launch Discord</LinkButton>
         </Notification>
 
@@ -9,7 +10,7 @@
 
         <div class="navigation-bar">
             <div class="container">
-                <IconButton @click="mobileNavigation = true" class="d-lg-none mr-auto" icon="menu" />
+                <IconButton class="d-lg-none mr-auto" icon="menu" @click="mobileNavigation = true" />
 
                 <img class="navigation-bar-brand" src="/images/logo-small.webp" alt="Blockeley">
 
@@ -19,17 +20,13 @@
             </div>
         </div>
 
-        <router-view />
+        <slot />
 
         <Footer />
     </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
-import { useRoute } from "vue-router";
-import { useHead } from "@unhead/vue";
-
 import IconButton from "@/components/IconButton.vue";
 import Notification from "@/components/Notification.vue";
 import MobileNavigation from "@/components/MobileNavigation.vue";
@@ -38,10 +35,16 @@ import LinkButton from "@/components/LinkButton.vue";
 import Footer from "@/components/Footer.vue";
 import { DEFAULT_ACCENT, DISCORD_URL } from "@/site";
 
+// The error page has no route meta of its own, so it passes its accent in
+const props = defineProps<{
+    accent?: string;
+}>( );
+
 const route = useRoute( );
 
 useHead({
-    title: computed(( ) => route.meta.title ? `${ route.meta.title } | Blockeley` : "Blockeley | The #1 Minecraft university in the world")
+    title: ( ) => route.meta.title,
+    titleTemplate: title => title ? `${ title } | Blockeley` : "Blockeley | The #1 Minecraft university in the world"
 });
 
 const mobileNavigation = ref(false);

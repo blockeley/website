@@ -1,14 +1,14 @@
 <template>
     <div class="credits-viewport">
         <!-- This element clips the credits -->
-        <div class="credits-wrapper" ref="wrapper">
+        <div ref="wrapper" class="credits-wrapper">
             <!-- This element moves, using a compositor-only transform animation -->
-            <div class="credits" ref="list" :style="animationStyle">
-                <div class="credits-spacer"></div>
-                <p class="credits-item" v-for="item in credits" :key="item">
+            <div ref="list" class="credits" :style="animationStyle">
+                <div class="credits-spacer" />
+                <p v-for="item in credits" :key="item" class="credits-item">
                     {{ item }}
                 </p>
-                <div class="credits-spacer"></div>
+                <div class="credits-spacer" />
             </div>
         </div>
     </div>

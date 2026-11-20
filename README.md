@@ -1,24 +1,23 @@
 # blockeley
 
-Built with [Vue 3](https://vuejs.org), [TypeScript](https://www.typescriptlang.org), [Vite](https://vite.dev) and [Bun](https://bun.sh).
+Built with [Nuxt 4](https://nuxt.com) (Vue 3, TypeScript, Vite) and [Bun](https://bun.sh).
 
 ```bash
-bun install        # install dependencies
+bun install        # install dependencies (also generates Nuxt's types)
 bun run dev        # dev server with hot reload
-bun run build      # type-check, then production build into dist/
-bun run typecheck  # type-check only (vue-tsc)
+bun run build      # pre-render the static site into .output/public
+bun run typecheck  # type-check (vue-tsc)
 bun run preview    # serve the production build locally
-bun run lint       # lint
+bun run lint       # lint (@nuxt/eslint)
 ```
 
 ## Deployment
 
-`bun run build` pre-renders every route to static HTML with
-[vite-ssg](https://github.com/antfu-collective/vite-ssg) (`index.html`,
-`campus.html`, `club.html`, plus `404.html` for unknown paths), inlines the
-critical CSS, and the app hydrates in the browser from there.
+`bun run build` runs `nuxt generate`, which pre-renders every page to static HTML
+(`index.html`, `campus.html`, `club.html`, plus `404.html` from `app/error.vue` for
+unknown paths); the app then hydrates in the browser.
 
-[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) lints and builds
-every pull request, and deploys to GitHub Pages on every push to `develop`
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) lints, type-checks and
+builds every pull request, and deploys to GitHub Pages on every push to `develop`
 (or manually from the Actions tab). The site is served at
 [blockeley.com](https://blockeley.com) via `public/CNAME`.
