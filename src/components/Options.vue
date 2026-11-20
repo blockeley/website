@@ -4,41 +4,29 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "Options",
+<script setup lang="ts">
+import { computed, ref } from "vue";
 
-    emits: [ "change" ],
+const props = defineProps<{
+    options: readonly string[];
+    centered?: boolean;
+}>( );
 
-    props: [
-        "options",
-        "centered"
-    ],
+const emit = defineEmits<{
+    change: [ option: string ];
+}>( );
 
-    data( ) {
-        return {
-            selectedOption: this.options[0]
-        };
-    },
+const selectedOption = ref(props.options[0]);
 
-    computed: {
-        classObject( ) {
-            return {
-                "options-centered": this.centered
-            };
-        }
-    },
+const classObject = computed(( ) => ({
+    "options-centered": props.centered
+}));
 
-    methods: {
-        setSelectedOption(option) {
-            if(option === this.selectedOption) return;
+function setSelectedOption(option: string) {
+    if(option === selectedOption.value) return;
 
-            this.selectedOption = option;
-            this.$emit("change", option);
-
-            return undefined;
-        }
-    }
+    selectedOption.value = option;
+    emit("change", option);
 }
 </script>
 

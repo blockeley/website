@@ -4,22 +4,22 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-header">
-                        <p v-if="hasSubHeading" class="section-sub-heading">
+                        <p v-if="$slots.subHeading" class="section-sub-heading">
                             <slot name="subHeading" />
                         </p>
 
                         <p class="section-heading">{{ heading }}</p>
                     </div>
 
-                    <p v-if="hasDescription" class="section-description">
+                    <p v-if="$slots.description" class="section-description">
                         <slot name="description" />
                     </p>
 
-                    <div v-if="hasButtons" class="section-buttons">
+                    <div v-if="$slots.buttons" class="section-buttons">
                         <slot name="buttons" />
                     </div>
 
-                    <div v-if="hasLinkButtons" class="section-link-buttons">
+                    <div v-if="$slots.linkButtons" class="section-link-buttons">
                         <slot name="linkButtons" />
                     </div>
 
@@ -30,48 +30,28 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "Section",
+<script setup lang="ts">
+import { computed } from "vue";
 
-    // To-do: Proper style proponent
-    props: [
-        "heading",
-        "variant"
-    ],
+// To-do: Proper style proponent
+const props = defineProps<{
+    heading: string;
+    variant?: "light" | "background" | "inline";
+}>( );
 
-    data( ) {
-        return {
-            Variants: { Light: "light", Background: "background", Inline: "inline" }
-        }
-    },
+defineSlots<{
+    default?: ( ) => unknown;
+    subHeading?: ( ) => unknown;
+    description?: ( ) => unknown;
+    buttons?: ( ) => unknown;
+    linkButtons?: ( ) => unknown;
+}>( );
 
-    computed: {
-        classObject( ) {
-            return {
-                "section-light": this.variant === this.Variants.Light,
-                "section-background": [ this.Variants.Background, this.Variants.Inline ].includes(this.variant),
-                "section-inline": this.variant === this.Variants.Inline
-            };
-        },
-
-        hasButtons( ) {
-            return !! this.$slots.buttons;
-        },
-
-        hasLinkButtons( ) {
-            return !! this.$slots.linkButtons;
-        },
-
-        hasSubHeading( ) {
-            return !! this.$slots.subHeading;
-        },
-
-        hasDescription( ) {
-            return !! this.$slots.description;
-        }
-    }
-}
+const classObject = computed(( ) => ({
+    "section-light": props.variant === "light",
+    "section-background": props.variant === "background" || props.variant === "inline",
+    "section-inline": props.variant === "inline"
+}));
 </script>
 
 <style lang="scss">

@@ -1,6 +1,6 @@
 <template>
     <div id="campus">
-        <Splash image="/images/logo-transparent.webp" continue="true">
+        <Splash image="/images/logo-transparent.webp" continue>
             <Section heading="in Minecraft">
                 <template v-slot:subHeading>University of California, Berkeley</template>
 
@@ -14,7 +14,7 @@
                     <Button @click="scrollTo(Identifiers.Locations)">View featured locations</Button>
                 </template>
 
-                <alert :icon="statusIcon" :message="statusMessage" />
+                <Alert :icon="statusIcon" :message="statusMessage" />
             </Section>
         </Splash>
 
@@ -30,7 +30,7 @@
         </div>
 
         <div class="container">
-            <Options :options="Object.keys(Editions)" centered="true" @change="setSelectedEdition" />
+            <Options :options="Object.keys(Editions)" centered @change="setSelectedEdition" />
 
             <div id="steps-wrapper">
                 <template v-if="selectedEdition === Editions.Java">
@@ -41,12 +41,12 @@
                         <Button href="https://www.minecraft.net/en-us/download/" target="_blank">Download Minecraft</Button>
                     </Step>
 
-                    <Step title="Step two" image="/images/steps/java/two.webp" alternate="true">
+                    <Step title="Step two" image="/images/steps/java/two.webp" alternate>
                         <template v-slot:description><span class="important">Open the Minecraft Java Edition launcher.</span>
                                                      <br><span class="important">Sign in with your Minecraft account</span> (or your Microsoft account).
                                                      <br><span class="important">Click play</span> to launch Minecraft Java Edition.</template>
 
-                        <alert icon="priority_high" message="Remember to use the latest release" />
+                        <Alert icon="priority_high" message="Remember to use the latest release" />
                     </Step>
 
                     <Step title="Step three" image="/images/steps/java/three.webp">
@@ -65,7 +65,7 @@
                         <Button href="https://www.xbox.com/en-US/live/minecraft/sign-up" target="_blank">Minecraft sign up</Button>
                     </Step>
 
-                    <Step title="Step two" image="/images/steps/bedrock/two.webp" alternate="true">
+                    <Step title="Step two" image="/images/steps/bedrock/two.webp" alternate>
                         <template v-slot:description><span class="important">Open Minecraft Bedrock Edition.</span>
                                                      <br><span class="important">Sign in with your Xbox Live account</span> through Microsoft.
                                                      <br><span class="important">Click play</span> and <span class="important">select Servers</span>.</template>
@@ -110,7 +110,9 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+
 import Location from "@/components/Location.vue";
 import Button from "@/components/Button.vue";
 import Section from "@/components/Section.vue";
@@ -119,91 +121,81 @@ import Step from "@/components/Step.vue";
 import Splash from "@/components/Splash.vue";
 import Alert from "@/components/Alert.vue";
 
-export default {
-    name: "Campus",
+const Editions = { Java: "java", Bedrock: "bedrock" } as const;
+type Edition = typeof Editions[keyof typeof Editions];
 
-    components: {
-        Location,
-        Button,
-        Section,
-        Options,
-        Step,
-        Splash,
-        Alert
-    },
+const Identifiers = { Explore: "explore", Locations: "locations" } as const;
 
-    data( ) {
-        return {
-            Editions: { Java: "java", Bedrock: "bedrock" },
-            Identifiers: { Explore: "explore", Locations: "locations" },
+const locations = [
+    { title: "Doe Memorial Library", image: "/images/locations/one.webp", warp: "Doe" },
+    { title: "California Memorial Stadium", image: "/images/locations/two.webp", warp: "Stadium" },
+    { title: "Sather Tower", image: "/images/locations/three.webp", warp: "Campanile" },
+    { title: "Sather Gate", image: "/images/locations/four.webp", warp: "SatherGate" },
+    { title: "Sproul Hall", image: "/images/locations/five.webp", warp: "Sproul" }
+];
 
-            locations: [
-                { title: "Doe Memorial Library", image: "/images/locations/one.webp", warp: "Doe" },
-                { title: "California Memorial Stadium", image: "/images/locations/two.webp", warp: "Stadium" },
-                { title: "Sather Tower", image: "/images/locations/three.webp", warp: "Campanile" },
-                { title: "Sather Gate", image: "/images/locations/four.webp", warp: "SatherGate" },
-                { title: "Sproul Hall", image: "/images/locations/five.webp", warp: "Sproul" }
-            ],
+// The fields used from https://api.mcsrvstat.us/3/ (players is only present while online)
+interface ServerStatus {
+    online: boolean;
+    players?: { online: number; max: number };
+}
 
-            selectedEdition: "java",
+const selectedEdition = ref<Edition>(Editions.Java);
+const status = ref<ServerStatus | null>(null);
 
-            status: null
-        };
-    },
+function setSelectedEdition(edition: string) {
+    selectedEdition.value = Editions[edition as keyof typeof Editions];
+}
 
-    methods: {
-        setSelectedEdition(edition) {
-            this.selectedEdition = this.Editions[edition];
-        },
+function scrollTo(identifier: string) {
+    const element = document.getElementById(identifier);
+    if( ! element ) return;
 
-        scrollTo(identifier) {
-            window.scroll({
-                behavior: "smooth",
-                left: 0,
-                top: document.getElementById(identifier).offsetTop - 128
-            });
-        },
+    window.scroll({
+        behavior: "smooth",
+        left: 0,
+        top: element.offsetTop - 128
+    });
+}
 
-        async updateStatus( ) {
-            if(document.hidden) return;
+async function updateStatus( ) {
+    if(document.hidden) return;
 
-            try {
-                const response = await fetch("https://api.mcsrvstat.us/3/mc.blockeley.com");
-                this.status = await response.json( );
-            } catch {
-                // Keep showing the last known status
-            }
-        }
-    },
-
-    computed: {
-        statusIcon( ) {
-            if( ! this.status ) return "priority_high";
-
-            return this.status.online ? "play_arrow" : "close";
-        },
-
-        statusMessage( ) {
-            if( ! this.status ) return "Checking mc.blockeley.com";
-
-            return this.status.online ? this.status.players.online + " player(s) on mc.blockeley.com" : "mc.blockeley.com is offline";
-        }
-    },
-
-    mounted( ) {
-        // mcsrvstat.us caches results for a minute, so polling faster only adds requests
-        this.updateStatus( );
-        this.statusInterval = setInterval(this.updateStatus, 60000);
-
-        document.addEventListener("visibilitychange", this.updateStatus);
-    },
-
-    beforeUnmount( ) {
-        clearInterval(this.statusInterval);
-
-        document.removeEventListener("visibilitychange", this.updateStatus);
+    try {
+        const response = await fetch("https://api.mcsrvstat.us/3/mc.blockeley.com");
+        status.value = await response.json( ) as ServerStatus;
+    } catch {
+        // Keep showing the last known status
     }
 }
+
+const statusIcon = computed(( ) => {
+    if( ! status.value ) return "priority_high";
+
+    return status.value.online ? "play_arrow" : "close";
+});
+
+const statusMessage = computed(( ) => {
+    if( ! status.value ) return "Checking mc.blockeley.com";
+
+    return status.value.online ? `${ status.value.players?.online ?? 0 } player(s) on mc.blockeley.com` : "mc.blockeley.com is offline";
+});
+
+let statusInterval: ReturnType<typeof setInterval> | undefined;
+
+onMounted(( ) => {
+    // mcsrvstat.us caches results for a minute, so polling faster only adds requests
+    updateStatus( );
+    statusInterval = setInterval(updateStatus, 60000);
+
+    document.addEventListener("visibilitychange", updateStatus);
+});
+
+onBeforeUnmount(( ) => {
+    clearInterval(statusInterval);
+
+    document.removeEventListener("visibilitychange", updateStatus);
+});
 </script>
 
 <style lang="scss">

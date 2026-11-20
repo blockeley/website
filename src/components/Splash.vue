@@ -10,28 +10,22 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "Splash",
+<script setup lang="ts">
+import { computed } from "vue";
 
-    // To-do: Handle edge cases in view components instead..?
-    props: [
-        "image",
-        "video",
-        "poster",
-        "progress",
-        "continue"
-    ],
+// To-do: Handle edge cases in view components instead..?
+const props = defineProps<{
+    image?: string;
+    video?: string;
+    poster?: string;
+    progress?: boolean;
+    continue?: boolean;
+}>( );
 
-    computed: {
-        classObject( ) {
-            return {
-                "splash-progress": this.progress,
-                "splash-continue": this.continue
-            };
-        }
-    }
-}
+const classObject = computed(( ) => ({
+    "splash-progress": props.progress,
+    "splash-continue": props.continue
+}));
 </script>
 
 <style lang="scss">

@@ -4,40 +4,35 @@
     </component>
 </template>
 
-<script>
-export default {
-    name: "Button",
+<script setup lang="ts">
+import { computed } from "vue";
+import { RouterLink, type RouteLocationRaw } from "vue-router";
 
-    emits: [ "click" ],
+const props = defineProps<{
+    alternate?: boolean;
+    progress?: boolean;
+    to?: RouteLocationRaw;
+    target?: string;
+    href?: string;
+}>( );
 
-    props: [
-        "alternate",
-        "progress",
-        "to",
-        "target",
-        "href"
-    ],
+const emit = defineEmits<{
+    click: [ ];
+}>( );
 
-    computed: {
-        classObject( ) {
-            return {
-                "button-alternate": this.alternate,
-                "button-progress": this.progress
-            };
-        },
+const classObject = computed(( ) => ({
+    "button-alternate": props.alternate,
+    "button-progress": props.progress
+}));
 
-        component( ) {
-            if(this.href) return "a";
-            if(this.to) return "router-link";
-            return "div";
-        }
-    },
+const component = computed(( ) => {
+    if(props.href) return "a";
+    if(props.to) return RouterLink;
+    return "div";
+});
 
-    methods: {
-        click( )  {
-            this.$emit("click");
-        }
-    }
+function click( ) {
+    emit("click");
 }
 </script>
 

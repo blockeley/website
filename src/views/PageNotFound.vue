@@ -19,18 +19,8 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import Splash from "@/components/Splash.vue";
 import Button from "@/components/Button.vue";
 import Section from "@/components/Section.vue";
-
-export default {
-    name: "PageNotFound",
-
-    components: {
-        Splash,
-        Button,
-        Section
-    }
-}
 </script>

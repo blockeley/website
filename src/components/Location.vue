@@ -16,62 +16,33 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { computed, onBeforeUnmount, ref } from "vue";
+
 import IconButton from "@/components/IconButton.vue";
 
-export default {
-    name: "Location",
+defineProps<{
+    title: string;
+    image: string;
+    warp: string;
+}>( );
 
-    components: {
-        IconButton
-    },
+const fullScreen = ref(false);
 
-    props: [
-        "title",
-        "image",
-        "warp"
-    ],
+const classObject = computed(( ) => ({
+    "location-full-screen": fullScreen.value
+}));
 
-    data( ) {
-        return {
-            fullScreen: false
-        };
-    },
+const icon = computed(( ) => fullScreen.value ? "fullscreen_exit" : "fullscreen");
 
-    computed: {
-        classObject( ) {
-            return {
-                "location-full-screen": this.fullScreen
-            };
-        },
-
-        icon( ) {
-            return this.fullScreen ? "fullscreen_exit" : "fullscreen";
-        }
-    },
-
-    beforeUnmount( ) {
-        if(this.fullScreen) document.body.classList.remove("disabled");
-    },
-
-    methods: {
-        toggleFullScreen( ) {
-            const body = document.getElementsByTagName("body")[0];
-
-            if(this.fullScreen) {
-                body.classList.remove("disabled");
-                this.fullScreen = false;
-
-                return undefined;
-            }
-
-            body.classList.add("disabled");
-            this.fullScreen = true;
-
-            return undefined;
-        }
-    }
+function toggleFullScreen( ) {
+    fullScreen.value = ! fullScreen.value;
+    document.body.classList.toggle("disabled", fullScreen.value);
 }
+
+onBeforeUnmount(( ) => {
+    if(fullScreen.value) document.body.classList.remove("disabled");
+});
 </script>
 
 <style lang="scss">

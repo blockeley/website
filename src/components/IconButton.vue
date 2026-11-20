@@ -4,57 +4,42 @@
     </component>
 </template>
 
-<script>
-import Icon from "@/components/Icon.vue";
+<script setup lang="ts">
+import { computed } from "vue";
+import { RouterLink, type RouteLocationRaw } from "vue-router";
 
-export default {
-    name: "IconButton",
+import Icon, { type IconName } from "@/components/Icon.vue";
 
-    components: {
-        Icon
-    },
+// To-do: Proper style proponent
+const props = defineProps<{
+    icon: IconName;
+    active?: boolean;
+    variant?: "light" | "color";
+    notification?: boolean;
+    to?: RouteLocationRaw;
+    target?: string;
+    href?: string;
+}>( );
 
-    emits: [ "click" ],
+const emit = defineEmits<{
+    click: [ ];
+}>( );
 
-    // To-do: Proper style proponent
-    props: [
-        "icon",
-        "active",
-        "variant",
-        "notification",
-        "to",
-        "target",
-        "href"
-    ],
+const classObject = computed(( ) => ({
+    "icon-button-light": props.variant === "light",
+    "icon-button-color": props.variant === "color",
+    "icon-button-notification": props.notification,
+    "active": props.active
+}));
 
-    data( ) {
-        return {
-            Variants: { Light: "light", Color: "color" }
-        }
-    },
+const component = computed(( ) => {
+    if(props.href) return "a";
+    if(props.to) return RouterLink;
+    return "div";
+});
 
-    computed: {
-        classObject( ) {
-            return {
-                "icon-button-light": this.variant === this.Variants.Light,
-                "icon-button-color": this.variant === this.Variants.Color,
-                "icon-button-notification": this.notification,
-                "active": this.active
-            };
-        },
-
-        component( ) {
-            if(this.href) return "a";
-            if(this.to) return "router-link";
-            return "div";
-        }
-    },
-
-    methods: {
-        click( ) {
-            this.$emit("click");
-        }
-    }
+function click( ) {
+    emit("click");
 }
 </script>
 

@@ -3,7 +3,7 @@
         <!-- This element clips the credits -->
         <div class="credits-wrapper" ref="wrapper">
             <!-- This element moves, using a compositor-only transform animation -->
-            <div class="credits" ref="credits" :style="animationStyle">
+            <div class="credits" ref="list" :style="animationStyle">
                 <div class="credits-spacer"></div>
                 <p class="credits-item" v-for="item in credits" :key="item">
                     {{ item }}
@@ -14,52 +14,47 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef } from "vue";
+
 // Scroll speed of the credits: 1px every 25ms
 const PIXELS_PER_SECOND = 40;
 
-export default {
-    name: "Credits",
+defineProps<{
+    credits: string[];
+}>( );
 
-    props: [
-        "credits"
-    ],
+const wrapper = useTemplateRef<HTMLDivElement>("wrapper");
+const list = useTemplateRef<HTMLDivElement>("list");
 
-    data( ) {
-        return {
-            distance: 0
-        };
-    },
+const distance = ref(0);
 
-    computed: {
-        animationStyle( ) {
-            if( ! this.distance ) return { };
+const animationStyle = computed(( ) => {
+    if( ! distance.value ) return { };
 
-            return {
-                "--credits-distance": `-${ this.distance }px`,
-                "--credits-duration": `${ this.distance / PIXELS_PER_SECOND }s`
-            };
-        }
-    },
+    return {
+        "--credits-distance": `-${ distance.value }px`,
+        "--credits-duration": `${ distance.value / PIXELS_PER_SECOND }s`
+    };
+});
 
-    methods: {
-        measure( ) {
-            this.distance = Math.max(0, this.$refs.credits.offsetHeight - this.$refs.wrapper.clientHeight);
-        }
-    },
+function measure( ) {
+    if( ! wrapper.value || ! list.value ) return;
 
-    mounted( ) {
-        this.measure( );
-
-        // Re-measure when web fonts load or the viewport changes the line wrapping
-        this.observer = new ResizeObserver(( ) => this.measure( ));
-        this.observer.observe(this.$refs.credits);
-    },
-
-    beforeUnmount( ) {
-        this.observer?.disconnect( );
-    }
+    distance.value = Math.max(0, list.value.offsetHeight - wrapper.value.clientHeight);
 }
+
+let observer: ResizeObserver | undefined;
+
+onMounted(( ) => {
+    measure( );
+
+    // Re-measure when web fonts load or the viewport changes the line wrapping
+    observer = new ResizeObserver(measure);
+    if(list.value) observer.observe(list.value);
+});
+
+onBeforeUnmount(( ) => observer?.disconnect( ));
 </script>
 
 <style lang="scss">

@@ -2,7 +2,7 @@
     <div id="application" :class="colorClass">
         <Notification desktopMessage="Learn more about Blockeley and chat with Blockeley team members as well as our community on Discord."
                       mobileMessage="Join us on Discord.">
-            <LinkButton href="https://discord.gg/mmAK4D5" alternate="true" size="small">Launch Discord</LinkButton>
+            <LinkButton href="https://discord.gg/mmAK4D5" alternate size="small">Launch Discord</LinkButton>
         </Notification>
 
         <MobileNavigation v-if="mobileNavigation" @close="closeMobileNavigation" />
@@ -47,8 +47,8 @@
     </div>
 </template>
 
-<script>
-import { computed } from "vue";
+<script setup lang="ts">
+import { computed, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useHead } from "@unhead/vue";
 
@@ -58,55 +58,27 @@ import MobileNavigation from "@/components/MobileNavigation.vue";
 import LinkButton from "@/components/LinkButton.vue";
 import Footer from "@/components/Footer.vue";
 
-export default {
-    name: "App",
+const route = useRoute( );
 
-    components: {
-        IconButton,
-        Notification,
-        MobileNavigation,
-        Footer,
-        LinkButton
-    },
+useHead({
+    title: computed(( ) => route.meta.title ? `${ route.meta.title } | Blockeley` : "Blockeley | The #1 Minecraft university in the world")
+});
 
-    setup( ) {
-        const route = useRoute( );
+const mobileNavigation = ref(false);
 
-        useHead({
-            title: computed(( ) => route.meta.title ? `${ route.meta.title } | Blockeley` : "Blockeley | The #1 Minecraft university in the world")
-        });
-    },
+const colorClass = computed(( ) => "color-" + String(route.name ?? "explore"));
 
-    data( ) {
-        return {
-            mobileNavigation: false
-        };
-    },
-
-    computed: {
-        colorClass( ) {
-            return "color-" + String(this.$route.name || "explore");
-        }
-    },
-
-    methods: {
-        openMobileNavigation( ) {
-            document.body.classList.add("disabled");
-            this.mobileNavigation = true;
-        },
-
-        closeMobileNavigation( ) {
-            document.body.classList.remove("disabled");
-            this.mobileNavigation = false;
-        },
-    },
-
-    watch: {
-        $route( ) {
-            this.closeMobileNavigation( );
-        }
-    }
+function openMobileNavigation( ) {
+    document.body.classList.add("disabled");
+    mobileNavigation.value = true;
 }
+
+function closeMobileNavigation( ) {
+    document.body.classList.remove("disabled");
+    mobileNavigation.value = false;
+}
+
+watch(( ) => route.fullPath, closeMobileNavigation);
 </script>
 
 <style lang="scss">

@@ -4,21 +4,14 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { computed } from "vue";
 
-export default {
-    name: "AvatarImage",
+const props = defineProps<{
+    ign: string;
+}>( );
 
-    props: [
-        "ign"
-    ],
-
-    computed: {
-        head( ) {
-            return "https://mc-heads.net/avatar/" + this.ign;
-        }
-    }
-}
+const head = computed(( ) => `https://mc-heads.net/avatar/${ props.ign }`);
 </script>
 
 <style lang="scss">

@@ -6,21 +6,13 @@
     </div>
 </template>
 
-<script>
-import Icon from "@/components/Icon.vue";
+<script setup lang="ts">
+import Icon, { type IconName } from "@/components/Icon.vue";
 
-export default {
-    name: "Alert",
-
-    components: {
-        Icon
-    },
-
-    props: [
-        "icon",
-        "message"
-    ]
-}
+defineProps<{
+    icon: IconName;
+    message: string;
+}>( );
 </script>
 
 <style lang="scss">

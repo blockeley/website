@@ -1,20 +1,15 @@
 <template>
-    <div class="framed" :class="classObject">
+    <div class="framed">
         <div class="framed-image">
             <img :src="image" loading="lazy" decoding="async" alt="">
         </div>
     </div>
 </template>
 
-<script>
-
-export default {
-    name: "Framed",
-
-    props: [
-        "image"
-    ]
-}
+<script setup lang="ts">
+defineProps<{
+    image: string;
+}>( );
 </script>
 
 <style lang="scss">

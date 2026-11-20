@@ -1,5 +1,5 @@
 <template>
-    <div class="avatar-card" :class="classObject">
+    <div class="avatar-card">
         <div class="avatar-card-icon">
             <img :src="icon" width="36" height="36" loading="lazy" decoding="async" alt="">
         </div>
@@ -15,40 +15,19 @@
     </div>
 </template>
 
-<script>
-import AvatarImage from '@/components/AvatarImage.vue';
+<script setup lang="ts">
+import { computed } from "vue";
 
-export default {
-    name: "AvatarCard",
+import AvatarImage from "@/components/AvatarImage.vue";
 
-    components: {
-        AvatarImage
-    },
+const props = defineProps<{
+    ign: string;
+    role: string;
+    img: string;
+    name?: string;
+}>( );
 
-    props: [
-        "name",
-        "ign",
-        "role",
-        "img"
-    ],
-
-    data( ) {
-        return {
-            fullScreen: false
-        };
-    },
-
-    computed: {
-        classObject( ) {
-            return {
-
-            };
-        },
-        icon( ) {
-            return "/images/avatars/icons8-" + this.img + "-50.png";
-        }
-    }
-}
+const icon = computed(( ) => `/images/avatars/icons8-${ props.img }-50.png`);
 </script>
 
 <style lang="scss">

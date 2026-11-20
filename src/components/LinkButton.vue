@@ -4,40 +4,35 @@
     </component>
 </template>
 
-<script>
-export default {
-    name: "LinkButton",
+<script setup lang="ts">
+import { computed } from "vue";
+import { RouterLink, type RouteLocationRaw } from "vue-router";
 
-    emits: [ "click" ],
+const props = defineProps<{
+    alternate?: boolean;
+    size?: "small";
+    to?: RouteLocationRaw;
+    target?: string;
+    href?: string;
+}>( );
 
-    props: [
-        "alternate",
-        "size",
-        "to",
-        "target",
-        "href"
-    ],
+const emit = defineEmits<{
+    click: [ ];
+}>( );
 
-    computed: {
-        classObject( ) {
-            return {
-                "link-button-alternate": this.alternate,
-                "link-button-small": this.size === "small"
-            };
-        },
+const classObject = computed(( ) => ({
+    "link-button-alternate": props.alternate,
+    "link-button-small": props.size === "small"
+}));
 
-        component( ) {
-            if(this.href) return "a";
-            if(this.to) return "router-link";
-            return "div";
-        }
-    },
+const component = computed(( ) => {
+    if(props.href) return "a";
+    if(props.to) return RouterLink;
+    return "div";
+});
 
-    methods: {
-        click( ) {
-            this.$emit("click");
-        }
-    }
+function click( ) {
+    emit("click");
 }
 </script>
 

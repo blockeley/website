@@ -1,6 +1,6 @@
 <template>
     <div id="century">
-        <Splash image="/images/logo-transparent.webp" continue="true">
+        <Splash image="/images/logo-transparent.webp" continue>
                 <Section heading="Blockeley, 1893">
                     <template v-slot:subHeading></template>
 
@@ -32,36 +32,24 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 // Only this (currently unrouted) page uses Merriweather, so it loads with this chunk instead of on every page
 import "@fontsource/merriweather/latin-400.css";
+
 import Button from "@/components/Button.vue";
 import Section from "@/components/Section.vue";
 import Splash from "@/components/Splash.vue";
 import Timeline from "@/components/Timeline.vue";
 
-export default {
-    name: "Century",
+import type { TimelineEvent } from "@/types";
 
-    components: {
-        Button,
-        Section,
-        Splash,
-        Timeline
-    },
-
-    data( ) {
-        return {
-            events: [
-                { date: "1873", title: "North Hall", image: "/images/century/NorthHall.webp", caption: "North Hall", warp: "NorthHall" },
-                { date: "1879", title: "Mining and Mechanic Arts Building", image: "/images/century/MMAB.webp", caption: "Mining and Mechanic Arts Building", warp: "MMAB" },
-                { date: "1881", title: "Bacon Hall", image: "/images/century/BaconHall.webp", caption: "Bacon Hall", warp: "BaconHall" },
-                { date: "1893", title: "Mechanics Building", image: "/images/century/Mechanics.webp", caption: "Mechanics Building", warp: "Mechanics" },
-                { date: "1894", title: "Conservatory", image: "/images/century/Conservatory.webp", caption: "Conservatory", warp: "Conservatory" },
-            ],
-        };
-    }
-}
+const events: TimelineEvent[] = [
+    { date: "1873", title: "North Hall", image: "/images/century/NorthHall.webp", caption: "North Hall", warp: "NorthHall" },
+    { date: "1879", title: "Mining and Mechanic Arts Building", image: "/images/century/MMAB.webp", caption: "Mining and Mechanic Arts Building", warp: "MMAB" },
+    { date: "1881", title: "Bacon Hall", image: "/images/century/BaconHall.webp", caption: "Bacon Hall", warp: "BaconHall" },
+    { date: "1893", title: "Mechanics Building", image: "/images/century/Mechanics.webp", caption: "Mechanics Building", warp: "Mechanics" },
+    { date: "1894", title: "Conservatory", image: "/images/century/Conservatory.webp", caption: "Conservatory", warp: "Conservatory" }
+];
 </script>
 
 <style lang="scss">

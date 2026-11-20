@@ -14,15 +14,11 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "Notification",
-
-    props: [
-        "desktopMessage",
-        "mobileMessage"
-    ]
-}
+<script setup lang="ts">
+defineProps<{
+    desktopMessage: string;
+    mobileMessage: string;
+}>( );
 </script>
 
 <style lang="scss">

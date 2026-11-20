@@ -10,27 +10,17 @@
                                              virtual events to celebrate the accomplishments of Berkeley students during this difficult time.</template>
 
                 <template v-slot:buttons>
-                    <Button alternate="true" href="https://www.youtube.com/watch?v=x8Kfdpakz_k" target="_blank">Watch the trailer</Button>
+                    <Button alternate href="https://www.youtube.com/watch?v=x8Kfdpakz_k" target="_blank">Watch the trailer</Button>
 
-                    <Button alternate="true" to="/campus">Learn more</Button>
+                    <Button alternate to="/campus">Learn more</Button>
                 </template>
             </Section>
         </Splash>
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import Button from "@/components/Button.vue";
 import Section from "@/components/Section.vue";
 import Splash from "@/components/Splash.vue";
-
-export default {
-    name: "Home",
-
-    components: {
-        Section,
-        Button,
-        Splash
-    }
-}
 </script>

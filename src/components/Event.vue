@@ -12,31 +12,19 @@
             </p>
         </div>
         
-        <Location v-if="image && warp" :image="image" :title="caption" :warp="warp" />
+        <Location v-if="image && warp" :image="image" :title="caption ?? ''" :warp="warp" />
 
         <Framed v-if="image && !warp" :image="image" />
     </div>
 </template>
 
-<script>
-import Location from '@/components/Location.vue';
-import Framed from '@/components/Framed.vue';
+<script setup lang="ts">
+import Location from "@/components/Location.vue";
+import Framed from "@/components/Framed.vue";
 
-export default {
-    name: "Event",
-    props: [
-        "title",
-        "image",
-        "caption",
-        "warp",
-        "date",
-        "description"
-    ],
-    components: {
-        Location,
-        Framed
-    }
-}
+import type { TimelineEvent } from "@/types";
+
+defineProps<TimelineEvent>( );
 </script>
 
 <style lang="scss">

@@ -11,20 +11,14 @@
     </div>
 </template>
 
-<script>
-import Event from '@/components/Event.vue';
+<script setup lang="ts">
+import Event from "@/components/Event.vue";
 
-export default {
-    name: "Timeline",
+import type { TimelineEvent } from "@/types";
 
-    components: {
-        Event
-    },
-
-    props: [
-        "events"
-    ]
-}
+defineProps<{
+    events: TimelineEvent[];
+}>( );
 </script>
 
 <style lang="scss">

@@ -16,24 +16,18 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "Step",
+<script setup lang="ts">
+import { computed } from "vue";
 
-    props: [
-        "image",
-        "title",
-        "alternate"
-    ],
+const props = defineProps<{
+    image: string;
+    title: string;
+    alternate?: boolean;
+}>( );
 
-    computed: {
-        classObject( ) {
-            return {
-                "step-alternate": this.alternate
-            };
-        }
-    }
-}
+const classObject = computed(( ) => ({
+    "step-alternate": props.alternate
+}));
 </script>
 
 <style lang="scss">

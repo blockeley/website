@@ -38,23 +38,15 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import IconButton from "@/components/IconButton.vue";
 
-export default {
-    name: "MobileNavigation",
+const emit = defineEmits<{
+    close: [ ];
+}>( );
 
-    emits: [ "close" ],
-
-    components: {
-        IconButton
-    },
-
-    methods: {
-        close( ) {
-            this.$emit("close");
-        }
-    }
+function close( ) {
+    emit("close");
 }
 </script>
 

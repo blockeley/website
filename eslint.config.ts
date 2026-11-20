@@ -1,19 +1,15 @@
-import js from "@eslint/js";
 import pluginVue from "eslint-plugin-vue";
-import globals from "globals";
+import { withVueTs, vueTsConfigs } from "@vue/eslint-config-typescript";
 
-export default [
-    { ignores: [ "dist/**" ] },
-    js.configs.recommended,
-    ...pluginVue.configs["flat/essential"],
+export default withVueTs(
+    { ignores: [ "dist/**", ".vite-ssg-temp/**" ] },
+    pluginVue.configs["flat/essential"],
+    vueTsConfigs.recommended,
     {
-        languageOptions: {
-            globals: { ...globals.browser, ...globals.node }
-        },
         rules: {
             "vue/multi-word-component-names": "off",
             // Components are only used from SFC templates, where these names are unambiguous
             "vue/no-reserved-component-names": "off"
         }
     }
-];
+);
