@@ -1,7 +1,7 @@
 <template>
     <div class="avatar-card">
         <div class="avatar-card-icon">
-            <img :src="icon" width="36" height="36" loading="lazy" decoding="async" alt="">
+            <img :src="`/images/avatars/icons8-${ img }-50.png`" width="36" height="36" loading="lazy" decoding="async" alt="">
         </div>
 
         <AvatarImage :ign="ign" />
@@ -16,18 +16,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-
 import AvatarImage from "@/components/AvatarImage.vue";
 
-const props = defineProps<{
+defineProps<{
     ign: string;
     role: string;
     img: string;
     name?: string;
 }>( );
-
-const icon = computed(( ) => `/images/avatars/icons8-${ props.img }-50.png`);
 </script>
 
 <style lang="scss">

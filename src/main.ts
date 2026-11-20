@@ -11,6 +11,6 @@ import "./styles/vendor.css";
 import App from "./App.vue";
 import { routerOptions } from "./router";
 
-// Pre-renders every static route to HTML at build time (see ssgOptions in vite.config.js),
+// Pre-renders every static route to HTML at build time (see ssgOptions in vite.config.ts),
 // then hydrates into the same single-page app in the browser
 export const createApp = ViteSSG(App, routerOptions);

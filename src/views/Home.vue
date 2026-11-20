@@ -20,7 +20,14 @@
 </template>
 
 <script setup lang="ts">
+import { useHead } from "@unhead/vue";
+
 import Button from "@/components/Button.vue";
 import Section from "@/components/Section.vue";
 import Splash from "@/components/Splash.vue";
+
+// The poster is the first thing painted on the home page, so fetch it before the scripts
+useHead({
+    link: [ { rel: "preload", as: "image", href: "/images/poster.webp", fetchpriority: "high" } ]
+});
 </script>

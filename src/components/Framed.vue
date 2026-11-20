@@ -13,6 +13,8 @@ defineProps<{
 </script>
 
 <style lang="scss">
+@use "@/scss/mixins";
+
 .framed {
     background-color: black;
 
@@ -22,35 +24,9 @@ defineProps<{
     .framed-image {
         width: 100%;
 
-        // 16x9 width to height ratio
-        padding-top: calc(100% / 16 * 9);
-    }
-    
+        aspect-ratio: 16 / 9;
 
-    .framed-image {
-        position: relative;
-
-        img, &::after {
-            position: absolute;
-
-            height: 100%;
-            width: 100%;
-
-            left: 0;
-            top: 0;
-        }
-
-        img {
-            object-fit: cover;
-        }
-
-        &::after {
-            content: "";
-
-            border-style: solid;
-            border-width: 4px 4px 4px 4px;
-            border-color: rgba(white, 0.25);
-        }
+        @include mixins.framed-image(4px);
     }
 }
 </style>

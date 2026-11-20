@@ -1,33 +1,16 @@
 <template>
-    <div class="options" :class="classObject">
-        <div class="option" v-for="option in options" :key="option" @click="setSelectedOption(option)" :class="{ active: selectedOption === option }">{{ option }}</div>
+    <div class="options" :class="{ 'options-centered': centered }">
+        <div class="option" v-for="option in options" :key="option" @click="selected = option" :class="{ active: selected === option }">{{ option }}</div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
-const props = defineProps<{
+defineProps<{
     options: readonly string[];
     centered?: boolean;
 }>( );
 
-const emit = defineEmits<{
-    change: [ option: string ];
-}>( );
-
-const selectedOption = ref(props.options[0]);
-
-const classObject = computed(( ) => ({
-    "options-centered": props.centered
-}));
-
-function setSelectedOption(option: string) {
-    if(option === selectedOption.value) return;
-
-    selectedOption.value = option;
-    emit("change", option);
-}
+const selected = defineModel<string>({ required: true });
 </script>
 
 <style lang="scss">

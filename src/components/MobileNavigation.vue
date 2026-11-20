@@ -2,52 +2,25 @@
     <div class="mobile-navigation">
         <div class="navigation-bar">
             <div class="container-fluid">
-                <!-- To-do: Remove Bootstrap utilities -->
-                <IconButton @click="close" class="mr-auto" icon="close" />
+                <IconButton @click="$emit('close')" class="mr-auto" icon="close" />
 
-                <img class="navigation-bar-brand" src="/images/logo-transparent.webp" alt="Blockeley">
+                <img class="navigation-bar-brand" src="/images/logo-small.webp" alt="Blockeley">
             </div>
         </div>
 
-        <!-- To-do: Implement MobileNavigationMenu and MobileNavigationMenuItem components -->
         <ul class="mobile-navigation-menu">
-            <li class="menu-item">
-                <router-link to="/" class="item-link">Explore</router-link>
-            </li>
-
-            <!--
-			<li class="menu-item">
-                <router-link to="/club" class="item-link">Club</router-link>
-            </li>
-            -->
-
-            <li class="menu-item">
-                <router-link to="/campus" class="item-link">Campus</router-link>
-            </li>
-
-            <!--
-			<li class="menu-item">
-                <router-link to="/century" class="item-link">19th Century</router-link>
-            </li>
-            -->
-
-            <li class="menu-item">
-                <a class="item-link" href="https://patreon.blockeley.com" target="_blank">Donate</a>
-            </li>
+            <NavigationLinks />
         </ul>
     </div>
 </template>
 
 <script setup lang="ts">
 import IconButton from "@/components/IconButton.vue";
+import NavigationLinks from "@/components/NavigationLinks.vue";
 
-const emit = defineEmits<{
+defineEmits<{
     close: [ ];
 }>( );
-
-function close( ) {
-    emit("close");
-}
 </script>
 
 <style lang="scss">

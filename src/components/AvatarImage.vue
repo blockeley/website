@@ -1,17 +1,13 @@
 <template>
     <div class="avatar-image">
-        <img :src="head" width="100" height="100" loading="lazy" decoding="async" :alt="ign">
+        <img :src="`https://mc-heads.net/avatar/${ ign }`" width="100" height="100" loading="lazy" decoding="async" :alt="ign">
     </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-
-const props = defineProps<{
+defineProps<{
     ign: string;
 }>( );
-
-const head = computed(( ) => `https://mc-heads.net/avatar/${ props.ign }`);
 </script>
 
 <style lang="scss">

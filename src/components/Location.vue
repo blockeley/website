@@ -1,9 +1,9 @@
 <template>
-    <div class="location" :class="classObject">
+    <div class="location" :class="{ 'location-full-screen': fullScreen }">
         <div class="location-image">
             <img :src="image" loading="lazy" decoding="async" alt="">
         </div>
-        
+
         <div class="location-header">
             <div class="header-text">
                 <p class="location-heading">{{ title }}</p>
@@ -11,13 +11,13 @@
                 <p class="location-description">/warp {{ warp }}</p>
             </div>
 
-            <IconButton :icon="icon" @click="toggleFullScreen" variant="light" />
+            <IconButton :icon="fullScreen ? 'fullscreen_exit' : 'fullscreen'" @click="fullScreen = ! fullScreen" light />
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref } from "vue";
+import { ref } from "vue";
 
 import IconButton from "@/components/IconButton.vue";
 
@@ -27,25 +27,13 @@ defineProps<{
     warp: string;
 }>( );
 
+// Page scrolling is locked by CSS while a location is full screen (see body:has() in App.vue)
 const fullScreen = ref(false);
-
-const classObject = computed(( ) => ({
-    "location-full-screen": fullScreen.value
-}));
-
-const icon = computed(( ) => fullScreen.value ? "fullscreen_exit" : "fullscreen");
-
-function toggleFullScreen( ) {
-    fullScreen.value = ! fullScreen.value;
-    document.body.classList.toggle("disabled", fullScreen.value);
-}
-
-onBeforeUnmount(( ) => {
-    if(fullScreen.value) document.body.classList.remove("disabled");
-});
 </script>
 
 <style lang="scss">
+@use "@/scss/mixins";
+
 .location {
     background-color: black;
 
@@ -56,8 +44,7 @@ onBeforeUnmount(( ) => {
         .location-image {
             width: 100%;
 
-            // 16x9 width to height ratio
-            padding-top: calc(100% / 16 * 9);
+            aspect-ratio: 16 / 9;
         }
 
         .location-header {
@@ -183,30 +170,7 @@ onBeforeUnmount(( ) => {
     }
 
     .location-image {
-        position: relative;
-
-        img, &::after {
-            position: absolute;
-
-            height: 100%;
-            width: 100%;
-
-            left: 0;
-            top: 0;
-        }
-
-        img {
-            object-fit: cover;
-        }
-
-        &::after {
-            // Required for pseudo-elements
-            content: "";
-
-            border-style: solid;
-            border-width: 4px 4px 0 4px;
-            border-color: rgba(white, 0.25);
-        }
+        @include mixins.framed-image(4px 4px 0 4px);
     }
 }
 </style>

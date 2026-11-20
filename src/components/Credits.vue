@@ -21,7 +21,7 @@ import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef } from "vue";
 const PIXELS_PER_SECOND = 40;
 
 defineProps<{
-    credits: string[];
+    credits: readonly string[];
 }>( );
 
 const wrapper = useTemplateRef<HTMLDivElement>("wrapper");
@@ -115,8 +115,6 @@ onBeforeUnmount(( ) => observer?.disconnect( ));
         text-align: center;
 
         animation: credits-scroll var(--credits-duration, 0s) linear infinite;
-
-        will-change: transform;
 
         &:hover {
             animation-play-state: paused;

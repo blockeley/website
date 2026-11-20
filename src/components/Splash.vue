@@ -1,9 +1,9 @@
 <template>
-    <div class="splash" :class="classObject">
+    <div class="splash" :class="{ 'splash-continue': $props.continue }">
         <img v-if="image" class="splash-image" :src="image" alt="" />
 
         <div v-if="video && poster" class="splash-video">
-            <video :src="video" :poster="poster" autoplay loop muted playsinline disablepictureinpicture />
+            <video ref="videoElement" :src="video" :poster="poster" preload="none" loop muted playsinline disablepictureinpicture />
         </div>
 
         <slot />
@@ -11,29 +11,34 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { onMounted, useTemplateRef } from "vue";
 
-// To-do: Handle edge cases in view components instead..?
-const props = defineProps<{
+defineProps<{
     image?: string;
     video?: string;
     poster?: string;
-    progress?: boolean;
     continue?: boolean;
 }>( );
 
-const classObject = computed(( ) => ({
-    "splash-progress": props.progress,
-    "splash-continue": props.continue
-}));
+const videoElement = useTemplateRef<HTMLVideoElement>("videoElement");
+
+// The background video is decoration: only download and play it when the visitor
+// hasn't asked for reduced motion or reduced data use; otherwise the poster stays
+onMounted(( ) => {
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+
+    if(matchMedia("(prefers-reduced-motion: reduce)").matches || connection?.saveData) return;
+
+    videoElement.value?.play( ).catch(( ) => { /* autoplay blocked: keep the poster */ });
+});
 </script>
 
 <style lang="scss">
 .splash {
     position: relative;
 
-    &:last-child, &.splash-progress {
-        // Always fill height for Home and .splash-progress
+    &:last-child {
+        // Always fill height for Home
         min-height: calc(100vh - 96px);
     }
 
@@ -117,45 +122,5 @@ const classObject = computed(( ) => ({
         }
     }
 
-    &.splash-progress {
-        // Always align for .splash-progress
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        &::after {
-            // Required for pseudo-elements
-            content: "";
-
-            height: 48px;
-            width: 48px;
-
-            border-radius: 50%;
-
-            border-style: solid;
-            border-width: 2px;
-            border-color: black black black transparent;
-
-            animation: splash-progress 500ms linear infinite;
-        }
-    }
-}
-
-@keyframes splash-progress {
-    0% {
-        transform: rotate(0deg);
-      }
-
-      25% {
-        transform: rotate(120deg);
-      }
-
-      75% {
-        transform: rotate(240deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
 }
 </style>

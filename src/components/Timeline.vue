@@ -1,10 +1,9 @@
 <template>
     <div class="timeline-wrapper">
-        <div class="container"> 
-            <div id="" class="row justify-content-center">
+        <div class="container">
+            <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-5 timeline">
-                    <Event v-for="event in events" :key="event.title" :title="event.title" :caption="event.caption"
-                        :image="event.image" :warp="event.warp" :date="event.date" :description="event.description"/>
+                    <Event v-for="event in events" :key="event.title" v-bind="event" />
                 </div>
             </div>
         </div>
@@ -31,28 +30,18 @@ defineProps<{
         .timeline {
             position: relative;
 
-            @media (min-width: 768px) {
-                &::after {
-                    content: "";
-                    position: absolute;
+            &::after {
+                content: "";
+                position: absolute;
 
-                    top: 0;
-                    bottom: 0;
+                top: 0;
+                bottom: 0;
+                left: 0;
+
+                border-left: .5rem dotted #505050;
+
+                @media (min-width: 768px) {
                     left: calc(50% - .25rem + 1px);
-
-                    border-left: .5rem dotted #505050;
-                }
-            }
-            @media (max-width: 768px) {
-                &::after {
-                    content: "";
-                    position: absolute;
-
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-
-                    border-left: .5rem dotted #505050;
                 }
             }
         }

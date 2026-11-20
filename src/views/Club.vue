@@ -13,31 +13,15 @@
             <Section heading="Our story" />
             <Timeline :events="events" />
         </div>
-        <div class="admin-wrapper">
-            <Section heading="Executive Board">
-                <template v-slot:subHeading>Meet our Team</template>
+        <div v-for="board in boards" :key="board.heading" class="admin-wrapper">
+            <Section :heading="board.heading">
+                <template v-slot:subHeading>{{ board.subHeading }}</template>
             </Section>
             <div class="container-fluid">
                 <div class="row justify-content-center">
-                    <div class="col-lg-10 col-md-11 col-xs-12">
+                    <div class="col-lg-10 col-md-11">
                         <div class="avatars-wrapper">
-                            <AvatarCard v-for="member in members" :key="member.ign" :ign="member.ign" :name="member.name"
-                                :img="member.img" :role="member.role" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="admin-wrapper">
-            <Section heading="Alumni Board">
-                <template v-slot:subHeading>Alumni</template>
-            </Section>
-            <div class="container-fluid">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10 col-md-11 col-xs-12">
-                        <div class="avatars-wrapper">
-                            <AvatarCard v-for="alum in alumni" :key="alum.ign" :ign="alum.ign" :name="alum.name"
-                                :img="alum.img" :role="alum.role" />
+                            <AvatarCard v-for="member in board.members" :key="member.ign" v-bind="member" />
                         </div>
                     </div>
                 </div>
@@ -48,7 +32,7 @@
                 <Section heading="Builders of Blockeley">
                     <template v-slot:subHeading>Thank You</template>
                     <template v-slot:buttons>
-                        <Button href="https://docs.google.com/forms/d/e/1FAIpQLSebaih8bBY5wOGvmInL2Xi5Y691UlvVrg0thSPz8LfR_Vfb6w/viewform" target="_blank">Apply as a builder</Button>
+                        <Button :href="BUILDER_APPLICATION_URL" target="_blank">Apply as a builder</Button>
                     </template>
                 </Section>
             </div>
@@ -58,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, shallowRef } from "vue";
 
 import Splash from "@/components/Splash.vue";
 import Section from "@/components/Section.vue";
@@ -67,7 +51,8 @@ import AvatarCard from "@/components/AvatarCard.vue";
 import Credits from "@/components/Credits.vue";
 import Button from "@/components/Button.vue";
 
-import Builders from "@/data/builders";
+import builderNames from "@/data/builders";
+import { BUILDER_APPLICATION_URL } from "@/site";
 import type { Member, TimelineEvent } from "@/types";
 
 // Fisher-Yates shuffle, run once per visit rather than on every render
@@ -109,6 +94,11 @@ const alumni: Member[] = [
     { ign: "falcon_heavy", role: "Advisory Board", img: "name-tag" }
 ];
 
+const boards = [
+    { heading: "Executive Board", subHeading: "Meet our Team", members },
+    { heading: "Alumni Board", subHeading: "Alumni", members: alumni }
+];
+
 const events: TimelineEvent[] = [
     { date: "March 13th, 2020", title: "National Lockdown", description: "The Covid-19 pandemic forces classes to be taught remotely" },
     { date: "March 15th, 2020", title: "Construction of Blockeley Begins", description: "", image: "/images/history/image6.webp" },
@@ -119,7 +109,7 @@ const events: TimelineEvent[] = [
     { date: "July 4th, 2020", title: "July 4th Celebration", description: "", image: "/images/history/image2.webp" }
 ];
 
-const builders = ref(Builders.text.split(" "));
+const builders = shallowRef(builderNames);
 
 onMounted(( ) => {
     // Shuffled in the browser so the pre-rendered HTML hydrates without a mismatch
@@ -128,17 +118,11 @@ onMounted(( ) => {
 </script>
 
 <style lang="scss">
-    .space-wrapper {
+    .story-wrapper, .admin-wrapper {
         margin-top: 36px;
         margin-bottom: 36px;
         padding-top: 36px;
         padding-bottom: 36px;
-    }
-    .story-wrapper {
-        @extend .space-wrapper;
-    }
-    .admin-wrapper {
-        @extend .space-wrapper;
     }
     .avatars-wrapper {
         display: flex;
@@ -147,12 +131,10 @@ onMounted(( ) => {
         align-content: space-between;
     }
     .thanks-wrapper {
-        @extend .space-wrapper;
         margin-top: 48px;
+        margin-bottom: 0;
         padding-top: 96px;
         padding-bottom: 96px;
-
-        margin-bottom: 0;
 
         background: linear-gradient(to bottom, transparent, white 25%);
         height: 756px;

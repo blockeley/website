@@ -3,7 +3,7 @@
         <div class="footer-body container">
             <div class="row">
                 <div class="col-lg-3">
-                    <img class="footer-image" src="/images/logo-transparent.webp" loading="lazy" decoding="async" alt="Blockeley">
+                    <img class="footer-image" src="/images/logo-small.webp" loading="lazy" decoding="async" alt="Blockeley">
 
                     <p class="footer-description">We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with
                                              Mojang Synergies AB, or any of its subsidiaries or its affiliates.</p>

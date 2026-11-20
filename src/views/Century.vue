@@ -24,7 +24,7 @@
                     <!-- To-do: Pop-up..? -->
                     <Button href="https://oldmap.blockeley.com" target="_blank">Explore in the browser</Button>
 
-                    <Button href="https://docs.google.com/forms/d/e/1FAIpQLSebaih8bBY5wOGvmInL2Xi5Y691UlvVrg0thSPz8LfR_Vfb6w/viewform" target="_blank">Apply as a builder</Button>
+                    <Button :href="BUILDER_APPLICATION_URL" target="_blank">Apply as a builder</Button>
                 </template>
             </Section>
         </div>
@@ -40,6 +40,7 @@ import Button from "@/components/Button.vue";
 import Section from "@/components/Section.vue";
 import Splash from "@/components/Splash.vue";
 import Timeline from "@/components/Timeline.vue";
+import { BUILDER_APPLICATION_URL } from "@/site";
 
 import type { TimelineEvent } from "@/types";
 

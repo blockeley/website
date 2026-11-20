@@ -1,39 +1,15 @@
 <template>
-    <component :is="component" :href="href" :to="to" :target="target" class="link-button" :class="classObject" @click="click">
+    <a class="link-button" :class="{ 'link-button-alternate': alternate, 'link-button-small': small }">
         <slot />
-    </component>
+    </a>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { RouterLink, type RouteLocationRaw } from "vue-router";
-
-const props = defineProps<{
+// href, target and other attributes fall through to the <a>
+defineProps<{
     alternate?: boolean;
-    size?: "small";
-    to?: RouteLocationRaw;
-    target?: string;
-    href?: string;
+    small?: boolean;
 }>( );
-
-const emit = defineEmits<{
-    click: [ ];
-}>( );
-
-const classObject = computed(( ) => ({
-    "link-button-alternate": props.alternate,
-    "link-button-small": props.size === "small"
-}));
-
-const component = computed(( ) => {
-    if(props.href) return "a";
-    if(props.to) return RouterLink;
-    return "div";
-});
-
-function click( ) {
-    emit("click");
-}
 </script>
 
 <style lang="scss">
@@ -47,10 +23,8 @@ function click( ) {
     font-weight: 500;
     line-height: 1;
 
-    // color: rgba(black, 0.75);
     color: rgba(black, 0.5);
 
-    // border-bottom: 2px solid rgba(black, 0.75);
     border-bottom: 2px solid rgba(black, 0.5);
 
     transition: 100ms;

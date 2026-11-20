@@ -1,0 +1,25 @@
+// An image that covers its (sized) box, with a translucent inner border drawn on top
+@mixin framed-image($border-width: 4px) {
+    position: relative;
+
+    img, &::after {
+        position: absolute;
+
+        height: 100%;
+        width: 100%;
+
+        left: 0;
+        top: 0;
+    }
+
+    img {
+        object-fit: cover;
+    }
+
+    &::after {
+        content: "";
+
+        border: solid rgba(white, 0.25);
+        border-width: $border-width;
+    }
+}

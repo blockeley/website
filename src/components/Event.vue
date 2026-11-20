@@ -11,7 +11,7 @@
                 {{ description }}
             </p>
         </div>
-        
+
         <Location v-if="image && warp" :image="image" :title="caption ?? ''" :warp="warp" />
 
         <Framed v-if="image && !warp" :image="image" />
@@ -19,10 +19,14 @@
 </template>
 
 <script setup lang="ts">
-import Location from "@/components/Location.vue";
+import { defineAsyncComponent } from "vue";
+
 import Framed from "@/components/Framed.vue";
 
 import type { TimelineEvent } from "@/types";
+
+// Only events with a warp (19th Century) show a Location, so Club doesn't download it
+const Location = defineAsyncComponent(( ) => import("@/components/Location.vue"));
 
 defineProps<TimelineEvent>( );
 </script>

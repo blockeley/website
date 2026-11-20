@@ -5,10 +5,10 @@ import Home from "@/views/Home.vue";
 
 export const routes: RouteRecordRaw[] = [
     { path: "/", name: "Home", component: Home },
-    { path: "/club", name: "Club", component: ( ) => import("@/views/Club.vue"), meta: { title: "Club" } },
-    { path: "/campus", name: "Campus", component: ( ) => import("@/views/Campus.vue"), meta: { title: "Campus" } },
-    // { path: "/century", name: "Century", component: ( ) => import("@/views/Century.vue"), meta: { title: "19th Century" } },
-    { path: "/:pathMatch(.*)*", name: "PageNotFound", component: ( ) => import("@/views/PageNotFound.vue"), meta: { title: "Page not found" } }
+    { path: "/club", name: "Club", component: ( ) => import("@/views/Club.vue"), meta: { title: "Club", accent: "#9155ff" } },
+    { path: "/campus", name: "Campus", component: ( ) => import("@/views/Campus.vue"), meta: { title: "Campus", accent: "#21bf73" } },
+    // { path: "/century", name: "Century", component: ( ) => import("@/views/Century.vue"), meta: { title: "19th Century", accent: "#e4d7ac" } },
+    { path: "/:pathMatch(.*)*", name: "PageNotFound", component: ( ) => import("@/views/PageNotFound.vue"), meta: { title: "Page not found", accent: "#bbbbbb" } }
 ];
 
 export const routerOptions: RouterOptions = {

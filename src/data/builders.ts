@@ -1,3 +1,32 @@
-export default {
-    text: "11zaq 2ssoll 4agentsmith _EAvil_ _mball_ _rachy _Triangles_ a_ngu abalabahaha abimhn ACooper350 Aeolyus ahavicki AirBorn012 Allillanchu andymtns AnthonyLujan02 Apple_Byter AppleMarineXX applepie178 Arachnoram Atoge2 azicon AzureSpark_ Baleen_Gang bangerznmash beefman Blazing17 blondeblur341 bobcao3 Bobosapien bobthebloh bothsidesgotglue bubbles143 BugCrusher67 BurritoBurgah burritoskin CaesarDressing Cameron2owen CaptainCosine CarolChrist cg505 chfames chuu_ves ConstanzeBest Consue coocoohead39 Coppertint CrazyBlob223 CrossRhyme D00M99 Daddy_Dirks daetanri dalpwn DandelDaze darthsater ddgarcia Denakee Dioxsis DivinePegasi DOMINIC_COBB DrexelBurnham dudee46 edwr elyseg encadyma erzo fiery_mailman fireviper112 fratbrah friendlynokill Frivv FrogTamer6000 GetNuanced getwonged Gold_Rose golf2k Gruffin hallomao HeavnsMoonlight HerosChi Hiddencamera hwnr ikhaliq15 IndigoGiraffe iosghost IScream17 JamooseOfVamoose Jay_Kee Jedward_Stolin JiggleKoala Jiivy JingleTheLeo jjcreeper1234 Jnature72 Jonathan2502 Jordodo kassilly Kermden kesy_ Khoalety KillerKaan22 knoktheman le_flaneur LillyCubed lion75774 Lots_o_Sheeps Mach0n3 Magicress mariamtz MasterArtificer MathDebating Mathematician Mazetron McNugget95 megaminerjenny meowmeowharrison MineMarch mlustig Modernfury mtn_narwhal muraa nc99 NeonGamezYT NewtonsThirdLaw NickRubixx Nolcan notanewt noyekim origamiman72 orionll owo_miles_owo PeanutHeadxX peppa_luke petitesurrah pikiwikibulbie Plebturtle Plexal poncho72781 PortablePecker pp_phd PrinceShamu qiao_down rachnne Rainman777 raptor616 redconfetti RestInPepperoniz RevivedAlt RockingKeyboard Rockylightning RooWuyBoss S31J1 safaeraaaaa saltyalligators SaltyMinty sam_ccfu sammypoth sarah_shorts seaanna Sergeant_Flippy sherlockholmesth Sideshowbob745 SilvousPaite sinubux SirEnderOrDie SkyTechBytes slasher234 SlimeSlayer1324 SmartContract Smirky_shi Soudan111 Sowm Spooky_Dragon sps96 starly396 Stolrow SunnyBear_ superjjong2 Tachometer74 tehpr0 TheBomb223 thebradqq thelazer33 Themashihne theotheredm tomicalover Totqlity tourdefrances TR909machine TrojanKnights true_scholar TS_ST0RM vallerogers vianya wafflesselffaw Walaweegee wellfedbison whimsicalwhispr willp_317 wlkx xaisek xfyber yourkingliness zCat2"
-}
+// Minecraft usernames of everyone who has helped build Blockeley (shuffled on the Club page)
+export default [
+    "11zaq", "2ssoll", "4agentsmith", "_EAvil_", "_mball_", "_rachy", "_Triangles_", "a_ngu", "abalabahaha",
+    "abimhn", "ACooper350", "Aeolyus", "ahavicki", "AirBorn012", "Allillanchu", "andymtns", "AnthonyLujan02",
+    "Apple_Byter", "AppleMarineXX", "applepie178", "Arachnoram", "Atoge2", "azicon", "AzureSpark_",
+    "Baleen_Gang", "bangerznmash", "beefman", "Blazing17", "blondeblur341", "bobcao3", "Bobosapien",
+    "bobthebloh", "bothsidesgotglue", "bubbles143", "BugCrusher67", "BurritoBurgah", "burritoskin",
+    "CaesarDressing", "Cameron2owen", "CaptainCosine", "CarolChrist", "cg505", "chfames", "chuu_ves",
+    "ConstanzeBest", "Consue", "coocoohead39", "Coppertint", "CrazyBlob223", "CrossRhyme", "D00M99",
+    "Daddy_Dirks", "daetanri", "dalpwn", "DandelDaze", "darthsater", "ddgarcia", "Denakee", "Dioxsis",
+    "DivinePegasi", "DOMINIC_COBB", "DrexelBurnham", "dudee46", "edwr", "elyseg", "encadyma", "erzo",
+    "fiery_mailman", "fireviper112", "fratbrah", "friendlynokill", "Frivv", "FrogTamer6000", "GetNuanced",
+    "getwonged", "Gold_Rose", "golf2k", "Gruffin", "hallomao", "HeavnsMoonlight", "HerosChi", "Hiddencamera",
+    "hwnr", "ikhaliq15", "IndigoGiraffe", "iosghost", "IScream17", "JamooseOfVamoose", "Jay_Kee",
+    "Jedward_Stolin", "JiggleKoala", "Jiivy", "JingleTheLeo", "jjcreeper1234", "Jnature72", "Jonathan2502",
+    "Jordodo", "kassilly", "Kermden", "kesy_", "Khoalety", "KillerKaan22", "knoktheman", "le_flaneur",
+    "LillyCubed", "lion75774", "Lots_o_Sheeps", "Mach0n3", "Magicress", "mariamtz", "MasterArtificer",
+    "MathDebating", "Mathematician", "Mazetron", "McNugget95", "megaminerjenny", "meowmeowharrison",
+    "MineMarch", "mlustig", "Modernfury", "mtn_narwhal", "muraa", "nc99", "NeonGamezYT", "NewtonsThirdLaw",
+    "NickRubixx", "Nolcan", "notanewt", "noyekim", "origamiman72", "orionll", "owo_miles_owo",
+    "PeanutHeadxX", "peppa_luke", "petitesurrah", "pikiwikibulbie", "Plebturtle", "Plexal", "poncho72781",
+    "PortablePecker", "pp_phd", "PrinceShamu", "qiao_down", "rachnne", "Rainman777", "raptor616",
+    "redconfetti", "RestInPepperoniz", "RevivedAlt", "RockingKeyboard", "Rockylightning", "RooWuyBoss",
+    "S31J1", "safaeraaaaa", "saltyalligators", "SaltyMinty", "sam_ccfu", "sammypoth", "sarah_shorts",
+    "seaanna", "Sergeant_Flippy", "sherlockholmesth", "Sideshowbob745", "SilvousPaite", "sinubux",
+    "SirEnderOrDie", "SkyTechBytes", "slasher234", "SlimeSlayer1324", "SmartContract", "Smirky_shi",
+    "Soudan111", "Sowm", "Spooky_Dragon", "sps96", "starly396", "Stolrow", "SunnyBear_", "superjjong2",
+    "Tachometer74", "tehpr0", "TheBomb223", "thebradqq", "thelazer33", "Themashihne", "theotheredm",
+    "tomicalover", "Totqlity", "tourdefrances", "TR909machine", "TrojanKnights", "true_scholar", "TS_ST0RM",
+    "vallerogers", "vianya", "wafflesselffaw", "Walaweegee", "wellfedbison", "whimsicalwhispr", "willp_317",
+    "wlkx", "xaisek", "xfyber", "yourkingliness", "zCat2"
+];

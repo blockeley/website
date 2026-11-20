@@ -31,6 +31,9 @@
       },
     },
   },
+  "patchedDependencies": {
+    "vite-ssg@28.3.0": "patches/vite-ssg@28.3.0.patch",
+  },
   "packages": {
     "@acemir/cssom": ["@acemir/cssom@0.9.33", "", {}, "sha512-52IMmrBsIsDZLp/KFM+KmaMLJ8GTj113K+iFGFCoOjstZSZbsAxMJE8KYtwao7bz1LsEG810ts1m5wvkVEqPlg=="],
 

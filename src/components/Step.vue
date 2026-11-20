@@ -1,5 +1,5 @@
 <template>
-    <div class="step" :class="classObject">
+    <div class="step" :class="{ 'step-alternate': alternate }">
         <div class="step-image">
             <img :src="image" loading="lazy" decoding="async" alt="">
         </div>
@@ -17,20 +17,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-
-const props = defineProps<{
+defineProps<{
     image: string;
     title: string;
     alternate?: boolean;
 }>( );
-
-const classObject = computed(( ) => ({
-    "step-alternate": props.alternate
-}));
 </script>
 
 <style lang="scss">
+@use "@/scss/mixins";
+
 .step {
     @media (min-width: 992px) {
         display: flex;
@@ -99,8 +95,7 @@ const classObject = computed(( ) => ({
         .step-image {
              width: 100%;
 
-             // 16x9 width to height ratio
-             padding-top: calc(100% / 16 * 9);
+             aspect-ratio: 16 / 9;
         }
 
         .step-content {
@@ -121,32 +116,11 @@ const classObject = computed(( ) => ({
     }
 
     .step-image {
-        position: relative;
-
         border: 2px solid black;
         box-shadow: 4px 4px var(--accent-color);
         background-color: white;
 
-        img, &::after {
-            position: absolute;
-
-            height: 100%;
-            width: 100%;
-
-            left: 0;
-            top: 0;
-        }
-
-        img {
-            object-fit: cover;
-        }
-
-        &::after {
-            // Required for pseudo-elements
-            content: "";
-
-            border: 4px solid rgba(white, 0.25);
-        }
+        @include mixins.framed-image(4px);
     }
 
     .step-content {

@@ -9,9 +9,9 @@
                                              various locations around the Berkeley campus to create a genuine virtual experience for our guests.</template>
 
                 <template v-slot:buttons>
-                    <Button @click="scrollTo(Identifiers.Explore)">Explore in Minecraft</Button>
+                    <Button @click="scrollTo('explore')">Explore in Minecraft</Button>
 
-                    <Button @click="scrollTo(Identifiers.Locations)">View featured locations</Button>
+                    <Button @click="scrollTo('locations')">View featured locations</Button>
                 </template>
 
                 <Alert :icon="statusIcon" :message="statusMessage" />
@@ -30,10 +30,10 @@
         </div>
 
         <div class="container">
-            <Options :options="Object.keys(Editions)" centered @change="setSelectedEdition" />
+            <Options :options="editions" centered v-model="edition" />
 
             <div id="steps-wrapper">
-                <template v-if="selectedEdition === Editions.Java">
+                <template v-if="edition === 'Java'">
                     <Step title="Step one" image="/images/steps/java/one.webp">
                         <template v-slot:description><span class="important">Register for a Minecraft account</span> if you do not already have one.
                                                      <br><span class="important">Download Minecraft Java Edition</span> on Windows, macOS, or Linux.</template>
@@ -94,7 +94,7 @@
                     <!-- To-do: Pop-up..? -->
                     <Button href="https://map.blockeley.com" target="_blank">Explore in the browser</Button>
 
-                    <Button href="https://docs.google.com/forms/d/e/1FAIpQLSebaih8bBY5wOGvmInL2Xi5Y691UlvVrg0thSPz8LfR_Vfb6w/viewform" target="_blank">Apply as a builder</Button>
+                    <Button :href="BUILDER_APPLICATION_URL" target="_blank">Apply as a builder</Button>
                 </template>
             </Section>
         </div>
@@ -120,11 +120,10 @@ import Options from "@/components/Options.vue";
 import Step from "@/components/Step.vue";
 import Splash from "@/components/Splash.vue";
 import Alert from "@/components/Alert.vue";
+import { BUILDER_APPLICATION_URL } from "@/site";
 
-const Editions = { Java: "java", Bedrock: "bedrock" } as const;
-type Edition = typeof Editions[keyof typeof Editions];
-
-const Identifiers = { Explore: "explore", Locations: "locations" } as const;
+const editions = [ "Java", "Bedrock" ] as const;
+const edition = ref<string>("Java");
 
 const locations = [
     { title: "Doe Memorial Library", image: "/images/locations/one.webp", warp: "Doe" },
@@ -140,26 +139,21 @@ interface ServerStatus {
     players?: { online: number; max: number };
 }
 
-const selectedEdition = ref<Edition>(Editions.Java);
 const status = ref<ServerStatus | null>(null);
 
-function setSelectedEdition(edition: string) {
-    selectedEdition.value = Editions[edition as keyof typeof Editions];
-}
-
+// The targets' scroll-margin-top keeps them clear of the sticky navigation bar
 function scrollTo(identifier: string) {
-    const element = document.getElementById(identifier);
-    if( ! element ) return;
-
-    window.scroll({
-        behavior: "smooth",
-        left: 0,
-        top: element.offsetTop - 128
-    });
+    document.getElementById(identifier)?.scrollIntoView({ behavior: "smooth" });
 }
+
+// mcsrvstat.us caches results for a minute, so polling faster only adds requests
+const STATUS_INTERVAL = 60000;
+let lastUpdate = 0;
 
 async function updateStatus( ) {
     if(document.hidden) return;
+
+    lastUpdate = Date.now( );
 
     try {
         const response = await fetch("https://api.mcsrvstat.us/3/mc.blockeley.com");
@@ -183,23 +177,31 @@ const statusMessage = computed(( ) => {
 
 let statusInterval: ReturnType<typeof setInterval> | undefined;
 
-onMounted(( ) => {
-    // mcsrvstat.us caches results for a minute, so polling faster only adds requests
-    updateStatus( );
-    statusInterval = setInterval(updateStatus, 60000);
+// Coming back to the tab: refresh unless the last check is still current
+function onVisibilityChange( ) {
+    if(Date.now( ) - lastUpdate >= STATUS_INTERVAL) updateStatus( );
+}
 
-    document.addEventListener("visibilitychange", updateStatus);
+onMounted(( ) => {
+    updateStatus( );
+    statusInterval = setInterval(updateStatus, STATUS_INTERVAL);
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
 });
 
 onBeforeUnmount(( ) => {
     clearInterval(statusInterval);
 
-    document.removeEventListener("visibilitychange", updateStatus);
+    document.removeEventListener("visibilitychange", onVisibilityChange);
 });
 </script>
 
 <style lang="scss">
 #campus {
+    #explore, #locations {
+        scroll-margin-top: 128px;
+    }
+
     padding-bottom: 256px;
 
     @media (max-width: 992px) {

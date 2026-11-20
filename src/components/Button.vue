@@ -1,5 +1,5 @@
 <template>
-    <component :is="component" :href="href" :to="to" :target="target" class="button" :class="classObject" @click="click">
+    <component :is="tag" :href="href" :to="to" class="button" :class="{ 'button-alternate': alternate }">
         <slot />
     </component>
 </template>
@@ -8,32 +8,14 @@
 import { computed } from "vue";
 import { RouterLink, type RouteLocationRaw } from "vue-router";
 
+// Other attributes (target, @click, ...) fall through to the rendered element
 const props = defineProps<{
     alternate?: boolean;
-    progress?: boolean;
     to?: RouteLocationRaw;
-    target?: string;
     href?: string;
 }>( );
 
-const emit = defineEmits<{
-    click: [ ];
-}>( );
-
-const classObject = computed(( ) => ({
-    "button-alternate": props.alternate,
-    "button-progress": props.progress
-}));
-
-const component = computed(( ) => {
-    if(props.href) return "a";
-    if(props.to) return RouterLink;
-    return "div";
-});
-
-function click( ) {
-    emit("click");
-}
+const tag = computed(( ) => props.href ? "a" : props.to ? RouterLink : "div");
 </script>
 
 <style lang="scss">
@@ -61,34 +43,7 @@ function click( ) {
 
     transition: 100ms;
 
-    &.button-progress {
-        color: white;
-
-        user-select: none;
-
-        &::after {
-            // Required for pseudo-elements
-            content: "";
-
-            position: absolute;
-
-            height: 24px;
-            width: 24px;
-
-            left: 50%;
-            top: 50%;
-
-            border-radius: 50%;
-
-            border-style: solid;
-            border-width: 2px;
-            border-color: black black black transparent;
-
-            animation: button-progress 500ms linear infinite;
-        }
-    }
-
-    &:not(.button-progress):hover {
+    &:hover {
         background-color: black;
 
         color: white;
@@ -102,37 +57,11 @@ function click( ) {
 
         color: white;
 
-        &.button-progress {
-            color: black;
-
-            &::after {
-                border-color: white white white transparent;
-            }
-        }
-
-        &:not(.button-progress):hover {
+        &:hover {
             background-color: white;
 
             color: black;
         }
     }
-}
-
-@keyframes button-progress {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-      }
-
-      25% {
-        transform: translate(-50%, -50%) rotate(120deg);
-      }
-
-      75% {
-        transform: translate(-50%, -50%) rotate(240deg);
-      }
-
-      100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-      }
 }
 </style>
