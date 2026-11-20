@@ -23,3 +23,9 @@
         border-width: $border-width;
     }
 }
+
+// Width of `$n` of 12 columns with 1.5rem gutters: the content width of a Bootstrap-style
+// column, so layouts keep their proportions without a grid framework
+@function columns($n) {
+    @return calc((100% + 1.5rem) * #{$n} / 12 - 1.5rem);
+}

@@ -2,13 +2,13 @@
     <div class="mobile-navigation">
         <div class="navigation-bar">
             <div class="container-fluid">
-                <IconButton class="mr-auto" icon="close" @click="$emit('close')" />
+                <IconButton class="mobile-navigation-close" icon="close" @click="$emit('close')" />
 
                 <img class="navigation-bar-brand" src="/images/logo-small.webp" alt="Blockeley">
             </div>
         </div>
 
-        <ul class="mobile-navigation-menu">
+        <ul class="mobile-navigation-menu" role="list">
             <NavigationLinks />
         </ul>
     </div>
@@ -39,6 +39,10 @@ defineEmits<{
     left: 0;
 
 	background-color: white;
+
+	.mobile-navigation-close {
+		margin-right: auto;
+	}
 
 	ul.mobile-navigation-menu {
 		display: flex;

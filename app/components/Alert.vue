@@ -1,13 +1,13 @@
 <template>
     <div class="alert">
-        <Icon :name="icon" />
+        <Icon :name="`material-symbols:${ icon }`" />
 
         <p class="alert-message">{{ message }}</p>
     </div>
 </template>
 
 <script setup lang="ts">
-import Icon, { type IconName } from "@/components/Icon.vue";
+import type { IconName } from "@/types";
 
 defineProps<{
     icon: IconName;

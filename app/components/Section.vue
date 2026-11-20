@@ -1,26 +1,24 @@
 <template>
     <div class="section" :class="variant && `section-${ variant }`">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-header">
-                        <p v-if="$slots.subHeading" class="section-sub-heading">
-                            <slot name="subHeading" />
-                        </p>
-
-                        <p class="section-heading">{{ heading }}</p>
-                    </div>
-
-                    <p v-if="$slots.description" class="section-description">
-                        <slot name="description" />
+            <div class="section-content">
+                <div class="section-header">
+                    <p v-if="$slots.subHeading" class="section-sub-heading">
+                        <slot name="subHeading" />
                     </p>
 
-                    <div v-if="$slots.buttons" class="section-buttons">
-                        <slot name="buttons" />
-                    </div>
-
-                    <slot />
+                    <p class="section-heading">{{ heading }}</p>
                 </div>
+
+                <p v-if="$slots.description" class="section-description">
+                    <slot name="description" />
+                </p>
+
+                <div v-if="$slots.buttons" class="section-buttons">
+                    <slot name="buttons" />
+                </div>
+
+                <slot />
             </div>
         </div>
     </div>
@@ -42,8 +40,17 @@ defineSlots<{
 </script>
 
 <style lang="scss">
+@use "@/scss/mixins";
+
 .section {
     position: relative;
+
+    .section-content {
+        @media (min-width: 992px) {
+            width: mixins.columns(8);
+            margin-inline: auto;
+        }
+    }
 
     width: 100%;
 

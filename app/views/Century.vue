@@ -35,9 +35,6 @@
 <script setup lang="ts">
 // Not routed yet. To publish it, move this file to app/pages/century.vue, add
 // definePageMeta({ title: "19th Century", accent: "#e4d7ac" }) and uncomment its link in site.ts.
-// Only this (currently unrouted) page uses Merriweather, so it loads with this chunk instead of on every page
-import "@fontsource/merriweather/latin-400.css";
-
 import Button from "@/components/Button.vue";
 import Section from "@/components/Section.vue";
 import Splash from "@/components/Splash.vue";

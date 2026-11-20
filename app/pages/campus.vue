@@ -46,7 +46,7 @@
                                                      <br><span class="important">Sign in with your Minecraft account</span> (or your Microsoft account).
                                                      <br><span class="important">Click play</span> to launch Minecraft Java Edition.</template>
 
-                        <Alert icon="priority_high" message="Remember to use the latest release" />
+                        <Alert icon="priority-high" message="Remember to use the latest release" />
                     </Step>
 
                     <Step title="Step three" image="/images/steps/java/three.webp">
@@ -101,10 +101,8 @@
 
         <div class="container">
             <!-- To-do: Remove Bootstrap utilities -->
-            <div id="locations-wrapper" class="row justify-content-center">
-                <div v-for="location in locations" :key="location.title" class="col-lg-4 col-md-6">
-                    <Location :title="location.title" :image="location.image" :warp="location.warp" />
-                </div>
+            <div id="locations-wrapper">
+                <Location v-for="location in locations" :key="location.title" v-bind="location" />
             </div>
         </div>
     </div>
@@ -166,9 +164,9 @@ async function updateStatus( ) {
 }
 
 const statusIcon = computed(( ) => {
-    if( ! status.value ) return "priority_high";
+    if( ! status.value ) return "priority-high";
 
-    return status.value.online ? "play_arrow" : "close";
+    return status.value.online ? "play-arrow" : "close";
 });
 
 const statusMessage = computed(( ) => {
@@ -199,6 +197,8 @@ onBeforeUnmount(( ) => {
 </script>
 
 <style lang="scss">
+@use "@/scss/mixins";
+
 #campus {
     #explore, #locations {
         scroll-margin-top: 128px;
@@ -214,11 +214,23 @@ onBeforeUnmount(( ) => {
         margin-top: 48px;
     }
 
+    // Three cards per row on wide screens, two on tablets, centring a short last row
     #locations-wrapper {
-        margin-bottom: -24px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
 
         .location {
-            margin-bottom: 24px;
+            width: 100%;
+
+            @media (min-width: 768px) {
+                width: mixins.columns(6);
+            }
+
+            @media (min-width: 992px) {
+                width: mixins.columns(4);
+            }
         }
     }
 }

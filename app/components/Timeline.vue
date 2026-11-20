@@ -1,10 +1,8 @@
 <template>
     <div class="timeline-wrapper">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-5 timeline">
-                    <Event v-for="event in events" :key="event.title" v-bind="event" />
-                </div>
+            <div class="timeline">
+                <Event v-for="event in events" :key="event.title" v-bind="event" />
             </div>
         </div>
     </div>
@@ -29,6 +27,22 @@ defineProps<{
 
         .timeline {
             position: relative;
+
+            // A narrow centred column; the padding keeps the dotted line clear of the text
+            padding-inline: .75rem;
+
+            // Contain the events' (partly negative) margins instead of letting them collapse through
+            display: flow-root;
+            margin-inline: -.75rem;
+
+            @media (min-width: 768px) {
+                width: calc((100% + 1.5rem) * 5 / 12);
+                margin-inline: auto;
+            }
+
+            @media (min-width: 992px) {
+                width: calc((100% + 1.5rem) * 4 / 12);
+            }
 
             &::after {
                 content: "";

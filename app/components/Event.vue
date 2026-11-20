@@ -50,6 +50,11 @@ defineProps<TimelineEvent>( );
             }
 
             p.event-heading {
+                // Long words (e.g. "Commencement") hyphenate where the browser can, and otherwise
+                // overflow as before rather than breaking mid-word (the reset sets overflow-wrap)
+                hyphens: auto;
+                overflow-wrap: normal;
+
                 font-size: 36px;
                 font-weight: 900;
                 line-height: 1.2;

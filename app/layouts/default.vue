@@ -10,11 +10,11 @@ desktop-message="Learn more about Blockeley and chat with Blockeley team members
 
         <div class="navigation-bar">
             <div class="container">
-                <IconButton class="d-lg-none mr-auto" icon="menu" @click="mobileNavigation = true" />
+                <IconButton class="navigation-bar-toggle" icon="menu" @click="mobileNavigation = true" />
 
                 <img class="navigation-bar-brand" src="/images/logo-small.webp" alt="Blockeley">
 
-                <ul class="navigation-bar-menu ml-auto d-none d-lg-flex">
+                <ul class="navigation-bar-menu" role="list">
                     <NavigationLinks />
                 </ul>
             </div>
@@ -75,6 +75,8 @@ body {
     position: relative;
 
     font-family: "Poppins", sans-serif;
+    // The design's text metrics assume a line-height of 1 (the old Meyer reset's default)
+    line-height: 1;
 
     background-color: #F5F2E5;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");

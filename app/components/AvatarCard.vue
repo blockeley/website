@@ -1,10 +1,10 @@
 <template>
     <div class="avatar-card">
         <div class="avatar-card-icon">
-            <img :src="`/images/avatars/icons8-${ img }-50.png`" width="36" height="36" loading="lazy" decoding="async" alt="">
+            <Icon :name="`material-symbols:${ icon }`" />
         </div>
 
-        <AvatarImage :ign="ign" />
+        <AvatarImage :uuid="uuid" :ign="ign" />
 
         <div class="avatar-card-details">
             <p class="avatar-card-ign"> {{ ign }} </p>
@@ -17,11 +17,13 @@
 
 <script setup lang="ts">
 import AvatarImage from "@/components/AvatarImage.vue";
+import type { RoleIcon } from "@/types";
 
 defineProps<{
     ign: string;
+    uuid: string;
     role: string;
-    img: string;
+    icon: RoleIcon;
     name?: string;
 }>( );
 </script>
@@ -45,7 +47,7 @@ defineProps<{
     .avatar-card-icon {
         position: absolute;
 
-        img {
+        svg {
             position: relative;
 
             top: 6px;
@@ -56,17 +58,19 @@ defineProps<{
             width: 36px;
             height: 36px;
 
-
+            color: var(--accent-color);
         }
+        // Circle behind the role icon
         &::after {
             position: absolute;
             // Required for pseudo-elements
             content: "";
 
+            top: 0;
+            left: 0;
+
             height: 50px;
             width: 50px;
-
-            transform: translateX(-36px);
 
             z-index: 9;
             background-color: rgb(240, 240, 240);

@@ -1,11 +1,11 @@
 <template>
     <button type="button" class="icon-button" :class="{ 'icon-button-light': light }">
-        <Icon :name="icon" />
+        <Icon :name="`material-symbols:${ icon }`" />
     </button>
 </template>
 
 <script setup lang="ts">
-import Icon, { type IconName } from "@/components/Icon.vue";
+import type { IconName } from "@/types";
 
 // @click falls through to the <button>
 defineProps<{

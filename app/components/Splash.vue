@@ -57,7 +57,7 @@ onMounted(( ) => {
         height: calc(100vh - 96px);
 
         &.splash-continue::after {
-            // Material Icons arrow_downward (Apache 2.0), drawn without the icon font
+            // Material Symbols arrow-downward (Apache 2.0), same set as the <Icon>s
             content: "";
 
             display: flex;
@@ -76,7 +76,7 @@ onMounted(( ) => {
 
             transform: translateX(-50%);
 
-            background: black url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='m20 12-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z'/%3E%3C/svg%3E") center / 24px no-repeat;
+            background: black url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M11 4v12.175l-5.6-5.6L4 12l8 8l8-8l-1.4-1.425l-5.6 5.6V4z'/%3E%3C/svg%3E") center / 24px no-repeat;
 
         }
     }

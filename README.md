@@ -1,6 +1,9 @@
 # blockeley
 
 Built with [Nuxt 4](https://nuxt.com) (Vue 3, TypeScript, Vite) and [Bun](https://bun.sh).
+Icons come from [Material Symbols](https://icones.js.org/collection/material-symbols) via
+[@nuxt/icon](https://nuxt.com/modules/icon), fonts are self-hosted by [@nuxt/fonts](https://fonts.nuxt.com),
+and layout is plain CSS (see `app/styles/` and `app/scss/_mixins.scss`).
 
 ```bash
 bun install        # install dependencies (also generates Nuxt's types)
