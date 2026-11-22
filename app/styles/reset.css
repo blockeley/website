@@ -1,0 +1,46 @@
+/*
+ * Modern CSS reset, after Josh Comeau's (https://www.joshwcomeau.com/css/custom-css-reset/)
+ * and Andy Bell's (https://piccalil.li/blog/a-more-modern-css-reset/).
+ * Unlike the old Meyer reset it keeps browser defaults that are useful (bold <strong>,
+ * heading sizes, form control behaviour) and only removes the ones that get in the way.
+ */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+/* Lists marked role="list" are used for layout (menus), so drop their bullets and indent */
+ul[role="list"], ol[role="list"] {
+    list-style: none;
+    padding: 0;
+}
+
+#__nuxt {
+    isolation: isolate;
+}
