@@ -21,6 +21,6 @@ bun run lint       # lint (@nuxt/eslint)
 unknown paths); the app then hydrates in the browser.
 
 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) lints, type-checks and
-builds every pull request, and deploys to GitHub Pages on every push to `develop`
+builds every pull request, and deploys to GitHub Pages on every push to `main`
 (or manually from the Actions tab). The site is served at
 [blockeley.com](https://blockeley.com) via `public/CNAME`.
