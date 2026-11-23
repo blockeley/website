@@ -18,7 +18,7 @@
 defineProps<{
     desktopMessage: string;
     mobileMessage: string;
-}>( );
+}>();
 </script>
 
 <style lang="scss">

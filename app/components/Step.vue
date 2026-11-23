@@ -1,7 +1,7 @@
 <template>
     <div class="step" :class="{ 'step-alternate': alternate }">
         <div class="step-image">
-            <img :src="image" loading="lazy" decoding="async" alt="">
+            <img :src="image" loading="lazy" decoding="async" alt="" />
         </div>
 
         <div class="step-content">
@@ -21,7 +21,7 @@ defineProps<{
     image: string;
     title: string;
     alternate?: boolean;
-}>( );
+}>();
 </script>
 
 <style lang="scss">
@@ -93,9 +93,9 @@ defineProps<{
 
     @media (max-width: 992px) {
         .step-image {
-             width: 100%;
+            width: 100%;
 
-             aspect-ratio: 16 / 9;
+            aspect-ratio: 16 / 9;
         }
 
         .step-content {

@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <IconButton class="mobile-navigation-close" icon="close" @click="$emit('close')" />
 
-                <img class="navigation-bar-brand" src="/images/logo-small.webp" alt="Blockeley">
+                <img class="navigation-bar-brand" src="/images/logo-small.webp" alt="Blockeley" />
             </div>
         </div>
 
@@ -19,95 +19,95 @@ import IconButton from "@/components/IconButton.vue";
 import NavigationLinks from "@/components/NavigationLinks.vue";
 
 defineEmits<{
-    close: [ ];
-}>( );
+    close: [];
+}>();
 </script>
 
 <style lang="scss">
 .mobile-navigation {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-	position: fixed;
+    position: fixed;
 
-	z-index: 999;
+    z-index: 999;
 
-	height: 100vh;
-	width: 100vw;
+    height: 100vh;
+    width: 100vw;
 
     top: 0;
     left: 0;
 
-	background-color: white;
+    background-color: white;
 
-	.mobile-navigation-close {
-		margin-right: auto;
-	}
+    .mobile-navigation-close {
+        margin-right: auto;
+    }
 
-	ul.mobile-navigation-menu {
-		display: flex;
-		flex-direction: column;
+    ul.mobile-navigation-menu {
+        display: flex;
+        flex-direction: column;
 
-		margin-top: 16px;
+        margin-top: 16px;
 
-		list-style-type: none;
+        list-style-type: none;
 
-		li.menu-item a.item-link {
-			display: flex;
-			align-items: center;
+        li.menu-item a.item-link {
+            display: flex;
+            align-items: center;
 
-			position: relative;
+            position: relative;
 
-			font-size: 14px;
-			font-weight: 500;
-			color: rgba(black, 0.5);
-			line-height: 1;
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(black, 0.5);
+            line-height: 1;
 
-			height: 48px;
+            height: 48px;
 
             // Match .container-fluid padding
-			padding-right: 15px;
-			padding-left: 15px;
+            padding-right: 15px;
+            padding-left: 15px;
 
-			transition: background-color 100ms ease-in-out,
-						color 100ms ease-in-out;
+            transition:
+                background-color 100ms ease-in-out,
+                color 100ms ease-in-out;
 
-			&::after {
-				// Required for pseudo-elements
-				content: "";
+            &::after {
+                // Required for pseudo-elements
+                content: "";
 
-				height: 100%;
-				width: 2px;
+                height: 100%;
+                width: 2px;
 
-				position: absolute;
+                position: absolute;
 
-				background-color: black;
+                background-color: black;
 
-				left: 0;
-				bottom: 0;
+                left: 0;
+                bottom: 0;
 
-				opacity: 0;
+                opacity: 0;
 
-				transition: 100ms;
-			}
+                transition: 100ms;
+            }
 
-			&:not(.active):hover {
-				color: black;
+            &:not(.active):hover {
+                color: black;
 
-				cursor: pointer;
-			}
+                cursor: pointer;
+            }
 
-			&.active {
-				background-color: rgba(black, 0.1);
+            &.active {
+                background-color: rgba(black, 0.1);
 
-				color: black;
+                color: black;
 
-				&::after {
-					opacity: 1;
-				}
-			}
-		}
-	}
+                &::after {
+                    opacity: 1;
+                }
+            }
+        }
+    }
 }
-
 </style>

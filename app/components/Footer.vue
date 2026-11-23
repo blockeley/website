@@ -3,10 +3,19 @@
         <div class="footer-body container">
             <div class="footer-columns">
                 <div class="footer-brand">
-                    <img class="footer-image" src="/images/logo-small.webp" loading="lazy" decoding="async" alt="Blockeley">
+                    <img
+                        class="footer-image"
+                        src="/images/logo-small.webp"
+                        loading="lazy"
+                        decoding="async"
+                        alt="Blockeley"
+                    />
 
-                    <p class="footer-description">We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with
-                                             Mojang Synergies AB, or any of its subsidiaries or its affiliates.</p>
+                    <p class="footer-description">
+                        We are not affiliated, associated, authorized, endorsed by, or in any way
+                        officially connected with Mojang Synergies AB, or any of its subsidiaries or
+                        its affiliates.
+                    </p>
 
                     <p class="footer-title">Build together.</p>
                 </div>
@@ -14,11 +23,19 @@
                 <div class="footer-text">
                     <p class="footer-description">Follow us on Twitter.</p>
 
-                    <a class="footer-link" target="_blank" href="https://twitter.com/UBlockeley">@UBlockeley</a>
+                    <a class="footer-link" target="_blank" href="https://twitter.com/UBlockeley"
+                        >@UBlockeley</a
+                    >
                 </div>
             </div>
 
-            <img class="footer-backdrop" src="/images/island.webp" loading="lazy" decoding="async" alt="">
+            <img
+                class="footer-backdrop"
+                src="/images/island.webp"
+                loading="lazy"
+                decoding="async"
+                alt=""
+            />
         </div>
     </div>
 </template>
@@ -111,29 +128,29 @@
     }
 
     a.footer-link {
-      font-size: 12px;
-      font-weight: 500;
-      color: rgba(white, 0.75);
-      line-height: 1.5;
+        font-size: 12px;
+        font-weight: 500;
+        color: rgba(white, 0.75);
+        line-height: 1.5;
 
-      margin-top: 8px;
+        margin-top: 8px;
 
-      border-bottom: 2px solid rgba(white, 0.75);
+        border-bottom: 2px solid rgba(white, 0.75);
 
-      transition: 100ms;
+        transition: 100ms;
 
-      &:hover {
-        color: white;
+        &:hover {
+            color: white;
 
-        border-color: white;
-      }
+            border-color: white;
+        }
     }
 
     .footer-text {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 }
 </style>

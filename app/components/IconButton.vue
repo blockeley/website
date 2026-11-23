@@ -1,6 +1,6 @@
 <template>
     <button type="button" class="icon-button" :class="{ 'icon-button-light': light }">
-        <Icon :name="`material-symbols:${ icon }`" />
+        <Icon :name="`material-symbols:${icon}`" />
     </button>
 </template>
 
@@ -11,7 +11,7 @@ import type { IconName } from "@/types";
 defineProps<{
     icon: IconName;
     light?: boolean;
-}>( );
+}>();
 </script>
 
 <style lang="scss">

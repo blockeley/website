@@ -1,7 +1,7 @@
 <template>
     <div class="location" :class="{ 'location-full-screen': fullScreen }">
         <div class="location-image">
-            <img :src="image" loading="lazy" decoding="async" alt="">
+            <img :src="image" loading="lazy" decoding="async" alt="" />
         </div>
 
         <div class="location-header">
@@ -11,7 +11,11 @@
                 <p class="location-description">/warp {{ warp }}</p>
             </div>
 
-            <IconButton :icon="fullScreen ? 'fullscreen-exit' : 'fullscreen'" light @click="fullScreen = ! fullScreen" />
+            <IconButton
+                :icon="fullScreen ? 'fullscreen-exit' : 'fullscreen'"
+                light
+                @click="fullScreen = !fullScreen"
+            />
         </div>
     </div>
 </template>
@@ -25,7 +29,7 @@ defineProps<{
     title: string;
     image: string;
     warp: string;
-}>( );
+}>();
 
 // Page scrolling is locked by CSS while a location is full screen (see body:has() in App.vue)
 const fullScreen = ref(false);

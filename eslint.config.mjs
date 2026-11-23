@@ -5,6 +5,8 @@ export default withNuxt({
     rules: {
         // Components are only used from SFC templates, where these names are unambiguous
         "vue/no-reserved-component-names": "off",
-        "vue/multi-word-component-names": "off"
-    }
+        "vue/multi-word-component-names": "off",
+        // Formatting is oxfmt's job (see .oxfmtrc.json); this rule disagrees with it on <br />
+        "vue/html-self-closing": "off",
+    },
 });

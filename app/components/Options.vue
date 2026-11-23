@@ -1,6 +1,14 @@
 <template>
     <div class="options" :class="{ 'options-centered': centered }">
-        <div v-for="option in options" :key="option" class="option" :class="{ active: selected === option }" @click="selected = option">{{ option }}</div>
+        <div
+            v-for="option in options"
+            :key="option"
+            class="option"
+            :class="{ active: selected === option }"
+            @click="selected = option"
+        >
+            {{ option }}
+        </div>
     </div>
 </template>
 
@@ -8,7 +16,7 @@
 defineProps<{
     options: readonly string[];
     centered?: boolean;
-}>( );
+}>();
 
 const selected = defineModel<string>({ required: true });
 </script>

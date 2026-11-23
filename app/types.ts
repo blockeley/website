@@ -1,5 +1,11 @@
 // Material Symbols names (https://icones.js.org/collection/material-symbols) used by IconButton and Alert
-export type IconName = "close" | "fullscreen" | "fullscreen-exit" | "play-arrow" | "menu" | "priority-high";
+export type IconName =
+    | "close"
+    | "fullscreen"
+    | "fullscreen-exit"
+    | "play-arrow"
+    | "menu"
+    | "priority-high";
 
 // Material Symbols names (https://icones.js.org/collection/material-symbols) used for board roles
 export type RoleIcon = "shield-person" | "dns" | "campaign" | "forum" | "event" | "badge";

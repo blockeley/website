@@ -2,7 +2,8 @@
 @mixin framed-image($border-width: 4px) {
     position: relative;
 
-    img, &::after {
+    img,
+    &::after {
         position: absolute;
 
         height: 100%;

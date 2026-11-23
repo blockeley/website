@@ -1,17 +1,16 @@
 <template>
     <div class="avatar-card">
         <div class="avatar-card-icon">
-            <Icon :name="`material-symbols:${ icon }`" />
+            <Icon :name="`material-symbols:${icon}`" />
         </div>
 
         <AvatarImage :uuid="uuid" :ign="ign" />
 
         <div class="avatar-card-details">
-            <p class="avatar-card-ign"> {{ ign }} </p>
-            <p v-if="name" class="avatar-card-name"> {{ name }} </p>
-            <p class="avatar-card-role"> {{ role }} </p>
+            <p class="avatar-card-ign">{{ ign }}</p>
+            <p v-if="name" class="avatar-card-name">{{ name }}</p>
+            <p class="avatar-card-role">{{ role }}</p>
         </div>
-
     </div>
 </template>
 
@@ -25,13 +24,11 @@ defineProps<{
     role: string;
     icon: RoleIcon;
     name?: string;
-}>( );
+}>();
 </script>
 
 <style lang="scss">
 .avatar-card {
-
-
     background-color: rgb(240, 240, 240);
 
     box-shadow: 4px 4px var(--accent-color);
@@ -121,6 +118,5 @@ defineProps<{
             line-height: 1.25;
         }
     }
-
 }
 </style>

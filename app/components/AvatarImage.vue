@@ -1,6 +1,13 @@
 <template>
     <div class="avatar-image">
-        <img :src="`https://mc-heads.net/avatar/${ uuid }`" width="100" height="100" loading="lazy" decoding="async" :alt="ign">
+        <img
+            :src="`https://mc-heads.net/avatar/${uuid}`"
+            width="100"
+            height="100"
+            loading="lazy"
+            decoding="async"
+            :alt="ign"
+        />
     </div>
 </template>
 
@@ -10,27 +17,27 @@
 defineProps<{
     uuid: string;
     ign: string;
-}>( );
+}>();
 </script>
 
 <style lang="scss">
-    .avatar-image {
-        position: relative;
-        left: calc(50%);
-        transform: translateX(-50%);
+.avatar-image {
+    position: relative;
+    left: calc(50%);
+    transform: translateX(-50%);
 
-        height: 100px;
-        width: 100px;
-        
-        margin-top: 24px;
+    height: 100px;
+    width: 100px;
 
-        img {
-            position: absolute;
-            border-radius: 12.5%;
-            height: 100%;
-            width: 100%;
+    margin-top: 24px;
 
-            object-fit: cover;
-        }
+    img {
+        position: absolute;
+        border-radius: 12.5%;
+        height: 100%;
+        width: 100%;
+
+        object-fit: cover;
     }
+}
 </style>
