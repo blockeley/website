@@ -1,7 +1,7 @@
 <template>
     <div class="avatar-image">
         <img
-            :src="`https://mc-heads.net/avatar/${uuid}`"
+            :src="`/images/heads/${uuid}.png`"
             width="100"
             height="100"
             loading="lazy"
@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-// mc-heads.net renders the player's head with its hat layer; looking it up by UUID keeps
-// working when a player changes their name
+// The player's 8×8 face and hat layer, downloaded from Mojang by `bun run heads`
+// (see scripts/heads.ts) and scaled up here
 defineProps<{
     uuid: string;
     ign: string;
@@ -38,6 +38,9 @@ defineProps<{
         width: 100%;
 
         object-fit: cover;
+
+        // Keep the skin's pixels crisp instead of blurring them when scaled up
+        image-rendering: pixelated;
     }
 }
 </style>
