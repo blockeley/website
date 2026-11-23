@@ -1,0 +1,100 @@
+.navigation-bar {
+    height: 56px;
+
+    z-index: 998;
+
+    position: sticky;
+
+    top: 0;
+
+    background-color: var(--accent-color);
+
+    transition: background-color 100ms ease-in-out;
+
+    > .container,
+    > .container-fluid {
+        display: flex;
+        align-items: center;
+
+        height: 100%;
+    }
+
+    img.navigation-bar-brand {
+        height: 40px;
+    }
+
+    // Menu button on small screens, the link list on wide ones
+    .navigation-bar-toggle {
+        margin-right: auto;
+
+        @media (min-width: 992px) {
+            display: none;
+        }
+    }
+
+    ul.navigation-bar-menu {
+        display: none;
+
+        margin-left: auto;
+
+        @media (min-width: 992px) {
+            display: flex;
+        }
+
+        li.menu-item a.item-link {
+            display: flex;
+            align-items: center;
+
+            position: relative;
+
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(black, 0.5);
+            line-height: 1;
+
+            height: 56px;
+
+            padding-right: 12px;
+            padding-left: 12px;
+
+            transition:
+                background-color 100ms ease-in-out,
+                color 100ms ease-in-out;
+
+            &::after {
+                // Required for pseudo
+                content: "";
+
+                position: absolute;
+
+                height: 2px;
+                width: 100%;
+
+                left: 0;
+                bottom: 0;
+
+                background-color: black;
+
+                opacity: 0;
+
+                transition: opacity 100ms ease-in-out;
+            }
+
+            &:hover {
+                color: black;
+
+                cursor: pointer;
+            }
+
+            &.active {
+                background-color: rgba(black, 0.1);
+
+                color: black;
+
+                &::after {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

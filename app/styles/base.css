@@ -1,0 +1,41 @@
+/* Site-wide layout primitives (these replace the Bootstrap grid) */
+
+/* Centred page column, matching the widths the design was built on */
+.container,
+.container-fluid {
+    width: 100%;
+
+    padding-inline: 1rem;
+    margin-inline: auto;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+}
+
+/* @nuxt/icon renders <svg class="icon"> */
+svg.icon {
+    flex-shrink: 0;
+}
