@@ -301,7 +301,8 @@ onBeforeUnmount(() => {
         justify-content: center;
         gap: 1.5rem;
 
-        .location {
+        // Grid sizes only; a location expanded to full screen sizes itself
+        .location:not(.location-full-screen) {
             width: 100%;
 
             @media (min-width: 768px) {

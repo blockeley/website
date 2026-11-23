@@ -13,6 +13,7 @@ bun run typecheck  # type-check (vue-tsc)
 bun run preview    # serve the production build locally
 bun run lint       # lint (@nuxt/eslint)
 bun run format     # format with oxfmt (Prettier-compatible; .oxfmtrc.json)
+bun run heads      # re-download board members' Minecraft heads (after editing app/data/board.ts)
 ```
 
 ## Deployment
