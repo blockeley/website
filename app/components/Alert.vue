@@ -1,6 +1,6 @@
 <template>
     <div class="alert">
-        <Icon :name="`material-symbols:${ icon }`" />
+        <Icon :name="`material-symbols:${icon}`" />
 
         <p class="alert-message">{{ message }}</p>
     </div>
@@ -12,7 +12,7 @@ import type { IconName } from "@/types";
 defineProps<{
     icon: IconName;
     message: string;
-}>( );
+}>();
 </script>
 
 <style lang="scss">
@@ -37,7 +37,7 @@ defineProps<{
 
         // 40px default height (14px + 13px * 2)
         margin-top: 13px;
-        margin-bottom: 13px
+        margin-bottom: 13px;
     }
 
     svg.icon {

@@ -1,5 +1,8 @@
 <template>
-    <a class="link-button" :class="{ 'link-button-alternate': alternate, 'link-button-small': small }">
+    <a
+        class="link-button"
+        :class="{ 'link-button-alternate': alternate, 'link-button-small': small }"
+    >
         <slot />
     </a>
 </template>
@@ -9,7 +12,7 @@
 defineProps<{
     alternate?: boolean;
     small?: boolean;
-}>( );
+}>();
 </script>
 
 <style lang="scss">

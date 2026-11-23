@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -25,6 +25,8 @@ jobs:
           bun-version-file: package.json
 
       - run: bun install --frozen-lockfile
+
+      - run: bun run format:check
 
       - run: bun run lint
 

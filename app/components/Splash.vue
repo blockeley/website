@@ -1,9 +1,18 @@
 <template>
     <div class="splash" :class="{ 'splash-continue': $props.continue }">
-        <img v-if="image" class="splash-image" :src="image" alt="" >
+        <img v-if="image" class="splash-image" :src="image" alt="" />
 
         <div v-if="video && poster" class="splash-video">
-            <video ref="videoElement" :src="video" :poster="poster" preload="none" loop muted playsinline disablepictureinpicture />
+            <video
+                ref="videoElement"
+                :src="video"
+                :poster="poster"
+                preload="none"
+                loop
+                muted
+                playsinline
+                disablepictureinpicture
+            />
         </div>
 
         <slot />
@@ -18,18 +27,21 @@ defineProps<{
     video?: string;
     poster?: string;
     continue?: boolean;
-}>( );
+}>();
 
 const videoElement = useTemplateRef<HTMLVideoElement>("videoElement");
 
 // The background video is decoration: only download and play it when the visitor
 // hasn't asked for reduced motion or reduced data use; otherwise the poster stays
-onMounted(( ) => {
-    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+onMounted(() => {
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } })
+        .connection;
 
-    if(matchMedia("(prefers-reduced-motion: reduce)").matches || connection?.saveData) return;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches || connection?.saveData) return;
 
-    videoElement.value?.play( ).catch(( ) => { /* autoplay blocked: keep the poster */ });
+    videoElement.value?.play().catch(() => {
+        /* autoplay blocked: keep the poster */
+    });
 });
 </script>
 
@@ -76,8 +88,9 @@ onMounted(( ) => {
 
             transform: translateX(-50%);
 
-            background: black url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M11 4v12.175l-5.6-5.6L4 12l8 8l8-8l-1.4-1.425l-5.6 5.6V4z'/%3E%3C/svg%3E") center / 24px no-repeat;
-
+            background: black
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M11 4v12.175l-5.6-5.6L4 12l8 8l8-8l-1.4-1.425l-5.6 5.6V4z'/%3E%3C/svg%3E")
+                center / 24px no-repeat;
         }
     }
 
@@ -97,7 +110,9 @@ onMounted(( ) => {
         opacity: 0.025;
     }
 
-    .splash-video, .splash-video video, .splash-video::after {
+    .splash-video,
+    .splash-video video,
+    .splash-video::after {
         position: absolute;
 
         left: 0;
@@ -121,6 +136,5 @@ onMounted(( ) => {
             background-color: rgba(black, 0.75);
         }
     }
-
 }
 </style>

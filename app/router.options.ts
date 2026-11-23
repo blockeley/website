@@ -1,5 +1,5 @@
 import type { RouterConfig } from "@nuxt/schema";
 
 export default {
-    linkActiveClass: "active"
+    linkActiveClass: "active",
 } satisfies RouterConfig;

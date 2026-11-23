@@ -4,7 +4,9 @@
  * Unlike the old Meyer reset it keeps browser defaults that are useful (bold <strong>,
  * heading sizes, form control behaviour) and only removes the ones that get in the way.
  */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -22,21 +24,35 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
     display: block;
     max-width: 100%;
 }
 
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
     font: inherit;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     overflow-wrap: break-word;
 }
 
 /* Lists marked role="list" are used for layout (menus), so drop their bullets and indent */
-ul[role="list"], ol[role="list"] {
+ul[role="list"],
+ol[role="list"] {
     list-style: none;
     padding: 0;
 }

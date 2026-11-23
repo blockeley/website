@@ -3,13 +3,14 @@
   "version": "0.2.0",
   "private": true,
   "type": "module",
-  "packageManager": "bun@1.4.4",
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt generate",
     "typecheck": "nuxt typecheck",
     "preview": "nuxt preview",
     "lint": "eslint .",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
@@ -25,8 +26,10 @@
     "@nuxt/eslint": "^1.17.0",
     "@types/node": "^26.6.6",
     "eslint": "^10.15.0",
+    "oxfmt": "^0.79.0",
     "sass": "^1.108.2",
     "typescript": "~6.0.3",
     "vue-tsc": "^3.3.14"
-  }
+  },
+  "packageManager": "bun@1.4.4"
 }

@@ -1,8 +1,12 @@
 <template>
-    <div id="application" :style="{ '--accent-color': props.accent ?? route.meta.accent ?? DEFAULT_ACCENT }">
+    <div
+        id="application"
+        :style="{ '--accent-color': props.accent ?? route.meta.accent ?? DEFAULT_ACCENT }"
+    >
         <Notification
-desktop-message="Learn more about Blockeley and chat with Blockeley team members as well as our community on Discord."
-                      mobile-message="Join us on Discord.">
+            desktop-message="Learn more about Blockeley and chat with Blockeley team members as well as our community on Discord."
+            mobile-message="Join us on Discord."
+        >
             <LinkButton :href="DISCORD_URL" alternate small>Launch Discord</LinkButton>
         </Notification>
 
@@ -10,9 +14,13 @@ desktop-message="Learn more about Blockeley and chat with Blockeley team members
 
         <div class="navigation-bar">
             <div class="container">
-                <IconButton class="navigation-bar-toggle" icon="menu" @click="mobileNavigation = true" />
+                <IconButton
+                    class="navigation-bar-toggle"
+                    icon="menu"
+                    @click="mobileNavigation = true"
+                />
 
-                <img class="navigation-bar-brand" src="/images/logo-small.webp" alt="Blockeley">
+                <img class="navigation-bar-brand" src="/images/logo-small.webp" alt="Blockeley" />
 
                 <ul class="navigation-bar-menu" role="list">
                     <NavigationLinks />
@@ -38,18 +46,22 @@ import { DEFAULT_ACCENT, DISCORD_URL } from "@/site";
 // The error page has no route meta of its own, so it passes its accent in
 const props = defineProps<{
     accent?: string;
-}>( );
+}>();
 
-const route = useRoute( );
+const route = useRoute();
 
 useHead({
-    title: ( ) => route.meta.title,
-    titleTemplate: title => title ? `${ title } | Blockeley` : "Blockeley | The #1 Minecraft university in the world"
+    title: () => route.meta.title,
+    titleTemplate: (title) =>
+        title ? `${title} | Blockeley` : "Blockeley | The #1 Minecraft university in the world",
 });
 
 const mobileNavigation = ref(false);
 
-watch(( ) => route.fullPath, ( ) => mobileNavigation.value = false);
+watch(
+    () => route.fullPath,
+    () => (mobileNavigation.value = false),
+);
 </script>
 
 <style lang="scss">
@@ -63,7 +75,9 @@ watch(( ) => route.fullPath, ( ) => mobileNavigation.value = false);
 /*
  *  Global
  */
-*, *::after, *::before {
+*,
+*::after,
+*::before {
     box-sizing: border-box;
 }
 
@@ -78,7 +92,7 @@ body {
     // The design's text metrics assume a line-height of 1 (the old Meyer reset's default)
     line-height: 1;
 
-    background-color: #F5F2E5;
+    background-color: #f5f2e5;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 
     // Lock page scrolling while the mobile menu or a full screen location is open

@@ -3,8 +3,13 @@
         <div id="page-not-found">
             <Splash>
                 <Section heading="Uh oh!" variant="background">
-                    <template #description><span class="important">The page you have navigated to does not exist.</span>
-                                                 <br>Consider exploring the virtual Minecraft campus or meeting the Blockeley club.</template>
+                    <template #description
+                        ><span class="important"
+                            >The page you have navigated to does not exist.</span
+                        >
+                        <br />Consider exploring the virtual Minecraft campus or meeting the
+                        Blockeley club.</template
+                    >
 
                     <template #buttons>
                         <Button to="/campus">Minecraft campus</Button>

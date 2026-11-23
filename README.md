@@ -12,6 +12,7 @@ bun run build      # pre-render the static site into .output/public
 bun run typecheck  # type-check (vue-tsc)
 bun run preview    # serve the production build locally
 bun run lint       # lint (@nuxt/eslint)
+bun run format     # format with oxfmt (Prettier-compatible; .oxfmtrc.json)
 ```
 
 ## Deployment

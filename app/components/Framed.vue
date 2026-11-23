@@ -1,7 +1,7 @@
 <template>
     <div class="framed">
         <div class="framed-image">
-            <img :src="image" loading="lazy" decoding="async" alt="">
+            <img :src="image" loading="lazy" decoding="async" alt="" />
         </div>
     </div>
 </template>
@@ -9,7 +9,7 @@
 <script setup lang="ts">
 defineProps<{
     image: string;
-}>( );
+}>();
 </script>
 
 <style lang="scss">

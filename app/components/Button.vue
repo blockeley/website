@@ -1,5 +1,10 @@
 <template>
-    <NuxtLink v-if="to ?? href" :to="to ?? href" class="button" :class="{ 'button-alternate': alternate }">
+    <NuxtLink
+        v-if="to ?? href"
+        :to="to ?? href"
+        class="button"
+        :class="{ 'button-alternate': alternate }"
+    >
         <slot />
     </NuxtLink>
 
@@ -17,7 +22,7 @@ defineProps<{
     alternate?: boolean;
     to?: RouteLocationRaw;
     href?: string;
-}>( );
+}>();
 </script>
 
 <style lang="scss">
